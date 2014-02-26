@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'KievitPro'; }
+
+body {
+  min-width: 790px; }
+
+body > div, body > header {
+  padding-left: 30px;
+  padding-right: 30px; }
+
+h1, h2 {
+  font-family: 'Klavika Bold'; }
+
+h2 {
+  font-size: 1.75em; }
+
+h3 {
+  font-size: 1.4em;
+  font-family: 'Klavika Regular';
+  letter-spacing: -.02em; }
+
+p {
+  font-size: 1.25em; }
+
+a {
+  color: inherit; }
+
+header {
+  background-image: url("img/ribbon.png");
+  background-repeat: repeat-x;
+  padding-top: 30px;
+  padding-bottom: 6px; }
+  header h1, header .tagline {
+    float: left; }
+  header .logo img {
+    width: 190px; }
+
+nav {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  margin-top: 16px; }
+  nav ul {
+    list-style-type: none; }
+  nav li {
+    margin-left: 1.5em;
+    float: left;
+    font-family: 'Klavika Regular', 'Open Sans', sans-serif; }
+    nav li:first-child {
+      margin-left: 0; }
+
+.active {
+  font-family: 'Klavika Bold'; }
+
+.tagline {
+  font-style: italic;
+  display: block;
+  max-width: 35em;
+  font-size: 1em;
+  margin-left: 2em;
+  line-height: 1.4em;
+  margin-top: 5px; }
+
+.objective {
+  margin: 0;
+  overflow: auto;
+  padding: 0 30px 30px;
+  box-sizing: content-box; }
+
+.horiz .objective {
+  width: 100%;
+  margin-left: -30px;
+  /* (100%/(100%-$outer-padding*2))*$outer-padding*-1 */
+  padding: 15px;
+  -webkit-transition: width 1.2s, top 1.2s, left 1.2s, height 1.2s, border-radius 1.2s; }
+  .horiz .objective.start {
+    width: 0;
+    height: 0;
+    padding: 0; }
+  .horiz .objective.show.first {
+    background-color: #de481f;
+    color: white; }
+    .horiz .objective.show.first .initiative:last-child {
+      width: 38%; }
+  .horiz .objective.show.second {
+    background-color: #fabf48;
+    color: black; }
+  .horiz .objective.show.third {
+    background-color: #71cbf5; }
+  .horiz .objective.show.fourth {
+    background-color: #c6db74; }
+  .horiz .objective::before {
+    display: block;
+    content: ' ';
+    position: relative;
+    left: -30px;
+    width: 300%; }
+.horiz .objective h2 {
+  width: 250px;
+  margin-right: 4%;
+  float: left;
+  margin-top: 12px; }
+.horiz .initiative {
+  float: left;
+  padding-top: 1em;
+  width: 18%;
+  margin-right: 2%; }
+  .horiz .initiative:last-child {
+    margin-right: 0; }
+
+.vert header {
+  margin-bottom: 60px; }
+.vert nav {
+  display: none;
+  top: 500px;
+  width: 30em; }
+  .vert nav::before {
+    content: "About Us: ";
+    font-style: italic;
+    margin-right: 1em;
+    float: left; }
+.vert .objective {
+  float: left;
+  padding-bottom: 90px;
+  padding-right: 0;
+  width: 30%;
+  box-sizing: border-box;
+  /*
+  &.about {
+    box-sizing:border-box;
+    margin:$outer-padding;
+    width:96%;
+  }*/ }
+  .vert .objective .initiative {
+    display: none; }
+  .vert .objective:not(.rowstart) {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 1.5%; }
+  .vert .objective.rowstart + .objective {
+    margin-left: 3% !important; }
+  .vert .objective h2 {
+    box-sizing: border-box;
+    border-top-width: 6px;
+    margin-top: 2px;
+    border-top-style: solid;
+    margin-bottom: 1em;
+    display: none; }
+  .vert .objective.first h2 {
+    border-color: #f59093; }
+  .vert .objective.second h2 {
+    border-color: #ffbf5c; }
+  .vert .objective.third h2 {
+    border-color: #71cbf5; }
+  .vert .objective.fourth h2 {
+    border-color: #c6db74; }
+.vert .accordian {
+  margin-left: -30px;
+  margin-right: -30px;
+  width: 100%;
+  float: none;
+  box-sizing: content-box; }
+.vert .initiative {
+  margin-top: .75em; }
+
+.powered img, .powered span {
+  display: inline-block;
+  height: 50px;
+  margin-right: 15px; }
+.powered span {
+  vertical-align: middle; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.hidden {
+  display: none; }

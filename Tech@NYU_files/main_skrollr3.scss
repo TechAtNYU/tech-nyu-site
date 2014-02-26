@@ -1,0 +1,24 @@
+$navStartTime = 0;
+
+@mixin ease($property, $easing, $value) {
+    $property#{"["+ $easing + "]"}: $value;
+}
+
+@-skrollr-keyframes tagline {
+    0 {
+        @include ease(top, swing, 25%);
+        @include ease(margin-top, sqrt, 130px);
+        @include ease(left, sqrt, 30px);
+        font-size: 2em;
+        width: 590px;
+    }
+
+    500 {
+        @include ease(left, sqrt, -590px);
+    }
+}
+
+
+.tagline {
+     -skrollr-animation-name: tagline;
+}

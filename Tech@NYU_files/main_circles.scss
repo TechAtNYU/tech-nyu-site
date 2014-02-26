@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800');
+
+$outer-padding: 30px;
+$bubble-size: 265px;
+
+/*
+$bubble-size: 265px;
+$first-bubble-left: 80px;
+$first-bubble-top: 480px;
+$second-bubble-left: 670px;
+$second-bubble-top: 140px;
+$third-bubble-left: 125px;
+$third-bubble-top: 200px;
+$fourth-bubble-left: 510px;
+$fourth-bubble-top: 500px;
+*/
+
+$bubble-size: 300px;
+$first-bubble-left: 30px;
+$first-bubble-top: 190px;
+$second-bubble-left: 270px;
+$second-bubble-top: 330px;
+$third-bubble-left: 525px;
+$third-bubble-top: 190px;
+$fourth-bubble-left: 785px;
+$fourth-bubble-top: 290px;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'KievitPro';
+}
+
+body > div, body > header {
+  padding-left: $outer-padding;
+  padding-right: $outer-padding;
+}
+
+h1, h2 { 
+  font-family: 'Klavika Bold';
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.4em;
+  font-family: 'Klavika Regular';
+  letter-spacing: -.02em;
+}
+
+p {
+  font-size: 1.25em;
+}
+
+a {
+  color: inherit;
+}
+
+header {
+  background-image:url('img/ribbon.png');
+  background-repeat:repeat-x;
+  padding-top: $outer-padding;
+  padding-bottom:$outer-padding/5;
+
+  .logo img {
+    width: 190px;
+  }
+}
+
+nav {  
+  position: absolute;
+  right: $outer-padding;
+  top:$outer-padding;
+  margin-top:16px;
+
+  ul {
+    list-style-type: none;
+  }
+  li {
+    margin-left:1.5em;
+    float: left;
+    font-family: 'Klavika Regular', 'Open Sans', sans-serif;
+
+    &:first-child {
+      margin-left:0;
+    }
+  }
+}
+
+.active {
+  font-family: 'Klavika Bold';
+}
+.tagline {
+  font-style: italic;
+  display: block;
+  max-width: 35em;
+  font-size:1em;
+  line-height: 1.4em;
+  margin-top:4px;
+}
+
+.objective {
+  margin: 0;
+  overflow: auto;
+  box-sizing: content-box;
+}
+
+.horiz {
+  .objective {
+    overflow: hidden;
+    position: absolute;
+
+    h2 {
+      width: $bubble-size - 50px;
+      margin-left:25px;
+      margin-top:($bubble-size - 180px)/2;
+      text-align: center;
+      -webkit-transform: rotate(0deg);
+      -webkit-transition: -webkit-transform 1.5s;
+    }
+
+    &.first h2 {
+      margin-left:10px;
+    }
+
+    &.second h2 {
+      position: relative;
+      top: 30px;
+    }
+
+    &.start {
+      width: 0;
+      height: 0;
+      padding:0;
+      &.first {
+        left: $first-bubble-left + $bubble-size/2;
+        top: $first-bubble-top + $bubble-size/2;
+      }
+      &.second {
+        left: $second-bubble-left + $bubble-size/2;
+        top: $second-bubble-top + $bubble-size/2;
+      }
+      &.third {
+        left: $third-bubble-left + $bubble-size/2;
+        top: $third-bubble-top + $bubble-size/2;
+      }
+      &.fourth {
+        left: $fourth-bubble-left + $bubble-size/2;
+        top: $fourth-bubble-top + $bubble-size/2;
+      }
+    }
+
+    &.show {
+      height: $bubble-size;
+      width: $bubble-size;
+      border-radius:$bubble-size/2;
+
+      &.first {
+        top: $first-bubble-top;
+        left: $first-bubble-left;
+        background-color:#f59093;
+
+        h2 {
+          -webkit-transform: rotate(-6deg);
+        }
+      }
+      &.second {
+        top: $second-bubble-top;
+        left: $second-bubble-left;
+        background-color:#ffbf5c;
+        z-index: 2;
+      }
+      &.third {
+        top: $third-bubble-top;
+        left: $third-bubble-left;
+        background-color:#71cbf5;
+        h2 {
+          -webkit-transform:rotate(-3deg);
+        }
+      }
+      &.fourth {
+        background-color: #c6db74;
+        top: $fourth-bubble-top;
+        left: $fourth-bubble-left;
+      }
+    }
+
+    -webkit-transition: width 1.2s, top 1.2s, left 1.2s, height 1.2s, border-radius 1.2s;
+  }
+
+  .initiative {
+    position: relative;
+    text-align: center;
+    width: 95px;
+  }
+}
+
+.vert {
+  .objective {
+     float:left;
+     width:25%;
+     box-sizing:border-box;
+  }
+
+  .accordian {
+    margin-left: $outer-padding*-1;
+    margin-right: $outer-padding*-1;
+    width:100%;
+    box-sizing:content-box;
+  }
+
+  .initiative {
+    margin-top: 1em;
+  }
+}
+
+.powered {
+  img, span {
+    display: inline-block;
+    height:50px;
+    margin-right:15px;
+  }
+  span {
+    vertical-align: middle;
+  }
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+.hidden {
+  display: none;
+}

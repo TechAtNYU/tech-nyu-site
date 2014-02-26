@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- saved from url=(0021)http://ben.tnyu.org/# -->
+<html xmlns="https://www.w3.org/1999/xhtml"><!--[if lt IE 9]>
+<html xmlns="https://www.w3.org/1999/xhtml" class="lt-ie9">
+<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Tech@NYU - Home</title>
+<link rel="stylesheet" href="./Tech@NYU_files/grid.css" type="text/css">
+<link rel="stylesheet" href="./Tech@NYU_files/main_grid.css" type="text/css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+<!--[if lt IE 9]>
+	<script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+</head>
+<script src="./Tech@NYU_files/jquery.min.js"></script>
+<script src="./Tech@NYU_files/jquery-ui.min.js"></script>
+<script>
+  $(function() {
+    $('.accordian').css('height', /*$(window).height()*.9 */ 575 + 'px');
+    $('.accordian .objective').each(function(i,v) {
+      var time = 1150 + 250*($(v).find('.initiative').length) + 150; 
+      setTimeout(function() { revealObjective(v, false); }, i*time);
+    });
+
+    function revealObjective(elem, separateInitiatives) {
+      $this = $(elem);
+      initiatives = $this.find('.initiative');
+      $this.addClass('show').removeClass('start');
+      initiatives.addClass('hidden');
+      if (separateInitiatives) { initiatives.insertAfter($this); }
+
+      setTimeout(function() {
+        initiatives.each(function(i, v) { 
+          setTimeout(function() { revealInitiative(v, $this, i); }, i*250);
+        });
+      }, 1150);
+    }
+
+    function revealInitiative(elem, objective, index) {
+      var $this = $(elem),
+          top = $this.attr('data-top'),
+          left = $this.attr('data-left');
+
+      $this.css({'top': top, 'left': left}).fadeIn().removeClass('hidden').find('p').addClass('hidden');
+    }
+
+  });
+</script>
+
+<body class="horiz">
+
+  <div class="ribbon"></div>
+
+  <header class="clearfix">
+    <div class="info">
+    	<h1 class="logo">
+      	<a href="http://ben.tnyu.org/">
+      	 <img src="./Tech@NYU_files/logo.png" alt="tech@nyu" />
+        </a>
+    	</h1>
+      <p class="tagline">We help students from NYU and surrounding schools discover the NYC tech community and enable them to bring new, useful products into the world. <a href="">More about us...</a></p>
+    </div>
+    <nav>
+    	<ul class="nav">
+        <li>What We&rsquo;ve Made</li>
+        <li>Blog</li>
+        <li>Jobs</li>
+        <li>Newsletter</li>
+        <li>Contact</li>
+    	</ul>
+    </nav>
+  </header>
+
+
+  <div class="accordian" class="clearfix">
+    <div class="objective start first">
+      <h2>Get Started with<br/>the Tech Scene</h2>
+      <div class="initiative">
+        <h3>Freshman Circuit</h3>
+        <p>Tour NYC startups and talk with their employees to see what they&rsquo;re up to and where you might fit in.</p>
+      </div>
+      <div class="initiative">
+        <h3>Programming &amp; Design Basics</h3>
+        <p>Learn the basics of programming or design.</p>
+      </div>
+    </div>
+
+    <div class="objective start second">
+      <h2>Improve Your Skills</h2>
+      <div class="initiative"> 
+        <h3>Hack Days</h3>
+        <p>Lectures on web technologies, covering everything from <a href="http://angularjs.org">Angular</a> to <a href="http://zeptojs.com/">Zepto</a>.</p>
+      </div>
+      <div class="initiative">
+        <h3>Design Days</h3>
+        <p>Workshops on design thinking, user research, and advanced topics in digital product design.</p>
+      </div>
+      <div class="initiative">
+        <h3>Game Days</h3>
+        <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
+      </div>
+    </div>
+
+    <div class="objective start third">
+      <h2>Create &amp; Socialize with Cool People</h2>
+      
+      <div class="initiative">
+        <h3>Hack Nights</h3>
+        <p>Designers, developers, and makers of all sorts together or a few hours each week. Hang out, work on your projects and get to know each other.</p>
+      </div>
+      <div class="initiative">
+        <h3>Game Nights</h3>
+        <p>Play video games with other gamers all night long. Oh, and pizza. Need we say more?</p>
+      </div>
+
+      <div class="initiative">
+        <h3>Designathons</h3>
+        <p>Over the course of a weekend, work with a team to produce a refined, well-researched design concept for a product of your choice.</p>
+      </div>
+
+    </div>
+
+    <div class="objective start fourth">
+      <h2>Follow the<br/> Latest in Tech</h2>
+      <div class="initiative">
+        <h3>Startup Series</h3>
+        <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
+      </div>
+
+
+      <div class="initiative">
+        <h3>Demo Days</h3>
+        <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
+      </div>      
+      <div class="initiative">
+          <h3>Digest</h3>
+          <p>Our bi-weekly email of all the best tech &amp; design events around the city.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <div class="powered">
+  	<span>Powered By</span>
+    <img src="./Tech@NYU_files/pivotal labs.png">
+    <img src="./Tech@NYU_files/pivotal labs.png">
+    <img src="./Tech@NYU_files/pivotal labs.png">
+    <img src="./Tech@NYU_files/pivotal labs.png">
+    <img src="./Tech@NYU_files/pivotal labs.png">
+  </div>
+
+</body></html>
