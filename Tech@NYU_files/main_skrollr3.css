@@ -1,0 +1,65 @@
+/*
+Syntax error: Undefined variable: "$flat".
+        on line 11 of _cover_base.scss
+        from line 1 of main_skrollr3.scss
+
+6: 
+7: $navCascadeStart: 480;
+8: $navCascadeItemDelay: 15;
+9: $navCascadeDrop: 30;
+10: 
+11: $navTOCUpStart: $headerAnimEnd/2;
+12: $navTOCPause: 75;
+13: $navTOCUpEnd: 800 + $navTOCPause;
+14: $navTOCMiddle: ($navTOCUpStart + $navTOCUpEnd - $navTOCPause)/2;
+15: 
+16: 
+
+Backtrace:
+_cover_base.scss:11
+main_skrollr3.scss:1
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/script/variable.rb:49:in `_perform'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/script/node.rb:50:in `perform'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/script/funcall.rb:93:in `block in _perform'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/script/funcall.rb:93:in `map'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/script/funcall.rb:93:in `_perform'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/script/node.rb:50:in `perform'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:332:in `visit_variable'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:230:in `block in visit_import'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:230:in `map'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:230:in `visit_import'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/tree/root_node.rb:20:in `render'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/engine.rb:265:in `render'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/plugin/compiler.rb:325:in `update_stylesheet'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/plugin/compiler.rb:182:in `block in update_stylesheets'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/plugin/compiler.rb:179:in `each'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/plugin/compiler.rb:179:in `update_stylesheets'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/lib/sass/plugin/compiler.rb:278:in `block in watch'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/vendor/listen/lib/listen/multi_listener.rb:108:in `call'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/vendor/listen/lib/listen/multi_listener.rb:108:in `on_change'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/vendor/listen/lib/listen/multi_listener.rb:117:in `block in initialize_adapter'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/vendor/listen/lib/listen/adapter.rb:198:in `call'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/vendor/listen/lib/listen/adapter.rb:198:in `report_changes'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/vendor/listen/lib/listen/adapter.rb:210:in `poll_changed_dirs'
+/Users/ethanresnick/.rvm/gems/ruby-2.0.0-p0/gems/sass-3.3.0.alpha.121/vendor/listen/lib/listen/adapters/darwin.rb:38:in `block in start'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined variable: \"$flat\".\A         on line 11 of _cover_base.scss\A         from line 1 of main_skrollr3.scss\A \A 6: \A 7: $navCascadeStart: 480;\A 8: $navCascadeItemDelay: 15;\A 9: $navCascadeDrop: 30;\A 10: \A 11: $navTOCUpStart: $headerAnimEnd/2;\A 12: $navTOCPause: 75;\A 13: $navTOCUpEnd: 800 + $navTOCPause;\A 14: $navTOCMiddle: ($navTOCUpStart + $navTOCUpEnd - $navTOCPause)/2;\A 15: \A 16: "; }

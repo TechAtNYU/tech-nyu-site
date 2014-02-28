@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800');
-
-$outer-padding: 30px;
+@import "cover_base";
 
 //########### RESET AND NORMALIZE (ISH) ################
 * {
   margin: 0;
   padding: 0;
-  font-family: 'KievitPro';
+  font-family: 'Helvetica Neue'; //Alternates: Adelle, Vista Slab
+  font-weight: 200;
+  letter-spacing: .47px;
 }
 
 
 //############ ELMENT STYLES #################
 
 html {
-  color: white;
+  color: $textColor;
 }
 
 p {
@@ -46,12 +46,12 @@ a {
   color: inherit;
 }
 
-.first { background-color:#de481f; }
-.second { background-color:#E6B400; }
-.third { background-color:#441863; }
-.fourth { background-color: #138a2a; }
-.fifth { background-color: #0a3b85; }
-.sixth { background-color: black; }
+.first { background-color: nth($colors, 1); }
+.second { background-color: nth($colors, 2); }
+.third { background-color: nth($colors, 3); }
+.fourth { background-color: nth($colors, 4);  }
+.fifth { background-color: nth($colors, 5); }
+.sixth { background-color: nth($colors, 6); }
 
 .bg {
   top:0;
@@ -61,7 +61,7 @@ a {
   position: fixed;
   background-size:cover;
   background-repeat:no-repeat;
-  background-image: url(img/events/914085_589631024424465_1530612378_o.jpg);
+  background-image: $initialBackgroundImage;
   -webkit-filter: saturate(10%);
   -webkit-filter: contrast(0.56);
 }
@@ -76,43 +76,78 @@ header {
   .tagline {
     position: fixed;
     font-weight:600;
-    line-height: 1.3em;
-    -webkit-filter: drop-shadow(0 0 1px black);
+    line-height: 1.4em;
+    letter-spacing: .2px;
+    -webkit-filter: $taglineStartFilter;
   }
 
-  .logo img {
+  .logo a {
+    padding:15px $outerPadding 0;
     position: fixed;
-    top:50%;
+    top: 50%;
+    box-sizing: content-box;
+    height: 65px;
+    img {
+      width:100%;
+    }
   }
 
-  nav ul {
-    list-style-type:none;
-    height:80px;
-    overflow: hidden;
+  .bgHolder {
     position: absolute;
-    top:-80px;
-    li {
-      position: fixed;   
+    left: 0;
+    right: 0;
+    height: 80px;
+    max-width: $navMaxWidth + $logoEndWidth + 2*$outerPadding;
+    opacity: 0;
+    background-color: nth($colors, 1);
+  }
+
+  nav > ul {
+    list-style-type:none;
+    color: white;
+    left: $logoEndWidth + 2*$outerPadding;
+    min-width: $totalFlagsWidth;
+    max-width: $navMaxWidth;
+
+    > li {
+      float:left;
       height:80px;
       z-index:4;
-      padding:$outer-padding*.45 $outer-padding*.6666;
+      padding:$outerPadding*.45 $outerPadding*.6666;
       &.first {
-        width:210px;
+        width: (nth($flagWidths, 1)/$totalFlagsWidth)*100%;
       }
       &.second {
-        width:160px;
+        width: (nth($flagWidths, 2)/$totalFlagsWidth)*100%;
       }
       &.third {
-        width:220px;
+        width: (nth($flagWidths, 3)/$totalFlagsWidth)*100%;
       }
       &.fourth {
-        width:190px;
+        width: (nth($flagWidths, 4)/$totalFlagsWidth)*100%;
       }
       &.fifth {
-        width:150px;
-        box-sizing: content-box;
-        height:53px;
-        padding-right:2000em;
+        width: (nth($flagWidths, 5)/$totalFlagsWidth)*100%;
+      }
+
+      &.calendar {
+        width: (nth($flagWidths, 6)/$totalFlagsWidth)*100%;
+        text-indent: -1000em;
+        background-image: url(calendar.png);
+        background-size:50px;
+        background-repeat: no-repeat;
+        background-position: 20px 14px;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      margin-top:1em;
+      color: $textColor;
+      li {
+        margin-bottom: .666em;
+        line-height: 1.3em;
+        font-size: 1.25em;
       }
     }
   }
@@ -120,10 +155,9 @@ header {
 
 .objective {
   position: fixed;
+  height: 100%;
   width: 100%;
-  margin-top:80px;
-  padding: $outer-padding;
-  height:100%;
+  padding: $outerPadding;
 
   &.revealing {
     overflow: hidden;
@@ -134,9 +168,9 @@ header {
   }
 
   > h2 {
+    font-size: 2em;
     margin-top:-.6em;
-    font-size:1.33em;
-    margin-bottom:2.75em;
+    margin-bottom:2em;
   }
 
   .poweredby {
@@ -172,10 +206,17 @@ header {
      clear: both;
      height: 0;
 }
+
 .hidden {
   display: none;
 }
 
+.scrollCue {
+  position: fixed;
+  bottom:2%;
+  left: $outerPadding;
+  background-image: url(scroll.png);
+}
 
 /* prepare the selectors to add a stroke to */
 .stroke-single,
@@ -187,7 +228,7 @@ header {
 /* add a single stroke */
 .stroke-single:before,
 .stroke-double:before {
-  content: attr(title);
+  content: attr(data-stroke);
   position: absolute;
   -webkit-text-stroke: 3px #333;
   z-index: -1;
