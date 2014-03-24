@@ -1,0 +1,89 @@
+//photoGrid means we're putting photos but not overlapping
+$photoGrid: true;
+$homepageLeftColMinWidth: 26em;
+$fixedWidthHomepageLeftCol: false;
+
+@function sum($list) {
+  $result: 0;
+  
+  @each $item in $list {
+    $result: $result + $item;
+  }
+  
+  @return $result;
+}
+
+@function mixAll($list1, $list2, $mixPercentages) {
+  $result: ();
+  $merged: zip($list1, $list2, $mixPercentages);
+
+  
+  @each $item in $merged {
+    $result: append($result, mix(nth($item, 1), nth($item, 2), nth($item, 3)));
+  }
+  
+  @return $result;
+}
+
+@function prepend($list, $value) {
+    @return join($value, $list);
+}
+
+@function toHslString($color, $addAlpha: false) {
+    $h: hue($color);
+    $s: saturation($color);
+    $l: lightness($color);
+    $a: alpha($color);
+
+    @return unquote("hsl" + if($addAlpha, "a", "") + "(" + $h/1deg + ", " + $s + ", " + $l + if($addAlpha, ", " + $a, "") + ")");
+}
+
+@function toRgbString($color, $addAlpha: false) {
+    $r: red($color);
+    $g: green($color);
+    $b: blue($color);
+    $a: alpha($color);
+
+    @return unquote("rgb" + if($addAlpha, "a", "") + "("  + $r + ", " + $g + ", " + $b + if($addAlpha, ", " + $a, "") + ")");
+}
+
+$bodyFont: "franklin-gothic-urw"; //alt = adelle-sans
+$headingFont: "ff-meta-web-pro"; //alt = Klavika
+$textColor: if($flat, #333, white);
+$logoStartFilter: if($flat, none, drop-shadow(0 0 1px white) invert(1) contrast(2));
+$logoEndFilter: if($flat, none, drop-shadow(0 0 0px black) invert(0) contrast(1));
+
+//if $photoGrid
+$logoStartFilter: if($photoGrid, brightness(98%), $logoStartFilter);
+$logoEndFilter: if($photoGrid, brightness(20%), $logoEndFilter);
+
+$logoStartBackground: rgba(255, 255, 255, 0); //if($flat, transparent, unquote("hsla(0,0%,100%, 0)"));
+$logoEndBackground: if($photoGrid, rgba(255,255,255,0), rgba(255, 255, 255, 1));
+$taglineStartFilter: if($flat, none, drop-shadow(0 0 1px black));
+
+$outerPadding: 30px;
+
+$logoStartTop: 37.5%;
+$logoStartWidth: if($photoGrid, 220px, 240px);
+$logoStartHeight: $logoStartWidth/3.01075;
+$logoEndWidth: 140px;
+
+$objectiveBgs: transparent;
+
+
+// The ideal width for each "flag" in our top nav.
+// Will be converted to percentages so that the 
+// full nav fills the available space nicely.
+// Doesn't include the calendar icon, which is in px.
+$flagWidths: (210px 155px 215px 185px 135px);
+$totalFlagsWidth: sum($flagWidths);
+$calendarFlagWidth: 90px;
+$navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + 100px;
+$constrainNavWidth: false;
+
+$colors1: #f38d94 #fec05d #9189c2 #c7df75 #75cbf5 #444;
+$colors2: desaturate(#de481f, 8%) #E6B400 desaturate(#441863,10%) desaturate(#138a2a, 5%) desaturate(#0a3b85, 5%) black white;
+$colors3: mixAll($colors1, $colors2, (50% 50% 50% 50% 50% 50%));
+$colors2_raw: #de481f #E6B400 #441863 #138a2a #0a3b85 black white;
+$colors4: adjust-hue(desaturate(#de481f, 5%), -0deg) adjust-hue(#ebb508,-1deg) #472362 #17862c #0a3b85 black white;
+$colors: mixAll($colors1, $colors4, (8% 5% 15% 20% 18% 50%));

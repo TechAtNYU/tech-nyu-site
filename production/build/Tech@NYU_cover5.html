@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Tech@NYU</title>
+  <link rel="stylesheet" href="main_cover5.css" type="text/css" />
+  <link rel="stylesheet" href="main_skrollr5.css"  data-skrollr-stylesheet />
+  <link rel="stylesheet" href="grid.css" type="text/css" />
+  <script type="text/javascript" src="skrollr.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+  <script src="jquery.min.js"></script>
+  <script>
+    $(function(){
+      //$('.objective > h2, .initiative > h3').addClass('stroke-single');
+      $('.stroke-double, .stroke-single').attr('data-stroke', function(){
+        return $(this).text();
+      });
+    });
+  </script>
+  <script type="text/javascript" src="//use.typekit.net/bpm7cfb.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body class="horiz">
+  <header class="clearfix" id="header">
+    <!--<div class="bgHolder"></div> -->
+    <div class="info">
+    	<h1 class="logo">
+      	<a href="http://ben.tnyu.org/">
+          <svg role="img" aria-label="tech@nyu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="12 268.9 610.4 187.5" xml:space="preserve"><g><path d="M538.4 318.7v1.8v54.2h-21.3c-2.3 0-4.3-0.8-5.9-2.5c-1.6-1.6-2.5-3.5-2.5-5.9V331h-13.9v35.2 c0 6.1 2.3 11.7 6.5 16s9.6 6.5 16 6.5h21.3v36.6c0 2.3-0.8 4.1-2.5 5.9c-1.6 1.6-3.5 2.5-5.9 2.5H322.7 c-17.4-2.3-32.3-11.1-43.2-22.1c-12.9-12.9-21.7-30.5-21.7-52.8s9-39.9 21.7-52.8c12.7-12.9 28.5-21.7 51.6-21.7 c20.9 0 36.6 9.8 48.5 21.7c12.9 12.7 21.1 34.6 21.1 52.8c0 6.5-2.3 11.9-6.1 15.6c-3.5 3.5-11.1 6.8-17.4 6.8 c-7.4 0-11.1-4.1-13.5-6.5c-1.4-1.2-2.3-4.5-2.9-7.8c-0.4-3.3-0.6-6.5-0.6-8.4c0-9.6-3.3-18-9.8-25.2s-14.7-10.4-24.4-10.4 c-9.6 0-17.8 3.5-24.2 10.4s-9.6 15.4-9.6 25.2c0 9.8 3.3 18 9.6 25c6.5 6.8 14.5 10.4 24.2 10.4c8.6 0 16.2-2.9 22.7-8.8 c7.2 6.1 19.4 11.1 28.5 11.1c9.8 0 21.1-3.5 28-10.4c6.8-6.8 10.4-15.6 10.4-27c0-24.8-8-46.1-25.4-63.5 c-16.6-16.6-35.2-26.2-59.2-26.2c-24.8 0-45 8-62.4 25.4c-17.4 17.4-25.8 39.1-25.8 64.1c0 24.8 8.6 46.1 26 63.5 c4.5 4.5 9 8 13.9 11.3h-43.6c-1.6-3.3-4.1-5.7-7.4-7.4v-72.5c0-6.1-2.3-11.7-6.5-16c-4.3-4.3-9.6-6.5-16-6.5h-14.1 c-1.6-3.3-4.1-5.7-7.4-7.4l0.2-37.7h-13.9v37.9c-3.1 1.6-5.5 4.1-7.2 7.2h-25.2c-6.1 0-11.7 2.3-16 6.5c-4.3 4.3-6.5 9.6-6.5 16 v12.9c0 6.1 2.3 11.7 6.5 16c4.3 4.3 9.6 6.5 15.8 6.5c0 0 0 0 0.2 0h27.4v-13.9h-27.4c-2.3 0-4.1-0.8-5.9-2.5 c-1.6-1.6-2.5-3.5-2.5-5.9v-12.9c0-2.3 0.8-4.3 2.5-5.9c1.6-1.6 3.5-2.5 5.9-2.5h25.2c1.4 3.3 4.1 5.7 7.2 7.2v36.4H188v-1.8v-34.6 c3.3-1.6 5.9-4.1 7.4-7.4h13.9c2.3 0 4.3 0.8 5.9 2.5c1.6 1.6 2.5 3.5 2.5 5.9v73.1c-5.3 2.7-9 8-9 14.1c0 8.8 7.2 16 16 16 c6.1 0 11.7-3.7 14.1-8.8h291.1c0 0 0 0 0.2 0c6.1 0 11.7-2.3 15.8-6.5c4.3-4.3 6.5-9.6 6.5-16V318.7H538.4z M339.5 374.1 c-3.7 4.3-8 6.1-13.5 6.1c-5.5 0-9.8-2-13.3-6.1c-3.5-4.3-5.3-9.2-5.3-14.9c0-5.7 1.6-10.8 5.3-15.1c3.5-4.3 8-6.3 13.3-6.5l0 0 c5.5 0 9.8 2 13.5 6.5c3.7 4.5 5.5 9.4 5.5 15.1C344.8 364.9 343.2 369.8 339.5 374.1z M181.3 342.8c-2.7 0-4.7-2.3-4.7-4.7 c0-2.7 2.3-4.7 4.7-4.7c2.7 0 4.7 2 4.7 4.7C186 340.6 183.9 342.8 181.3 342.8z M225.1 445.4c-2.7 0-4.7-2.3-4.7-4.7 c0-2.7 2.3-4.7 4.7-4.7c2.7 0 4.7 2 4.7 4.7C229.8 443.3 227.5 445.4 225.1 445.4z"/><path d="M113.9 365.5v-12.1c0-6.1-2.3-11.7-6.5-16c-4.3-4.3-9.6-6.5-16-6.5H78.5c-6.1 0-11.7 2.3-16 6.5 c-4.3 4.3-6.5 9.6-6.5 16v12.9c0 0.2 0 0.6 0 0.8c-3.5 1.6-6.1 4.3-7.8 7.6H34.1c-2.3 0-4.3-0.8-5.9-2.5c-1.6-1.6-2.5-3.5-2.5-5.9 v-21.5h19.4V331H25.7v-20.5H12v55.9c0 6.1 2.3 11.7 6.5 16c4.3 4.3 9.6 6.5 15.8 6.5c0 0 0 0 0.2 0h14.3c2.7 5.3 8 8.8 14.1 8.8 s11.7-3.7 14.1-9c0.4 0 1 0.2 1.4 0.2c0 0 0 0 0.2 0h15.4v-14.1H78.7c-0.6 0-1 0-1.6-0.2c-1.4-2.9-3.9-5.3-6.8-7 c-0.2-0.4-0.2-0.8-0.2-1.4v-0.8h43.8V365.5z M62.8 386.4c-2.7 0-4.7-2.3-4.7-4.7c0-2.7 2.3-4.7 4.7-4.7c2.7 0 4.7 2 4.7 4.7 C67.5 384.2 65.4 386.4 62.8 386.4z M69.9 351.8l0.2-0.4c0.4-1.6 1-2.9 2.5-4.3c1.8-1.6 3.9-2.7 6.1-2.7h12.9 c2.5 0 4.5 0.8 6.1 2.7c1.2 1.4 2 2.7 2.5 4.3l0.2 0.4H70.5H69.9z" /><path d="M615.4 366.6c0-0.2 0-0.2 0-0.2V331h-1.8h-12.1v33c-5.1 1.6-9.2 5.5-10.6 10.6h-10.6 c-2.3 0-4.1-0.8-5.9-2.5c-1.6-1.6-2.5-3.5-2.5-5.9v-47.5h-13.9v47.5c0 6.1 2.3 11.7 6.5 16s9.6 6.5 16 6.5h12.9c0 0 0 0 0.2 0h0.2 c2.9 3.9 7.6 6.5 12.7 6.5c8.8 0 16-7.2 16-16C621.7 374.1 619.3 369.2 615.4 366.6z M606 384.2c-2.7 0-4.7-2.3-4.7-4.7 c0-2.7 2-4.7 4.7-4.7c2.7 0 4.7 2 4.7 4.7C610.9 381.9 608.6 384.2 606 384.2z" /><path d="M483.2 337.5c-4.3-4.3-9.6-6.5-16-6.5h-12.9c-0.2 0-0.2 0-0.2 0c-2.9-3.9-7.4-6.3-12.7-6.3 c-8.8 0-16 7.2-16 16c0 5.3 2.7 9.8 6.5 12.7v0.2v22.9h13.9v-20.9c5.1-1.4 9.2-5.5 10.8-10.8h10.6c2.3 0 4.1 0.8 5.9 2.5 c1.6 1.6 2.5 3.5 2.5 5.9v35.2h13.9v-1.8v-33.2C489.5 347.3 487.3 341.8 483.2 337.5z M441.4 345.3c-2.7 0-4.7-2-4.7-4.7 s2.3-4.7 4.7-4.7c2.7 0 4.7 2 4.7 4.7C446.1 343 443.9 345.3 441.4 345.3z"/></g></svg>
+        </a>
+    	</h1>
+      <p id="tagline" class="tagline">
+        We host tech, design, and entrepreneurship events for students from NYU and surrounding schools. We have events for students of all experience levels.
+      </p>
+    </div>
+    <nav id="nav">
+    	<ul>
+        <li class="first">
+          <h2 class="h3">Get Started with<br> the Tech Scene</h2>
+          <ul>
+            <li>Freshman Circuit</li>
+            <li>Programming &amp; Design Basics</li>
+          </ul> 
+        </li>
+        <li class="second">
+          <h2 class="h3">Improve<br> Your Skills</h2>
+          <ul>
+            <li>Hack Days</li>
+            <li>Design Days</li>
+            <li>Game Days</li>
+          </ul> 
+        </li>
+        <li class="third">
+          <h2 class="h3">Build &amp; Socialize <br>with Cool People</h2>
+          <ul>
+            <li>Hack Nights</li>
+            <li>Game Nights</li>
+            <li>Designathons</li>
+          </ul>
+        </li>
+        <li class="fourth">
+          <h2 class="h3">Follow the <br>Latest in Tech</h2>
+          <ul>
+            <li>Startup Series</li>
+            <li>Demo Days</li>
+            <li>Digest</li>
+          </ul>
+        </li>
+        <li class="fifth">
+          <h2 class="h3">About Us</h2>
+          <ul>
+            <li>About Us</li>
+            <li>Contact</li>
+            <li>Blog</li>
+            <li>Job Board</li>
+          </ul>
+        </li>
+        <li class="sixth calendar">
+          <svg role="img" aria-label="Event Calendar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 612 792" xml:space="preserve">
+            <g>
+              <path d="M31.1 673.5c0-174.2 0-347.3 0-521.5 15.5 0 30.5 0 48.1 0 0 7.9 0 16.4 0 24.7 0.3 18 9.7 28.9 24.4 28.6 14.6 0 23.8-11 24.1-28.9 0-7.9 0-15.8 0-24.7 28.9 0 56.1 0 85.3 0 0 9.4-0.3 18.3 0 27.4 0.6 15.8 10.1 26.2 23.8 26.5 14.3 0.3 24.4-10.4 25-26.8 0.3-8.5 0-17.1 0-26.8 26.2 0 51.5 0 79.2 0 0 8.2 0 16.4 0 24.7 0.3 17.7 9.7 28.9 24.7 28.6 14.6 0 23.8-11.3 24.1-28.9 0-7.6 0-15.2 0-24.1 26.2 0 51.8 0 79.2 0 0 8.2 0 16.1 0 24.1 0.3 18 9.4 28.9 24.1 29.2 14.6 0.3 24.4-10.7 24.7-28.6 0.3-7.9 0-16.1 0-25 20.7 0 39.6 0 59.7 0 0 173.6 0 347 0 521.5C396 673.5 214.2 673.5 31.1 673.5zM50 328.1c0 110.3 0 219 0 328.1 144.4 0 287.3 0 428.3 0 28-27.7 54.8-53.9 81-79.8 0-82.9 0-165.4 0-248.3C389 328.1 220.2 328.1 50 328.1zM294.9 252.5c-71.6 0-142 0-212.3 0 0 9.1 0 17.1 0 25.6 71 0 141.3 0 212.3 0C294.9 269.6 294.9 261.7 294.9 252.5zM559.6 609.8c-15.2 15.2-31.1 31.1-46 46 13.4 0 29.2 0 46 0C559.6 639.1 559.6 623.3 559.6 609.8z"/>
+              <path d="M505.7 152.3c0 9.1 0 18.3 0 27.4 0 7.6-3.7 13.1-11.6 13.4 -8.8 0.3-12.5-5.5-12.5-14 0-18.9 0-37.5 0-56.4 0-8.2 3.7-14.3 12.5-14 8.8 0.3 11.9 6.4 11.9 14.6C505.7 133.1 505.7 142.9 505.7 152.3L505.7 152.3z"/>
+              <path d="M377.7 150.8c0 9.7 0.3 19.2 0 28.9 -0.3 8.2-4 14-12.8 13.7 -7.9-0.3-11.3-6.1-11.3-13.7 0-19.2 0-38.7 0-57.9 0-7.6 4.3-12.8 11.9-12.8 7.9 0 11.9 5.2 11.9 12.8C377.7 131.3 377.7 141 377.7 150.8z"/>
+              <path d="M91.4 151.1c0-9.1 0-18.3 0-27.4 0-7.9 3-14.3 11.9-14.6 8.8-0.3 12.5 5.8 12.5 14 0 18.9 0 37.5 0 56.4 0 8.2-3.7 14.3-12.5 14 -8.8-0.6-11.9-7-11.9-14.9C91.4 169.4 91.4 160.2 91.4 151.1z"/>
+              <path d="M520 365.2c0 64.9 0 128.6 0 193.4 -22.8 0-45.1 0-68.8 0 0 20.4 0 39.9 0 60.3 -121.5 0-241.6 0-362.2 0 0-84.7 0-168.8 0-253.8C232.4 365.2 375.6 365.2 520 365.2zM227.9 560.2c-19.8 0-38.1 0-56.7 0 0 16.1 0 31.1 0 46.6 19.2 0 37.5 0 56.7 0C227.9 591.3 227.9 576.3 227.9 560.2zM297.6 560.2c-19.2 0-37.5 0-56.1 0 0 16.1 0 31.7 0 46.6 19.5 0 37.8 0 56.1 0C297.6 590.7 297.6 575.4 297.6 560.2zM311.6 559.9c0 16.1 0 31.4 0 46.9 19.2 0 37.8 0 55.7 0 0-16.4 0-31.7 0-46.9C348.2 559.9 330.2 559.9 311.6 559.9zM381.1 606.8c19.8 0 38.1 0 56.7 0 0-16.4 0-31.7 0-46.6 -19.5 0-37.8 0-56.7 0C381.1 576.3 381.1 591 381.1 606.8zM157.5 607.1c0-16.8 0-31.7 0-47.2 -19.2 0-37.5 0-56.1 0 0 16.1 0 31.7 0 47.2C120.6 607.1 138.6 607.1 157.5 607.1zM507.8 499.3c-19.5 0-38.1 0-56.1 0 0 16.4 0 31.7 0 46.9 19.2 0 37.2 0 56.1 0C507.8 530.3 507.8 515.4 507.8 499.3zM437.8 546.2c0-16.8 0-31.7 0-47.2 -19.2 0-37.5 0-56.1 0 0 16.4 0 31.7 0 47.2C400.9 546.2 418.9 546.2 437.8 546.2zM311.3 545.9c19.5 0 37.8 0 56.1 0 0-16.4 0-31.7 0-46.9 -19.2 0-37.2 0-56.1 0C311.3 514.8 311.3 529.7 311.3 545.9zM297.6 499.3c-19.5 0-37.8 0-56.1 0 0 16.4 0 31.7 0 46.9 19.2 0 37.2 0 56.1 0C297.6 530.3 297.6 515.4 297.6 499.3zM171.2 546.2c19.8 0 37.8 0 56.4 0 0-16.1 0-31.4 0-46.9 -19.2 0-37.8 0-56.4 0C171.2 515.1 171.2 530.3 171.2 546.2zM157.8 499.3c-19.5 0-37.8 0-56.1 0 0 16.4 0 31.7 0 46.9 19.2 0 37.2 0 56.1 0C157.8 530.3 157.8 515.4 157.8 499.3zM452.1 437.7c0 15.8 0 31.4 0 47.5 18.9 0 37.2 0 55.4 0 0-16.4 0-31.7 0-47.5C488.6 437.7 471 437.7 452.1 437.7zM437.4 485.6c0-16.8 0-32.3 0-47.5 -19.2 0-37.2 0-55.7 0 0 16.1 0 31.4 0 47.5C400.6 485.6 418.6 485.6 437.4 485.6zM311.6 438c0 16.8 0 32 0 46.9 19.5 0 37.8 0 56.1 0 0-16.1 0-31.4 0-46.9C348.8 438 330.8 438 311.6 438zM241.6 438c0 16.4 0 32 0 46.9 19.5 0 37.8 0 56.1 0 0-16.1 0-31.1 0-46.9C279 438 260.8 438 241.6 438zM171.5 438c0 16.4 0 32 0 46.9 19.5 0 37.8 0 56.1 0 0-16.1 0-31.1 0-46.9C209 438 190.7 438 171.5 438zM157.5 485.6c0-16.8 0-31.7 0-47.2 -19.2 0-37.5 0-56.1 0 0 16.1 0 31.7 0 47.2C120.6 485.6 138.6 485.6 157.5 485.6zM508.1 377.4c-19.8 0-38.1 0-56.7 0 0 16.1 0 31.1 0 46.6 19.2 0 37.5 0 56.7 0C508.1 408.5 508.1 393.6 508.1 377.4zM438.1 377.4c-19.8 0-38.1 0-56.1 0 0 16.4 0 32 0 46.9 19.2 0 37.5 0 56.1 0C438.1 408.5 438.1 393.6 438.1 377.4zM367.4 424.3c0-16.4 0-32 0-46.9 -19.5 0-37.8 0-56.1 0 0 16.1 0 31.1 0 46.9C330.2 424.3 348.2 424.3 367.4 424.3zM241.6 377.1c0 16.4 0 31.7 0 46.9 19.5 0 37.8 0 56.1 0 0-16.1 0-31.1 0-46.9C279 377.1 261.1 377.1 241.6 377.1zM227.9 377.1c-19.8 0-37.8 0-56.4 0 0 16.1 0 31.4 0 46.9 19.2 0 37.8 0 56.4 0C227.9 408.2 227.9 393.3 227.9 377.1zM158.1 377.4c-19.8 0-38.1 0-56.7 0 0 16.4 0 31.7 0 46.6 19.5 0 37.8 0 56.7 0C158.1 408.2 158.1 393.6 158.1 377.4z"/>
+              <path d="M249.5 152.3c0 9.1 0 18.3 0 27.4 0 7.6-3.7 13.1-11.6 13.4 -8.8 0.3-12.5-5.5-12.5-14 0-18.9 0-37.5 0-56.4 0-8.2 3.7-14.3 12.5-14 8.8 0.3 11.9 6.4 11.9 14.6C249.5 133.1 249.5 142.9 249.5 152.3L249.5 152.3z"/>
+            </g>
+          </svg>
+        </li>
+    	</ul>
+    </nav>
+    <a class="scrollCue" href="#nav"></a>
+  </header>
+  <div id="upcoming">
+    <div id="upcoming-inner">
+      <div class="panel">
+        <h2 class="h5" data-alt-title="Upcoming Events">Next Event</h2>
+
+        <a class="event no-icon" href="" style="text-decoration:none;">
+          <strong class="title">What Designers Actually Do</strong>
+          <span>A Workshop with Anne-Laure Fayard <span style="text-decoration:underline;">More&nbsp;info&hellip;</span></span>
+          <button class="center">More Events</button>
+        </a>
+
+        <a class="event no-icon" href="" style="text-decoration:none;display:none;">
+          <strong class="title">What Designers Actually Do</strong>
+          <span>A Workshop with Anne-Laure Fayard <span style="text-decoration:underline;">More&nbsp;info&hellip;</span></span>
+        </a>
+        
+      </div>
+
+      <div class="panel follow">
+        <h2 class="h5" style="vertical-align:top;">Notify Me of Future Events</h2>
+        <div id="formWrapper">
+          <input type="email" placeholder="Enter your email address..." /><input type="submit" value="Sign Up" />
+        </div>
+        <div class="instructions" style="display:none;">
+          <p>Every other week, you&rsquo;ll get a digest of the best tech and entreprenuership events in NYC.</p>
+        </div>
+      </div>
+   </div>
+  </div>
+  <div class="bg starter">
+    <div class="img" data-wide="Tech@NYU_files/img/events/sqsp2.jpg" data-narrow="Tech@NYU_files/img/events/support2.jpg" /></div>
+    <div class="coverup"><div class="mask"></div></div>
+  </div>
+  <div class="bg">
+    <div class="img" data-wide="Tech@NYU_files/img/events/support1.jpg" data-narrow="Tech@NYU_files/img/events/support2.jpg" /></div>
+  </div>
+  <div class="bg">
+    <div class="img" data-wide="Tech@NYU_files/img/events/support1.jpg" data-narrow="Tech@NYU_files/img/events/support2.jpg" /></div>
+  </div>
+  <div id="content">
+    <div class="objective first" id="getting-started" data-section="1">
+      <h2>Get Started with the Tech Scene</h2>
+      <div class="initiative">
+        <h3 class="h2">Freshman Circuit</h3>
+        <p>Tour NYC startups and talk with their employees to see what they&rsquo;re up to and where you might fit in.</p>
+        <br/>
+        <h3>Next Event</h3>
+        <h3>Meetup Info</h3>
+      </div>
+
+      <div class="initiative">
+        <h3 class="h2">Programming &amp; Design Introductory Workshops</h3>
+        <p>Learn the basics of programming or design.</p>
+         <br/>
+        <h3>Next Event</h3>
+        <h3>Meetup Info</h3>
+      </div>
+    </div>
+
+    <div class="objective second" id="improve-your-skills" data-section="2">
+      <h2>Improve Your Skills</h2>
+      <div class="initiative"> 
+        <h3 class="h2">Hack Days</h3>
+        <p>Lectures on web technologies, covering everything from <a href="http://angularjs.org">Angular</a> to <a href="http://zeptojs.com/">Zepto</a>.</p>
+      </div>
+      <div class="initiative">
+        <h3 class="h2">Design Days</h3>
+        <p>Workshops on design thinking, user research, and advanced topics in digital product design.</p>
+      </div>
+      <div class="initiative">
+        <h3 class="h2">Game Days</h3>
+        <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
+      </div>
+    </div>
+
+    <div class="objective third" id="build-and-socialize" data-section="3">      
+      <h2>Build &amp; Socialize with Cool People</h2>
+      <div class="initiative">
+        <h3 class="h2">Hack Nights</h3>
+        <p>Designers, developers, and makers of all sorts together or a few hours each week. Hang out, work on your projects and get to know each other.</p>
+      </div>
+      <div class="initiative">
+        <h3 class="h2">Game Nights</h3>
+        <p>Play video games with other gamers all night long. Oh, and pizza. Need we say more?</p>
+      </div>
+
+      <div class="initiative">
+        <h3 class="h2">Designathons</h3>
+        <p>Over the course of a weekend, work with a team to produce a refined, well-researched design concept for a product of your choice.</p>
+      </div>
+    </div>
+
+    <div class="objective fourth" id="latest-in-tech" data-section="4">
+      <h2>Follow the Latest in Tech</h2>
+      <div class="initiative">
+        <h3 class="h2">Startup Series</h3>
+        <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
+      </div>
+
+      <div class="initiative">
+        <h3 class="h2">Demo Days</h3>
+        <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
+      </div>  
+
+      <div class="initiative">
+          <h3 class="h2">Digest</h3>
+          <p>Our bi-weekly email of all the best tech &amp; design events around the city.</p>
+          <input type="text" placeholder="Email Address" /><input type="submit" value="Subscribe" />
+      </div>
+    </div>
+
+    <div class="objective fifth" id="about" data-section="5">
+      <h2>About Us</h2>
+      <div class="initiative">
+        <h3 class="h2">Our Team</h3>
+      </div>
+      <div class="initiative">
+        <h3>What We&rsquo;ve Made</h3>
+      </div>
+
+      <div class="initiative">
+          <h3 class="h2">Contact</h3>
+      </div>
+
+
+      <div class="initiative">
+        <h3 class="h2">Latest Blog Post</h3>
+        <p>Blog Post</p>
+        <p><a href="">Read more</a></p>
+      </div>
+
+
+      <div style="clear:left;margin-top:2em;overflow:auto;">
+        <h2>Job Board</h2>
+        <div class="initiative">
+          <h3>Job Title 1</h3>
+        </div>
+        <div class="initiative">
+          <h3>Job Title 2</h3>
+          <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
+        </div>
+        <div class="initiative">
+            <h3>More Jobs...</h3>
+        </div>
+      </div>
+
+      <div class="poweredby" style="clear:left;margin-top:2em;overflow:auto;">
+        <h2>Supported By</h2>
+        <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
+        <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
+        <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
+        <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
+        <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
+        <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
+      </div>
+    </div>
+
+    <div class="objective sixth" id="event-calendar" data-section="6">
+      <h2>Event Calendar</h2>
+      <p> This screen also needs to be designed. A sign up form for the digest could appear here too.</p>
+    </div>
+  </div>
+  <script type="text/javascript" src="skrollr.stylesheets.min.js"></script>
+  <script type="text/javascript">
+    $(function() { 
+
+      //add a dynamic animation setting to center our toc
+      var toShiftTOC = Math.round(($(window).width() - 1320)/2),
+          logoElm    = $('.logo a'),
+          topLis     = $('nav > ul > li'),
+          calendarSVGPaths = topLis.last().find('svg path'),
+          $window = $(window),
+          tocSubnavCascaded = false,
+          sectionOneScrollPos = 400,
+          firstScrollTime;
+
+      /*if(toShiftTOC > 0) {
+        $('nav').css('max-width', parseInt($('nav').css('max-width')) + toShiftTOC + 'px');
+        $('nav > ul').css('margin-left', parseInt($('nav > ul').css('margin-left')) + toShiftTOC + 'px');
+        //logoElm.attr('data-0', logoElm.attr('data-0')+'; padding-left:30px;display:block;');
+        //logoElm.attr('data-525', logoElm.attr('data-525')+'; padding-left:'+ (toShiftTOC + 30) + 'px;');
+      }*/
+
+      var s = skrollr.init({
+        easing: {
+          'swing2': function(percentComplete) {
+            return Math.pow(percentComplete, 7);
+          },
+
+          'swing3': function(percentComplete) {
+            return Math.pow(percentComplete, 1.8);
+          },
+
+          'cubedroot': function(percentComplete) {
+            return Math.pow(percentComplete, 1/3);
+          },
+          'swing4': function(percentComplete) {
+            return Math.pow(percentComplete, 12);
+          },
+          'swing5': function(percentComplete) {
+            return Math.pow(percentComplete, 4);
+          }
+        },
+        smoothScrollingDuration: 200
+      });
+
+      /*$window.scroll(function(ev) {
+        var scrollTop = $window.scrollTop();
+
+        if(scrollTop > 390 && !tocSubnavCascaded) {
+          $('nav ul ul').each(function(listIndex, list) {
+              var list = $(list);
+              list.animate({'top':'80px'}, 100);
+              list.find('li').each(function(listItemIndex, item) {
+                var item = $(item);
+                setTimeout(function() { item.animate({'top':listItemIndex*40 + 'px'}, 200); }, 100*listItemIndex);
+              })
+          });
+
+          tocSubnavCascaded = true;
+        }
+
+      });*/
+      /*
+      $window.scroll(function(event) {
+        var scrollTop = $window.scrollTop(),
+            now = new Date(),
+            hash = window.location.hash;
+
+        if(typeof firstScrollTime == 'undefined') {
+          firstScrollTime = new Date();
+        }
+
+        if(scrollTop > sectionOneScrollPos && Math.abs(now.getTime() - firstScrollTime.getTime()) < 50 && hash == '') {
+          $('html, body').animate({"scrollTop": sectionOneScrollPos}, Math.abs(scrollTop - sectionOneScrollPos)/10);
+          event.preventDefault();
+        }
+      });
+      */
+
+      $('.scrollCue').click(function(ev) {
+        var scrollTop = $window.scrollTop();
+
+        ev.preventDefault();
+        $('html, body').animate({"scrollTop": sectionOneScrollPos}, Math.abs(scrollTop - sectionOneScrollPos)*2);
+        $('.scrollCue').fadeOut();
+      })
+
+      //active manager
+      var calendarLastFill;
+      $window.scroll(function(e) {
+        var activeSection = $('.objective.skrollable-after + .objective').last(), 
+            sectionNumber = activeSection.attr('data-section') || 1;
+            activeLi      = topLis.filter(':nth-of-type('+sectionNumber+')');
+
+        topLis.removeClass('active');
+        activeLi.addClass('active');
+        if(sectionNumber==6) {
+          calendarLastFill = calendarLastFill || calendarSVGPaths.css('fill');
+          calendarSVGPaths.css('fill', '');
+        }
+        else {
+          calendarSVGPaths.css('fill', calendarLastFill);
+        }
+      });
+
+      $('input[type=email]').focus(function(e) {
+        $('.instructions').show();
+        $('#tagline,.logo').animate({'margin-top':'-=2.5em'},140);
+        $('#upcoming').animate({'height':'+=2.5em'},100);
+      }).blur(function(e) {
+        $('.instructions').hide();
+        $('#upcoming,#tagline,.logo').animate({'margin-top':'+=2.5em'},140);
+        $('#upcoming').animate({'height':'-=2.5em'},100);
+      });
+
+      var imgDiv =  $('.bg .img'), $window = $(window);
+      
+      function setBackgroundImg() {
+        if($window.width() > 1270) {
+          imgDiv.each(function() {
+            var $this = $(this);
+            $this.css('background-image', 'url(' + $this.attr('data-wide') + ')');
+          });
+        }
+        else {
+          imgDiv.each(function() {
+            var $this = $(this);
+            $this.css('background-image', 'url(' + $this.attr('data-narrow') + ')');
+          });
+        }
+      }
+
+      $window.resize(function(e) { setBackgroundImg(); });
+      setBackgroundImg();
+    });
+  </script>
+</body>
+</html>

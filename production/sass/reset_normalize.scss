@@ -1,0 +1,197 @@
+// This file combines a reset, normalizer, and default element styles.
+// Imo, normalize.css bring too much uncertainty. It leaves default styles
+// intact where those are consistent across the browsers, which is risky if 
+// a new browser comes along that doesn't stick with those defaults. But, 
+// more than that, leaving so many defaults in place results in designers
+// failing to set those styles consciously (because they don't look "wrong",
+// so there's no visual reminder to), which leads to worse designs.
+
+// But the problem with a simple reset is that then *everything* has to be 
+// reset, even the few things where a default would probably do (like make 
+// b bold). So one option for that is to blast everything out (reset), with
+// the exception of form styles that are hard to get back (normalize), and 
+// then reinstate defaults explicitly where likely to be useful. Then let 
+// users define their own element styles after that. This is great...except 
+// it leads to a ton of repetition. This file aims to basically follow that 
+// approach but merge the reset, normalizer, and default styles as much as 
+// possible to lessen the amount of duplication in the final css file.
+
+//Variables this file uses to influence it's output. All are optional.
+$text-color: #000 !default;
+$background: #FFF !default;
+$use-opentype-features: true !default;
+
+/*** RESET SECTION (MOSTLY) ***/
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, 
+	cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,
+	dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
+	canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video  {
+		margin: 0; 
+		padding: 0; 
+		border: 0; 
+		font: inherit; 
+		outline:0; 
+		font-size:100%;
+		vertical-align: baseline; 
+		background: transparent; 
+		text-decoration: none;
+	}
+
+	table{ border-collapse:collapse; border-spacing:0; }
+	
+	/* my reset additions */
+	a { 
+		margin:0;
+		padding:0; 
+		border:0;
+		font:inherit;
+		font-size:100%;
+		vertical-align:baseline;
+		background:transparent
+	} // Add the reset on  <a>'s except for outline, which we often want to leave native
+
+	button, input, select, textarea, optgroup, option { margin: 0; font-size:100%; line-height: inherit !important; /* FF */} /* form resets */
+	:-moz-ui-invalid { box-shadow:none; }
+
+	/* yui reset additions */
+	caption, th {text-align:left; }
+	input, textarea, select{ font-family:inherit; font-size:inherit; font-weight:inherit; }
+	
+	/* CAN I DO MORE EXTENSIVE FORM RESET W/O HURTING NATIVE FEEL?
+	   YES: http://formalize.me/, though I wouldn't take it quite so far.
+	*/
+	
+	/* HTML5 element display */
+	article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; font-size:100%; }
+	audio[controls], canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+
+/*** FORM NORMALIZERS  & BROWSER PATCHES ***/
+	textarea { overflow: auto; } /* Tweak for IE www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+	legend { *margin-left: -7px; color: $text-color; /*because legend doesn't inherit in IE */  } /* IE always shifts legends right by 7px (regardless of text size). */
+	img { -ms-interpolation-mode: bicubic; } /* Fix IE7's nasty image resizing */
+	svg:not(:root) { overflow: hidden; } /* Correct overflow displayed oddly in IE9 */
+	/* 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet)
+	 * 2. Correct inner spacing displayed oddly in IE6/7 http://is.gd/hVSb4W */
+	button, input { line-height: normal; *overflow: visible; *width: auto; }
+	/* Allows styling of clickable form elements in iOS */
+	button, input[type="reset"], input[type="button"], input[type="submit"] { -webkit-appearance: button; }
+	input[type="checkbox"], input[type="radio"] { box-sizing: border-box; }
+	input[type="search"] { -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+	button, input, select { vertical-align: baseline; *vertical-align: middle; }
+	textarea { vertical-align: top; }
+	/* Remove inner padding in FF3/4. Must keep border or we change element's visual character; introduce browser discrepancies 
+	 * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+	button::-moz-focus-inner, input::-moz-focus-inner { padding: 0; }
+	/* Declare sans-serif fallback for proper sizing: en.wikipedia.org/wiki/User:Davidgothberg/Test59 */
+	pre, code, kbd, samp, tt { font-family: monospace, sans-serif; _font-family: 'courier new', monospace; }
+	
+
+/*** STOCK ELEMENT TREATMENTS (WILL RARELY, IF EVER, REQUIRE CUSTOMIZATION) ***/
+	html {
+		color: $text-color; 
+		background:$background;
+		overflow-y: scroll; // Always force a scrollbar in non-IE on overflow. Prevents a jumpy page.
+		
+		// Prevent mobile text size adjust on device orientation change, without disabling user zoom
+		// http://www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
+		-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+	input, select, textarea, button, label, a {
+		-webkit-tap-highlight-color:#999;  //https://github.com/necolas/normalize.css/issues/23
+	}
+	
+	body { 
+		line-height: 1;
+		//text-rendering: optimizeLegibility; using this would cause some versions of chrome (e.g on windows, mobile, etc) to blow up
+		background-color: inherit;
+		@if $hyphenate-body {
+			@include hyphens(auto);
+			code, var, kbd, samp, tt, dir, listing, plaintext, xmp, abbr, acronym {
+				@include hyphens(none);
+			}
+		}
+		@if $use-opentype-features {
+			/* add extra ligatures! */
+			font-variant-ligatures: common-ligatures historical-ligatures discretionary-ligatures; 
+	        font-variant-numeric: oldstyle-nums;
+
+			/* copy the above the low-level way. for now. sigh. */
+	        -moz-font-feature-settings:"onum=1, liga=1, dlig=1, hlig=1, "; 
+			-ms-font-feature-settings: "onum", "liga", "dlig", "hlig";
+			//-webkit-font-feature-settings: "onum", "liga", "dlig", "hlig"; can't use this or chrome starts bugging out
+			-o-font-feature-settings: "onum", "liga", "dlig", "hlig";
+			font-feature-settings: "onum", "liga", "dlig", "hlig";
+		}
+	}
+		
+	ol {
+		list-style-position:outside; 
+		list-style-type: decimal; 
+	}
+
+	strong, b { font-weight: bold; }
+	em, i {font-style:italic; }
+	
+	del { text-decoration: line-through; }
+	cite {font-style:italic; }
+	abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+	
+	table { 
+		border-collapse: collapse; border-spacing: 0;
+		@if $use-opentype-features {
+			@include numeral-type($type: tabular)
+		} 
+	} /* tables still need 'cellspacing="0"' in the markup */
+	th {font-weight: bold; vertical-align: bottom; }
+	
+	td { 
+		font-weight:normal; 
+		font-variant-numeric: lining-nums tabular-nums;
+		-moz-font-feature-settings:"lnum=1, tnum=1";
+		/* td HTML5 BP Value: vertical-align: top;, which I removed.
+		   When two cells have different heights, because of different leading or whatever, the row will expand to hold the biggest cell. 
+		   Using vertical align top, the text in the smaller cell will stay put (i.e. in the same position it would've been w/o the bigger cell).
+		   Extra whitespace will simply fill the bottom of it's cell. With vertical-align:baseline; (the default), the baseline for all the cells
+		   will be that of the tallest cell, so the text in the shorter cell will remain centered within that cell.
+		 */
+	}
+
+	hr {display:block; }
+	img {vertical-align: middle; } /* Remove the gap between images and borders on image containers http://h5bp.com/e */
+	/* In my reset, I'm going to give up on adding html quotes for <blockquote> because: 1) Many people don't want them—
+	   they set off blockquotes visually, or with quotes as bg-images, and 2) because it's easier. Users who want quotes can figure it out. 
+	   (One easy implementation is blockquote p:first-child:before {content:"\201c"; } blockquote p:last-child:after {content:"\201d"; }). 
+	   (See background in style.css.) */
+	blockquote {quotes:none; }
+	
+	/* For the q tag, I'm going to add quotes automatically. The below works in the latest Chrome, Firefox, IE, and Opera. 
+	   It works almost perfectly in IE 6-8. In Safari, a double prime (") is always used instead of a quote. Good enough. */
+	q {quotes: "\201c" "\201d" "\2018" "\2019"; }
+	q {*behavior:url(fixQuotes_en.htc); /* Fix quotes in IE6, 7 */ } 
+	q:before {content:open-quote}
+	q:after {content:close-quote}
+	q > q:last-child:after {content:close-quote'\0020'; /* When a single ending quote is next to a double ending quote, add a space between them. (and add back the quote from above since the ::after will replace it. */ }
+	.ie6 q > q:last-child:after > q, .ie7 q > q:last-child:after {content: ' '; /* overrides the standard q > q rule above. Adds only the space
+	and not the close quote, because the behavior adds that already. If the browser doesn't support :last-child and :after (which may or may 
+	not be the case, depending on IE polyphills), then this rule and the standard q > q rule won't apply, so the space will simply be missing.
+	No big deal. */ }																							
+	
+	/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+	input[type="radio"] { vertical-align: bottom; }
+	input[type="checkbox"] { vertical-align: text-bottom; *vertical-align: baseline;}
+	.ie6 input { vertical-align: text-bottom; }																			   
+	
+	label, input[type="button"], input[type="submit"], input[type="reset"], input[type="image"], button { cursor: pointer; } /* Hand cursor on clickable inputs. */
+	
+	sup, sub { line-height: 0; vertical-align:super; }
+	sub { vertical-align: sub; }
+	
+	/* wrap lines that are too long for the <pre> rather than using an horiz scrollbar. can be overriden with .nowrap */
+	code, pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; /* IE */ } 
+	
+	/* Responsive images and other embedded objects
+	   Note: keeping IMG here will cause problems if you're using foreground images as sprites, like, say for Google Maps custom placemarkers. 
+	   There has been a report of problems with standard Google maps as well, but we haven't been able to duplicate or diagnose the issue. */
+	img, object, embed {max-width: 100%; }
