@@ -6,7 +6,8 @@ require! {
 
 app = express!
 env = nunjucks.configure(__dirname + '/views', { autoescape: true, express: app })
-nunjucks-helper.filters.forEach(-> env.addFilter(it));
+for own name, filter of nunjucks-helper.filters
+  env.addFilter(name, filter)
 
 data = 
   now: new Date!
