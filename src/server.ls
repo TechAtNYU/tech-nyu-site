@@ -21,6 +21,7 @@ data =
 
 app.get('/', (req, res) ->
   res.render('home.tmpl', data, (err, html) ->
+    console.log(err);
     res.send(html);
   )
   void
