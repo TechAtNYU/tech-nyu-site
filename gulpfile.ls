@@ -5,6 +5,7 @@ require! {
   ls: "gulp-livescript"
   sass: "gulp-ruby-sass"
   clean: "gulp-clean"
+  uglify: "gulp-uglify"
 }
 
 paths =
@@ -27,7 +28,7 @@ gulp.task('clean', ->
 gulp.task('sass', [\clean],  ->
   gulp.src(globs.sass)
     .pipe(changed(paths.buildCss))
-    .pipe(sass())
+    .pipe(sass({style:\compressed, require:["modular-scale", "sass-globing"]}))
     .on('error', util.log)
     .pipe(gulp.dest(paths.buildCss))
 )
