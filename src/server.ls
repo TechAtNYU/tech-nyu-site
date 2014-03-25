@@ -1,14 +1,22 @@
 require! {
     express
     nunjucks
+    nunjucks-helper: "./helpers/nunjucks"
 }
 
 app = express!
-app.use(express.static(__dirname + '/public'));
-nunjucks.configure(__dirname + '/views', { autoescape: true, express: app })
+env = nunjucks.configure(__dirname + '/views', { autoescape: true, express: app })
+nunjucks-helper.filters.forEach(-> env.addFilter(it));
 
 data = 
   now: new Date!
+  sections:
+    * name: "Getting Started with the Tech Scene"
+    * name: "Improve Your Skills"
+    * name: "Build & Socialize with Cool People"
+    * name: "Follow the Latest in Tech"
+    * name: "About Us"
+    * name: "Event Calendar"
 
 app.get('/', (req, res) ->
   res.render('home.tmpl', data, (err, html) ->
@@ -22,4 +30,5 @@ app.post('/subscribe', ->
 
 )
 
+app.use(express.static(__dirname + '/public'));
 app.listen(3000)
