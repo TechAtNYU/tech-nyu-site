@@ -1,0 +1,23 @@
+{
+  "name": "tech@nyu",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ethanresnick/tech-nyu-site",
+  "authors": [
+    "Ethan Resnick <ethan.resnick@gmail.com>"
+  ],
+  "description": "tech@nyu website",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flight": "~1.1.3",
+    "skrollr": "~0.6.21",
+    "nunjucks": "~1.0.1"
+  }
+}

@@ -1,0 +1,201 @@
+@import 'modular-scale';
+@import "compass/typography/vertical_rhythm";
+@import "compass/css3";
+
+
+
+/******************** COLORS ********************/
+
+$background: #FFF;
+$text-color: #333;
+$sectionColors: hsl(13, 67%, 51%) hsl(42, 90%, 49%) hsl(140, 74%, 37%) hsl(218, 66%, 36%) hsl(275, 46%, 33%) hsl(0, 0%, 10%);
+
+
+/******************* WIDTHS ********************/
+
+
+
+
+
+/********** TYPORGRAPHY (PRE-SCALING) **********/
+
+$hyphenate-body: false;
+$use-opentype-features: true;
+
+$headingStack: "ff-meta-web-pro";
+$bodyStack: "franklin-gothic-urw";
+
+$scale:         9px 11px 12px 13px 16px 18px 24px 26px 34px 48px 58px 64px 74px 84px;
+$line-heights: 11px 14px 16px 18px 20px 22px 24px 32px 38px 42px 60px 76px 90px 110px;
+
+$base-font-size: 16px;
+$base-line-height: 24px;
+$base-measure-width: 450px;
+$base-design-width: 750px;
+
+
+/******* RESPONSIVE (TYPORGRAPHY) SETTINGS ******/
+$mq-widths: $base-design-width 860px 950px 1050px;
+
+
+//types of elements. useful for setting margins etc
+$sectioning-elements: section, article, nav;
+
+
+@mixin clearfix {
+  &:before, &:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+  &:after { clear: both; }
+  *zoom: 1;
+}
+
+@mixin ir {
+	display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; /* For image replacement */
+	text-align: left; direction: ltr; color:transparent !important; 
+}
+
+@mixin to-in-flow-elems {
+	p, dl, ol, ul, li, dl, dt, dd, blockquote, figure, pre, table {
+		@content;
+	}
+}
+
+@mixin to-sectioning-elems {
+	article, section, header, footer, nav {
+		@content;
+	}
+}
+
+@mixin flex-container($inline: false, $wrap: true) {
+  @if $inline==false {
+	  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	  display: -ms-flexbox;      /* TWEENER - IE 10 */
+	  display: -webkit-flex;     /* NEW - Chrome */
+	  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  }
+  
+  @if $wrap == true {
+     flex-wrap: wrap;
+  }
+}
+
+@function img($component, $file) {
+  @return "../img/components/#{$component}/#{$file}"
+}
+
+@function zoomedsize($new-font-size, $base-design-width: $base-design-width) {
+	$base-zoom-increment: (1/$base-font-size)*$base-design-width;
+	$zoomed-size: floor($base-design-width + $base-zoom-increment*($new-font-size - $base-font-size));
+	@return $zoomed-size;  
+}
+
+@mixin scaler($to-font-size) {
+	html {
+		font-size: ems($to-font-size, $base-font-size);
+	}
+}
+
+@mixin stretcher($font-size, $line-height) {
+	html {
+		font-size: #{$line-height/$base-line-height}em;
+	}
+
+	body {
+		font-size: ems($font-size*($base-line-height/$line-height), $browser-default-font-size);
+	}
+} 
+
+
+@function ems($target-px, $base-px: $base-font-size) {
+  @return ($target-px/$base-px) * 1em;
+}
+
+@mixin rems($properties, $target-vals, $base-px: $browser-default-font-size, $fallback-base-px: $base-font-size, $fallback: true) {
+
+	$fallback-list: ();
+	$result-list: ();
+	$result-val: 0;
+	$fallback-val: 0;
+	
+	@each $val in $target-vals {
+
+		@if type-of($val) == 'number' and unitless($val)==false and unit($val)!='%' {
+			$result-val: #{$val/$base-px}rem;
+			$fallback-val: #{$val/$fallback-base-px}em;
+		}
+		//handles vals like 0, !important, inset, 95%, etc.
+		@else {
+			$result-val: $val;
+			$fallback-val: $val;
+		}
+	
+		$result-list: append($result-list, $result-val, space); 
+		$fallback-list: append($fallback-list, $fallback-val, space); 
+	}
+		
+	@each $property in $properties {		
+		@if $fallback {
+	  		#{$property}: $fallback-list;
+  		}
+		#{$property}: $result-list;
+	}
+}
+
+/**
+ * A mixin that takes care of many responsive sizing tasks at once.
+ *
+ * 1) If font-size is among the properties to set, it outputs the font-size as an em declaration
+ * 2) For any other properties passed, it outputs their values in rems, using the font-size set 
+ *    (or else the base font size, or one manually provided) in its em fallback.
+ */
+@mixin r_size($properties-values-pairs, $fallback-base-px: 0, $base-px: $browser-default-font-size) {
+	
+	//Note that the below won't work if you pass in multiple font-size
+	//declarations...but you shouldn't do that. Also, doesn't yet support font-size having an !important
+	@each $pair in $properties-values-pairs {
+		@if nth($pair, 1)=='font-size' {
+			$fallback-base-px: if($fallback-base-px==0, nth($pair, 2), $fallback-base-px);
+			font-size: ems(nth($pair, 2));
+		}
+	}
+
+    //if $fallback-base-px is still 0, meaning user didn't pass in a font-size declaration
+    //or a custom fallback-base-px, use the base font size.
+   $fallback-base-px: if($fallback-base-px==0, $base-font-size, $fallback-base-px);
+
+	@each $pair in $properties-values-pairs {
+		@if nth($pair, 1)!='font-size' {
+			@include rems(nth($pair, 1), nth($pair, 2), $base-px, $fallback-base-px);
+		}
+	}
+}
+
+/** Supported types: lining, tabular, oldstyle */
+@mixin numeral-type($type: lining) {
+
+	$short: if($type=='lining', l, if($type=='tabular', t, o)); //next version: str-slice($type,0,1);
+ 
+	font-variant-numeric: #{$type}-nums; 
+	-moz-font-feature-settings: "#{$short}num=1"; 
+	-ms-font-feature-settings: "#{$short}num"; 
+	//-webkit-font-feature-settings: "#{$short}num";  //can't use this or chrome starts bugging out.
+	-o-font-feature-settings: "#{$short}num";
+	font-feature-settings: "#{$short}num";
+}
+
+@function clear-units($value){
+  @if type-of($value) == "number" {
+    @if (unitless($value)) {
+        @return $value;
+    } @else if unit($value) == "em"{
+        @return $value / 1em;
+    } @else if unit($value) == "px" {
+        @return $value / 1px;
+    } @else if unit($value) == "pt" {
+        @return $value / 1pt;
+    }
+  } @else {
+      @warn "Not a number value: #{$value}";
+        @return $value;
+  }
+}

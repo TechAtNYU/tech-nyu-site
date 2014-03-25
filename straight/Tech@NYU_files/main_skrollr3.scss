@@ -1,0 +1,402 @@
+@import "cover_base";
+
+$headerAnimEnd: 300;
+$navAnimation: "TOCUp"; //can be TOCUp or cascadeDown
+$taglineOutEnd: if($navAnimation=="TOCUp", $headerAnimEnd/2, $headerAnimEnd);
+
+$navCascadeStart: 480;
+$navCascadeItemDelay: 15;
+$navCascadeDrop: 30;
+
+$navTOCUpStart: $headerAnimEnd/2;
+$navTOCPause: 75;
+$navTOCUpEnd: 650 + $navTOCPause;
+$navTOCMiddle: ($navTOCUpStart + $navTOCUpEnd - $navTOCPause)/2;
+
+
+$firstPanelUpStart: $navTOCUpEnd - 100;
+$onPanelPause: 75;
+$interPanelDistance: 75;
+//below, the first panel gets extra distance between it and the nav
+$firstPanelExtraDistance: 40; 
+
+//the logo in the photo grid doesn't always stay at startPos as
+//the TOC fades in; this is the position it animates to.
+$photoGridLogoTOCPos: 35%;
+
+
+
+@mixin ease($property, $easing, $value) {
+   #{$property + "["+ $easing + "]"}: $value;
+}
+
+@-skrollr-keyframes taglineOut {
+    0 {
+        @include ease(top, swing, $logoStartTop);
+        @include ease(left, sqrt, 0%);
+        font-size: 2em;
+        width: if($photoGrid, 100%, 590px);
+    }
+
+    #{$taglineOutEnd} {
+        @include ease(left, sqrt, if($photoGrid, 100%, 590px)*-1);
+    }
+}
+
+@-skrollr-keyframes headerBarDown {
+    420 {
+        @include ease(height, swing, 0px);
+    }
+
+    #{$headerAnimEnd} {
+        @include ease(height, swing, 80px);
+    }    
+}
+
+@-skrollr-keyframes logoResizeToTopLeft {
+    0 {
+        @include ease(top, sqrt, $logoStartTop);
+        @include ease(filter, swing2, drop-shadow(0 0 4px black) invert(0));
+        width: $logoStartWidth;
+    }
+
+    #{$headerAnimEnd} {
+        @include ease(top, sqrt, 0%);
+        @include ease(filter, swing2, drop-shadow(0 0 0px black) invert(1));
+        width:$logoEndWidth;
+    }
+}
+
+@for $i from 1 through 6 {
+    @-skrollr-keyframes navCascadeDown-#{$i} {
+        #{$navCascadeStart + $i*$navCascadeItemDelay} {
+            @include ease(top, sqrt, -80px);
+        }
+
+        #{$navCascadeStart + $i*$navCascadeItemDelay + $navCascadeDrop} {
+            @include ease(top, sqrt, 0px);
+        }
+    }
+
+    @if($navAnimation=="cascadeDown") {
+        nav > ul > li:nth-of-type(#{$i}) {
+          -skrollr-animation-name: navCascadeDown-#{$i};
+        }
+    }
+
+    @-skrollr-keyframes panel-#{$i}-in {
+        0 {
+            top: 100%;
+            margin-top:0px;
+        }
+
+        #{$firstPanelUpStart + ($i - 1)*($interPanelDistance + $onPanelPause) + if($i!=0, $firstPanelExtraDistance, 0)} {
+            blank: true;
+        }
+
+        #{$firstPanelUpStart + $firstPanelExtraDistance + $interPanelDistance + ($i - 1)*($interPanelDistance + $onPanelPause)} {
+            top: 0%;
+            margin-top:120px;
+        }
+
+        #{$firstPanelUpStart + $firstPanelExtraDistance  + $i*($interPanelDistance + $onPanelPause)} {
+            blank: true;
+        }
+    }
+
+    @-skrollr-keyframes panel-#{$i}-out {
+        #{$firstPanelUpStart + $firstPanelExtraDistance + $i*($interPanelDistance + $onPanelPause) + $interPanelDistance} {
+            top: -100%;
+            margin-top:0px;
+        }
+    }
+
+    @-skrollr-keyframes photo-#{$i} {
+        0 {
+            right:0%;
+            top:0%;
+            overflow: hidden;
+        }
+        #{$navTOCMiddle - 100} {
+            right:-100%;
+            top:100%;
+        }
+    }
+
+    .objective:nth-of-type(#{$i}) {
+        z-index: $i;
+        -skrollr-animation-name: panel-#{$i}-in;
+        @if($i!=6) {
+            -skrollr-animation-name: panel-#{$i}-out;
+        }
+    }
+
+    .bg:nth-of-type(#{$i}) .img {
+        -skrollr-animation-name: photo-#{$i};
+    }
+
+    //excluding calendar...
+    @if($i!=6) {
+        nav ul ul:nth-of-type(#{$i}) {
+            max-width: nth($flagWidths, $i) - ($outerPadding);
+        }
+    }
+}
+
+@-skrollr-keyframes headerTOCLiftToTop {
+    #{$navTOCMiddle} {
+        top: $logoStartTop;
+        @if($photoGrid) {
+            top: $photoGridLogoTOCPos;
+            position: fixed;
+        }
+    }
+
+    //pause between nav middle and nav middle + pause
+    #{$navTOCMiddle+$navTOCPause} {
+        dummy: true;
+    }
+
+    #{$navTOCUpEnd} {
+        top:0%;
+    }
+}
+
+@-skrollr-keyframes logoTOCLiftToTop {
+    #{$navTOCMiddle} {
+        position: static;
+        float: left;
+    }
+}
+
+@-skrollr-keyframes navTOCFadeIn {
+    #{$navTOCUpStart} {
+        @include ease(opacity, swing, 0);
+    }
+
+    #{$navTOCMiddle} {
+        @include ease(opacity, swing, 1);
+    }
+}
+
+@-skrollr-keyframes TOCRetractDetails {
+    #{$firstPanelUpStart} {
+        @include ease(top, swing4, 80px);
+    }
+
+    #{$firstPanelUpStart + $firstPanelExtraDistance + $interPanelDistance} {
+        @include ease(top, swing4, -120px);
+    }
+}
+
+@-skrollr-keyframes scrollCueBounce {
+    0 {
+        @include ease(bottom, sqrt, 7%);
+    }
+
+    #{$headerAnimEnd/3} {
+        @include ease(bottom, sqrt, 4%);
+    }
+
+    #{$headerAnimEnd*.6666} {
+        @include ease(bottom, sqrt, 10%);
+    }
+
+    #{$headerAnimEnd} {
+        @include ease(bottom, sqrt, 7%);
+    }
+}
+
+@-skrollr-keyframes scrollCueColorChange {
+    0 {
+        border-color: toHslString(white);
+        left: 64%;
+    }
+
+    #{$navTOCMiddle - 100} {
+        border-color: toHslString($textColor);
+        left: 50%;
+    }
+}
+
+@-skrollr-keyframes bgCoverupHide {
+    0 {
+        @include ease(right, sqrt, 0%);
+        left: 0%;
+    }
+
+    //#{$navTOCUpStart} {
+    //    right:0%;
+    //    //top: 50%;
+    //}
+
+    #{$navTOCUpStart} {
+        //top:100%;
+        @include ease(right, sqrt, 100%);
+    }
+}
+
+@-skrollr-keyframes scrollCueFadeOut {
+    #{$firstPanelUpStart} {
+        opacity: 1;
+    }
+    #{$firstPanelUpStart + $firstPanelExtraDistance + $interPanelDistance} {
+        opacity: 0;
+    }
+}
+
+//The first time we set the color
+$headerColors: prepend($colors, $logoStartBackground);
+@for $i from 1 through 7 {
+
+    $startColor: if($flat == false and $i==1, white, nth($headerColors, $i));
+
+    @-skrollr-keyframes TOCSetHeaderColor-#{$i} {
+        #{$firstPanelUpStart} {
+            background-color: toRgbString($startColor, true);
+            color: toHslString(white);
+        }
+
+        #{$firstPanelUpStart + $firstPanelExtraDistance + $interPanelDistance} {
+            background-color: toRgbString(nth($headerColors, 2), true);
+            @if($i!=2) { color: toHslString(#333); }
+        }
+    }   
+
+    @if($i==1) {
+        nav {
+            -skrollr-animation-name: TOCSetHeaderColor-#{$i};
+        }
+    }
+    @else {
+        nav > ul > li:nth-of-type(#{$i - 1}) {
+            -skrollr-animation-name: TOCSetHeaderColor-#{$i};
+        }
+    }
+}
+
+@-skrollr-keyframes headerAddBoxShadow {
+    #{$firstPanelUpStart} {
+        height: 80px;
+        min-width: $totalFlagsWidth + $calendarFlagWidth + $logoEndWidth + 2*$outerPadding;
+        @include ease(box-shadow, sqrt, hsla(0, 0%, 45%, 0.7) 0px 0px 0px 0px);
+    }
+    #{$firstPanelUpStart + $firstPanelExtraDistance + $interPanelDistance} {
+        @include ease(box-shadow, sqrt, hsla(0, 0%, 45%, 0.6) 0px 0px 2px 1px);
+    }
+}
+
+@-skrollr-keyframes calendarSetHeaderColor {
+    #{$navTOCMiddle + $navTOCPause} {
+        filter: invert(0);
+    }
+
+    #{$navTOCUpEnd} {
+        filter: invert(.82);
+    }
+}
+
+@-skrollr-keyframes logoRestyleToTOCBar {
+    0 {
+        @include ease(width, cubedroot, $logoStartWidth);
+        @include ease(filter, sqrt, $logoStartFilter);
+        @include ease(padding-right, swing3, 0px);
+        background-color: toRgbString($logoStartBackground, true);
+        @if($photoGrid) {
+            position: fixed;
+            top: $logoStartTop;
+            padding-left: $outerPadding + 2px;
+        }
+    }
+
+    #{$navTOCMiddle} {
+        @include ease(width, cubedroot, $logoEndWidth);
+        @include ease(filter, sqrt, $logoEndFilter);
+        @include ease(padding-right, swing3, $outerPadding);
+        background-color: toRgbString($logoEndBackground, true);
+        @if($photoGrid) {
+            top: $photoGridLogoTOCPos;
+            position: fixed;
+            padding-left: $outerPadding;
+        }
+    }
+}
+
+
+@if($navAnimation=="TOCUp") {
+    header {
+      -skrollr-animation-name: headerTOCLiftToTop;
+    }
+
+    nav {
+        -skrollr-animation-name: headerAddBoxShadow;
+    }
+
+    nav > ul {
+        -skrollr-animation-name: navTOCFadeIn;
+        @if($photoGrid==false) {
+            position: fixed;
+            left: $logoEndWidth + 2*$outerPadding;
+        }
+
+        .calendar h2 {
+            -skrollr-animation-name: calendarSetHeaderColor;
+        }
+
+        ul {
+            position: absolute;
+            z-index: -1;
+            -skrollr-animation-name: TOCRetractDetails;
+        }
+    }
+
+    .logo a {
+      -skrollr-animation-name: logoTOCLiftToTop;
+      -skrollr-animation-name: logoRestyleToTOCBar;
+    }    
+
+    .objective {
+        background-color: transparent !important;
+    }
+
+    .scrollCue:not(.dummy) {
+        @if($photoGrid) {
+            -skrollr-animation-name: scrollCueColorChange;
+        }
+       -skrollr-animation-name: scrollCueFadeOut;
+    }
+
+    @if($photoGrid) {
+        .bg .coverup .mask {
+            -skrollr-animation-name: bgCoverupHide;
+        }
+    }
+}
+
+@else {
+    nav > ul {
+      position: absolute;
+
+      > li {
+        position: relative;
+        top:-80px;
+
+        li {
+            display: none;
+        }
+      }
+    }
+
+    #header {
+      -skrollr-animation-name: headerBarDown;
+    }
+
+    .logo a {
+      -skrollr-animation-name: logoResizeToTopLeft;
+    }
+}
+
+#tagline {
+  -skrollr-animation-name: taglineOut;
+}
+

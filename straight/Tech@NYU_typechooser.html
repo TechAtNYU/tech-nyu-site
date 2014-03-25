@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<!-- saved from url=(0021)http://ben.tnyu.org/# -->
+<html xmlns="https://www.w3.org/1999/xhtml"><!--[if lt IE 9]>
+<html xmlns="https://www.w3.org/1999/xhtml" class="lt-ie9">
+<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Tech@NYU - Home</title>
+  <link rel="stylesheet" href="./Tech@NYU_files/main_cover3_flat.css" type="text/css" data-skrollr-stylesheet />
+  <link rel="stylesheet" href="./Tech@NYU_files/main_skrollr3_flat.css" type="text/css" data-skrollr-stylesheet />
+  <link rel="stylesheet" href="./Tech@NYU_files/grid.css" type="text/css" />
+  <script type="text/javascript" src="./Tech@NYU_files/skrollr.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+  <script src="./Tech@NYU_files/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //$('.objective > h2, .initiative > h3').addClass('stroke-single');
+      $('.stroke-double, .stroke-single').attr('data-stroke', function(){
+        return $(this).text();
+      });
+    });
+  </script>
+  <script type="text/javascript" src="//use.typekit.net/bpm7cfb.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <style>
+    .objective {
+      height: 70%;
+    }
+  </style>
+</head>
+<body class="horiz">
+  <div class="bg"></div>
+  <header class="clearfix" id="header">
+    <!--<div class="bgHolder"></div> -->
+    <div class="info">
+    	<h1 class="logo">
+      	<a href="http://ben.tnyu.org/">
+      	 <img src="./Tech@NYU_files/logo.png" alt="tech@nyu" />
+        </a>
+    	</h1>
+      <p id="tagline" class="tagline">
+        We help students from NYU and surrounding schools discover the NYC tech community and enable them to bring new, useful products into the world.
+      </p>
+    </div>
+    <nav>
+    	<ul>
+        <li class="first">
+          <h2 class="h3">Get Started with the Tech Scene</h2>
+          <ul>
+            <li>Freshman Circuit</li>
+            <li>Programming &amp; Design Basics</li>
+          </ul> 
+        </li>
+        <li class="second">
+          <h2 class="h3">Improve Your Skills</h2>
+          <ul>
+            <li>Hack Days</li>
+            <li>Design Days</li>
+            <li>Game Days</li>
+          </ul> 
+        </li>
+        <li class="third">
+          <h2 class="h3">Build &amp; Socialize with Cool People</h2>
+          <ul>
+            <li>Hack Nights</li>
+            <li>Game Nights</li>
+            <li>Designathons</li>
+          </ul>
+        </li>
+        <li class="fourth">
+          <h2 class="h3">Follow the Latest in Tech</h2>
+          <ul>
+            <li>Startup Series</li>
+            <li>Demo Days</li>
+            <li>Digest</li>
+          </ul>
+        </li>
+        <li class="fifth">
+          <h2 class="h3">About Us</h2>
+          <ul>
+            <li>About Us</li>
+            <li>Contact</li>
+            <li>Blog</li>
+            <li>Job Board</li>
+          </ul>
+        </li>
+        <li class="sixth calendar">
+          <h2>Event Calendar</h2>
+        </li>
+    	</ul>
+    </nav>
+  </header>
+  <div id="content">
+    <div class="objective first">
+      <h2>A good Heady line.</h2>
+      <div class="initiative">
+        <p>Paragraph example: lorem ispusm dolor sit amet blah blah blah... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper pretium justo, sed commodo dui dictum eget. Morbi aliquam vestibulum diam, nec euismod urna vestibulum in. Pellentesque pellentesque diam ac velit consectetur blandit. Pellentesque augue nisi, dignissim ut aliquet in, tempus feugiat felis. Duis semper placerat erat ut accumsan. Cras sollicitudin massa quis diam placerat fermentum. Aenean faucibus euismod leo in accumsan. Fusce bibendum dignissim risus, sed ullamcorper purus viverra at.</p>
+      </div>
+      <h2 style="position:relative; top:-3em;left:60%; width:35%;"><br/> H<span>H</span>  ea<span>ea</span> ad<span>ad</span> dng<span>dng</span> <span>with the bo</span>dy direcg<span>gt</span>t<span>l</span>ly</h2>
+    </div>
+  </div>
+  <script type="text/javascript" src="./Tech@NYU_files/skrollr.stylesheets.min.js"></script>
+  <script type="text/javascript">
+    $(function() { 
+
+      $('*').each(function(i, el) {
+        var attrsToRemove = [];
+        for (var i=0, attrs=el.attributes, l=attrs.length; i<l; i++){
+          var attrName = attrs.item(i).nodeName;
+          var result = /data\-(\d+)/.exec(attrName);
+
+          if(result && parseInt(result[1]) > 1020) {
+            attrsToRemove.push(attrName);
+          }
+        }
+        $(el).removeAttr(attrsToRemove.join(' '));
+      });
+
+      skrollr.init({
+        easing: {
+          'swing2': function(percentComplete) {
+            return Math.pow(percentComplete, 7);
+          },
+
+          'swing3': function(percentComplete) {
+            return Math.pow(percentComplete, 1.8);
+          },
+
+          'cubedroot': function(percentComplete) {
+            return Math.pow(percentComplete, 1/3);
+          },
+          'swing4': function(percentComplete) {
+            return Math.pow(percentComplete, 9);
+          }
+        }
+      });
+
+      $.getJSON("http://typekit.com/api/v1/json/kits/bpm7cfb/published?callback=?", function(data){
+        var oddSelects, evenSelects, group, i, len, families, family, variation, weight, style, lastSelectedPresetIndex = 0;
+
+        $('<div id="typePicker">' + 
+            '<label><span>Presets</span><select id="presets">' +
+               '<option data-name="klavika-helvetica">Klavika &amp; Helvetica</option>' +
+               '<option data-name="klavika-freight-text" data-fonts="Klavika, Klavika, freight-text-pro, Klavika, freight-text-pro">Klavika &amp; Freight Text</option>' +  
+               '<option data-name="meta-franklin" data-fonts="ff-meta-web-pro, ff-meta-web-pro, franklin-gothic-urw, ff-meta-web-pro, franklin-gothic-urw">Meta &amp; Franklin</option>' + 
+               '<option data-name="adelle-sans-more" data-fonts="adelle-sans, adelle-sans, adelle-sans, ff-more-web-pro, adelle-sans">Adelle Sans &amp; More</option>' + 
+             //'<option data-name="meta-helvetica" data-fonts="ff-meta-web-pro,ff-meta-web-pro,\'Helvetica Neue\',ff-meta-web-pro,\'Helvetica Neue\'">Meta &amp; Helvetica</option>' + 
+             //'<option data-name="helvetica-adelle" data-fonts="\'Helvetica Neue\', \'Helvetica Neue\', adelle, \'Helvetica Neue\', adelle">Helvetica &amp; Adelle</option>' +
+               '<option data-name="futura-only" data-fonts="futura-pt, futura-pt, futura-pt, futura-pt, futura-pt">Futura Only</option>' +
+             //'<option data-name="meta-only" data-fonts="ff-meta-web-pro,ff-meta-web-pro,ff-meta-web-pro,ff-meta-web-pro,ff-meta-web-pro">Meta Only</option>' +
+             //'<option data-name="radikal-only" data-fonts="Radikal, Radikal, Radikal, Radikal, Radikal">Radikal Only</option>' + 
+             //'<option data-name="futura-only" data-fonts="jubilat, jubilat, jubilat, jubilat, jubilat">Jubilat Only</option>' +
+             //'<option data-name="jubilat-franklin" data-fonts="jubilat, jubilat, franklin-gothic-urw, jubilat, franklin-gothic-urw">Jubilat &amp; Franklin</option>' +
+             //'<option data-name="radikal-jubilat" data-fonts="Radikal, Radikal, jubilat, jubilat, Radikal">Radikal &amp; Jubilat</option>' +
+             //'<option data-name="radikal-adelle" data-fonts="Radikal, Radikal, adelle, Radikal, adelle">Radikal &amp; Adelle</option>' +
+             //'<option data-name="radikal-adelle-sans" data-fonts="Radikal, Radikal, adelle-sans, Radikal, adelle-sans">Radikal &amp; Adelle Sans</option>' +
+               '<option data-name="radikal-freight" data-fonts="Radikal, Radikal,freight-sans-pro,Radikal,freight-sans-pro">Radikal &amp; Freight Sans</option>' + 
+             //'<option data-name="radikal-helvetica" data-fonts="\'Helvetica Neue\',Radikal,\'Helvetica Neue\',Radikal,\'Helvetica Neue\'">Radikal &amp; Helvetica</option>' +
+               '<option data-name="radikal-meta" data-fonts="ff-meta-web-pro, Radikal, ff-meta-web-pro, Radikal, ff-meta-web-pro">Radikal &amp; Meta</option>' +
+            '</select></label>' + 
+            '<label><span>Tagline</span><select data-selector=".tagline"></select></label>' + 
+            '<label><span>Nav Headings</span><select data-selector="nav .h3"></select></label>' + 
+            '<label><span>Nav Subheadings</span><select data-selector="nav ul ul"></select></label>' + 
+            '<label><span>Body Headings</span><select data-selector="h2:not(.h3)"></select></label>' + 
+            '<label><span>Paragraphs</span><select data-selector="p:not(.tagline), h2 span"></select></label>' + 
+          '</div>').appendTo('body').css({position:'fixed', 'right':'2%', 'bottom':'2%', 'z-index':'200'});
+
+        $('label span').css({'font-size':'.73em', 'letter-spacing':'.8px', 'text-transform':'uppercase', 'display':'block'});
+        $('label').css({'float': 'left', 'margin-left':'1em', 'margin-top':'1em'});
+
+        localFamilies = [
+          {css_names:['Radikal'], name:'Radikal'}, 
+          {css_names:['Klavika'], name:'Klavika'}, 
+          {css_names:["'Helvetica Neue'"], name:"Helvetica Neue"}
+        ];
+        families = localFamilies.concat(data.kit.families);
+
+        allSelects  = $('#typePicker select:not(#presets)').each(function() { 
+          var $this = $(this), 
+              targetElems = $($this.attr('data-selector')),
+              origFont    = targetElems.css('font-family');
+              console.log(targetElems);
+
+              $this.append('<option data-cssname="">Original</span>');
+              targetElems.attr('data-orig-class', function() { return $(this).attr('class') || ""; });
+        }); 
+
+        families.groups = {
+          'Grotesques & Neo-Grots': ['Franklin Gothic URW', 'News Gothic Std', 'Adelle Sans', 'Helvetica Neue', 'Freight Sans Pro', 'Tablet Gothic Narrow', 'Pragmatica Web Condensed', 'Helvetica Wripoff Condensed'], 
+          'Geometric (Angular)': ['Klavika', 'FF Meta Web Pro'], 
+          'Geometric (Circular)': ['Radikal', 'Futura PT'],
+          'Slabs (Unbracketed)': ['Adelle'],
+          'Clarendons': ['Jubilat'],
+          'Serifs (Sharp)': ['FF More Pro', 'Kepler Std', 'Abril Text', 'Krete'],
+          'Serifs (Soft)': ['Freight Text Pro', 'Minion Pro Caption',  'Minion Pro', 'FF Meta Serif Web Pro']
+          //'Superfamilies': ['Adelle', 'Adelle Sans']
+        };
+
+        for(group in families.groups) {
+          $('<optgroup label="'+ group +'""></optgroup>').append(function() {
+            var res = $();
+            for(i = 0, len = families.length; i < len; i++) {
+              family = families[i];
+              if(families.groups[group].indexOf(family.name)!==-1) {
+                res = res.add('<option data-cssname="'+ family.css_names[0] + '">' + family.name + '</option>');
+              }
+            }
+            return res;
+          }).appendTo(allSelects);
+        }
+
+        /*
+        function populateVariations(variations, $select) {
+          $select.html('');
+          for(i = 0, len = variations.length; i < len; i++) {
+            variation = variations[i];
+            weight = parseInt(variation.charAt(1))*100;
+            switch(variation.charAt(0)) {
+              case 'n':
+                style = 'normal';
+                break;
+              case 'i':
+                style = 'italic';
+                break;
+              case 'o':
+                style = 'oblique';
+                break;
+            }
+            $select.append('<option data-font-style="'+ style + '" data-font-weight="'+ weight + '">' + style + ' ' + weight + '</option>');
+          }
+        }
+        */
+
+        function resetClass($elem) {
+          $elem.attr('class', function() { return $(this).attr('data-orig-class'); });
+          return $elem;
+        }
+
+        allSelects.change(function(ev) {
+          var $select = $(ev.target),
+              $option = $(ev.target.options[ev.target.selectedIndex]),
+              toStyle = $($select.attr('data-selector')),
+              newFont = $option.attr('data-cssname');
+
+              resetClass(toStyle).css('font-family', newFont).addClass(newFont.replace(/(\'|\s)/g, ""));
+        });
+
+        $('#presets').change(function(ev) {
+          var $option = $(ev.target.options[ev.target.selectedIndex]),
+              newFonts = $option.attr('data-fonts') ? $option.attr('data-fonts').split(',').map(function(v) { return v.trim(); }) : false,
+              i = 0,
+              newSelectionIndex,
+              lastPresetClass = $(ev.target.options[lastSelectedPresetIndex]).attr('data-name'),
+              len = newFonts.length;
+
+          if(newFonts) {
+            for(; i<len; i++) {
+              allSelects.eq(0).find('option').each(function(index) {
+                if($(this).attr('data-cssname')==newFonts[i]) {
+                  newSelectionIndex = index;
+                  return false;
+                }
+              });
+              allSelects.eq(i).prop('selectedIndex', newSelectionIndex).change();
+            }
+          }
+          else {
+            allSelects.prop('selectedIndex', 0).change();
+          }
+
+          $('html').removeClass(lastPresetClass).addClass($option.attr('data-name'));
+          lastSelectedPresetIndex = ev.target.selectedIndex;          
+
+        });
+
+        /*allSelects.eq(0).change(function(ev) {
+          var $select    = $(ev.target),
+              bodyOpts   = allSelects.eq(1).find('option'),
+              $option = $(ev.target.options[ev.target.selectedIndex]),
+              newFont    = $option.html(),
+              eliminated = ruledOut[newFont];
+
+              if(eliminated[0]=='*') {
+                bodyOpts.prop('disabled', true);
+              }
+              else {
+                bodyOpts.prop('disabled', false);
+                bodyOpts.filter(function() { return eliminated.indexOf($(this).attr('data-cssname').replace(/\'/g, "")) !== -1; }).prop('disabled', true); 
+              }
+        });*/
+        /*
+        populateVariations(data.kit.families[0].variations, evenSelects.eq(0));
+        populateVariations(data.kit.families[0].variations, evenSelects.eq(1));
+        */
+      }); 
+    });
+  </script>
+</body>
+</html>

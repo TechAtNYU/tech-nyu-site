@@ -1,0 +1,95 @@
+@function sum($list) {
+  $result: 0;
+  
+  @each $item in $list {
+    $result: $result + $item;
+  }
+  
+  @return $result;
+}
+
+@function mixAll($list1, $list2, $mixPercentages) {
+  $result: ();
+  $merged: zip($list1, $list2, $mixPercentages);
+
+  
+  @each $item in $merged {
+    $result: append($result, mix(nth($item, 1), nth($item, 2), nth($item, 3)));
+  }
+  
+  @return $result;
+}
+
+@function prepend($list, $value) {
+    @return join($value, $list);
+}
+
+@function toHslString($color, $addAlpha: false) {
+    $h: hue($color);
+    $s: saturation($color);
+    $l: lightness($color);
+    $a: alpha($color);
+
+    @return unquote("hsl" + if($addAlpha, "a", "") + "(" + $h/1deg + ", " + $s + ", " + $l + if($addAlpha, ", " + $a, "") + ")");
+}
+
+@function toRgbString($color, $addAlpha: false) {
+    $r: red($color);
+    $g: green($color);
+    $b: blue($color);
+    $a: alpha($color);
+
+    @return unquote("rgb" + if($addAlpha, "a", "") + "("  + $r + ", " + $g + ", " + $b + if($addAlpha, ", " + $a, "") + ")");
+}
+
+//photoGrid means we're putting photos but not overlapping
+$flat: true;
+$photoGrid: true;
+$homepageLeftColMinWidth: 24em;
+$upcomingHeight: 13em;
+$fixedWidthHomepageLeftCol: false;
+$TOCBarTop: 35%;
+
+$colors1: #f38d94 #fec05d #9189c2 #c7df75 #75cbf5 #444;
+$colors2: desaturate(#de481f, 8%) #E6B400 desaturate(#441863,10%) desaturate(#138a2a, 5%) desaturate(#0a3b85, 5%) black white;
+$colors3: mixAll($colors1, $colors2, (50% 50% 50% 50% 50% 50%));
+$colors2_raw: #de481f #E6B400 #441863 #138a2a #0a3b85 black white;
+$colors4: adjust-hue(desaturate(#de481f, 5%), -0deg) adjust-hue(#ebb508,-1deg) saturate(darken(#472362,3%),2%) #17862c #0a3b85 black white;
+$colors5: mixAll($colors1, $colors4, (8% 5% 15% 20% 18% 50%));
+$colors538: hsl(14, 88%, 41%) hsl(43, 90%, 51%) hsl(203, 97%, 29%) hsl(89, 44%, 46%) hsl(300, 33%, 30%) hsl(195, 2%, 36%);
+$colors: hsl(13, 67%, 51%) hsl(42, 90%, 49%) hsl(140, 74%, 35%) hsl(218, 66%, 36%) hsl(271, 48%, 35%) hsl(0, 0%, 10%); //hsl(18, 72%, 46%) // hsl(2, 60%, 43%)
+
+$bodyFont: "franklin-gothic-urw"; //alt = adelle-sans
+$headingFont: "ff-meta-web-pro"; //alt = Klavika
+$textColor: if($flat, #333, white);
+$navActiveTextColor: hsl(0,0%,95%);
+$navInactiveTextColors: hsl(13,2%,16%), hsl(0,0%,16%), hsl(0,0%,20%), hsl(30,10%,65%), hsl(30,10%,60%), hsl(0,0%,58%);
+
+//if $photoGrid
+$logoStartFilter: brightness(95%);
+$logoEndFilter: brightness(lightness(nth($navInactiveTextColors, 1)));
+
+$logoStartBackground: rgba(255, 255, 255, 0); //if($flat, transparent, unquote("hsla(0,0%,100%, 0)"));
+$logoEndBackground: nth($colors, 1);
+$taglineStartFilter: if($flat, none, drop-shadow(0 0 1px black));
+
+$outerPadding: 30px;
+
+$logoStartTop: 2.85em;
+$logoStartWidth: if($photoGrid, 220px, 240px);
+$logoStartHeight: $logoStartWidth/3.01075;
+$logoEndWidth: 140px;
+$logoEndHeight: $logoEndWidth/3.01075;
+
+$objectiveBgs: transparent;
+
+
+// The ideal width for each "flag" in our top nav.
+// Will be converted to percentages so that the 
+// full nav fills the available space nicely.
+// Doesn't include the calendar icon, which is in px.
+$flagWidths: (210px 155px 215px 185px 135px);
+$totalFlagsWidth: sum($flagWidths);
+$calendarFlagWidth: 90px;
+$navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + 100px;
+$constrainNavWidth: false;

@@ -1,0 +1,687 @@
+@-skrollr-keyframes taglineOut {
+  0 {
+    position: absolute;
+    top: 0;
+    left[sqrt]: 0%;
+    width: 100%; }
+
+  150 {
+    left[sqrt]: -100%; } }
+
+@-skrollr-keyframes bgCoverupHide {
+  0 {
+    right[sqrt]: 0%;
+    left: 0%; }
+
+  150 {
+    right[sqrt]: 100%; } }
+
+@-skrollr-keyframes upcomingOut {
+  0 {
+    bottom[sqrt]: 0em; }
+
+  150 {
+    bottom[sqrt]: -13em; } }
+
+@-skrollr-keyframes logoToTopLeft {
+  0 {
+    top[sqrt]: 2.85em;
+    background-color[swing4]: rgba(255, 255, 255, 0);
+    width[cubedroot]: 220px;
+    padding-left: 32px;
+    padding-right: 32px; }
+
+  280 {
+    top[sqrt]: 0em;
+    background-color[swing4]: rgba(214, 83, 46, 1);
+    width[cubedroot]: 140px;
+    padding-left: 30px;
+    padding-right: 30px; }
+
+  349 {
+    dummy: true; }
+
+  350 {
+    background-color: rgba(214, 83, 46, 0); } }
+
+@-skrollr-keyframes logoRestyleToTopBar {
+  0 {
+    filter[sqrt]: brightness(95%); }
+
+  280 {
+    filter[sqrt]: brightness(16%); }
+
+  570 {
+    filter: brightness(16%); }
+
+  720 {
+    dummy: true; }
+
+  755 {
+    filter: brightness(20%); }
+
+  905 {
+    dummy: true; }
+
+  940 {
+    filter: brightness(65%); }
+
+  1090 {
+    dummy: true; }
+
+  1125 {
+    filter: brightness(60%); }
+
+  1275 {
+    dummy: true; }
+
+  1310 {
+    filter: brightness(58%); }
+
+  1460 {
+    dummy: true; } }
+
+@-skrollr-keyframes calendarSetHeaderColor {
+  310 {
+    filter: invert(0); }
+
+  330 {
+    filter: invert(84%); }
+
+  570 {
+    filter: invert(84%); }
+
+  720 {
+    dummy: true; }
+
+  755 {
+    filter: invert(80%); }
+
+  905 {
+    dummy: true; }
+
+  940 {
+    filter: invert(35%); }
+
+  1090 {
+    dummy: true; }
+
+  1125 {
+    filter: invert(40%); }
+
+  1275 {
+    dummy: true; }
+
+  1310 {
+    filter: invert(42%); } }
+
+@-skrollr-keyframes headerAddBoxShadowAndColorChange {
+  330 {
+    top: 0px;
+    height: 80px;
+    min-width: 1190px;
+    box-shadow[sqrt]: rgba(64, 64, 64, 0.7) 0px 0px 0px 0px;
+    background-color: rgba(0, 0, 0, 0); }
+
+  350 {
+    box-shadow[sqrt]: rgba(64, 64, 64, 0.6) 0px 0px 2px 1px;
+    background-color: rgba(214, 83, 46, 1); }
+
+  470 {
+    dummy: true; }
+
+  570 {
+    background-color: rgba(237, 170, 12, 1);
+    color: rgba(41, 41, 41, 1); }
+
+  720 {
+    dummy: true; }
+
+  755 {
+    background-color: rgba(23, 155, 67, 1);
+    color: rgba(51, 51, 51, 1); }
+
+  905 {
+    dummy: true; }
+
+  940 {
+    background-color: rgba(31, 76, 152, 1);
+    color: rgba(175, 166, 157, 1); }
+
+  1090 {
+    dummy: true; }
+
+  1125 {
+    background-color: rgba(91, 46, 132, 1);
+    color: rgba(163, 153, 143, 1); }
+
+  1275 {
+    dummy: true; }
+
+  1310 {
+    background-color: rgba(26, 26, 26, 1);
+    color: rgba(148, 148, 148, 1); }
+
+  1460 {
+    dummy: true; } }
+
+@-skrollr-keyframes scrollCueFadeOut {
+  165 {
+    opacity: 1; }
+
+  265 {
+    opacity: 0; } }
+
+@-skrollr-keyframes navCascadeDown-1 {
+  150 {
+    margin-top[sqrt]: -80px; }
+
+  170 {
+    margin-top[sqrt]: 0px;
+    background-color: rgba(214, 83, 46, 1); }
+
+  190 {
+    dummy: true; }
+
+  202 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  350 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  351 {
+    background-color: rgba(214, 83, 46, 0); } }
+
+@-skrollr-keyframes navCascadeDownInfo-1 {
+  212 {
+    top[sqrt]: -160px; } }
+
+nav > ul > li:nth-of-type(1) {
+  -skrollr-animation-name: navCascadeDown-1; }
+  nav > ul > li:nth-of-type(1) ul {
+    -skrollr-animation-name: navCascadeDownInfo-1; }
+
+@-skrollr-keyframes panel-1-in {
+  0 {
+    top: 100%;
+    margin-top: 0px; }
+
+  165 {
+    blank: true; }
+
+  265 {
+    top: 0%;
+    margin-top: 120px; }
+
+  470 {
+    blank: true; } }
+
+@-skrollr-keyframes panel-1-out {
+  570 {
+    top: -100%;
+    margin-top: 0px; } }
+
+@-skrollr-keyframes photo-1 {
+  0 {
+    right[linear]: -100%;
+    top[linear]: 100%; }
+
+  0 {
+    right[linear]: 0%;
+    top[linear]: 0%;
+    overflow: hidden; }
+
+  dummy {
+    dummy: true; }
+
+  380 {
+    right: -100%;
+    top: 100%; } }
+
+.objective:nth-of-type(1) {
+  z-index: 1;
+  -skrollr-animation-name: panel-1-in;
+  -skrollr-animation-name: panel-1-out; }
+
+.bg:nth-of-type(2) .img {
+  -skrollr-animation-name: photo-1; }
+
+nav ul ul:nth-of-type(1) {
+  max-width: 180px; }
+
+@-skrollr-keyframes navCascadeDown-2 {
+  182 {
+    margin-top[sqrt]: -80px; }
+
+  202 {
+    margin-top[sqrt]: 0px;
+    background-color: rgba(237, 170, 12, 1); }
+
+  222 {
+    dummy: true; }
+
+  234 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  350 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  351 {
+    background-color: rgba(214, 83, 46, 0); } }
+
+@-skrollr-keyframes navCascadeDownInfo-2 {
+  244 {
+    top[sqrt]: -160px; } }
+
+nav > ul > li:nth-of-type(2) {
+  -skrollr-animation-name: navCascadeDown-2; }
+  nav > ul > li:nth-of-type(2) ul {
+    -skrollr-animation-name: navCascadeDownInfo-2; }
+
+@-skrollr-keyframes panel-2-in {
+  0 {
+    top: 100%;
+    margin-top: 0px; }
+
+  470 {
+    blank: true; }
+
+  570 {
+    top: 0%;
+    margin-top: 120px; }
+
+  655 {
+    blank: true; } }
+
+@-skrollr-keyframes panel-2-out {
+  755 {
+    top: -100%;
+    margin-top: 0px; } }
+
+@-skrollr-keyframes photo-2 {
+  0 {
+    left[swing5]: -100%;
+    top[swing5]: 100%;
+    right: 60%; }
+
+  285 {
+    dummy: true; }
+
+  265 {
+    left[swing5]: 0%;
+    top[swing5]: 0%;
+    overflow: hidden; }
+
+  480 {
+    dummy: true; }
+
+  580 {
+    left: -100%;
+    top: 100%;
+    right: 60%; } }
+
+.objective:nth-of-type(2) {
+  z-index: 2;
+  -skrollr-animation-name: panel-2-in;
+  -skrollr-animation-name: panel-2-out; }
+
+.bg:nth-of-type(3) .img {
+  -skrollr-animation-name: photo-2; }
+
+nav ul ul:nth-of-type(2) {
+  max-width: 125px; }
+
+@-skrollr-keyframes navCascadeDown-3 {
+  214 {
+    margin-top[sqrt]: -80px; }
+
+  234 {
+    margin-top[sqrt]: 0px;
+    background-color: rgba(23, 155, 67, 1); }
+
+  254 {
+    dummy: true; }
+
+  266 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  350 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  351 {
+    background-color: rgba(214, 83, 46, 0); } }
+
+@-skrollr-keyframes navCascadeDownInfo-3 {
+  276 {
+    top[sqrt]: -160px; } }
+
+nav > ul > li:nth-of-type(3) {
+  -skrollr-animation-name: navCascadeDown-3; }
+  nav > ul > li:nth-of-type(3) ul {
+    -skrollr-animation-name: navCascadeDownInfo-3; }
+
+@-skrollr-keyframes panel-3-in {
+  0 {
+    top: 100%;
+    margin-top: 0px; }
+
+  655 {
+    blank: true; }
+
+  755 {
+    top: 0%;
+    margin-top: 120px; }
+
+  840 {
+    blank: true; } }
+
+@-skrollr-keyframes panel-3-out {
+  940 {
+    top: -100%;
+    margin-top: 0px; } }
+
+@-skrollr-keyframes photo-3 {
+  0 {
+    right[linear]: -100%;
+    top[linear]: 100%; }
+
+  470 {
+    dummy: true; }
+
+  570 {
+    right[linear]: 0%;
+    top[linear]: 0%;
+    overflow: hidden; }
+
+  665 {
+    dummy: true; }
+
+  765 {
+    right: -100%;
+    top: 100%; } }
+
+.objective:nth-of-type(3) {
+  z-index: 3;
+  -skrollr-animation-name: panel-3-in;
+  -skrollr-animation-name: panel-3-out; }
+
+.bg:nth-of-type(4) .img {
+  -skrollr-animation-name: photo-3; }
+
+nav ul ul:nth-of-type(3) {
+  max-width: 185px; }
+
+@-skrollr-keyframes navCascadeDown-4 {
+  246 {
+    margin-top[sqrt]: -80px; }
+
+  266 {
+    margin-top[sqrt]: 0px;
+    background-color: rgba(31, 76, 152, 1); }
+
+  286 {
+    dummy: true; }
+
+  298 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  350 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  351 {
+    background-color: rgba(214, 83, 46, 0); } }
+
+@-skrollr-keyframes navCascadeDownInfo-4 {
+  308 {
+    top[sqrt]: -160px; } }
+
+nav > ul > li:nth-of-type(4) {
+  -skrollr-animation-name: navCascadeDown-4; }
+  nav > ul > li:nth-of-type(4) ul {
+    -skrollr-animation-name: navCascadeDownInfo-4; }
+
+@-skrollr-keyframes panel-4-in {
+  0 {
+    top: 100%;
+    margin-top: 0px; }
+
+  840 {
+    blank: true; }
+
+  940 {
+    top: 0%;
+    margin-top: 120px; }
+
+  1025 {
+    blank: true; } }
+
+@-skrollr-keyframes panel-4-out {
+  1125 {
+    top: -100%;
+    margin-top: 0px; } }
+
+@-skrollr-keyframes photo-4 {
+  0 {
+    left[linear]: -100%;
+    top[linear]: 100%;
+    right: 60%; }
+
+  655 {
+    dummy: true; }
+
+  755 {
+    left[linear]: 0%;
+    top[linear]: 0%;
+    overflow: hidden; }
+
+  850 {
+    dummy: true; }
+
+  950 {
+    left: -100%;
+    top: 100%;
+    right: 60%; } }
+
+.objective:nth-of-type(4) {
+  z-index: 4;
+  -skrollr-animation-name: panel-4-in;
+  -skrollr-animation-name: panel-4-out; }
+
+.bg:nth-of-type(5) .img {
+  -skrollr-animation-name: photo-4; }
+
+nav ul ul:nth-of-type(4) {
+  max-width: 155px; }
+
+@-skrollr-keyframes navCascadeDown-5 {
+  278 {
+    margin-top[sqrt]: -80px; }
+
+  298 {
+    margin-top[sqrt]: 0px;
+    background-color: rgba(91, 46, 132, 1); }
+
+  318 {
+    dummy: true; }
+
+  330 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  350 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  351 {
+    background-color: rgba(214, 83, 46, 0); } }
+
+@-skrollr-keyframes navCascadeDownInfo-5 {
+  340 {
+    top[sqrt]: -160px; } }
+
+nav > ul > li:nth-of-type(5) {
+  -skrollr-animation-name: navCascadeDown-5; }
+  nav > ul > li:nth-of-type(5) ul {
+    -skrollr-animation-name: navCascadeDownInfo-5; }
+
+@-skrollr-keyframes panel-5-in {
+  0 {
+    top: 100%;
+    margin-top: 0px; }
+
+  1025 {
+    blank: true; }
+
+  1125 {
+    top: 0%;
+    margin-top: 120px; }
+
+  1210 {
+    blank: true; } }
+
+@-skrollr-keyframes panel-5-out {
+  1310 {
+    top: -100%;
+    margin-top: 0px; } }
+
+@-skrollr-keyframes photo-5 {
+  0 {
+    right[linear]: -100%;
+    top[linear]: 100%; }
+
+  840 {
+    dummy: true; }
+
+  940 {
+    right[linear]: 0%;
+    top[linear]: 0%;
+    overflow: hidden; }
+
+  1035 {
+    dummy: true; }
+
+  1135 {
+    right: -100%;
+    top: 100%; } }
+
+.objective:nth-of-type(5) {
+  z-index: 5;
+  -skrollr-animation-name: panel-5-in;
+  -skrollr-animation-name: panel-5-out; }
+
+.bg:nth-of-type(6) .img {
+  -skrollr-animation-name: photo-5; }
+
+nav ul ul:nth-of-type(5) {
+  max-width: 105px; }
+
+@-skrollr-keyframes navCascadeDown-6 {
+  310 {
+    margin-top[sqrt]: -80px;
+    background-color: rgba(26, 26, 26, 1); }
+
+  330 {
+    margin-top[sqrt]: 0px;
+    background-color: rgba(26, 26, 26, 1);
+    background-color: rgba(214, 83, 46, 1); }
+
+  350 {
+    dummy: true; }
+
+  350 {
+    background-color: rgba(214, 83, 46, 1); }
+
+  351 {
+    background-color: rgba(214, 83, 46, 0); } }
+
+@-skrollr-keyframes navCascadeDownInfo-6 {
+  372 {
+    top[sqrt]: -160px; } }
+
+nav > ul > li:nth-of-type(6) {
+  -skrollr-animation-name: navCascadeDown-6; }
+  nav > ul > li:nth-of-type(6) ul {
+    -skrollr-animation-name: navCascadeDownInfo-6; }
+
+@-skrollr-keyframes panel-6-in {
+  0 {
+    top: 100%;
+    margin-top: 0px; }
+
+  1210 {
+    blank: true; }
+
+  1310 {
+    top: 0%;
+    margin-top: 120px; }
+
+  1395 {
+    blank: true; } }
+
+@-skrollr-keyframes panel-6-out {
+  1495 {
+    top: -100%;
+    margin-top: 0px; } }
+
+@-skrollr-keyframes photo-6 {
+  0 {
+    left[linear]: -100%;
+    top[linear]: 100%;
+    right: 60%; }
+
+  1025 {
+    dummy: true; }
+
+  1125 {
+    left[linear]: 0%;
+    top[linear]: 0%;
+    overflow: hidden; }
+
+  1220 {
+    dummy: true; }
+
+  1320 {
+    left: -100%;
+    top: 100%;
+    right: 60%; } }
+
+.objective:nth-of-type(6) {
+  z-index: 6;
+  -skrollr-animation-name: panel-6-in; }
+
+.bg:nth-of-type(7) .img {
+  -skrollr-animation-name: photo-6; }
+
+nav > ul {
+  position: absolute; }
+  nav > ul > li {
+    margin-top: -80px; }
+  nav > ul .calendar h2 {
+    -skrollr-animation-name: calendarSetHeaderColor; }
+  nav > ul ul {
+    position: absolute;
+    z-index: -1; }
+
+.objective {
+  background-color: transparent !important; }
+
+#header {
+  -skrollr-animation-name: headerBarDown; }
+
+.logo {
+  -skrollr-animation-name: logoToTopLeft; }
+  .logo a {
+    -skrollr-animation-name: logoRestyleToTopBar; }
+
+#tagline {
+  -skrollr-animation-name: taglineOut; }
+
+.bg .coverup .mask {
+  -skrollr-animation-name: bgCoverupHide; }
+
+.scrollCue:not(.dummy) {
+  -skrollr-animation-name: scrollCueFadeOut; }
+
+nav {
+  -skrollr-animation-name: headerAddBoxShadowAndColorChange; }
+
+#upcoming {
+  -skrollr-animation-name: upcomingOut; }

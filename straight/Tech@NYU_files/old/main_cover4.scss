@@ -1,0 +1,385 @@
+@import "cover_base";
+@import "fonts/stylesheet";
+
+//########### RESET AND NORMALIZE (ISH) ################
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+//############ ELMENT STYLES #################
+
+html {
+  color: $textColor;
+}
+
+body {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  letter-spacing: .47px;
+}
+
+p {
+    max-width:35em;
+}
+
+h1, h2, h3 { 
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: Klavika;
+}
+
+h2, .h2 {
+  font-size: 1.75em;
+}
+
+h3, .h3 {
+  font-size: 1.5em;
+}
+
+h4, .h4 {
+  font-size: 1.4em;
+  letter-spacing: -.02em;
+}
+
+h5, .h5 {
+  font-size: .85em;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1.1em;
+}
+
+p {
+  font-size: 1.25em;
+}
+
+a {
+  color: inherit;
+}
+
+.first { background-color: nth($colors, 1); }
+.second { background-color: nth($colors, 2); }
+.third { background-color: nth($colors, 3); }
+.fourth { background-color: nth($colors, 4);  }
+.fifth { background-color: nth($colors, 5); }
+.sixth { background-color: nth($colors, 6); }
+
+.bg {
+  top:0;
+  bottom:0;
+  left: 0;
+  right:0;
+  position: fixed;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-image: $initialBackgroundImage;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  background-color: transparent;
+  z-index: 100;
+
+  .tagline {
+    font-weight:600;
+    line-height: 1.4em;
+    position: relative;
+    letter-spacing: .2px;
+    -webkit-filter: $taglineStartFilter;
+    margin-top: 60px;
+    margin-left: $outerPadding*.1%/1px;
+  }
+
+  .logo a {
+    padding:15px $outerPadding*.1%/1px 0;
+    box-sizing: content-box;
+    height: 65px;
+    margin-top: 9.5%;
+    width: $logoStartWidth;
+    display: block;
+    img {
+      width:100%;
+    }
+  }
+
+  .bgHolder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 80px;
+    max-width: $navMaxWidth + $logoEndWidth + 2*$outerPadding;
+    opacity: 0;
+    background-color: nth($colors, 1);
+  }
+
+  nav > ul {
+    list-style-type:none;
+    color: white;
+    margin-top: $outerPadding*.25%/1px;
+    margin-left: $outerPadding*.1%/1px;
+    min-width: $totalFlagsWidth;
+    max-width: $navMaxWidth;
+
+    > li {
+      float:left;
+      height:80px;
+      z-index:4;
+      padding:$outerPadding*.45 $outerPadding*.6666;
+      margin-right: 1%; 
+      &.first {
+        width: (nth($flagWidths, 1)/$totalFlagsWidth)*100%;
+      }
+      &.second {
+        width: (nth($flagWidths, 2)/$totalFlagsWidth)*100%;
+      }
+      &.third {
+        width: (nth($flagWidths, 3)/$totalFlagsWidth)*100%;
+      }
+      &.fourth {
+        width: (nth($flagWidths, 4)/$totalFlagsWidth)*100%;
+      }
+      &.fifth {
+        width: (nth($flagWidths, 5)/$totalFlagsWidth)*100%;
+      }
+
+      &.calendar {
+        display: none;
+        width: (nth($flagWidths, 6)/$totalFlagsWidth)*100%;
+        text-indent: -1000em;
+        h2 {
+          background-image: url(calendar.png);
+          background-size:50px;
+          background-repeat: no-repeat;
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      margin-top:1em;
+      color: $textColor;
+      li {
+        margin-bottom: .666em;
+        line-height: 1.3em;
+        font-size: 1.25em;
+      }
+    }
+  }
+}
+
+#upcoming {
+  position: absolute;
+  top:8%;
+  right: 3%;
+  padding: $outerPadding/2.5 $outerPadding/2 $outerPadding/2.75;
+  width:17em;
+  color: white;
+  background-color: rgba(0,0,0,.73);
+
+  .title {
+    margin-top:.25em;
+    display: block;
+  }
+  .event, .follow {
+    border-top: 2px solid white;
+    padding:4px 1px 0;
+    display: block;
+  }
+
+  .event {
+    padding-bottom: 1.35em;
+    line-height: 1.25em;
+  }
+
+  .follow {
+    * {
+      display: inline-block;
+    }
+
+    .twitter, .fb {
+      width: 19px;
+      background-image: url(img/twitter-hi.png);
+      background-size: 20px auto;
+      padding: 0 3px;
+    }
+
+    .fb {
+      background-image: url(img/fb.png);
+    }
+    li {
+      vertical-align: middle;
+      position: relative;
+      top:2px;
+    }
+  }
+}
+
+.objective {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  max-width: $navMaxWidth + $logoEndWidth + 2*$outerPadding;
+  padding: $outerPadding;
+
+  &.revealing {
+    overflow: hidden;
+  }
+
+  h2 {
+    margin-bottom: 1em;
+  }
+
+  > h2 {
+    font-size: 2em;
+    margin-top:-.6em;
+    margin-bottom:2em;
+  }
+
+  .poweredby {
+    .initiative {
+      height:50px;
+      width: 138px;
+      img {
+        height:50px;
+        width: 138px;
+        margin-top:-8px;
+      }
+    }
+  }
+}
+
+
+.initiative {
+  margin-bottom:2em;
+  float:left;
+  max-width:23em;
+  margin-left:3em;
+
+  &:nth-of-type(1) {
+    margin-left:0em;
+  }
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.ir {
+  display: block;
+  text-indent: -999em;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+  color: rgba(0, 0, 0, 0) !important;
+}
+.scrollCue {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  background-image: url(scroll.png);
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  border-color: toRgbString($textColor, true);
+  -webkit-transform: rotate(-45deg);
+  -webkit-animation: bounce 1.5s infinite;
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    bottom: 80px;
+    -webkit-animation-timing-function: ease-in;
+  }
+
+  50% {
+    bottom: 65px;
+    -webkit-animation-timing-function: ease-out;
+  }
+
+  100% {
+    bottom: 80px;
+    -webkit-animation-timing-function: ease-out;    
+  }
+}
+
+/* prepare the selectors to add a stroke to */
+.stroke-single,
+.stroke-double {
+  position: relative;
+  background: transparent;
+  z-index: 0;
+}
+/* add a single stroke */
+.stroke-single:before,
+.stroke-double:before {
+  content: attr(data-stroke);
+  position: absolute;
+  -webkit-text-stroke: 3px #333;
+  z-index: -1;
+}
+/* add a double stroke */
+.stroke-double:after {
+  content: attr(title);
+  position: absolute;
+  -webkit-text-stroke: 0.4em #778B37;
+  left: 0;
+  z-index: -2;
+}
+
+@media (max-width:768px) {
+  //shirnk all type
+  html {
+    font-size: .9em;
+  }
+
+  /* minimize outer padding
+  header .logo a {
+    padding-left: $outerPadding*.6666;
+  }
+  #tagline {
+    left: $outerPadding*.6666;
+  } */
+}
+
+/* 
+<div id="upcoming">
+    <a class="event" href="" style="text-decoration:none;float: left;width: 24em;">
+      <h2 class="h5 time"><!--Next Event, -->Tuesday 03/06, 6pm</h2>
+      <strong class="title">What Designers Actually Do</strong>
+      <span>A Workshop with Anne-Laure Fayard <i style="text-decoration:underline;">More info…</i></span>
+    </a>
+    <div class="follow" style="
+    float: left;
+    margin-left: 1em;
+    width: 130px;
+">
+      <h2 class="h5" style="vertical-align:top;">Stay
+In Touch</h2>
+      <ul style="">
+        <li style="margin-bottom: .8em;width: 61px;">Events Digest</li>
+        <li style="margin-top: .55em;position: relative;vertical-align: top;" class="ir fb">Facebook</li>
+        <li style="margin-left: .75em;margin-top: .65em;vertical-align: top;" class="ir twitter">Twitter</li>
+    </ul></div>
+  </div>
+  */

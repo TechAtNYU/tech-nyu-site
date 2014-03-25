@@ -1,0 +1,229 @@
+@import "cover_base";
+
+//overrides
+$logoStartTop: 9.5%;
+
+$headerAnimEnd: 500;
+$navAnimation: "TOCUp"; //can be TOCUp or cascadeDown
+$taglineOutEnd: if($navAnimation=="TOCUp", $headerAnimEnd/2, $headerAnimEnd);
+
+$navCascadeStart: 480;
+$navCascadeItemDelay: 15;
+$navCascadeDrop: 30;
+
+$navTOCUpStart: $headerAnimEnd/2;
+$navTOCPause: 75;
+$navTOCUpEnd: 800 + $navTOCPause;
+$navTOCMiddle: ($navTOCUpStart + $navTOCUpEnd - $navTOCPause)/2;
+
+
+$firstPanelUpStart: $navTOCUpEnd - 100;
+$onPanelPause: 75;
+$interPanelDistance: 75;
+//below, the first panel gets extra distance between it and the nav
+$firstPanelExtraDistance: 40; 
+
+
+
+@mixin ease($property, $easing, $value) {
+   #{$property + "["+ $easing + "]"}: $value;
+}
+
+@-skrollr-keyframes taglineOut {
+    0 {
+        @include ease(top, swing, $logoStartTop);
+        @include ease(margin-left, sqrt, $outerPadding*.1%/1px);
+        @include ease(left, sqrt, 0px);
+        font-size: 2em;
+        width: 590px;
+    }
+
+    #{$taglineOutEnd} {
+        @include ease(margin-left, sqrt, 0%);
+        @include ease(left, sqrt, -590px);
+    }
+}
+
+@-skrollr-keyframes headerBarDown {
+    420 {
+        @include ease(height, swing, 0px);
+    }
+
+    #{$headerAnimEnd} {
+        @include ease(height, swing, 80px);
+    }    
+}
+
+@-skrollr-keyframes logoResizeToTopLeft {
+    0 {
+        @include ease(margin-top, sqrt, $logoStartTop);
+        width: $logoStartWidth;
+    }
+
+    #{$headerAnimEnd} {
+        @include ease(margin-top, sqrt, 0%);
+        width:$logoEndWidth;
+    }
+}
+
+@for $i from 1 through 6 {
+    @-skrollr-keyframes navCascadeDown-#{$i} {
+        #{$navCascadeStart + $i*$navCascadeItemDelay} {
+            @include ease(top, sqrt, -80px);
+        }
+
+        #{$navCascadeStart + $i*$navCascadeItemDelay + $navCascadeDrop} {
+            @include ease(top, sqrt, 0px);
+        }
+    }
+
+    @if($navAnimation=="cascadeDown") {
+        nav > ul > li:nth-of-type(#{$i}) {
+          -skrollr-animation-name: navCascadeDown-#{$i};
+        }
+    }
+
+    @-skrollr-keyframes panel-#{$i}-in {
+        0 {
+            top: 100%;
+            margin-top:0px;
+        }
+
+        #{$firstPanelUpStart + ($i - 1)*($interPanelDistance + $onPanelPause) + if($i!=0, $firstPanelExtraDistance, 0)} {
+            blank: true;
+        }
+
+        #{$firstPanelUpStart + $firstPanelExtraDistance + $interPanelDistance + ($i - 1)*($interPanelDistance + $onPanelPause)} {
+            top: 0%;
+            margin-top:120px;
+        }
+
+        #{$firstPanelUpStart + $firstPanelExtraDistance  + $i*($interPanelDistance + $onPanelPause)} {
+            blank: true;
+        }
+    }
+
+    @-skrollr-keyframes panel-#{$i}-out {
+        #{$firstPanelUpStart + $firstPanelExtraDistance + $i*($interPanelDistance + $onPanelPause) + $interPanelDistance} {
+            top: -100%;
+            margin-top:0px;
+        }
+    }
+
+    .objective:nth-of-type(#{$i}) {
+        z-index: $i;
+        -skrollr-animation-name: panel-#{$i}-in;
+        @if($i!=6) {
+            -skrollr-animation-name: panel-#{$i}-out;
+        }
+    }
+
+    nav ul ul:nth-of-type(#{$i}) {
+        max-width: nth($flagWidths, $i) - ($outerPadding);
+    }
+}
+
+@-skrollr-keyframes headerTOCLiftToTop {
+    #{0} {
+        top: $logoStartTop;
+    }
+
+    #{$navTOCUpEnd} {
+        top:0%;
+    }
+}
+
+//The first time we set the color
+$headerColors: prepend($colors, $logoStartBackground);
+@for $i from 1 through 7 {
+
+    $startColor: if($flat == false and $i==1, white, nth($headerColors, $i));
+
+    @-skrollr-keyframes TOCSetHeaderColor-#{$i} {
+        #{$firstPanelUpStart} {
+            background-color: toRgbString($startColor, true);
+            color: toHslString(white);
+        }
+
+        #{$firstPanelUpStart + $firstPanelExtraDistance + $interPanelDistance} {
+            background-color: toRgbString(nth($headerColors, 2), true);
+            @if($i!=2) { color: toHslString(#444); }
+        }
+    }   
+
+    @if($i==1) {
+        .logo a {
+            -skrollr-animation-name: TOCSetHeaderColor-#{$i};
+        }
+    }
+    @else {
+        nav > ul > li:nth-of-type(#{$i - 1}) {
+            -skrollr-animation-name: TOCSetHeaderColor-#{$i};
+        }
+    }
+}
+
+@-skrollr-keyframes calendarSetHeaderColor {
+    #{$navTOCMiddle + $navTOCPause} {
+        filter: invert(0);
+    }
+
+    #{$navTOCUpEnd} {
+        filter: invert(.75);
+    }
+}
+
+@if($navAnimation=="TOCUp") {
+
+    .logo a {
+      -skrollr-animation-name: logoResizeToTopLeft;
+    }
+
+    nav {
+       -skrollr-animation-name:  headerTOCLiftToTop;
+       position: fixed;
+    }
+    nav > ul {
+        .calendar h2 {
+            -skrollr-animation-name: calendarSetHeaderColor;
+        }
+
+        ul {
+            position: absolute;
+            z-index: -1;
+            display: none;
+        }
+    }
+
+    .logo a {
+      -skrollr-animation-name: logoTOCLiftToTop;
+    }    
+
+    .objective {
+        background-color: transparent !important;
+    }
+    #header {
+      -skrollr-animation-name: headerBarDown;
+    }
+}
+
+@else {
+    nav > ul {
+      position: absolute;
+
+      > li {
+        position: relative;
+        top:-80px;
+
+        li {
+            display: none;
+        }
+      }
+    }
+
+}
+
+#tagline {
+  -skrollr-animation-name: taglineOut;
+}
+
