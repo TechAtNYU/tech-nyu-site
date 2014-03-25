@@ -6,6 +6,7 @@ That will download all the project’s dependencies and use gulp to compile the 
 
 The built version of the project, with all the compiled files, will show up in the `build` directory. You can then run `node server.js` to see the site. The whole thing is an Express app.
 
+If you want to develop, you can run `gulp dev --require gulp-livescript` instead of the above version (without the `dev`), which will do less minification, so each rebuild is faster.
 
 # Browser Support Goals
 ## Full Support
