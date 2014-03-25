@@ -21,13 +21,6 @@
   <script data-main="scripts/app" src="scripts/bower_components/requirejs/require.js"></script>
   <script type="text/javascript" src="//use.typekit.net/bpm7cfb.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-  <script>
-    $(function(){
-      $('.stroke-double, .stroke-single').attr('data-stroke', function(){
-        return $(this).text();
-      });
-          });
-  </script>
 </head>
 <body class="horiz">
   <header class="clearfix" id="header">
@@ -45,7 +38,7 @@
     <nav id="nav">
         <ol>
           {% for section in sections %}
-            {% if !section.name|contains("Calendar") %} 
+            {% if not section.name|contains("Calendar") %} 
               <li class="h3">{{ section.name|add_br }}</li>
             {% else %}
               <li class="h3 calendar">{% include "partials/calendar_with_alt.tmpl" %}</li>
@@ -340,6 +333,11 @@
           });
         }
       }
+      $(function(){
+        $('.stroke-double, .stroke-single').attr('data-stroke', function(){
+          return $(this).text();
+        });
+      });
 
       $window.resize(function(e) { setBackgroundImg(); });
       setBackgroundImg();
