@@ -1,17 +1,43 @@
-@import "compass/css3";
-
 /******************** COLORS ********************/
 
 $background: #FFF;
-$text-color: #333;
+$textColor: #333;
+
 $sectionColors: hsl(13, 67%, 51%) hsl(42, 90%, 49%) hsl(140, 74%, 37%) hsl(218, 66%, 36%) hsl(275, 46%, 33%) hsl(0, 0%, 10%);
-$sectionColAlt: hsl(13, 67%, 51%) hsl(42, 90%, 49%) hsl(140, 74%, 35%) hsl(218, 66%, 36%) hsl(271, 48%, 35%) hsl(0, 0%, 10%); 
+$sectionColAlt: hsl(13, 73%, 53%) hsl(42, 90%, 49%) hsl(140, 74%, 35%) hsl(218, 66%, 36%) hsl(271, 48%, 35%) hsl(0, 0%, 10%); 
+
+$navActiveTextColor: hsl(0,0%,97%);
+$navInactiveTextColors: hsl(13, 2%, 16%), hsl(0, 0%, 16%), hsl(0, 0%, 20%), hsl(30, 10%,65%), hsl(30,10%,60%), hsl(0,0%,58%);
 
 
 /******************* WIDTHS ********************/
 
+$navFlagWidths: (210px 155px 215px 185px 135px);
+$totalFlagsWidth: sum($flagWidths);
+$calendarFlagWidth: 90px;
+$navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + 100px;
+$constrainNavWidth: false;
+
+//Variables to sort/remove
+$homepageLeftColMinWidth: 24em;
+$upcomingHeight: 13em;
+$fixedWidthHomepageLeftCol: false;
 
 
+
+$logoStartColor: hsl(0,0, 95%);
+$logoEndColor: hsl(0, 0, lightness(nth($navInactiveTextColors, 1)));
+
+$logoStartBackground: rgba(255, 255, 255, 0);
+$logoEndBackground: nth($colors, 1);
+
+$outerPadding: 30px;
+
+$logoStartTop: 3em;
+$logoStartWidth: 211px;
+$logoStartHeight: $logoStartWidth/3.2558;
+$logoEndWidth: 140px;
+$logoEndHeight: $logoEndWidth/3.2558;
 
 
 /********** TYPORGRAPHY (PRE-SCALING) **********/
@@ -197,7 +223,6 @@ $sectioning-elements: section, article, nav;
   }
 }
 
-
 @function sum($list) {
   $result: 0;
   
@@ -241,38 +266,3 @@ $sectioning-elements: section, article, nav;
 
     @return unquote("rgb" + if($addAlpha, "a", "") + "("  + $r + ", " + $g + ", " + $b + if($addAlpha, ", " + $a, "") + ")");
 }
-
-//photoGrid means we're putting photos but not overlapping
-$homepageLeftColMinWidth: 24em;
-$upcomingHeight: 13em;
-$fixedWidthHomepageLeftCol: false;
-
-$navActiveTextColor: hsl(0,0%,97%);
-$navInactiveTextColors: hsl(13,2%,16%), hsl(0,0%,16%), hsl(0,0%,20%), hsl(30,10%,65%), hsl(30,10%,60%), hsl(0,0%,58%);
-
-$logoStartColor: hsl(0,0, 95%);
-$logoEndColor: hsl(0, 0, lightness(nth($navInactiveTextColors, 1)));
-
-$logoStartBackground: rgba(255, 255, 255, 0); //if($flat, transparent, unquote("hsla(0,0%,100%, 0)"));
-$logoEndBackground: nth($colors, 1);
-
-$outerPadding: 30px;
-
-$logoStartTop: 3em;
-$logoStartWidth: 211px;
-$logoStartHeight: $logoStartWidth/3.2558;
-$logoEndWidth: 140px;
-$logoEndHeight: $logoEndWidth/3.2558;
-
-$objectiveBgs: transparent;
-
-
-// The ideal width for each "flag" in our top nav.
-// Will be converted to percentages so that the 
-// full nav fills the available space nicely.
-// Doesn't include the calendar icon, which is in px.
-$flagWidths: (210px 155px 215px 185px 135px);
-$totalFlagsWidth: sum($flagWidths);
-$calendarFlagWidth: 90px;
-$navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + 100px;
-$constrainNavWidth: false;
