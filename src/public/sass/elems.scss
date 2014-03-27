@@ -1,0 +1,44 @@
+html {
+  color: $textColor;
+}
+
+body {
+  font-family: $bodyFont;
+  font-weight: 300;
+}
+
+p {
+    max-width:35em;
+    font-size: 1.25em;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 { 
+  font-weight: bold;
+  font-family: $headingStack;
+}
+
+h2, .h2 {
+  font-size: 1.75em;
+}
+
+h3, .h3 {  
+  line-height: 1.2em;
+  font-size: 1.45em;
+  letter-spacing: .2px;
+}
+
+h4, .h4 {
+  font-size: 1.4em;
+  letter-spacing: -.02em;
+}
+
+h5, .h5 {
+  font-size: .85em;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  line-height: 1.2em;
+}
+
+a {
+  color: inherit;
+}
