@@ -1,72 +1,3 @@
-@import "cover_base_5";
-@import "fonts/stylesheet";
-
-//########### RESET AND NORMALIZE (ISH) ################
-  *, *:after, *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-
-//############ ELMENT STYLES #################
-
-html {
-  color: $textColor;
-}
-
-body {
-  font-family: $bodyFont;
-  font-weight: 300;
-}
-
-p {
-    max-width:35em;
-    font-size: 1.25em;
-    @if($bodyFont=='franklin-gothic-urw') {
-      font-size: 1.29em;
-    }
-}
-
-h1, h2, h3, h4, h5 { 
-  font-weight: bold;
-}
-
-h1, h2, h3, h4, h5 {
-  font-family: $headingStack;
-}
-
-h2, .h2 {
-  font-size: 1.75em;
-}
-
-h3, .h3 {
-  font-size: 1.5em;
-}
-
-h4, .h4 {
-  font-size: 1.4em;
-  letter-spacing: -.02em;
-}
-
-h5, .h5 {
-  font-size: .85em;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  line-height: 1.2em;
-}
-
-p {
-}
-
-a {
-  color: inherit;
-}
 
 .first { background-color: nth($colors, 1); }
 .second { background-color: nth($colors, 2); }
@@ -112,7 +43,6 @@ a {
     height: 100%;
     z-index:3;
     background-color: white;
-    //box-shadow: 0 0 2px 1px hsla(0,0,0,.8);
     position: absolute;
 
     .mask {
@@ -225,7 +155,7 @@ header {
       float:left;
       height:80px;
       z-index:4;
-      padding:$outerPadding*.45 $outerPadding*.6666;
+      padding: ($outerPadding*.45 - 1px) $outerPadding*.6666 ($outerPadding*.45 + 1px);
 
       &.active h2 {
         font-weight: bold !important;
@@ -261,20 +191,6 @@ header {
           margin-top: -8px;
         }
       }
-
-      @if($headingStack=='ff-meta-web-pro') {
-        h2, .h3 {
-          line-height: 1.2em;
-          font-size: 1.45em;
-          letter-spacing: .2px;
-          position: relative;
-          top:-1px;
-        }
-      }
-      h2, .h3 {
-        //font-weight: normal;
-      }
-
     }
 
     @if($constrainNavWidth==false) {
@@ -366,35 +282,19 @@ header {
 
   button {
     background: transparent;
-    font-family: ff-meta-web-pro;
-    font-size: 1em;
     line-height: inherit;
-    font-weight: 400;
+    font-family: inherit;
     color: inherit;
+    font-size: 1em;
+    font-weight: 400;
+    border: 1px solid hsl(19, 12%, 26%);
 
-    padding: .15em .35em;
+    padding: .35em .5em;
 
     display: block;
     width: auto;
-    margin: .9em 0 0;
-
-    border-color: hsl(19, 12%, 26%);
-    border-style: dotted;
-    border-width: 1px 0 1px 0;
-    
-    font-style: italic;
-
-    &.center {
-      border-style: solid;
-      width: auto;
-      line-height: 1.1em;
-      border-width: 1px;
-      margin: 0em auto 1em;
-      padding: .35em .5em;
-      font-style: normal;
-    }
-  } 
-
+    margin: 0em auto 1em;
+  }
 
   .panel {
     font-weight: 400;
@@ -567,15 +467,6 @@ header {
   display: none;
 }
 
-.ir {
-  display: block;
-  text-indent: -999em;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  text-align: left;
-  direction: ltr;
-  color: rgba(0, 0, 0, 0) !important;
-}
 .scrollCue {
   position: fixed;
   bottom: 80px;
