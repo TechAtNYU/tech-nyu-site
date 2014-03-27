@@ -1,0 +1,21 @@
+.flatButton {
+  
+}
+
+/* Notes: List of choosable options, like in a nav or toolbar. Required Markup:
+   <* class="optionList"><li (or class="li")>This option</li></*>. Each "li" usually has an <a> */
+.optionList {
+  list-style-type: none;
+  .li-head { margin-right:36px; }
+  .li, li {
+    float:left;
+    padding-bottom:0;
+    margin-right:18px;
+
+    &:last-child {
+      margin-right:0 !important;
+    }
+  }
+
+  @include clearfix;
+}
