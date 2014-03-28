@@ -226,29 +226,6 @@
         //logoElm.attr('data-525', logoElm.attr('data-525')+'; padding-left:'+ (toShiftTOC + 30) + 'px;');
       }*/
 
-      var s = skrollr.init({
-        easing: {
-          'swing2': function(percentComplete) {
-            return Math.pow(percentComplete, 7);
-          },
-
-          'swing3': function(percentComplete) {
-            return Math.pow(percentComplete, 1.8);
-          },
-
-          'cubedroot': function(percentComplete) {
-            return Math.pow(percentComplete, 1/3);
-          },
-          'swing4': function(percentComplete) {
-            return Math.pow(percentComplete, 12);
-          },
-          'swing5': function(percentComplete) {
-            return Math.pow(percentComplete, 4);
-          }
-        },
-        smoothScrollingDuration: 200
-      });
-
       /*$window.scroll(function(ev) {
         var scrollTop = $window.scrollTop();
 
