@@ -1,0 +1,53 @@
+.ir { 
+  @include ir;
+}
+
+/* Hides from screenreaders and visual users. */
+.hidden { 
+  display: none; 
+  visibility: hidden; 
+}
+
+/* Hides visually and from screenreaders, but maintain layout */
+.invisible { 
+  visibility: hidden; 
+}
+  
+/* Hides from visual users but not screenreaders. see http://yaccessibilityblog.com/library/css-clip-hidden-content.html */
+.accessibility { 
+  position: absolute !important; border:0 !important; height: 1px !important; padding:0 !important;
+  width: 1px !important; clip: rect(0 0 0 0); margin: -1px !important; overflow: hidden; 
+  
+  /* Extends the .accessibility class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
+  &.focusable:active, &.focusable:focus { 
+    clip:auto; height:auto !important; margin:0 !important; overflow:visible !important; position:static !important; width:auto !important; 
+  }
+}
+  
+.dontwrap { 
+  white-space:nowrap; 
+}
+
+/* prepare the selectors to add a stroke to */
+.stroke-single,
+.stroke-double {
+  position: relative;
+  background: transparent;
+  z-index: 0;
+}
+/* add a single stroke */
+.stroke-single:before,
+.stroke-double:before {
+  content: attr(data-stroke);
+  position: absolute;
+  -webkit-text-stroke: 3px #333;
+  z-index: -1;
+}
+/* add a double stroke */
+.stroke-double:after {
+  content: attr(title);
+  position: absolute;
+  -webkit-text-stroke: 0.4em #778B37;
+  left: 0;
+  z-index: -2;
+}
