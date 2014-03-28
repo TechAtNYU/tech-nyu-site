@@ -1,3 +1,15 @@
+.promoPanel {
+  font-weight: 400;
+  border-top: 3px solid hsl(17, 15%, 20%);
+  padding:2px 1px .85em;
+  display: block;
+
+  .content {
+    padding-top: .5em;
+  }
+}
+
+
 .flatButton {
   
 }

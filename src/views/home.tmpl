@@ -40,7 +40,7 @@
         <ol>
           {% for section in sections %}
             {% if not section.name|contains("Calendar") %} 
-              <li class="h3">{{ section.name|add_br }}</li>
+              <li class="h3">{{ section.name|escape|add_br|safe }}</li>
             {% else %}
               <li class="h3 calendar">{% include "partials/calendar_with_alt.tmpl" %}</li>
             {% endif %}
@@ -206,9 +206,8 @@
       <p> This screen also needs to be designed. A sign up form for the digest could appear here too.</p>
     </div>
   </div>
-  <script type="text/javascript" src="skrollr.stylesheets.min.js"></script>
   <script type="text/javascript">
-    $(function() { 
+    /*$(function() { 
 
       //add a dynamic animation setting to center our toc
       var toShiftTOC = Math.round(($(window).width() - 1320)/2),
@@ -218,7 +217,7 @@
           $window = $(window),
           tocSubnavCascaded = false,
           sectionOneScrollPos = 400,
-          firstScrollTime;
+          firstScrollTime;*/
 
       /*if(toShiftTOC > 0) {
         $('nav').css('max-width', parseInt($('nav').css('max-width')) + toShiftTOC + 'px');
@@ -261,7 +260,7 @@
       });
       */
 
-      
+      /*
 
       //active manager
       var calendarLastFill;
@@ -315,7 +314,7 @@
 
       $window.resize(function(e) { setBackgroundImg(); });
       setBackgroundImg();
-    });
+    });*/
   </script>
 </body>
 </html>
