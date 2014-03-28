@@ -1,4 +1,4 @@
-@import "cover_base_5";
+@import "base";
 
 $headerAnimEnd: 350;
 $navCascadeStart: 150;
@@ -28,11 +28,11 @@ $firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
         position: absolute;
         top: 0;
         @include ease(left, sqrt, 0%);
-        width: if($photoGrid, 100%, 590px);
+        width: 100%;
     }
 
     #{$leftColOut} {
-        @include ease(left, sqrt, if($photoGrid, 100%, 590px)*-1);
+        @include ease(left, sqrt, -100%);
     }
 }
 
@@ -147,7 +147,7 @@ $colorChangeStartDelay: 65;
     }
     #{$headerAnimEnd} {
         @include ease(box-shadow, sqrt, hsla(0, 0%, 25%, 0.6) 0px 0px 2px 1px);
-        background-color: toRgbString(nth($colors, 1), true);
+        background-color: toRgbString(nth($sectionColors, 1), true);
     }
     
     #{$firstPanelUpEnd + $firstPanelExtraPause + $onPanelPause} {
@@ -157,7 +157,7 @@ $colorChangeStartDelay: 65;
     @for $i from 1 through 5 {
         @if($i==1) {
           #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause)} {
-            background-color: toRgbString(nth($colors, $i+1), true);
+            background-color: toRgbString(nth($sectionColors, $i+1), true);
             color: toRgbString(nth($navInactiveTextColors, $i+1), true);
           }
         }
@@ -166,7 +166,7 @@ $colorChangeStartDelay: 65;
           }
         @if($i!=5) {
           #{$firstPanelUpEnd + $firstPanelExtraPause + ($i+1)*($interPanelDistance + $onPanelPause)} {
-            background-color: toRgbString(nth($colors, $i+2), true);
+            background-color: toRgbString(nth($sectionColors, $i+2), true);
             color: toRgbString(nth($navInactiveTextColors, $i+2), true);
           }
         }
@@ -208,18 +208,18 @@ $colorChangeStartDelay: 65;
             //calendar must invert as it's falling down, not after
             //because there is no next element to drop
             @if($i==6) { 
-                background-color: toRgbString(nth($colors,$i), true);
+                background-color: toRgbString(nth($sectionColors,$i), true);
                 //color: toHslString($navActiveTextColor);
             }
         }
 
         #{$navCascadeStart + ($i - 1)*$navCascadeItemDelay + $navCascadeDrop} {
             @include ease(margin-top, sqrt, 0px);
-            background-color: toRgbString(nth($colors,$i), true);
+            background-color: toRgbString(nth($sectionColors,$i), true);
             //color: toHslString($navActiveTextColor);
 
             @if($i==6) {
-                background-color: toRgbString(nth($colors, 1), true);
+                background-color: toRgbString(nth($sectionColors, 1), true);
             }
         }
 
@@ -229,17 +229,17 @@ $colorChangeStartDelay: 65;
 
         @if($i!=6) {
             #{$navCascadeStart + $i*$navCascadeItemDelay + $navCascadeDrop} {
-               background-color: toRgbString(nth($colors, 1), true);
+               background-color: toRgbString(nth($sectionColors, 1), true);
                //@if($i!=1) { color: toHslString($navInactiveTextColor); }
             }
         }
 
         #{$headerAnimEnd} {
-           background-color: toRgbString(nth($colors, 1), true);
+           background-color: toRgbString(nth($sectionColors, 1), true);
         }
 
         #{$headerAnimEnd+1} {
-           background-color: toRgbString(transparentize(nth($colors, 1), 1), true);
+           background-color: toRgbString(transparentize(nth($sectionColors, 1), 1), true);
         }
     }
 
@@ -368,7 +368,7 @@ $colorChangeStartDelay: 65;
     //excluding calendar...
     @if($i!=6) {
         nav ul ul:nth-of-type(#{$i}) {
-            max-width: nth($flagWidths, $i) - ($outerPadding);
+            max-width: nth($navFlagWidths, $i) - ($outerPadding);
         }
     }
 }
