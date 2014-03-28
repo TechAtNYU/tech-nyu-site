@@ -78,7 +78,7 @@ $use-opentype-features: true !default;
 
 /*** FORM NORMALIZERS  & BROWSER PATCHES ***/
 	textarea { overflow: auto; } /* Tweak for IE www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
-	legend { *margin-left: -7px; color: $text-color; /*because legend doesn't inherit in IE */  } /* IE always shifts legends right by 7px (regardless of text size). */
+	legend { *margin-left: -7px; color: $textColor; /*because legend doesn't inherit in IE */  } /* IE always shifts legends right by 7px (regardless of text size). */
 	img { -ms-interpolation-mode: bicubic; } /* Fix IE7-8's nasty image resizing */
 	svg:not(:root) { overflow: hidden; } /* Correct overflow displayed oddly in IE9 */
 	/* 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet) */
@@ -98,7 +98,7 @@ $use-opentype-features: true !default;
 
 /*** STOCK ELEMENT TREATMENTS (WILL RARELY, IF EVER, REQUIRE CUSTOMIZATION) ***/
 	html {
-		color: $text-color; 
+		color: $textColor; 
 		background:$background;
 		overflow-y: scroll; // Always force a scrollbar in non-IE on overflow. Prevents a jumpy page.
 		

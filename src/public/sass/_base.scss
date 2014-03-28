@@ -1,3 +1,13 @@
+@function sum($list) {
+  $result: 0;
+  
+  @each $item in $list {
+    $result: $result + $item;
+  }
+  
+  @return $result;
+}
+
 /******************** COLORS ********************/
 
 $background: #FFF;
@@ -13,7 +23,7 @@ $navInactiveTextColors: hsl(13, 2%, 16%), hsl(0, 0%, 16%), hsl(0, 0%, 20%), hsl(
 /******************* WIDTHS ********************/
 
 $navFlagWidths: (210px 155px 215px 185px 135px);
-$totalFlagsWidth: sum($flagWidths);
+$totalFlagsWidth: sum($navFlagWidths);
 $calendarFlagWidth: 90px;
 $navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + 100px;
 $constrainNavWidth: false;
@@ -29,7 +39,7 @@ $logoStartColor: hsl(0,0, 95%);
 $logoEndColor: hsl(0, 0, lightness(nth($navInactiveTextColors, 1)));
 
 $logoStartBackground: rgba(255, 255, 255, 0);
-$logoEndBackground: nth($colors, 1);
+$logoEndBackground: nth($sectionColors, 1);
 
 $outerPadding: 30px;
 
@@ -221,16 +231,6 @@ $sectioning-elements: section, article, nav;
       @warn "Not a number value: #{$value}";
         @return $value;
   }
-}
-
-@function sum($list) {
-  $result: 0;
-  
-  @each $item in $list {
-    $result: $result + $item;
-  }
-  
-  @return $result;
 }
 
 @function mixAll($list1, $list2, $mixPercentages) {

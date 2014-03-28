@@ -1,11 +1,3 @@
-
-.first { background-color: nth($colors, 1); }
-.second { background-color: nth($colors, 2); }
-.third { background-color: nth($colors, 3); }
-.fourth { background-color: nth($colors, 4);  }
-.fifth { background-color: nth($colors, 5); }
-.sixth { background-color: nth($colors, 6); }
-
 .bg {
   top:0;
   bottom:0;
@@ -46,7 +38,7 @@
     position: absolute;
 
     .mask {
-      background-color: nth($colors, 1);        
+      background-color: nth($sectionColors, 1);        
       position: absolute;
       top: 0;
       bottom:$upcomingHeight;
@@ -87,7 +79,6 @@ header {
     font-size: 2em;
     margin-top: $logoStartTop;
     letter-spacing: .2px;
-    -webkit-filter: $taglineStartFilter;
     padding: $logoStartHeight*1.45 $outerPadding+4px 0 $outerPadding+2px;
     box-sizing: border-box;
     font-family: $headingStack;
@@ -112,7 +103,7 @@ header {
     height: 80px;
     max-width: $navMaxWidth + $logoEndWidth + 2*$outerPadding;
     opacity: 0;
-    background-color: nth($colors, 1);
+    background-color: nth($sectionColors, 1);
   }
 
   nav {
@@ -127,12 +118,10 @@ header {
       z-index: -1;
     }
 
-    @if($photoGrid) {
-      > ul {
-        position: fixed;
-        left: 0px;
-        margin-left: $logoEndWidth + 2*$outerPadding;
-      }
+    > ul {
+      position: fixed;
+      left: 0px;
+      margin-left: $logoEndWidth + 2*$outerPadding;
     }
     top: 0;
     color: nth($navInactiveTextColors, 1);
@@ -162,19 +151,19 @@ header {
         color: $navActiveTextColor;
       }
       &.first {
-        width: (nth($flagWidths, 1)/$totalFlagsWidth)*100%;
+        width: (nth($navFlagWidths, 1)/$totalFlagsWidth)*100%;
       }
       &.second {
-        width: (nth($flagWidths, 2)/$totalFlagsWidth)*100%;
+        width: (nth($navFlagWidths, 2)/$totalFlagsWidth)*100%;
       }
       &.third {
-        width: (nth($flagWidths, 3)/$totalFlagsWidth)*100%;
+        width: (nth($navFlagWidths, 3)/$totalFlagsWidth)*100%;
       }
       &.fourth {
-        width: (nth($flagWidths, 4)/$totalFlagsWidth)*100%;
+        width: (nth($navFlagWidths, 4)/$totalFlagsWidth)*100%;
       }
       &.fifth {
-        width: (nth($flagWidths, 5)/$totalFlagsWidth)*100%;
+        width: (nth($navFlagWidths, 5)/$totalFlagsWidth)*100%;
       }
 
       &.calendar {
@@ -201,7 +190,7 @@ header {
       //
       //  @for $i from 1 through 5 {
       //    &:nth-of-type(#{$i}) {
-      //      width: (nth($flagWidths, $i)/$totalFlagsWidth)*100% - .75%;
+      //      width: (nth($navFlagWidths, $i)/$totalFlagsWidth)*100% - .75%;
       //    }
       //  }
       //}
@@ -213,7 +202,7 @@ header {
 
       //    @for $i from 1 through 5 {
       //      &:nth-of-type(#{$i}) {
-      //        width: (nth($flagWidths, $i)/$totalFlagsWidth)*100% - 1%;
+      //        width: (nth($navFlagWidths, $i)/$totalFlagsWidth)*100% - 1%;
       //      }
       //    }
       //  }
@@ -235,21 +224,6 @@ header {
           }
         }
       }*/
-    }
-
-    ul {
-      list-style-type: none;
-      margin-top:1em;
-      color: $textColor;
-
-      li {
-        margin-bottom: .666em;
-        line-height: 1.3em;
-        font-size: 1.25em;
-        @if($bodyFont=="franklin-gothic-urw") {
-          font-size: 1.28em;
-        }
-      }
     }
   }
 }
@@ -454,19 +428,6 @@ header {
   }
 }
 
-.clearfix:after {
-     visibility: hidden;
-     display: block;
-     font-size: 0;
-     content: " ";
-     clear: both;
-     height: 0;
-}
-
-.hidden {
-  display: none;
-}
-
 .scrollCue {
   position: fixed;
   bottom: 80px;
@@ -521,30 +482,6 @@ header {
     bottom: 80px;
     -webkit-animation-timing-function: ease-out;    
   }
-}
-
-/* prepare the selectors to add a stroke to */
-.stroke-single,
-.stroke-double {
-  position: relative;
-  background: transparent;
-  z-index: 0;
-}
-/* add a single stroke */
-.stroke-single:before,
-.stroke-double:before {
-  content: attr(data-stroke);
-  position: absolute;
-  -webkit-text-stroke: 3px #333;
-  z-index: -1;
-}
-/* add a double stroke */
-.stroke-double:after {
-  content: attr(title);
-  position: absolute;
-  -webkit-text-stroke: 0.4em #778B37;
-  left: 0;
-  z-index: -2;
 }
 
 @media (max-width:$homepageLeftColMinWidth*2) {
