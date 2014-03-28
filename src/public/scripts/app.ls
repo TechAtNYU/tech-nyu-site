@@ -5,7 +5,7 @@ requirejs.config(
         app: '../app'
         flight: 'flight/lib'
         "skrollr/skrollr": 'skrollr/dist/skrollr.min'
-        "skrollr/stylehseets": '../components/skrollr-stylesheets/src/skrollr.stylesheets'
+        "skrollr/stylehseets": 'skrollr-stylesheets/dist/skrollr.stylesheets'
         jquery:
           'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min'
           'jquery'

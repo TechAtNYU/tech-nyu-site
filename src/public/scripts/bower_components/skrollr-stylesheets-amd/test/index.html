@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+
+	<title>skrollr-stylesheets test suite</title>
+
+	<link rel="stylesheet" type="text/css" href="qunit.css" />
+
+	<link rel="stylesheet" type="text/css" href="style.css" data-skrollr-stylesheet />
+	<link rel="stylesheet" type="text/css" href="style-ignore.css" />
+	<link rel="stylesheet" type="text/css" href="style-media-ignore.css" media="only screen and (max-width: 1px)" data-skrollr-stylesheet />
+	<link rel="stylesheet" type="text/css" href="style-media-apply.css" media="only screen and (min-width: 1px)" data-skrollr-stylesheet />
+
+	<style>
+	#simple1 {
+		-skrollr-animation-name: test1;
+	}
+
+	#simple2 {
+		-skrollr-animation-name: test2;
+	}
+
+	html body > div.complex {
+		-skrollr-animation-name: test3;
+	}
+
+	@-skrollr-keyframes test1 {
+		bottom-top {
+			left:100%;
+			top:0%;
+		}
+
+		top-bottom {
+			left:0%;
+			top:100%;
+		}
+	}
+
+	@-skrollr-keyframes test2 {
+		top {
+			margin:0px;
+			color:rgb(0,0,0);
+		}
+
+		bottom {
+			margin:100px;
+			color:rgb(255,255,255);
+		}
+	}
+
+	@-skrollr-keyframes test3 {
+		0 {
+			left:0px;
+		}
+		100 {
+			left:100px;
+		}
+	}
+
+	#precedence {
+		-skrollr-animation-name:precedence2;
+	}
+
+	@-skrollr-keyframes precedence2 {
+		0 {
+			top:0px;
+		}
+
+		/*100 should be interhited from style.css*/
+
+		200 {
+			top:200px;
+		}
+	}
+
+	#inline {
+		-skrollr-animation-name:inline;
+	}
+
+	@-skrollr-keyframes inline		{
+		0{top:1337px;}
+	}
+	</style>
+</head>
+<body>
+	<div id="simple1"></div>
+	<div id="simple2"></div>
+
+	<div id="complex1" class="complex"></div>
+
+	<div id="external"></div>
+
+	<div id="ignore"></div>
+
+	<div id="precedence"></div>
+
+	<div id="media"></div>
+
+	<div id="inline" data-0="top:0px;"></div>
+
+	<div id="qunit"></div>
+
+	<script src="qunit.js" type="text/javascript"></script>
+	<script src="jquery.js" type="text/javascript"></script>
+	<script src="../src/skrollr.stylesheets.js" type="text/javascript"></script>
+	<script src="tests.js" type="text/javascript"></script>
+</body>
+</html>

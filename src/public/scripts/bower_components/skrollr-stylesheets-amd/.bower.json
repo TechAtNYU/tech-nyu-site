@@ -1,0 +1,14 @@
+{
+  "name": "skrollr-stylesheets-amd",
+  "version": "0.0.4",
+  "_release": "0.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.4",
+    "commit": "2eb577e614e910d41511b7d7af31baf0b4833e93"
+  },
+  "_source": "git://www.github.com/ethanresnick/skrollr-stylesheets.git",
+  "_target": "~0.0.4",
+  "_originalSource": "skrollr-stylesheets-amd",
+  "_direct": true
+}
