@@ -18,22 +18,26 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h2, .h2 {
-  font-size: 1.75em;
+  font-size: fontSize(5);
 }
 
 h3, .h3 {  
   line-height: 1.2em;
-  font-size: 1.45em;
+  font-size: fontSize(4);
   letter-spacing: .2px;
 }
 
 h4, .h4 {
-  font-size: 1.4em;
+  font-size: fontSize(3);
   letter-spacing: -.02em;
 }
 
 h5, .h5 {
-  font-size: .85em;
+  font-size: fontSize(2);
+}
+
+h6, .h6 {
+  font-size: fontSize(1);
   text-transform: uppercase;
   letter-spacing: 1.2px;
   line-height: 1.2em;
