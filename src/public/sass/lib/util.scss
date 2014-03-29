@@ -1,0 +1,75 @@
+@function str-trim($string) {
+  @if type-of($string) != "string" {
+    @warn "`str-trim` function expecting a string for $string; #{type-of($string)} given.";
+    @return false;
+  }
+
+  $start: 1;
+  $end: str-length($string);
+
+  @for $i from 1 through str-length($string) {
+    $first: str-slice($string, $i, $i);
+    $last: str-slice($string, -$i, -$i);
+
+    @if $first == " " and $i + 1 == $start + 1 {
+      $start: $i + 1;
+    }
+
+    @if $last == " " and str-length($string) - $i == $end - 1 {
+      $end: str-length($string) - $i;
+    }
+  }
+
+  @return str-slice($string, $start, $end);
+}
+
+@function sum($list) {
+  $result: 0;
+  
+  @each $item in $list {
+    $result: $result + $item;
+  }
+  
+  @return $result;
+}
+
+@function mixAll($list1, $list2, $mixPercentages) {
+  $result: ();
+  $merged: zip($list1, $list2, $mixPercentages);
+
+  
+  @each $item in $merged {
+    $result: append($result, mix(nth($item, 1), nth($item, 2), nth($item, 3)));
+  }
+  
+  @return $result;
+}
+
+@function isImportant($value) {
+  @return nth($value, length($value))== !important;
+}
+
+@function stripImportant($value) {
+  @return remove-nth($value, length($value));
+}
+
+@function ems($targetPx, $basePx: $baseFontSize) {
+  @return ($targetPx/$basePx)*1em;
+}
+
+@function remove-nth($list, $index) {
+  $result: ();
+  $index: if($index < 0, length($list) + $index + 1, $index);  
+
+  @for $i from 1 through length($list) {
+    @if $i != $index {
+      $result: append($result, nth($list, $i));
+    }
+  }
+        
+  @return $result;
+}
+
+@function prepend($list, $value) {
+    @return join($value, $list);
+}

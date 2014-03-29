@@ -1,12 +1,3 @@
-@function sum($list) {
-  $result: 0;
-  
-  @each $item in $list {
-    $result: $result + $item;
-  }
-  
-  @return $result;
-}
 @import "breakpoint";
 
 /******************** COLORS ********************/
@@ -118,21 +109,6 @@ $sectioning-elements: section, article, nav;
 	font-feature-settings: "#{$short}num";
 }
 
-@function mixAll($list1, $list2, $mixPercentages) {
-  $result: ();
-  $merged: zip($list1, $list2, $mixPercentages);
-
-  
-  @each $item in $merged {
-    $result: append($result, mix(nth($item, 1), nth($item, 2), nth($item, 3)));
-  }
-  
-  @return $result;
-}
-
-@function prepend($list, $value) {
-    @return join($value, $list);
-}
 
 @function toHslString($color, $addAlpha: false) {
     $h: hue($color);
