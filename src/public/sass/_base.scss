@@ -10,6 +10,25 @@ $sectionColAlt: hsl(13, 73%, 53%) hsl(42, 90%, 49%) hsl(140, 74%, 35%) hsl(218, 
 
 $navActiveTextColor: hsl(0,0%,97%);
 $navInactiveTextColors: hsl(13, 2%, 16%), hsl(0, 0%, 16%), hsl(0, 0%, 20%), hsl(30, 10%,65%), hsl(30,10%,60%), hsl(0,0%,58%);
+/*************** RWD ******************/
+$responsiveConfig: (
+    scale: 14px 16px 19px 24px 30px 36px 44px 58px 64px,
+    baseFontSize: 19px,
+    baseLineHeight: 27px,
+    baseMeasureWidth: 500px, //the measure based on which the baseLineHeight was chosen.
+    designs: (
+        (   name: desktop,
+            baseWidth: 1010px,
+            minWidth: 970px,
+            maxWidth: 1400px,
+            transforms: ()
+        ),
+        (
+            name: mobile,
+            baseWidth: 320px
+        )
+    )
+);
 
 
 /******************* WIDTHS ********************/
