@@ -17,8 +17,13 @@
   <meta http-equiv="cleartype" content="on" />
 
   <title>tech@nyu</title> 
-  <link rel="stylesheet" href="css/screen.css" type="text/css" />
-  <link rel="stylesheet" href="css/skrollr.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:768px)" />
+  <!--[if ! lte IE 8]><!-->
+    <link rel="stylesheet" href="css/screen.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="css/skrollr.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:768px)" /> -->
+  <!--<![endif]-->
+  <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1b.css" media="screen, projection">
+  <![endif]-->
   <script data-main="scripts/app" src="scripts/bower_components/requirejs/require.js"></script>
   <script type="text/javascript" src="//use.typekit.net/bpm7cfb.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
