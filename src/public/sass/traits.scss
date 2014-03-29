@@ -1,5 +1,36 @@
-.ir { 
-  @include ir;
+/****** PLACEHOLDERS ******/
+%ir {
+  display: block; 
+  text-indent: -999em;
+  overflow: hidden;
+  background-repeat: no-repeat; /* For image replacement */
+  text-align: left; 
+  direction: ltr; 
+  color: transparent !important; 
+}
+
+%accessibility { 
+  position: absolute !important; 
+  border:0 !important; 
+  height: 1px !important; 
+  padding:0 !important;
+  width: 1px !important; 
+  clip: rect(0 0 0 0); 
+  margin: -1px !important; 
+  overflow: hidden; 
+  
+  /* Extends the .accessibility class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
+  &.focusable:active, &.focusable:focus { 
+    clip:auto; height:auto !important; margin:0 !important; overflow:visible !important; position:static !important; width:auto !important; 
+  }
+}
+
+
+
+%clearfix {  
+  &:before, &:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+  &:after { clear: both; }
+  *zoom: 1;
 }
 
 /* Hides from screenreaders and visual users. */
@@ -11,17 +42,6 @@
 /* Hides visually and from screenreaders, but maintain layout */
 .invisible { 
   visibility: hidden; 
-}
-  
-/* Hides from visual users but not screenreaders. see http://yaccessibilityblog.com/library/css-clip-hidden-content.html */
-.accessibility { 
-  position: absolute !important; border:0 !important; height: 1px !important; padding:0 !important;
-  width: 1px !important; clip: rect(0 0 0 0); margin: -1px !important; overflow: hidden; 
-  
-  /* Extends the .accessibility class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
-  &.focusable:active, &.focusable:focus { 
-    clip:auto; height:auto !important; margin:0 !important; overflow:visible !important; position:static !important; width:auto !important; 
-  }
 }
   
 .dontwrap { 

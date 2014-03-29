@@ -74,18 +74,6 @@ $mq-widths: $base-design-width 860px 950px 1050px;
 //types of elements. useful for setting margins etc
 $sectioning-elements: section, article, nav;
 
-
-@mixin clearfix {
-  &:before, &:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
-  &:after { clear: both; }
-  *zoom: 1;
-}
-
-@mixin ir {
-	display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; /* For image replacement */
-	text-align: left; direction: ltr; color:transparent !important; 
-}
-
 @mixin to-in-flow-elems {
 	p, dl, ol, ul, li, dl, dt, dd, blockquote, figure, pre, table {
 		@content;
