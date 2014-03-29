@@ -29,5 +29,5 @@
     }
   }
 
-  @include clearfix;
+  @extend %clearfix;
 }

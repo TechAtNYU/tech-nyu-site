@@ -42,7 +42,6 @@
     </div>
     <a class="scrollCue" href="#getting-started">Skip to the Getting Started Section</a>
     <nav id="nav">
-        <ol>
         <ol class="optionList">
           {% for section in sections %}
             {% if not section.name|contains("Calendar") %} 
@@ -56,23 +55,23 @@
   </header>
   <div id="upcoming">
     <div id="upcoming-inner">
-      <div class="panel">
+      <div class="promoPanel">
         <h2 class="h5" data-alt-title="Upcoming Events">Next Event</h2>
 
-        <a class="event no-icon" href="" style="text-decoration:none;">
+        <a class="event" href="" style="text-decoration:none;">
           <strong class="title">What Designers Actually Do</strong>
           <span>A Workshop with Anne-Laure Fayard <span style="text-decoration:underline;">More&nbsp;info&hellip;</span></span>
           <button class="flatButton">More Events</button>
         </a>
 
-        <a class="event no-icon" href="" style="text-decoration:none;display:none;">
+        <a class="event" href="" style="text-decoration:none;display:none;">
           <strong class="title">What Designers Actually Do</strong>
           <span>A Workshop with Anne-Laure Fayard <span style="text-decoration:underline;">More&nbsp;info&hellip;</span></span>
         </a>
         
       </div>
 
-      <div class="panel follow">
+      <div class="promoPanel follow">
         <h2 class="h5" style="vertical-align:top;">Notify Me of Future Events</h2>
         <div id="formWrapper">
           <input type="email" placeholder="Enter your email address..." /><input type="submit" value="Sign Up" />
