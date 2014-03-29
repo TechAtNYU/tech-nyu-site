@@ -38,6 +38,7 @@
     <a class="scrollCue" href="#getting-started">Skip to the Getting Started Section</a>
     <nav id="nav">
         <ol>
+        <ol class="optionList">
           {% for section in sections %}
             {% if not section.name|contains("Calendar") %} 
               <li class="h3">{{ section.name|escape|add_br|safe }}</li>

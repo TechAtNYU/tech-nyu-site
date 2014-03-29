@@ -45,4 +45,59 @@ h6, .h6 {
 
 a {
   color: inherit;
+
+nav {
+  $navFlagWidths: ems(210px) ems(155px) ems(215px) ems(180px) ems(135px);
+  $totalFlagsWidth: sum($navFlagWidths);
+  $calendarFlagWidth: ems(32px) + 2*$outerPadding;
+  $navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + ems(100px);
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+  color: $navActiveTextColor;
+  @include rs((
+    height: 67px
+  ));
+
+  ol {
+    position: fixed;
+    margin-left: $logoEndWidth + 2*$outerPadding;
+    z-index: 1;
+    padding-right: $calendarFlagWidth;
+  }
+
+  li {
+    z-index:4;
+    @include rs((
+      font-size: 20px !important,
+      height: 67px,
+      padding-top: $outerPaddingPx*.42,
+      padding-bottom: $outerPaddingPx*.48
+    ));
+
+    @for $i from 1 through 5 {
+      &:nth-of-type(#{$i}) {
+        width: (nth($navFlagWidths, $i)/$totalFlagsWidth)*100%;
+        background-color: nth($sectionColors, $i);
+      }
+    }
+
+    &.calendar {
+      width: $calendarFlagWidth;
+      background-color: nth($sectionColors, 6);
+      position: absolute;
+      right:0;
+      svg {
+        path {
+          fill: $navActiveTextColor;
+        }
+        width: ems(46px);
+        height: ems(60px); 
+        margin-top: ems(-7px);
+        margin-left: ems(-1px);
+      }
+    }
+  }
 }
