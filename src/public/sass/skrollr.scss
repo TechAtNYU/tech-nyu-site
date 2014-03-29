@@ -140,7 +140,6 @@ $colorChangeStartDelay: 65;
 @-skrollr-keyframes headerAddBoxShadowAndColorChange {
     #{$navCascadeEnd} {
         top: 0px;
-        height: 80px;
         min-width: $totalFlagsWidth + $calendarFlagWidth + $logoEndWidth + 2*$outerPadding;
         @include ease(box-shadow, sqrt, hsla(0, 0%, 25%, 0.7) 0px 0px 0px 0px);
         background-color: rgba(0,0,0,0);
@@ -243,30 +242,9 @@ $colorChangeStartDelay: 65;
         }
     }
 
-    @-skrollr-keyframes navCascadeDownInfo-#{$i} {
-        #{$navCascadeStart + $i*$navCascadeItemDelay + $navCascadeDrop + 10} {
-            @include ease(top, sqrt, -160px);
-        }
-
-        //#{$navCascadeStart + $i*$navCascadeItemDelay + ($navCascadeItemDelay - $navCascadeDrop)/2} {
-        //    @include ease(top, sqrt, 80px);
-        //}
-
-        //#{$navCascadeStart + $i*$navCascadeItemDelay + ($navCascadeItemDelay - $navCascadeDrop)/2 + 20} {
-        //    dummy: true;
-        //}
-//
-        //#{$navCascadeStart + ($i+1)*$navCascadeItemDelay + $navCascadeDrop} {
-        //    @include ease(top, swing4, -120px);
-        //}
-    }
-
     @if($navAnimation=="cascadeDown") {
-        nav > ul > li:nth-of-type(#{$i}) {
+        nav li:nth-of-type(#{$i}) {
           -skrollr-animation-name: navCascadeDown-#{$i};
-          ul {
-            -skrollr-animation-name: navCascadeDownInfo-#{$i};
-          }
         }
     }
 
@@ -367,13 +345,13 @@ $colorChangeStartDelay: 65;
 
     //excluding calendar...
     @if($i!=6) {
-        nav ul ul:nth-of-type(#{$i}) {
+        nav ol ul:nth-of-type(#{$i}) {
             max-width: nth($navFlagWidths, $i) - ($outerPadding);
         }
     }
 }
 
-nav > ul {
+nav > ol {
   position: absolute;
 
   > li {

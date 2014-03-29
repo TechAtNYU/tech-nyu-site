@@ -6,10 +6,21 @@ $background: #FFF;
 $textColor: #333;
 
 $sectionColors: hsl(13, 67%, 51%) hsl(42, 90%, 49%) hsl(140, 74%, 37%) hsl(218, 66%, 36%) hsl(275, 46%, 33%) hsl(0, 0%, 10%);
-$sectionColAlt: hsl(13, 73%, 53%) hsl(42, 90%, 49%) hsl(140, 74%, 35%) hsl(218, 66%, 36%) hsl(271, 48%, 35%) hsl(0, 0%, 10%); 
+$sectionColAlt: hsl(13, 72%, 53%) hsl(42, 87%, 50%) hsl(140, 74%, 35%) hsl(214, 68%, 34%) hsl(278, 48%, 37%) hsl(0, 0%, 10%); 
 
 $navActiveTextColor: hsl(0,0%,97%);
-$navInactiveTextColors: hsl(13, 2%, 16%), hsl(0, 0%, 16%), hsl(0, 0%, 20%), hsl(30, 10%,65%), hsl(30,10%,60%), hsl(0,0%,58%);
+$navInactiveTextColors: hsl(13, 2%, 16%), hsl(42, 0%, 16%), hsl(140, 0%, 20%), hsl(214, 4%,65%), hsl(278,3%,60%), hsl(0,0%,58%);
+
+
+/********** BASIC TYPORGRAPHY **********/
+
+$hyphenate-body: false;
+$use-opentype-features: true;
+
+$headingStack: "ff-meta-web-pro";
+$bodyStack: $headingStack; //"franklin-gothic-urw";
+
+
 /*************** RWD ******************/
 $responsiveConfig: (
     scale: 14px 16px 19px 24px 30px 36px 44px 58px 64px,
@@ -33,18 +44,13 @@ $responsiveConfig: (
 
 /******************* WIDTHS ********************/
 
-$navFlagWidths: (210px 155px 215px 185px 135px);
-$totalFlagsWidth: sum($navFlagWidths);
-$calendarFlagWidth: 90px;
-$navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + 100px;
-$constrainNavWidth: false;
+$outerPadding: 1.05em;
+$outerPaddingPx: $outerPadding/1em * map-get($responsiveConfig, baseFontSize);
 
 //Variables to sort/remove
 $homepageLeftColMinWidth: 24em;
 $upcomingHeight: 13em;
 $fixedWidthHomepageLeftCol: false;
-
-
 
 $logoStartColor: hsl(0,0, 95%);
 $logoEndColor: hsl(0, 0, lightness(nth($navInactiveTextColors, 1)));
@@ -52,35 +58,12 @@ $logoEndColor: hsl(0, 0, lightness(nth($navInactiveTextColors, 1)));
 $logoStartBackground: rgba(255, 255, 255, 0);
 $logoEndBackground: nth($sectionColors, 1);
 
-$outerPadding: 30px;
 
-$logoStartTop: 3em;
 $logoStartWidth: 211px;
-$logoStartHeight: $logoStartWidth/3.2558;
-$logoEndWidth: 140px;
-$logoEndHeight: $logoEndWidth/3.2558;
-
-
-/********** TYPORGRAPHY (PRE-SCALING) **********/
-
-$hyphenate-body: false;
-$use-opentype-features: true;
-
-$headingStack: "ff-meta-web-pro";
-$bodyStack: "franklin-gothic-urw";
-
-$scale:         9px 11px 12px 13px 16px 18px 24px 26px 34px 48px 58px 64px 74px 84px;
-$line-heights: 11px 14px 16px 18px 20px 22px 24px 32px 38px 42px 60px 76px 90px 110px;
-
-$base-font-size: 16px;
-$base-line-height: 24px;
-$base-measure-width: 450px;
-$base-design-width: 750px;
-
-
-/******* RESPONSIVE (TYPORGRAPHY) SETTINGS ******/
-$mq-widths: $base-design-width 860px 950px 1050px;
-
+$logoAspectRatio: 3.2558;
+$logoStartHeight: $logoStartWidth/$logoAspectRatio;
+$logoEndWidth: (115px/map-get($responsiveConfig, baseFontSize))*1em;
+$logoEndHeight: $logoEndWidth/$logoAspectRatio;
 
 //types of elements. useful for setting margins etc
 $sectioning-elements: section, article, nav;

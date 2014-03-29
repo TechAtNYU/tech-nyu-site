@@ -26,7 +26,7 @@ globs =
   views: '**.tmpl'
   ls: paths.src + '/**/*.ls'
   js: paths.src + '/**/*.js'
-  sass: './src/public/sass/{screen,skrollr}.scss'
+  sass: './src/public/sass/screen.scss'
   toCopyDirectly: ['./src/**/*' '!./src/**/*.ls' '!./src/public/sass{,/**}']
 
 gulp.task('clean', ->

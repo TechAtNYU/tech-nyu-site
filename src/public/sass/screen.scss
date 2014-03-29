@@ -10,3 +10,15 @@
 @import "to_do";
 
 @include scalers;
+
+@mixin design-1 {
+    nav ol {
+        min-width: ems(map-get(nth(map-get($responsiveConfig, designs), 1), baseWidth)) - ($logoEndWidth + 2*$outerPadding);
+    }
+}
+
+@mixin design-2 {
+    nav ol {
+        min-width: ems(map-get(nth(map-get($responsiveConfig, designs), 1), baseWidth)) - ($logoEndWidth + 2*$outerPadding);
+    }
+}

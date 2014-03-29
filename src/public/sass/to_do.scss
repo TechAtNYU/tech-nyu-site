@@ -73,22 +73,10 @@ header {
     position: absolute;
   }
 
-  .tagline {
-    line-height: 1.4em;
-    font-weight: 700;
-    font-size: 2em;
-    margin-top: $logoStartTop;
-    letter-spacing: .2px;
-    padding: $logoStartHeight*1.45 $outerPadding+4px 0 $outerPadding+2px;
-    box-sizing: border-box;
-    font-family: $headingStack;
-    color: $logoStartColor;
-  }
-
   .logo {
     position: fixed;
-    top: $logoStartTop;
-    padding:5px $outerPadding+2px 0; //+2px as an optical adjustment
+    //top: $logoStartTop;
+    padding:5px $outerPadding+.1em 0; //+.1em as an optical adjustment
     box-sizing: content-box;
     height: 75px; 
     svg {
@@ -101,7 +89,6 @@ header {
     left: 0;
     right: 0;
     height: 80px;
-    max-width: $navMaxWidth + $logoEndWidth + 2*$outerPadding;
     opacity: 0;
     background-color: nth($sectionColors, 1);
   }
@@ -115,7 +102,7 @@ header {
   z-index: 2;
 
   box-sizing: border-box;
-  height: $upcomingHeight;    
+  height: $upcomingHeight;
   padding: $outerPadding/1.333 $outerPadding*1.15 $outerPadding/1.375 $outerPadding*.85;
 
   background-color: hsl(12,1%, 86%);
@@ -129,9 +116,6 @@ header {
     min-width: $homepageLeftColMinWidth;
   }
 
-  //font-family: adelle;
-  //font-family: krete;
-  font-family: ff-meta-web-pro;
   letter-spacing: .2px;
 
   button {
@@ -245,7 +229,6 @@ header {
   position: fixed;
   height: 100%;
   width: 60%;
-  max-width: $navMaxWidth + $logoEndWidth + 2*$outerPadding;
   padding: $outerPadding; //120px for nav bar
   padding-right: 2*$outerPadding;
 

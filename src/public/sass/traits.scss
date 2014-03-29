@@ -25,6 +25,9 @@
   }
 }
 
+%reversedType {
+  letter-spacing: .2px;
+}
 
 
 %clearfix {  
@@ -46,6 +49,10 @@
   
 .dontwrap { 
   white-space:nowrap; 
+}
+
+.active {
+  color: $navActiveTextColor;
 }
 
 /* prepare the selectors to add a stroke to */

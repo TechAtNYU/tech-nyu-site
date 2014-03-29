@@ -5,6 +5,7 @@ html {
 body {
   font-family: $bodyStack;
   font-weight: 300;
+  margin: 0 auto;
 }
 
 p {
@@ -45,6 +46,7 @@ h6, .h6 {
 
 a {
   color: inherit;
+}
 
 nav {
   $navFlagWidths: ems(210px) ems(155px) ems(215px) ems(180px) ems(135px);
