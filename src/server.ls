@@ -12,7 +12,7 @@ for own name, filter of nunjucks-helper.filters
 data = 
   now: new Date!
   sections:
-    * name: "Getting Started with the Tech Scene"
+    * name: "Get Started with the Tech Scene"
     * name: "Improve Your Skills"
     * name: "Build & Socialize with Cool People"
     * name: "Follow the Latest in Tech"
