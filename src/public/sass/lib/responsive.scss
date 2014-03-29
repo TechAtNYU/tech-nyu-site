@@ -1,0 +1,108 @@
+//setup basic variables
+$browserDefaultFontSize: 16px;
+
+//pull some variables out of $responsiveConfig so we can more easily
+//use them in function bodies and as default args.
+$baseFontSize: map-get($responsiveConfig, baseFontSize);
+$baseLineHeight: map-get($responsiveConfig, baseLineHeight);
+$scale: map-get($responsiveConfig, scale);
+
+@function _zoomedsize($newFontSize, $baseDesignWidth) {
+  @return floor($baseDesignWidth*($newFontSize/$baseFontSize));
+}
+
+@mixin zoomer($toFontSize, $baseFontSize: $baseFontSize) {
+  html {
+    font-size: ems($toFontSize, $baseFontSize);
+  }
+}
+
+@mixin stretcher($fontSize, $lineHeight) {
+  html {
+    font-size: #{$lineHeight/$baseLineHeight}em;
+  }
+
+  body {
+    font-size: ems($fontSize*($baseLineHeight/$lineHeight), $browserDefaultFontSize);
+  }
+}
+
+@function fontSize($index, $baseSize: $baseFontSize) {
+  @return ems(nth($scale, $index), $baseFontSize);
+} 
+
+@function ems($targetPx, $basePx: $baseFontSize) {
+  @return ($targetPx/$basePx)*1em;
+}
+
+@mixin rems($property, $valueList, $base-px: $browserDefaultFontSize, $fallback-base-px: $baseFontSize, $fallback: true) {
+  $fallback-list: ();
+  $result-list: ();
+  $result-val: 0;
+  $fallback-val: 0;
+  
+  @each $val in $valueList {
+    @if type-of($val) == 'number' and unitless($val)==false and unit($val)!='%' {
+      $result-val: #{$val/$base-px}rem;
+      $fallback-val: ems($val, $fallback-base-px);
+    }
+    //handles vals like 0, !important, inset, 95%, etc.
+    @else {
+      $result-val: $val;
+      $fallback-val: $val;
+    }
+  
+    $result-list: append($result-list, $result-val, space); 
+    $fallback-list: append($fallback-list, $fallback-val, space); 
+  }
+    
+  @if $fallback {
+    #{$property}: $fallback-list;
+  }
+  #{$property}: $result-list;
+}
+
+/**
+ * Sizes a whole map of property-value pairs at once for responsive design.
+ *
+ * If font-size is among the properties to set, it outputs the font-size as an em declaration.
+ * (For font-size declarations, it assumes the base em size is $baseFontSize).
+ *
+ * For any other properties passed, it outputs their values in rems, using the font-size set 
+ * (or else the base font size, or one manually provided) to generate an em fallback.
+ */
+@mixin rs($styles, $fallbackBasePx: 0, $basePx: $browserDefaultFontSize) {
+  //Note that the below won't work if you pass in multiple font-size
+  //declarations...but you shouldn't do that.
+  @each $property, $value in $styles {
+    $imporant: false;
+    @if $property == 'font-size' {
+      @if isImportant($value) {
+        $imporant: true;
+        $value: nth(stripImportant($value), 1); 
+        font-size: ems($value) !important;
+      }
+      @else {
+        font-size: ems($value);
+      }
+      $fallbackBasePx: if($fallbackBasePx==0, $value, $fallbackBasePx);
+    }
+  }
+
+  //if $fallback-base-px is still 0, meaning user didn't pass in a font-size declaration
+  //or a custom fallback-base-px, use the base font size.
+  $fallbacBasePx: if($fallbackBasePx == 0, $baseFontSize, $fallbackBasePx);
+
+  @each $property, $value in $styles {
+    @if $property != 'font-size' {
+      @include rems($property, $value, $basePx, $fallbackBasePx);
+    }
+  }
+}
+
+@mixin scalers($config: $responsiveConfig) {
+  body {
+    font-size: ems($baseFontSize, $browserDefaultFontSize);
+    @include rems(line-height, $baseLineHeight);
+  }
+}
