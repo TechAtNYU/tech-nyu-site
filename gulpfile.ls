@@ -26,7 +26,7 @@ globs =
   views: '**.tmpl'
   ls: paths.src + '/**/*.ls'
   js: paths.src + '/**/*.js'
-  sass: './src/public/sass/screen.scss'
+  sass: ['./src/public/sass/screen.scss' './src/public/sass/skrollr/skrollr.scss']
   toCopyDirectly: ['./src/**/*' '!./src/**/*.ls' '!./src/public/sass{,/**}']
 
 gulp.task('clean', ->
@@ -40,7 +40,7 @@ gulp.task('copy', [\clean],  ->
 gulp.task('sass', [\clean],  ->
   gulp.src(globs.sass)
     .pipe(changed(paths.buildCss))
-    .pipe(sass({style:\compressed}))
+    .pipe(sass({style:\compressed, compass: true}))
     .on('error', util.log)
     .pipe(gulp.dest(paths.buildCss))
 )
@@ -68,7 +68,7 @@ gulp.task('optimizeJS', [\ls \copy], ->
   void
 )
 
-gulp.watch(globs.src, [\default])
+gulp.watch(globs.src, [\dev])
 gulp.task(\test, [])
 gulp.task(\dev, [\clean \ls \copy \sass])
 gulp.task(\default, [\dev \optimizeJS])
