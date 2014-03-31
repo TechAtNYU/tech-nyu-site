@@ -1,0 +1,17 @@
+@function toHslString($color, $addAlpha: false) {
+    $h: hue($color);
+    $s: saturation($color);
+    $l: lightness($color);
+    $a: alpha($color);
+
+    @return unquote("hsl" + if($addAlpha, "a", "") + "(" + $h/1deg + ", " + $s + ", " + $l + if($addAlpha, ", " + $a, "") + ")");
+}
+
+@function toRgbString($color, $addAlpha: false) {
+    $r: red($color);
+    $g: green($color);
+    $b: blue($color);
+    $a: alpha($color);
+
+    @return unquote("rgb" + if($addAlpha, "a", "") + "("  + $r + ", " + $g + ", " + $b + if($addAlpha, ", " + $a, "") + ")");
+}
