@@ -1,4 +1,4 @@
-skrollr-stylesheets (v 0.0.4, yes, it's _that_ hot)
+skrollr-stylesheets (v 0.0.5, yes, it's _that_ hot)
 ===================
 
 Allows separation of skrollr keyframes and the document by putting them inside your stylesheets, in **under 1kb** (minified + gzipped). Works in all browsers including IE8+.
@@ -58,7 +58,7 @@ You can use any CSS selector you want because we are using `document.querySelect
 The script
 -----
 
-In order to use skrollr-stylesheets just put `dist/skrollr.stylesheets.min.js` in your document **below all stylesheets** you want to get considered. skrollr-stylesheets will execute right when it's included and searches for all stylesheets and processes them synchronously.
+In order to use skrollr-stylesheets, just place `dist/skrollr.stylesheets.min.js` at the bottom of your page before the closing `</body>` (but before skrollr itself). skrollr-stylesheets will execute right when it's included and searches for all stylesheets and processes them synchronously.
 
 skrollr-stylesheets doesn't expose or expect any globals (well, except for `window` and `document`, duh). You don't need to do anything but include the script.
 
@@ -67,6 +67,8 @@ External stylesheets
 -----
 
 If you want skrollr-stylesheets to parse an external stylesheet (those using a `link` element), add an empty `data-skrollr-stylesheet` attribute to it.
+
+skrollr-stylesheets ignores external (`<link>`) stylesheets unless they have the `data-skrollr-stylesheet` attribute. For example you wouldn't want the Bootstrap or jQuery UI stylesheet to be searched, since there are no keyframes anyway. Internal/embedded stylesheets (`<style>`) are always parsed (they're usually used only in dev anyway).
 
 Example
 
@@ -106,10 +108,12 @@ $about_section_end: $about_section_begin + $about_section_duration;
 @-skrollr-keyframes animation1 {
 	#{$about_section_begin} {
 		left:100%;
+		opacity#{"[swing]"}: 0.0;
 	}
 
 	#{$about_section_end} {
 		left:0%;
+		opacity: 1.0;
 	}
 }
 ```
@@ -117,6 +121,8 @@ $about_section_end: $about_section_begin + $about_section_duration;
 _\*mind blown\*_
 
 And of course you can use all the things you already love about Sass as well.
+
+Note that easing functions need to be interpolated as strings in Sass because of the non-standard syntax.
 
 
 Limitations
@@ -128,6 +134,11 @@ skrollr-stylesheets tries to mimic the way normal CSS works in terms of inherita
 
 Changelog
 =====
+
+0.0.5 (2014-03-30)
+-----
+
+* Make AMD + Bower compatible
 
 0.0.4 (2013-05-27)
 -----
