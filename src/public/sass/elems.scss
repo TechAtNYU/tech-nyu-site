@@ -9,8 +9,8 @@ body {
 }
 
 p {
-    max-width:35em;
-    font-size: 1.25em;
+    max-width: 35em;
+    font-size: fontSize(3);
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 { 
@@ -19,12 +19,16 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h2, .h2 {
-  font-size: fontSize(5);
+  @include rs((
+    font-size: nth($scale, 5)
+  ));
 }
 
-h3, .h3 {  
+h3, .h3 {    
+  @include rs((
+    font-size: nth($scale, 4)
+  ));
   line-height: 1.2em;
-  font-size: fontSize(4);
   letter-spacing: .2px;
 }
 
@@ -33,8 +37,11 @@ h4, .h4 {
   letter-spacing: -.02em;
 }
 
-h5, .h5 {
-  font-size: fontSize(2);
+h5, .h5 {  
+  @include rs((
+    font-size: nth($scale, 2),
+    line-height: nth($lineHeights, 2)
+  ));
 }
 
 h6, .h6 {
@@ -46,6 +53,13 @@ h6, .h6 {
 
 a {
   color: inherit;
+}
+
+input {
+  @include rs((
+    padding: 1px,
+    font-size: nth($scale, 1)
+  ));
 }
 
 nav {
