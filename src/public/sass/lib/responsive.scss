@@ -10,7 +10,7 @@ $lineHeights: null;
 $responsiveConfig: ();
 
 @function _zoomedsize($newFontSize, $baseDesignWidth) {
-  @return floor($baseDesignWidth*($newFontSize/$baseFontSize));
+  @return ceil($baseDesignWidth*($newFontSize/$baseFontSize));
 }
 
 @mixin zoomer($toFontSize, $baseFontSize: $baseFontSize) {
@@ -93,7 +93,7 @@ $responsiveConfig: ();
 
   //if $fallback-base-px is still 0, meaning user didn't pass in a font-size declaration
   //or a custom fallback-base-px, use the base font size.
-  $fallbacBasePx: if($fallbackBasePx == 0, $baseFontSize, $fallbackBasePx);
+  $fallbackBasePx: if($fallbackBasePx == 0, $baseFontSize, $fallbackBasePx);
 
   @each $property, $value in $styles {
     @if $property != 'font-size' {
