@@ -102,10 +102,6 @@ $sectioning-elements: section, article, nav;
   }
 }
 
-@function img($component, $file) {
-  @return "../img/components/#{$component}/#{$file}"
-}
-
 /** Supported types: lining, tabular, oldstyle */
 @mixin numeral-type($type: lining) {
 
@@ -117,5 +113,4 @@ $sectioning-elements: section, article, nav;
 	//-webkit-font-feature-settings: "#{$short}num";  //can't use this or chrome starts bugging out.
 	-o-font-feature-settings: "#{$short}num";
 	font-feature-settings: "#{$short}num";
-}
 }
