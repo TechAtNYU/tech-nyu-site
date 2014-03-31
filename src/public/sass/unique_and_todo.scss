@@ -1,0 +1,248 @@
+#info {
+  @extend %homepageLeftCol;
+  background-color: nth($sectionColors, 1);
+  position: fixed;
+  top: 0;
+}
+
+#logo {
+  position: fixed;
+  box-sizing: content-box;
+  z-index: 1;
+  height: ems($logoStartHeight);
+  width: ems($logoStartWidth);
+  @include rs((
+    padding: 5px $outerPaddingPx + 2px 0,
+  ));
+  svg {
+    width:100%;
+  }
+}
+
+#tagline {
+  line-height: 1.4em;
+  @include rs((
+    padding: $logoStartHeight*1.45 $outerPaddingPx+4px 0 $outerPaddingPx+2px
+  ));
+  box-sizing: border-box;
+  font-family: $headingStack;
+  color: $logoStartColor;
+  @extend %reversedType;
+}
+
+#scrollCue {
+  position: fixed;
+  bottom: 80px;
+  left: 65%;
+  height: image-height("scrollCue.png") + 35px;
+  margin-left: floor(image-width("scrollCue.png") / 2) - 5px;
+  background-image: image-url("scrollCue.png");
+  -webkit-animation: bounce 1.5s infinite;
+  animation: bounce 1.5s infinite;
+  padding: 0 10px;
+
+  @extend %ir;
+}
+
+#upcoming {
+  @extend %homepageLeftCol;
+  position: fixed;
+  bottom: 0em;
+  left:0;
+  z-index: 2;
+  @include rs((
+    padding: $outerPaddingPx*1.15 $outerPaddingPx+4px $outerPaddingPx $outerPaddingPx+2px
+  ));
+
+  background-color: hsl(12,1%, 86%);
+  color: hsl(17, 15%, 20%);
+
+  button {
+    background: transparent;
+    line-height: inherit;
+    font-family: inherit;
+    color: inherit;
+    font-size: 1em;
+    font-weight: 400;
+    border: 1px solid hsl(19, 12%, 26%);
+
+    padding: .35em .5em;
+
+    display: block;
+    width: auto;
+    margin: 0em auto 1em;
+  }
+
+  .instructions {
+    clear:both;
+    padding-top:.25em;
+    p {
+      font-size:.95em;
+      line-height: 1.15em;
+    }
+  }
+}
+
+
+.bg {
+  top:0;
+  bottom:0;
+  left: 0;
+  right:0;
+  position: fixed;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  //if flat, but it has an image in it, show that
+  .img {
+    @if($fixedWidthHomepageLeftCol) {
+      left: $homepageLeftColMinWidth;
+    }
+    @else {
+      min-width:70%;
+    }
+    min-height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center center;
+    z-index: 2;
+    right: 0;
+  }
+}
+
+.bg:not(.starter) {
+  .img {
+    min-width: 40%;
+  }
+  .coverup {
+    width: 60%;
+  }
+}
+
+header {
+  background-color: transparent;
+  z-index: 100;
+  width: 100%;
+
+  .bgHolder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 80px;
+    opacity: 0;
+    background-color: nth($sectionColors, 1);
+  }
+
+}
+
+
+.objective {
+
+  h2 {
+    margin-bottom: 1em;
+  }
+
+  > h2 {
+    font-size: 2em;
+    margin-top:-.6em;
+    //margin-bottom:2em;
+    //width: 200%;
+    //color: white;
+    //background-color: #121212;
+    //padding: $outerPadding;
+    //margin-left: $outerPadding*-1;
+    max-width: none;
+  }
+
+  .poweredby {
+    .initiative {
+      height:50px;
+      width: 138px;
+      img {
+        height:50px;
+        width: 138px;
+        margin-top:-8px;
+      }
+    }
+  }
+}
+
+
+.initiative {
+  margin-bottom:2em;
+  max-width:20em;
+
+  &:nth-of-type(1) {
+    margin-left:0em;
+  }
+}
+
+
+@media (max-width:$homepageLeftColMinWidth*2) {
+  //shirnk all type
+  html {
+    font-size: .9em;
+  }
+
+  .bg .coverup, header, .info {
+    width: 100% !important;
+  }
+
+  .tagline {
+    margin-top: 125px !important;
+  }
+
+  .scrollCue {
+    left: 50% !important;
+  }
+}
+
+@media (max-width:$homepageLeftColMinWidth*2) and (min-width:690px) {
+    #upcoming #formWrapper {
+      margin-top: .5em;
+      float: left;
+    }
+
+    .event {
+      float: left;
+      width: 48.5%;
+      margin-right: 3%;
+    }
+    .follow {
+      br {
+        display: none;
+      }
+      float: left;
+      width: 48.5%;
+    }
+}
+
+@media (max-width:400px) {
+  .logo a, .tagline {
+    padding-left: 12px !important;
+  }
+
+  .logo a {
+    width: 150px !important;
+  }
+
+  .tagline {
+    margin-top: 90px !important;
+    font-size: 1.5em !important;
+  }
+  #upcoming {
+    padding: 10px;
+    box-sizing: border-box;
+    min-width: 0;
+
+    .follow {
+      br {
+        display: none;
+      }
+    }
+    #formWrapper {
+      margin-top: .5em;
+      float: left;
+    }
+  }
+}
