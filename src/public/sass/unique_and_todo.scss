@@ -1,3 +1,9 @@
+#header {
+  background-color: transparent;
+  z-index: 100;
+  width: 100%;
+}
+
 #info {
   @extend %homepageLeftCol;
   background-color: nth($sectionColors, 1);
@@ -12,7 +18,7 @@
   height: ems($logoStartHeight);
   width: ems($logoStartWidth);
   @include rs((
-    padding: 5px $outerPaddingPx + 2px 0,
+    padding: 2px $outerPaddingPx+2px 2px,
   ));
   svg {
     width:100%;
@@ -139,22 +145,6 @@
   }
 }
 
-header {
-  background-color: transparent;
-  z-index: 100;
-  width: 100%;
-
-  .bgHolder {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 80px;
-    opacity: 0;
-    background-color: nth($sectionColors, 1);
-  }
-
-}
-
 
 .objective {
 
@@ -197,13 +187,8 @@ header {
   }
 }
 
-
+/*
 @media (max-width:$homepageLeftColMinWidth*2) {
-  //shirnk all type
-  html {
-    font-size: .9em;
-  }
-
   .bg .coverup, header, .info {
     width: 100% !important;
   }
@@ -265,4 +250,4 @@ header {
       float: left;
     }
   }
-}
+}*/
