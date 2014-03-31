@@ -53,8 +53,14 @@
   @return remove-nth($value, length($value));
 }
 
-@function ems($targetPx, $basePx: $baseFontSize) {
-  @return ($targetPx/$basePx)*1em;
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+
+    @keyframes #{$animationName} {
+        @content;
+    }
 }
 
 @function remove-nth($list, $index) {
