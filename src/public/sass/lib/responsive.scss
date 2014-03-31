@@ -115,4 +115,34 @@ $responsiveConfig: ();
     font-size: ems($baseFontSize, $browserDefaultFontSize);
     @include rems(line-height, $baseLineHeight);
   }
+
+  @each $design in map-get($config, designs) {
+    $baseDesignWidth: map-get($design, baseWidth);
+    $minDesignWidth: map-get($design, minWidth);
+    $maxDesignWidth: map-get($design, maxWidth);
+    $shrinkTransforms: map-get($design, shrinkTransforms);
+    $growTransforms: map-get($design, growTransforms);
+
+    //shrink transforms
+    $i: 0;
+    @while _zoomedsize($baseFontSize - $i, $baseDesignWidth) > $minDesignWidth {
+      $transform: if(length($shrinkTransforms) > $i, nth($shrinkTransforms, $i+1), zoom);
+      $minWidth: max($minDesignWidth, _zoomedsize($baseFontSize - $i - 1, $baseDesignWidth));
+      @include breakpoint($minWidth _zoomedsize($baseFontSize - $i, $baseDesignWidth)) {
+        @include zoomer($baseFontSize - $i - 1);
+      }
+      $i: $i + 1;
+    }
+
+    //grow transforms
+    $i: 0;
+    @while _zoomedsize($baseFontSize + $i, $baseDesignWidth) < $maxDesignWidth {
+      $transform: if(length($growTransforms) > $i, nth($growTransforms, $i+1), zoom);
+      $maxWidth: min($maxDesignWidth, _zoomedsize($baseFontSize + $i + 2, $baseDesignWidth));
+      @include breakpoint(_zoomedsize($baseFontSize + $i + 1, $baseDesignWidth) $maxWidth) {
+        @include zoomer($baseFontSize + $i + 1);
+      }
+      $i: $i + 1;
+    }
+  }
 }

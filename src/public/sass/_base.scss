@@ -33,20 +33,22 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
     designs: (
         (   name: desktop,
             baseWidth: 1010px,
-            minWidth: 970px,
+            minWidth: 920px,
             maxWidth: 1400px,
             shrinkTransforms: (zoom),
-            growTransforms: (zoom, zoom, zoom, stretch, stretch)
+            growTransforms: (zoom, zoom, stretch, stretch) //actually tested. two zooms is right.
         ),
         (
             name: tablet,
             baseWidth: 750px,
             minWidth: 600px,
+            maxWidth: 960px
         ),
         (
             name: mobile,
             baseWidth: 320px,
-            minWidth: 0px
+            minWidth: 0px,
+            maxWidth: 600px
         )
     )
 ));
