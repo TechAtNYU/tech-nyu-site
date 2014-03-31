@@ -1,3 +1,5 @@
+@import "lib/responsive";
+@import "lib/util";
 @import "breakpoint";
 
 /******************** COLORS ********************/
@@ -22,8 +24,9 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
 
 
 /*************** RWD ******************/
-$responsiveConfig: (
+@include rsConfigure((
     scale: 14px 16px 19px 24px 30px 36px 44px 58px 64px,
+    lineHeights: 19px 22px,
     baseFontSize: 19px,
     baseLineHeight: 27px,
     baseMeasureWidth: 500px, //the measure based on which the baseLineHeight was chosen.
@@ -32,14 +35,21 @@ $responsiveConfig: (
             baseWidth: 1010px,
             minWidth: 970px,
             maxWidth: 1400px,
-            transforms: ()
+            shrinkTransforms: (zoom),
+            growTransforms: (zoom, zoom, zoom, stretch, stretch)
+        ),
+        (
+            name: tablet,
+            baseWidth: 750px,
+            minWidth: 600px,
         ),
         (
             name: mobile,
-            baseWidth: 320px
+            baseWidth: 320px,
+            minWidth: 0px
         )
     )
-);
+));
 
 
 /******************* WIDTHS ********************/

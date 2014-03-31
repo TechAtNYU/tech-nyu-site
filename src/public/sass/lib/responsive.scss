@@ -3,9 +3,11 @@ $browserDefaultFontSize: 16px;
 
 //pull some variables out of $responsiveConfig so we can more easily
 //use them in function bodies and as default args.
-$baseFontSize: map-get($responsiveConfig, baseFontSize);
-$baseLineHeight: map-get($responsiveConfig, baseLineHeight);
-$scale: map-get($responsiveConfig, scale);
+$baseFontSize: null;
+$baseLineHeight: null;
+$scale: null;
+$lineHeights: null;
+$responsiveConfig: ();
 
 @function _zoomedsize($newFontSize, $baseDesignWidth) {
   @return floor($baseDesignWidth*($newFontSize/$baseFontSize));
@@ -98,6 +100,14 @@ $scale: map-get($responsiveConfig, scale);
       @include rems($property, $value, $basePx, $fallbackBasePx);
     }
   }
+}
+
+@mixin rsConfigure($config) {
+   $responsiveConfig: $config !global;
+   $lineHeights: map-get($config, lineHeights) !global;
+   $baseFontSize: map-get($config, baseFontSize) !global;
+   $baseLineHeight: map-get($config, baseLineHeight) !global;
+   $scale: map-get($config, scale) !global;
 }
 
 @mixin scalers($config: $responsiveConfig) {
