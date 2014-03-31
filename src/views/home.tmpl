@@ -19,7 +19,7 @@
   <title>tech@nyu</title> 
   <!--[if ! lte IE 8]><!-->
     <link rel="stylesheet" href="css/screen.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="css/skrollr.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:768px)" /> -->
+    <link rel="stylesheet" href="css/skrollr.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:768px)" />
   <!--<![endif]-->
   <!--[if lte IE 8]>
     <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1b.css" media="screen, projection">
@@ -30,17 +30,17 @@
 </head>
 <body class="horiz">
   <header class="clearfix" id="header">
-    <div class="info">
-        <h1 class="logo">
-        <a href="">
-          {% include "partials/logo_with_alt.tmpl" %}
-        </a>
-        </h1>
+    <h1 id="logo">
+      <a href="">
+        {% include "partials/logo_with_alt.tmpl" %}
+      </a>
+    </h1>
+    <div id="info">
       <p id="tagline" class="tagline h2">
         We host tech, design, and entrepreneurship events for students from NYU and surrounding schools. We have events for students of all experience levels.
       </p>
     </div>
-    <a class="scrollCue" href="#getting-started">Skip to the Getting Started Section</a>
+    <a id="scrollCue" href="#getting-started">Skip to the Getting Started Section</a>
     <nav id="nav">
         <ol class="optionList">
           {% for section in sections %}
@@ -52,39 +52,35 @@
           {% endfor %}
         </ol>
     </nav>
+    <div id="upcoming">
+      <div id="upcoming-inner">
+        <div class="promoPanel">
+          <div class="heading">
+            <h2 class="h6" data-alt-title="Upcoming Events">Next Event</h2>
+          </div>
+          <div class="conent">
+            <a class="event with-more-button" href="">
+              <strong class="title h5">What Designers Actually Do</strong>
+              <span class="caption">A Workshop with Anne-Laure Fayard <span class="more">More&nbsp;info&hellip;</span></span>
+              <button class="flatButton">More Events</button>
+            </a>
+          </div>
+        </div>
+
+        <div class="promoPanel">
+          <div class="heading">
+            <h2 class="h6" style="vertical-align:top;">Notify Me of Future Events</h2>
+          </div>
+          <div class="content singleLineForm">
+            <input type="email" placeholder="Enter your email address..." class="mainField" /><input type="submit" value="Sign Up" class="submitButton" />
+            <p class="instructions hidden">Every other week, you&rsquo;ll get a digest of the best tech and entreprenuership events in NYC.</p>
+          </div>
+        </div>
+     </div>
+    </div>
   </header>
-  <div id="upcoming">
-    <div id="upcoming-inner">
-      <div class="promoPanel">
-        <h2 class="h5" data-alt-title="Upcoming Events">Next Event</h2>
-
-        <a class="event" href="" style="text-decoration:none;">
-          <strong class="title">What Designers Actually Do</strong>
-          <span>A Workshop with Anne-Laure Fayard <span style="text-decoration:underline;">More&nbsp;info&hellip;</span></span>
-          <button class="flatButton">More Events</button>
-        </a>
-
-        <a class="event" href="" style="text-decoration:none;display:none;">
-          <strong class="title">What Designers Actually Do</strong>
-          <span>A Workshop with Anne-Laure Fayard <span style="text-decoration:underline;">More&nbsp;info&hellip;</span></span>
-        </a>
-        
-      </div>
-
-      <div class="promoPanel follow">
-        <h2 class="h5" style="vertical-align:top;">Notify Me of Future Events</h2>
-        <div id="formWrapper">
-          <input type="email" placeholder="Enter your email address..." /><input type="submit" value="Sign Up" />
-        </div>
-        <div class="instructions" style="display:none;">
-          <p>Every other week, you&rsquo;ll get a digest of the best tech and entreprenuership events in NYC.</p>
-        </div>
-      </div>
-   </div>
-  </div>
   <div class="bg starter">
     <div class="img" data-wide="Tech@NYU_files/img/events/sqsp2.jpg" data-narrow="Tech@NYU_files/img/events/support2.jpg" /></div>
-    <div class="coverup"><div class="mask"></div></div>
   </div>
   <div class="bg">
     <div class="img" data-wide="Tech@NYU_files/img/events/support1.jpg" data-narrow="Tech@NYU_files/img/events/support2.jpg" /></div>
