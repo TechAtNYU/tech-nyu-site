@@ -24,7 +24,6 @@ module.exports =
             breakAt = midSpaces[1] + midIndex
           else
             breakAt = midSpaces[0]
-          console.log(str.substring(0, midIndex), str.substring(midIndex), (midIndex - midSpaces[0]), midSpaces[1]);
           str.substring(0, breakAt) + '<br/>' + str.substring(breakAt)
 
       contains: (str, toFind) ->
