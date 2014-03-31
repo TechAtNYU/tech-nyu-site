@@ -1,8 +1,12 @@
+
 requirejs.config(
     baseUrl: 'scripts/bower_components'
     enforceDefine: true
     paths:
         app: '../app'
+        mixins: '../mixins'
+        components: '../components'
+
         flight: 'flight/lib'
         "skrollr/skrollr": 'skrollr/dist/skrollr.min'
         "skrollr/stylehseets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
@@ -18,7 +22,7 @@ requirejs.config(
             exports: 'skrollr'
 )
 
-define(["flight/component", "jquery", "skrollr/skrollr", "skrollr/stylehseets"], (flight, $, skrollr2, skrollrStylesheets) -> 
+define(["flight/component", "jquery", "skrollr/skrollr", "skrollr/stylehseets", "components/leftSidebar"], (flight, $, skrollr, skrollrStylesheets, leftSidebar) -> 
   s = skrollr.init(do
     easing:
       swing2: (percentComplete) ->
@@ -39,4 +43,10 @@ define(["flight/component", "jquery", "skrollr/skrollr", "skrollr/stylehseets"],
   )
 
   $(-> skrollrStylesheets.init(s));
+
+  $(document).on('animationsChange', (ev, data) -> s.refresh(data.elements));
+
+  # Init components
+  leftSidebar.attachTo('header');
+  void;
 )
