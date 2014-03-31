@@ -63,7 +63,7 @@ input {
 }
 
 nav {
-  $navFlagWidths: ems(210px) ems(155px) ems(215px) ems(180px) ems(135px);
+  $navFlagWidths: ems(180px) ems(130px) ems(185px) ems(155px) ems(110px);
   $totalFlagsWidth: sum($navFlagWidths);
   $calendarFlagWidth: ems(32px) + 2*$outerPadding;
   $navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + ems(100px);
@@ -78,7 +78,10 @@ nav {
 
   ol {
     position: fixed;
-    margin-left: $logoEndWidth + 2*$outerPadding;
+    right: 0;
+    left: ems($logoEndWidth) + 2*$outerPadding;
+    margin-right: auto;
+    max-width: 65rem;
     z-index: 1;
     padding-right: $calendarFlagWidth;
   }
