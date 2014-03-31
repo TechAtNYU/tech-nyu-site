@@ -36,6 +36,15 @@
   *zoom: 1;
 }
 
+/******** TYPE *********/
+.caption {
+  display: inline-block;
+  @include rs((
+    font-size: nth($scale, 2),
+    line-height: nth($lineHeights, 2)
+  ));
+}
+
 /* Hides from screenreaders and visual users. */
 .hidden { 
   display: none; 
@@ -77,4 +86,11 @@
   -webkit-text-stroke: 0.4em #778B37;
   left: 0;
   z-index: -2;
+}
+
+
+/// GRID RELATED TRAITS
+%homepageLeftCol {
+  width: 30%;
+  min-width: $homepageLeftColMinWidth;
 }

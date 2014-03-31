@@ -1,33 +1,78 @@
 .promoPanel {
   font-weight: 400;
   border-top: 3px solid hsl(17, 15%, 20%);
-  padding:2px 1px .85em;
+  @include rs((
+    padding:2px 1px 14px
+  ));
 
   .content {
-    padding-top: .5em;
+    @include rs((padding-top: 8px));
   }
 }
 
-.logo {
+@mixin singleLineForm($buttonSize: 5em, $baseFontSize: $baseFontSize) {
+  padding-right: $buttonSize;
+  .mainField {
+    width: 100%;
+  }
 
+  .submitButton {
+    margin-left: .25em*($baseFontSize/nth($scale, 1));
+    width: ($buttonSize - .25em)*($baseFontSize/nth($scale, 1));
+    margin-top: 0;
+    margin-right: -1*$buttonSize*($baseFontSize/nth($scale, 1));
+  }
 }
 
-.tagline {
-  line-height: 1.4em;
-  padding: $logoStartHeight*1.45 $outerPadding+.2em 0 $outerPadding+.1em;
-  box-sizing: border-box;
-  font-family: $headingStack;
-  color: $logoStartColor;
-  @extend %reversedType;
+.singleLineForm {
+  @include singleLineForm;
 }
 
-.flatButton {
-  
+.event {
+  text-decoration: none;
+  display: block;
+  position: relative;
+
+  @include rs((
+    margin-bottom: 4px,
+    padding: 10px 0
+  ));
+
+  .title {
+    display: block;
+  }
+
+  .more {
+    text-decoration: underline;
+  }
 }
 
 .objective {
-  display: none !important;
+  min-height: 100%;
+  position: fixed;
+  @include rs((
+    padding: $outerPaddingPx
+  ));
+
+  &.revealing {
+    overflow: hidden;
+  }
 }
+
+.flatButton {
+  right: 0;
+  top: 50%;
+  margin-top: -30px;
+  width: 66px;
+  height: 66px;
+  border-radius: 33px;
+  box-sizing: border-box;
+  border-width: 1.5px;
+  position: absolute;
+  border-color: hsl(19, 4%, 34%);
+  color: hsl(19, 4%, 25%);
+}
+
 
 /* Notes: List of choosable options, like in a nav or toolbar. Required Markup:
    <* class="optionList"><li (or class="li")>This option</li></*>. Each "li" usually has an <a> */

@@ -1,0 +1,11 @@
+.event {
+    &.with-more-button {
+        padding-right: 75px;
+    }
+}
+
+.promoPanel {
+    &:last-child {
+        padding-bottom: 0;
+    }
+}
