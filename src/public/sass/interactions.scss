@@ -1,11 +1,24 @@
 .event {
-    &.with-more-button {
-        padding-right: 75px;
-    }
+  &.with-flatButton {
+    padding-right: 75px;
+  }
+
+  .flatButton {
+    @include rs((
+      width: 66px,
+      height: 66px,
+      font-size: nth($scale, 2),
+      line-height: nth($lineHeights, 2) !important,
+      margin-top: -33px,
+      top: 50%,
+      right: 0
+    ));
+    position: absolute;
+  }
 }
 
 .promoPanel {
-    &:last-child {
-        padding-bottom: 0;
-    }
+  &:last-child {
+    padding-bottom: 0;
+  }
 }

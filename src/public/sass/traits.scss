@@ -37,12 +37,17 @@
 }
 
 /******** TYPE *********/
-.caption {
-  display: inline-block;
+
+%captionSize {
   @include rs((
     font-size: nth($scale, 2),
     line-height: nth($lineHeights, 2)
   ));
+}
+
+.caption {
+  display: inline-block;
+  @extend %captionSize;
 }
 
 /* Hides from screenreaders and visual users. */

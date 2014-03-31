@@ -28,7 +28,7 @@
 #tagline {
   line-height: 1.4em;
   @include rs((
-    padding: $logoStartHeight*1.45 $outerPaddingPx+4px 0 $outerPaddingPx+2px
+    padding: $logoStartHeight*1.4 $outerPaddingPx+4px 0 $outerPaddingPx+2px
   ));
   box-sizing: border-box;
   font-family: $headingStack;
@@ -82,22 +82,6 @@
 
   background-color: hsl(12,1%, 86%);
   color: hsl(17, 15%, 20%);
-
-  button {
-    background: transparent;
-    line-height: inherit;
-    font-family: inherit;
-    color: inherit;
-    font-size: 1em;
-    font-weight: 400;
-    border: 1px solid hsl(19, 12%, 26%);
-
-    padding: .35em .5em;
-
-    display: block;
-    width: auto;
-    margin: 0em auto 1em;
-  }
 
   .instructions {
     clear:both;
@@ -154,7 +138,6 @@
 
   > h2 {
     font-size: 2em;
-    margin-top:-.6em;
     //margin-bottom:2em;
     //width: 200%;
     //color: white;

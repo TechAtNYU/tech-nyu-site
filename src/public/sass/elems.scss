@@ -38,10 +38,7 @@ h4, .h4 {
 }
 
 h5, .h5 {  
-  @include rs((
-    font-size: nth($scale, 2),
-    line-height: nth($lineHeights, 2)
-  ));
+  @extend %captionSize;
 }
 
 h6, .h6 {
