@@ -1,4 +1,3 @@
-require 'compass/import-once/activate'
 require 'sass-globbing'
 require 'breakpoint'
 
@@ -6,16 +5,14 @@ require 'breakpoint'
 
 # Set this to the root of your project when deployed:
 http_path = "/"
+project_path = "./src/public"
 css_dir = "csss"
 sass_dir = "sass"
-images_dir = "images"
+images_dir = "img"
 javascripts_dir = "scripts"
 
 # You can select your preferred output style here (can be overridden via the command line):
 output_style = :compressed
-
-# To enable relative paths to assets via compass helper functions. Uncomment:
-relative_assets = true
 
 # To disable debugging comments that display the original location of your selectors. Uncomment:
 # line_comments = false
