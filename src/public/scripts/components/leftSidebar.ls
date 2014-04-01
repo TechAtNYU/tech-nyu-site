@@ -36,7 +36,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       
       @animate(\logo, \LARGE, {
         0: 'top[sqrt]:' + logo.css('top'),
-        (@sassVars.navCascadeEnd - 50): 'top[sqrt]:0px;'
+        (@sassVars.navCascadeEnd - 50): 'top[sqrt]:0px'
       })
 
       @trigger('animationsChange', {elements: upcoming.add(logo).add(tagline)});
