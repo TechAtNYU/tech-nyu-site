@@ -22,3 +22,10 @@
     padding-bottom: 0;
   }
 }
+
+.singleLineForm {
+  .caption {
+    padding-top: .25rem;
+    margin-right: -1*5em*($baseFontSize/nth($scale, 1));
+  }
+}

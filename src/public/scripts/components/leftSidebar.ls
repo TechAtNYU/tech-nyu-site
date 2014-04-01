@@ -41,9 +41,19 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
       @trigger('animationsChange', {elements: upcoming.add(logo).add(tagline)});
 
+    @animationsProxy = -> $.proxy(@setupAnimations, @)
+
+    @handleDigestDetailsShown = (ev, data) ->
+      @select(\tagline).add(@select(\logo)).animate({margin-top: "-=" + data.height}, 140, @animationsProxy)
+
+    @handleDigestDetailsHidden = (ev, data) ->
+      @select(\tagline).add(@select(\logo)).animate({margin-top: "+=" + data.height}, 140, @animationsProxy)
+
     @after('initialize', ->
       @on(window, "resize", @positionElems);
       @on(window, "resize", @setupAnimations);
+      @on(@$node, "digestDetailsShown", @handleDigestDetailsShown);
+      @on(@$node, "digestDetailsHidden", @handleDigestDetailsHidden);
       @positionElems!
       @setupAnimations!
     )

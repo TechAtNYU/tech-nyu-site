@@ -2,41 +2,23 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
   defineComponent(->
     @defaultAttrs(do
-      details: \.details
+      details: \.caption
       submit: "[type=submit]"
       input: "[type=email]"
     )
 
-    @showInstructions = ->
-      
+    @showDetails = ->
+      details = @select(\details).show!.removeClass(\hidden)
+      @trigger('digestDetailsShown', {'height': details.outerHeight!})
 
-    @setupAnimations = ->
-      upcoming = @select('upcoming')
-      logo     = @select('logo')
-      taglineWrapper = @select(\taglineWrapper)
-
-      @animate(\upcoming, \LARGE, {
-        0: "bottom[sqrt]: 0px",
-        (@sassVars.leftColOut): 'bottom[sqrt]: '+ -1*upcoming.outerHeight! + 'px'
-      })
-
-      @animate(\taglineWrapper, \LARGE, {
-        0: "left[sqrt]: 0px",
-        (@sassVars.leftColOut): "left[sqrt]: " + -1*taglineWrapper.outerWidth! + 'px'
-      })
-      
-      @animate(\logo, \LARGE, {
-        0: 'top[sqrt]:' + logo.css('top'),
-        (@sassVars.navCascadeEnd - 50): 'top[sqrt]:0px;'
-      })
-
-      @trigger('animationsChange', {elements: upcoming.add(logo).add(tagline)});
+    @hideDetails = ->
+      details = @select(\details).hide!.addClass(\hidden)
+      height = details.outerHeight!
+      @trigger('digestDetailsHidden', {'height': height})
 
     @after('initialize', ->
-      @on(window, "resize", @positionElems);
-      @on(window, "resize", @setupAnimations);
-      @positionElems!
-      @setupAnimations!
+      @on(@select('input'), "focus", @showDetails);
+      @on(@select('input'), 'blur', @hideDetails);
     )
   , mixins.managesAnimations, mixins.usesSassVars)
 );

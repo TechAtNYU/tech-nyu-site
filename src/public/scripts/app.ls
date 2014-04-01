@@ -22,7 +22,14 @@ requirejs.config(
             exports: 'skrollr'
 )
 
-define(["flight/component", "jquery", "skrollr/skrollr", "skrollr/stylehseets", "components/leftSidebar"], (flight, $, skrollr, skrollrStylesheets, leftSidebar) -> 
+define([
+  "flight/component"
+  "jquery"
+  "skrollr/skrollr"
+  "skrollr/stylehseets"
+  "components/leftSidebar"
+  "components/digestSignup"
+  ], (flight, $, skrollr, skrollrStylesheets, leftSidebar, digestSignup) -> 
   s = skrollr.init(do
     easing:
       swing2: (percentComplete) ->
@@ -47,6 +54,7 @@ define(["flight/component", "jquery", "skrollr/skrollr", "skrollr/stylehseets", 
   $(document).on('animationsChange', (ev, data) -> s.refresh(data.elements));
 
   # Init components
-  leftSidebar.attachTo('header');
+  leftSidebar.attachTo('header')
+  digestSignup.attachTo('#digestForm')
   void;
 )

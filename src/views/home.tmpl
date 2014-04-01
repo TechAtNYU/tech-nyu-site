@@ -73,7 +73,7 @@
           </div>
           <form class="content singleLineForm" id="digestForm">
             <input type="email" placeholder="Enter your email address..." class="mainField" /><input type="submit" value="Sign Up" class="submitButton" />
-            <p class="details hidden">Every other week, you&rsquo;ll get a digest of the best tech and entreprenuership events in NYC.</p>
+            <p class="caption hidden">Every other week, you&rsquo;ll get a digest of the best tech and entreprenuership events in NYC.</p>
           </form>
         </div>
      </div>
@@ -279,16 +279,6 @@
         else {
           calendarSVGPaths.css('fill', calendarLastFill);
         }
-      });
-
-      $('input[type=email]').focus(function(e) {
-        $('.instructions').show();
-        $('#tagline,.logo').animate({'margin-top':'-=2.5em'},140);
-        $('#upcoming').animate({'height':'+=2.5em'},100);
-      }).blur(function(e) {
-        $('.instructions').hide();
-        $('#upcoming,#tagline,.logo').animate({'margin-top':'+=2.5em'},140);
-        $('#upcoming').animate({'height':'-=2.5em'},100);
       });
 
       var imgDiv =  $('.bg .img'), $window = $(window);
