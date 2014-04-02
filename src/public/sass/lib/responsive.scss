@@ -73,7 +73,7 @@ $responsiveConfig: ();
  * For any other properties passed, it outputs their values in rems, using the font-size set 
  * (or else the base font size, or one manually provided) to generate an em fallback.
  */
-@mixin rs($styles, $fallbackBasePx: 0, $basePx: $browserDefaultFontSize) {
+@mixin rs($styles, $fallbackBasePx: 0, $basePx: $browserDefaultFontSize, $fallback: true) {
   //Note that the below won't work if you pass in multiple font-size
   //declarations...but you shouldn't do that.
   @each $property, $value in $styles {
@@ -97,7 +97,7 @@ $responsiveConfig: ();
 
   @each $property, $value in $styles {
     @if $property != 'font-size' {
-      @include rems($property, $value, $basePx, $fallbackBasePx);
+      @include rems($property, $value, $basePx, $fallbackBasePx, $fallback);
     }
   }
 }
