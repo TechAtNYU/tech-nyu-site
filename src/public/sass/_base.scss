@@ -1,3 +1,4 @@
+
 @import "lib/responsive";
 @import "lib/util";
 @import "breakpoint";
@@ -7,11 +8,9 @@
 $background: #FFF;
 $textColor: #333;
 
-$sectionColors: hsl(13, 67%, 51%) hsl(42, 90%, 49%) hsl(140, 74%, 37%) hsl(218, 66%, 36%) hsl(275, 46%, 33%) hsl(0, 0%, 10%);
-$sectionColAlt: hsl(13, 72%, 53%) hsl(42, 87%, 50%) hsl(140, 74%, 35%) hsl(214, 68%, 34%) hsl(278, 48%, 37%) hsl(0, 0%, 10%); 
-
+$sectionColors: hsl(14, 68%, 51%) hsl(43, 90%, 50%) hsl(276, 48%, 35%) hsl(140, 74%, 37%) hsl(218, 66%, 36%) hsl(0, 0%, 10%);
 $navActiveTextColor: hsl(0,0%,97%);
-$navInactiveTextColors: hsl(13, 2%, 16%), hsl(42, 0%, 16%), hsl(140, 0%, 20%), hsl(214, 4%,65%), hsl(278,3%,60%), hsl(0,0%,58%);
+$navInactiveTextColors: hsl(13, 2%, 16%), hsl(42, 0%, 16%), hsl(278,3%,60%), hsl(140, 0%, 20%), hsl(214, 4%,65%), hsl(0,0%,58%);
 
 
 /********** BASIC TYPORGRAPHY **********/
@@ -25,8 +24,8 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
 
 /*************** RWD ******************/
 @include rsConfigure((
-    scale: 14px 16px 19px 24px 30px 36px 44px 58px 64px,
-    lineHeights: 19px 22px,
+    scale:       14px 16px 19px 24px 30px 36px 44px 58px 64px,
+    lineHeights: 19px 22px 24px 29px,
     baseFontSize: 19px,
     baseLineHeight: 27px,
     baseMeasureWidth: 500px, //the measure based on which the baseLineHeight was chosen.
