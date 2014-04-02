@@ -18,7 +18,7 @@
   height: ems($logoStartHeight);
   width: ems($logoStartWidth);
   @include rs((
-    padding: 2px $outerPaddingPx+2px 2px,
+    padding: 4px $outerPaddingPx+2px 2px,
   ));
   svg {
     width:100%;

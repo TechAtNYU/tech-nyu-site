@@ -40,7 +40,6 @@ $firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
 
 @-skrollr-keyframes logoToTopLeft {
     0 {
-        @include ease(background-color, swing4, toRgbString($logoStartBackground,  true));
         @include ease(width, cubedroot, ems($logoStartWidth));
         @include rs((
           padding-left: $outerPaddingPx + 2px,
@@ -49,19 +48,11 @@ $firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
     }
 
     #{$navCascadeEnd - 50} {
-        @include ease(background-color, swing4, toRgbString($logoEndBackground, true));
-        @include ease(width, cubedroot, ems($logoEndWidth));
-        @include rs((
-          padding-left: $outerPaddingPx,
-          padding-right: $outerPaddingPx
-        ));
-    }
-
-    #{$headerAnimEnd - 1} {
-        dummy: true;
-    }
-    #{$headerAnimEnd} {
-        background-color: toRgbString(transparentize($logoEndBackground, 1), true);
+      @include ease(width, cubedroot, ems($logoEndWidth));
+      @include rs((
+        padding-left: $outerPaddingPx,
+        padding-right: $outerPaddingPx
+      ));
     }
 }
 

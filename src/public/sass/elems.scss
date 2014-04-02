@@ -26,9 +26,9 @@ h2, .h2 {
 
 h3, .h3 {    
   @include rs((
-    font-size: nth($scale, 4)
+    font-size: nth($scale, 4),
+    line-height: nth($lineHeights, 4)
   ));
-  line-height: 1.2em;
   letter-spacing: .2px;
 }
 
@@ -61,7 +61,7 @@ input {
 
 nav {
   $navFlagWidths: ems(180px) ems(130px) ems(185px) ems(155px) ems(110px);
-  $totalFlagsWidth: sum($navFlagWidths);
+  $totalFlagsWidth: sum($navFlagWidths) + ems($logoEndWidth+$outerPaddingPx);
   $calendarFlagWidth: ems(32px) + 2*$outerPadding;
   $navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + ems(100px);
 
@@ -76,9 +76,11 @@ nav {
   ol {
     position: fixed;
     right: 0;
-    left: ems($logoEndWidth) + 2*$outerPadding;
+    @include rs((
+      left: $outerPaddingPx
+    ));
     margin-right: auto;
-    max-width: 65rem;
+    max-width: 75rem;
     z-index: 1;
     padding-right: $calendarFlagWidth;
   }
@@ -87,10 +89,15 @@ nav {
     z-index:4;
     @include rs((
       font-size: 20px !important,
+      line-height: nth($lineHeights, 3) !important,
       height: 67px,
       padding-top: $outerPaddingPx*.42,
       padding-bottom: $outerPaddingPx*.48
     ));
+
+    &:first-child {
+      margin-left: (ems($logoEndWidth+$outerPaddingPx)/$totalFlagsWidth)*100%;
+    }
 
     @for $i from 1 through 5 {
       &:nth-of-type(#{$i}) {
