@@ -24,7 +24,7 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
 
 /*************** RWD ******************/
 @include rsConfigure((
-    scale:       14px 16px 19px 24px 30px 36px 44px 58px 64px,
+    scale:       13px 16px 19px 24px 30px 36px 44px 58px 64px,
     lineHeights: 19px 22px 24px 29px,
     baseFontSize: 19px,
     baseLineHeight: 27px,
@@ -32,7 +32,7 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
     designs: (
         (   name: desktop,
             baseWidth: 1010px,
-            minWidth: 920px,
+            minWidth: 921px,
             maxWidth: 1400px,
             shrinkTransforms: (zoom),
             growTransforms: (zoom, zoom, stretch, stretch) //actually tested. two zooms is right.
@@ -40,8 +40,8 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
         (
             name: tablet,
             baseWidth: 750px,
-            minWidth: 600px,
-            maxWidth: 960px
+            minWidth: 601px,
+            maxWidth: 920px
         ),
         (
             name: mobile,
@@ -59,7 +59,6 @@ $outerPadding: 1.05em;
 $outerPaddingPx: $outerPadding/1em * map-get($responsiveConfig, baseFontSize);
 
 //Variables to sort/remove
-$homepageLeftColMinWidth: 20em;
 $fixedWidthHomepageLeftCol: false;
 
 $logoStartColor: hsl(0,0, 95%);

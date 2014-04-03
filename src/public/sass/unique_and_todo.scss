@@ -4,11 +4,16 @@
   width: 100%;
 }
 
+#nav {
+  z-index: 8;
+}
+
 #info {
   @extend %homepageLeftCol;
   background-color: nth($sectionColors, 1);
   position: fixed;
   top: 0;
+  z-index: 1;
 }
 
 #logo {
@@ -23,6 +28,7 @@
   svg {
     width:100%;
   }
+  z-index: 10;
 }
 
 #tagline {
@@ -41,11 +47,12 @@
   bottom: 80px;
   left: 65%;
   height: image-height("scrollCue.png") + 35px;
-  margin-left: floor(image-width("scrollCue.png") / 2) - 5px;
+  margin-left: (floor(image-width("scrollCue.png") / 2) + 5px)*-1;
   background-image: image-url("scrollCue.png");
   -webkit-animation: bounce 1.5s infinite;
   animation: bounce 1.5s infinite;
   padding: 0 10px;
+  z-index: 4; 
 
   @extend %ir;
 }
@@ -90,19 +97,12 @@
 
 
 .objective {
-
   h2 {
     margin-bottom: 1em;
   }
 
   > h2 {
     font-size: 2em;
-    //margin-bottom:2em;
-    //width: 200%;
-    //color: white;
-    //background-color: #121212;
-    //padding: $outerPadding;
-    //margin-left: $outerPadding*-1;
     max-width: none;
   }
 
