@@ -1,4 +1,3 @@
-
 requirejs.config(
     baseUrl: 'scripts/bower_components'
     enforceDefine: true
@@ -29,7 +28,8 @@ define([
   "skrollr/stylehseets"
   "components/leftSidebar"
   "components/digestSignup"
-  ], (flight, $, skrollr, skrollrStylesheets, leftSidebar, digestSignup) -> 
+  "components/homepageBg"
+  ], (flight, $, skrollr, skrollrStylesheets, leftSidebar, digestSignup, homepageBg) -> 
   s = skrollr.init(do
     easing:
       swing2: (percentComplete) ->
@@ -56,5 +56,6 @@ define([
   # Init components
   leftSidebar.attachTo('header')
   digestSignup.attachTo('#digestForm')
+  homepageBg.attachTo('.bg')
   void;
 )

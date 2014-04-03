@@ -1,3 +1,4 @@
+
 html {
   color: $textColor;
 }
@@ -54,7 +55,6 @@ a {
 
 input {
   @include rs((
-    padding: 1px,
     font-size: nth($scale, 1)
   ));
 }

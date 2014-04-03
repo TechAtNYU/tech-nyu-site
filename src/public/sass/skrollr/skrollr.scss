@@ -9,7 +9,6 @@ $leftColOut: $navCascadeStart;
 $navCascadeItemDelay: 32; 
 $navCascadeDrop: 20;
 
-
 $onPanelPause: 85;
 $interPanelDistance: 100;
 $firstPanelExtraPause: 120;
@@ -309,7 +308,7 @@ $colorChangeStartDelay: 65;
         }
     }
 
-    .bg:nth-of-type(#{$i + 1}) .img {
+    .bg:nth-of-type(#{$i + 1}) {
         -skrollr-animation-name: photo-#{$i};
     }
 }

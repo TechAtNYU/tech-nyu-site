@@ -79,15 +79,6 @@
      </div>
     </div>
   </header>
-  <div class="bg starter">
-    <div class="img" data-wide="Tech@NYU_files/img/events/sqsp2.jpg" data-narrow="Tech@NYU_files/img/events/support2.jpg" /></div>
-  </div>
-  <div class="bg">
-    <div class="img" data-wide="Tech@NYU_files/img/events/support1.jpg" data-narrow="Tech@NYU_files/img/events/support2.jpg" /></div>
-  </div>
-  <div class="bg">
-    <div class="img" data-wide="Tech@NYU_files/img/events/support1.jpg" data-narrow="Tech@NYU_files/img/events/support2.jpg" /></div>
-  </div>
   <div id="content">
     <div class="objective first" id="getting-started" data-section="1">
       <h2>Get Started with the Tech Scene</h2>
@@ -207,6 +198,7 @@
       <p> This screen also needs to be designed. A sign up form for the digest could appear here too.</p>
     </div>
   </div>
+  <div class="bg" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>
   <script type="text/javascript">
     /*$(function() { 
 
@@ -283,28 +275,11 @@
 
       var imgDiv =  $('.bg .img'), $window = $(window);
       
-      function setBackgroundImg() {
-        if($window.width() > 1270) {
-          imgDiv.each(function() {
-            var $this = $(this);
-            $this.css('background-image', 'url(' + $this.attr('data-wide') + ')');
-          });
-        }
-        else {
-          imgDiv.each(function() {
-            var $this = $(this);
-            $this.css('background-image', 'url(' + $this.attr('data-narrow') + ')');
-          });
-        }
-      }
       $(function(){
         $('.stroke-double, .stroke-single').attr('data-stroke', function(){
           return $(this).text();
         });
       });
-
-      $window.resize(function(e) { setBackgroundImg(); });
-      setBackgroundImg();
     });*/
   </script>
 </body>

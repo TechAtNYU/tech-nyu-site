@@ -85,40 +85,8 @@
 }
 
 
-.bg {
-  top:0;
-  bottom:0;
-  left: 0;
-  right:0;
-  position: fixed;
-  background-size:cover;
-  background-repeat:no-repeat;
 
-  //if flat, but it has an image in it, show that
-  .img {
-    @if($fixedWidthHomepageLeftCol) {
-      left: $homepageLeftColMinWidth;
-    }
-    @else {
-      min-width:70%;
-    }
-    min-height: 100%;
-    position: absolute;
-    background-size: cover;
-    background-position: center center;
-    z-index: 2;
-    right: 0;
-  }
-}
 
-.bg:not(.starter) {
-  .img {
-    min-width: 40%;
-  }
-  .coverup {
-    width: 60%;
-  }
-}
 
 
 .objective {
