@@ -64,9 +64,6 @@ $fixedWidthHomepageLeftCol: false;
 $logoStartColor: hsl(0,0, 95%);
 $logoEndColor: hsl(0, 0, lightness(nth($navInactiveTextColors, 1)));
 
-$logoStartBackground: rgba(255, 255, 255, 0);
-$logoEndBackground: nth($sectionColors, 1);
-
 $logoStartWidth: 205px;
 $logoAspectRatio: 3.2558;
 $logoStartHeight: $logoStartWidth/$logoAspectRatio;
