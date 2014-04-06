@@ -43,7 +43,7 @@ $firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
         @include rs((
           padding-left: $outerPaddingPx + 2px,
           padding-right: $outerPaddingPx + 2px
-        ));
+        ), $fallback: false);
     }
 
     #{$navCascadeEnd - 50} {
@@ -51,7 +51,7 @@ $firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
       @include rs((
         padding-left: $outerPaddingPx,
         padding-right: $outerPaddingPx
-      ));
+      ), $fallback: false);
     }
 }
 
@@ -220,7 +220,7 @@ $colorChangeStartDelay: 65;
     @-skrollr-keyframes panel-#{$i}-in {
         0 {
             top: 100%;
-            margin-top:0px;
+            margin-top:0rem;
         }
 
         #{$firstPanelUpStart + ($i - 1)*($interPanelDistance + $onPanelPause) + if($i!=1, $firstPanelExtraPause, 0)} {
@@ -229,7 +229,9 @@ $colorChangeStartDelay: 65;
 
         #{$firstPanelUpStart + $interPanelDistance + ($i - 1)*($interPanelDistance + $onPanelPause) + if($i!=1, $firstPanelExtraPause, 0)} {
             top: 0%;
-            margin-top: 120px;
+            @include rs((
+              margin-top: 100px
+            ), $fallback: false);
         }
 
         #{$firstPanelUpStart + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause)} {
@@ -240,7 +242,7 @@ $colorChangeStartDelay: 65;
     @-skrollr-keyframes panel-#{$i}-out {
         #{$firstPanelUpStart + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause) + $interPanelDistance} {
             top: -100%;
-            margin-top:0px;
+            margin-top:0rem;
         }
     }
 
@@ -313,24 +315,20 @@ $colorChangeStartDelay: 65;
     }
 }
 
-nav > ol {
-  position: absolute;
+nav {
+  -skrollr-animation-name: headerAddBoxShadowAndColorChange;
 
-  > li {
+  ol {
+    position: absolute;
+  }
+
+  li {
     margin-top:-80px;
   }
 
   .calendar path {
     -skrollr-animation-name: calendarSetHeaderColor;
   }
-  ul {
-    position: absolute;
-    z-index: -1;
-  }
-}
-
-#content {
-  //-skrollr-animation-name: sectionStarter;
 }
 
 #logo {
@@ -339,11 +337,12 @@ nav > ol {
     -skrollr-animation-name: logoRestyleToTopBar;
   }
 }
-    
+
 #scrollCue {
    -skrollr-animation-name: scrollCueFadeOut;
 }
 
-nav {
-  -skrollr-animation-name: headerAddBoxShadowAndColorChange;
+.objective {
+  min-height: 100%;
+  position: fixed;
 }
