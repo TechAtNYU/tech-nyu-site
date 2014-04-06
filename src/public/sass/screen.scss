@@ -9,16 +9,87 @@
 
 @include scalers;
 
+//for the mobile design, set the base font-size to 15px with a scaler.
+@media (min-width: 0px) and (max-width: 286px) {
+    @include zoomer(14px);
+}
 
+@media (min-width: 287px) and (max-width: 304px) {
+    @include zoomer(15px);
+}
 
-@mixin design-1 {
-    nav ol {
-        min-width: ems(map-get(nth(map-get($responsiveConfig, designs), 1), baseWidth)) - ($logoEndWidth + 2*$outerPadding);
+@media (min-width: 305px) and (max-width: 336px) {
+    @include zoomer(16px);
+}
+
+@media (min-width: 337px) and (max-width: 353px) {
+    @include zoomer(17px);  
+}
+
+@media (min-width: 354px) and (max-width: 371px) {
+    @include zoomer(18px);
+}
+
+@media (min-width: 372px) and (max-width: 632px) {
+    @include zoomer(18px);
+}
+
+@media (min-width: 633px) and (max-width: 919px){
+    html {
+        font-size:1em;
+    }    
+}
+
+@media (min-width: 920px) and (max-width: 977px) {
+    @include stretcher(17px, 25px);
+
+    #upcoming-inner, #info-inner {
+        font-size: (1/.89474)*1em;
     }
 }
 
-@mixin design-2 {
-    nav ol {
-        min-width: ems(map-get(nth(map-get($responsiveConfig, designs), 1), baseWidth)) - ($logoEndWidth + 2*$outerPadding);
+@media (min-width: 978px) and (max-width: 1019px) {
+    @include stretcher(18px, 27px);
+
+    #upcoming-inner, #info-inner {
+        font-size: (1/.94737)*1em;
+    }
+}
+
+@media (min-width: 1064px) {
+    @include stretcher(20px, 28px);
+}
+
+@media (min-width: 1200px) {
+    @include stretcher(21px, 29px);
+    nav {
+        @include rs((
+            height: 70px
+        ));
+
+        li {   
+            @include rs((
+                height: 70px,
+                padding-top: 10px
+            ));
+        }
+    }
+
+    #logo {
+        @include rs((
+            padding-top: 5px
+        ));
+    }
+}
+
+@media (min-width: 1400px) {
+    @include stretcher(21px, 30px);
+}
+
+//counteract the above two mqs for the homepageLeft col
+//if we don't have enough height
+@media (min-width: 1200px) and (max-height: 900px) {
+    #upcoming-inner, #info-inner {
+        font-size: (20/21)*1em;
     }
 }

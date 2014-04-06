@@ -124,12 +124,14 @@ $rsBodyMaxWidth: null;
 
   @each $design in map-get($config, designs) {
     $baseDesignWidth: map-get($design, baseWidth);
+    $name: map-get($design, name);
     $minDesignWidth: map-get($design, minWidth);
     $maxDesignWidth: map-get($design, maxWidth);
     $shrinkTransforms: map-get($design, shrinkTransforms);
     $growTransforms: map-get($design, growTransforms);
 
     //shrink transforms
+    /*
     $i: 0;
     @while _zoomedsize($baseFontSize - $i, $baseDesignWidth) > $minDesignWidth {
       $transform: if(length($shrinkTransforms) > $i, nth($shrinkTransforms, $i+1), zoom);
@@ -149,6 +151,6 @@ $rsBodyMaxWidth: null;
         @include zoomer($baseFontSize + $i + 1);
       }
       $i: $i + 1;
-    }
+    }*/
   }
 }
