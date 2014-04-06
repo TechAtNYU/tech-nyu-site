@@ -35,8 +35,12 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       })
       
       @animate(\logo, \LARGE, {
-        0: 'top[sqrt]:' + logo.css('top'),
-        (@sassVars.navCascadeEnd - 50): 'top[sqrt]:0px'
+        0: do
+          'top[sqrt]': logo.css('top')
+          'margin-left[sqrt]': if $(window).outerWidth() > @bodyMaxWidth then -1*($(window).outerWidth() - @bodyMaxWidth)/2 + 'px' else \0px
+        (@sassVars.navCascadeEnd - 50): do
+          'top[sqrt]': \0px
+          'margin-left[sqrt]': \0px
       })
 
       @trigger('animationsChange', {elements: upcoming.add(logo).add(tagline)});
@@ -54,6 +58,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @on(window, "resize", @setupAnimations);
       @on(@$node, "digestDetailsShown", @handleDigestDetailsShown);
       @on(@$node, "digestDetailsHidden", @handleDigestDetailsHidden);
+      @bodyMaxWidth = parseInt(@sassVars.rsBodyMaxWidth)
       @positionElems!
       @setupAnimations!
     )

@@ -75,12 +75,11 @@ nav {
 
   ol {
     position: fixed;
-    right: 0;
+    max-width: $rsBodyMaxWidth;
     @include rs((
-      left: $outerPaddingPx
+      left: $outerPaddingPx,
+      right: $outerPaddingPx
     ));
-    margin-right: auto;
-    max-width: 75rem;
     z-index: 1;
     padding-right: $calendarFlagWidth;
   }

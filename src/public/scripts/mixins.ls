@@ -61,4 +61,5 @@ define(
       leftColOut: 150
       headerAnimEnd: 350
       navCascadeEnd:~ -> @headerAnimEnd - 20;
+      rsBodyMaxWidth: \1400px
 )
