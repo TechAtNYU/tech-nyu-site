@@ -7,7 +7,9 @@ $baseFontSize: null;
 $baseLineHeight: null;
 $scale: null;
 $lineHeights: null;
-$responsiveConfig: ();
+$rsConfig: ();
+$rsDesigns: ();
+$rsBodyMaxWidth: null;
 
 @function _zoomedsize($newFontSize, $baseDesignWidth) {
   @return ceil($baseDesignWidth*($newFontSize/$baseFontSize));
@@ -103,17 +105,21 @@ $responsiveConfig: ();
 }
 
 @mixin rsConfigure($config) {
-   $responsiveConfig: $config !global;
+   $rsConfig: $config !global;
+   $rsDesigns: map-get($config, designs) !global;
    $lineHeights: map-get($config, lineHeights) !global;
    $baseFontSize: map-get($config, baseFontSize) !global;
    $baseLineHeight: map-get($config, baseLineHeight) !global;
    $scale: map-get($config, scale) !global;
+   $rsBodyMaxWidth: map-get(nth($rsDesigns, length($rsDesigns)), maxWidth) !global;
 }
 
-@mixin scalers($config: $responsiveConfig) {
+@mixin scalers($config: $rsConfig) {
   body {
     font-size: ems($baseFontSize, $browserDefaultFontSize);
     @include rems(line-height, $baseLineHeight);
+    margin: 0 auto;
+    max-width: $rsBodyMaxWidth;
   }
 
   @each $design in map-get($config, designs) {
