@@ -48,8 +48,6 @@
 }
 
 .objective {
-  min-height: 100%;
-  position: fixed;
   @include rs((
     padding: $outerPaddingPx
   ));

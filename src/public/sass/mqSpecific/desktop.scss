@@ -1,0 +1,27 @@
+#info, #upcoming {
+  position: fixed;
+}
+
+#info, #upcoming {
+  @extend %homepageLeftCol;
+}
+
+#info {
+  background-color: nth($sectionColors, 1);
+  top: 0;
+  z-index: 1;
+}
+
+#upcoming {
+  @extend %homepageLeftCol;
+  bottom: 0em;
+  left:0;
+}
+
+#tagline {
+  color: $logoStartColor;
+}
+
+%homepageLeftCol {
+  width: $homepageLeftColWidth;
+}

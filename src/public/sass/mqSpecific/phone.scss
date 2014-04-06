@@ -1,0 +1,17 @@
+#nav {
+    background-color: nth($sectionColors, 1);
+    @include rs((
+        height: 62px
+    ));
+    li {
+        @include rs((
+            height: 62px
+        ))
+    }
+}
+
+#header {
+    @include rs((
+        padding-top: 80px
+    ));
+}

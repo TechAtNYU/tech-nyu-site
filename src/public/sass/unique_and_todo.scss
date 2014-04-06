@@ -8,17 +8,9 @@
   z-index: 8;
 }
 
-#info {
-  @extend %homepageLeftCol;
-  background-color: nth($sectionColors, 1);
-  position: fixed;
-  top: 0;
-  z-index: 1;
-}
-
 #logo {
-  position: fixed;
   box-sizing: content-box;
+  position: fixed;
   z-index: 1;
   height: ems($logoStartHeight);
   width: ems($logoStartWidth);
@@ -27,6 +19,9 @@
   ));
   svg {
     width:100%;
+    path {
+      fill: $logoStartColor;
+    }
   }
   z-index: 10;
 }
@@ -78,10 +73,6 @@
 }
 
 #upcoming {
-  @extend %homepageLeftCol;
-  position: fixed;
-  bottom: 0em;
-  left:0;
   z-index: 2;
   @include rs((
     padding: $outerPaddingPx*1.15 $outerPaddingPx+4px $outerPaddingPx $outerPaddingPx+2px

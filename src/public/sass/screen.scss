@@ -9,6 +9,20 @@
 
 @include scalers;
 
+//import the basic styles for each design
+@media (max-width: map-get(nth($rsDesigns,1), maxWidth)) {
+    @import "mqSpecific/phone";
+}
+
+@media (max-width: map-get(nth($rsDesigns,2), maxWidth)) {
+    @import "mqSpecific/tablet";
+}
+
+@media (min-width: map-get(nth($rsDesigns,3), minWidth)) {
+    @import "mqSpecific/desktop";
+}
+
+
 //for the mobile design, set the base font-size to 15px with a scaler.
 @media (min-width: 0px) and (max-width: 286px) {
     @include zoomer(14px);
