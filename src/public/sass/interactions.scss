@@ -1,12 +1,12 @@
 .event {
   &.with-flatButton {
-    padding-right: 75px;
+    padding-right: 4.05em;
   }
 
   .flatButton {
+    width: ems(66px, nth($scale, 2));
+    height: ems(66px, nth($scale, 2));
     @include rs((
-      width: 66px,
-      height: 66px,
       font-size: nth($scale, 2),
       line-height: nth($lineHeights, 1) !important,
       margin-top: -33px,
@@ -28,6 +28,8 @@
     padding-top: .25rem;
     margin-right: -1*5em*($baseFontSize/nth($scale, 1))*nth($scale, 1)/nth($scale, 2);
   }
+}
+
 .h3.calendar {
   font-size: 1em !important; //needs to act like a container not a heading.
 }
