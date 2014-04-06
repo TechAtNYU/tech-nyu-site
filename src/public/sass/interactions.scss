@@ -28,4 +28,6 @@
     padding-top: .25rem;
     margin-right: -1*5em*($baseFontSize/nth($scale, 1))*nth($scale, 1)/nth($scale, 2);
   }
+.h3.calendar {
+  font-size: 1em !important; //needs to act like a container not a heading.
 }

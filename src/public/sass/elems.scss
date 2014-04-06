@@ -60,9 +60,9 @@ input {
 }
 
 nav {
-  $navFlagWidths: ems(180px) ems(130px) ems(185px) ems(155px) ems(110px);
-  $totalFlagsWidth: sum($navFlagWidths) + ems($logoEndWidth+$outerPaddingPx);
-  $calendarFlagWidth: ems(32px) + 2*$outerPadding;
+  $navFlagWidths: ems(178px) ems(130px) ems(185px) ems(155px) ems(95px);
+  $totalFlagsWidth: sum($navFlagWidths) + ems($logoEndWidth+$outerPaddingPx/2);
+  $calendarFlagWidth: ems(46px) + 1.5*$outerPadding;
   $navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + ems(100px);
 
   position: fixed;
@@ -112,6 +112,9 @@ nav {
       position: absolute;
       right:0;
       svg {
+        @include rs((
+          font-size: 20px !important
+        ));
         path {
           fill: $navActiveTextColor;
         }

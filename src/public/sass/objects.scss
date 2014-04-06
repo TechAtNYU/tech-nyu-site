@@ -83,8 +83,10 @@
   .li, li {
     float:left;
     padding-bottom:0;
-    padding-right: $outerPadding*.6666;
-    padding-left:  $outerPadding*.6666; 
+    @include rs((
+      padding-right: $outerPaddingPx*.5,
+      padding-left: $outerPaddingPx*.5
+    ));
 
     &:last-child {
       margin-right:0 !important;
@@ -100,7 +102,7 @@
   top: 0;
   bottom: 0;
   right: 0;
-  width: 70%;
+  left: $homepageLeftColWidth;
   height: 100%;
   background-size: cover;
   background-position: center center;
