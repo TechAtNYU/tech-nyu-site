@@ -4,10 +4,6 @@
   width: 100%;
 }
 
-#nav {
-  z-index: 8;
-}
-
 #logo {
   box-sizing: content-box;
   position: fixed;
@@ -33,7 +29,6 @@
   ));
   box-sizing: border-box;
   font-family: $headingStack;
-  color: $logoStartColor;
   @extend %reversedType;
 }
 
