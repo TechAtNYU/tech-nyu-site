@@ -1,7 +1,8 @@
 define(
   managesAnimations: !->
-    @_activeStylesheetKeys = 
-      LARGE: 11
+    @activeStylesheetKeys = 
+      LARGE: 101
+      SMALL: 110
 
     # takes an (array of) css property-value strings and turns them into an object, i.e.
     # "top:20px;bottom:200px;" => {'top': '20px', 'bottom':'200px'}. Similarly, 
@@ -39,9 +40,15 @@ define(
         throw new Error('Unexpected type!')
 
     @animate = (attributeKey, designSize, keyframes) ->
-      elem = @select(attributeKey);
-      attr = 'data-ss-' + @_activeStylesheetKeys[designSize];
-      data = JSON.parse(elem.attr(attr) || "{}");
+
+      if(designSize == "ALL")
+        for designKey in @activeStylesheetKeys
+          @animate(attributeKey, designKey, keyframes)
+        return
+
+      $elem = if typeof attributeKey == "string" then @select(attributeKey) else attributeKey;
+      attr = 'data-ss-' + @activeStylesheetKeys[designSize];
+      data = JSON.parse($elem.attr(attr) || "{}");
 
       # convert the css strings for each keyframe into objects
       # todo: this could be more performant by not objectifying initial
@@ -53,13 +60,23 @@ define(
       finalKeyframes = {[time, stringify(val)] for time, val of $.extend(true, startKeyframes, newKeyframes)}
       
       # finally, stringify the whole finalKeyframes object and dump it in the dom.
-      elem.attr(attr, JSON.stringify(finalKeyframes));
+      $elem.attr(attr, JSON.stringify(finalKeyframes));
 
   usesSassVars: !->
     @sassVars = 
+      # large design variables
       navCascadeStart: 150
       leftColOut: 150
       headerAnimEnd: 350
-      navCascadeEnd:~ -> @headerAnimEnd - 20;
+      navCascadeEnd:~ -> @headerAnimEnd - 20
+      firstPanelUpStart:~ -> @navCascadeEnd - 165 
+      interPanelDistance: 100 
+      firstPanelExtraPause: 120
+      onPanelPause: 85
+      firstPanelUpEnd:~ -> @firstPanelUpStart + @interPanelDistance
+      largeDesignSectionMarginTop: \5.1875rem
+
       rsBodyMaxWidth: \1400px
+      largeDesignMinWidth: 920
+      largeDesignApplies: -> !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 2/1)").matches
 )

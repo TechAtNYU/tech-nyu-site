@@ -10,48 +10,73 @@
 @include scalers;
 
 //import the basic styles for each design
-@media (max-width: map-get(nth($rsDesigns,1), maxWidth)) {
+@media (max-width: map-get(nth($rsDesigns,1), maxWidth)), (max-height:620px), (min-aspect-ratio:2/1) {
     @import "mqSpecific/phone";
+
+    body, nav ol {
+        max-width: 646px;
+    }
+    nav ol {
+        position: relative;
+    }
 }
 
-@media (max-width: map-get(nth($rsDesigns,2), maxWidth)) {
-    @import "mqSpecific/tablet";
-}
-
-@media (min-width: map-get(nth($rsDesigns,3), minWidth)) {
+@media (min-width: map-get(nth($rsDesigns,2), minWidth)) and (min-height:620px) and (max-aspect-ratio: 2/1) {
     @import "mqSpecific/desktop";
 }
 
 
-//for the mobile design, set the base font-size to 15px with a scaler.
+//for the mobile design, set the base font-size to 16px with a scaler.
 @media (min-width: 0px) and (max-width: 286px) {
-    @include zoomer(14px);
+    @include stretcher(14px, 17px);
 }
 
 @media (min-width: 287px) and (max-width: 304px) {
-    @include zoomer(15px);
+    @include stretcher(15px, 19px);
 }
 
 @media (min-width: 305px) and (max-width: 336px) {
-    @include zoomer(16px);
+    @include stretcher(16px, 20px);
+}
+
+//a minor breakpoint to give the nav a touch more room 
+@media (max-width: 336px) {
+    nav ol, #logo {
+        margin-left: -8px;
+    }
+
+    .calendar {
+        right: -8px !important;
+        margin-top: -1px; //fix an optical or rounding error
+    }
 }
 
 @media (min-width: 337px) and (max-width: 353px) {
-    @include zoomer(17px);  
+    @include stretcher(17px, 23px); 
 }
 
 @media (min-width: 354px) and (max-width: 371px) {
-    @include zoomer(18px);
+    @include stretcher(18px, 25px);
 }
 
-@media (min-width: 372px) and (max-width: 632px) {
-    @include zoomer(18px);
+@media (min-width: 372px) and (max-width: 480px) {
+    @include stretcher(18px, 26px);
 }
 
-@media (min-width: 633px) and (max-width: 919px){
-    html {
-        font-size:1em;
-    }    
+@media (min-width: 481px) and (max-width: 530px) {
+    @include stretcher(19px, 27px);
+}
+
+@media (min-width: 531px) and (max-width: 558px) {
+    @include zoomer(20px);
+}
+
+@media (min-width: 559px) and (max-width: 586px) {
+    @include zoomer(21px);
+}
+
+@media (min-width: 587px) and (max-width: 645px) {
+    @include stretcher(21px, 32px);
 }
 
 @media (min-width: 920px) and (max-width: 977px) {

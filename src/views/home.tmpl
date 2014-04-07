@@ -1,3 +1,4 @@
+
 <!doctype html>
 <!--[if lt IE 7 ]> <html class="no-js ie6 home" lang="en"> <![endif]-->
 <!--[if IE 7 ]>    <html class="no-js ie7 home" lang="en"> <![endif]-->
@@ -19,7 +20,8 @@
   <title>tech@nyu</title> 
   <!--[if ! lte IE 8]><!-->
     <link rel="stylesheet" href="css/screen.css" type="text/css" />
-    <link rel="stylesheet" href="css/skrollr-large.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:768px)" />
+    <link rel="stylesheet" href="css/skrollr-large.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:921px) and (min-height: 620px) and (max-aspect-ratio: 2/1)" />
+    <link rel="stylesheet" href="css/skrollr-small.css" type="text/css" data-skrollr-stylesheet media="screen and (max-width:920px), (max-height: 620px), (min-aspect-ratio:2/1)" />
   <!--<![endif]-->
   <!--[if lte IE 8]>
     <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1b.css" media="screen, projection">
@@ -30,11 +32,11 @@
 </head>
 <body class="horiz">
   <header class="clearfix" id="header">
-    <h1 id="logo">
-      <a href="">
+    <a href="">
+      <h1 id="logo">
         {% include "partials/logo_with_alt.tmpl" %}
-      </a>
-    </h1>
+      </h1>
+    </a>
     <div id="info">
       <div id="info-inner">
         <p id="tagline" class="tagline h2">
@@ -47,9 +49,14 @@
         <ol class="optionList">
           {% for section in sections %}
             {% if not section.name|contains("Calendar") %} 
-              <li class="h3">{{ section.name|escape|add_br|safe }}</li>
-            {% else %}
-              <li class="h3 calendar">{% include "partials/calendar_with_alt.tmpl" %}</li>
+                <li class="h3" {% if section.shortName %}data-shortname="{{ section.shortName }}"{% endif %}>
+                  <a href="#{{ section.anchor }}">{{ section.name|escape|add_br|safe }}</a>
+                </li>
+              </a>
+            {% else %}              
+                <li class="h3 calendar">
+                  <a href="#{{ section.anchor }}">{% include "partials/calendar_with_alt.tmpl" %}</a>
+                </li>
             {% endif %}
           {% endfor %}
         </ol>
@@ -60,7 +67,7 @@
           <div class="heading">
             <h2 class="h6" data-alt-title="Upcoming Events">Next Event</h2>
           </div>
-          <div class="conent">
+          <div class="content">
             <a class="event with-flatButton" href="">
               <strong class="title h5">What Designers Actually Do</strong>
               <span class="caption">A Workshop with Anne-Laure Fayard <span class="more">More&nbsp;info&hellip;</span></span>
@@ -82,10 +89,11 @@
     </div>
   </header>
   <div id="content">
-    <div class="objective first" id="getting-started" data-section="1">
-      <h2>Get Started with the Tech Scene</h2>
+    <section class="objective first" id="get-started" data-section="1">
+      <div class="bg" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>
+      <h1>Get Started with the Tech Scene</h1>
       <div class="initiative">
-        <h3 class="h2">Freshman Circuit</h3>
+        <h2 class="h3">Freshman Circuit</h2>
         <p>Tour NYC startups and talk with their employees to see what they&rsquo;re up to and where you might fit in.</p>
         <br/>
         <h3>Next Event</h3>
@@ -93,84 +101,88 @@
       </div>
 
       <div class="initiative">
-        <h3 class="h2">Programming &amp; Design Introductory Workshops</h3>
+        <h2 class="h3">Programming &amp; Design Introductory Workshops</h2>
         <p>Learn the basics of programming or design.</p>
          <br/>
         <h3>Next Event</h3>
         <h3>Meetup Info</h3>
       </div>
-    </div>
+    </section>
 
-    <div class="objective second" id="improve-your-skills" data-section="2">
-      <h2>Improve Your Skills</h2>
+    <section class="objective second" id="improve-your-skills" data-section="2">
+      <div class="bg" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>
+      <h1>Improve Your Skills</h1>
       <div class="initiative"> 
-        <h3 class="h2">Hack Days</h3>
+        <h2 class="h3">Hack Days</h2>
         <p>Lectures on web technologies, covering everything from <a href="http://angularjs.org">Angular</a> to <a href="http://zeptojs.com/">Zepto</a>.</p>
       </div>
       <div class="initiative">
-        <h3 class="h2">Design Days</h3>
+        <h2 class="h3">Design Days</h2>
         <p>Workshops on design thinking, user research, and advanced topics in digital product design.</p>
       </div>
       <div class="initiative">
-        <h3 class="h2">Game Days</h3>
+        <h2 class="h3">Game Days</h2>
         <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
       </div>
-    </div>
+    </section>
 
-    <div class="objective third" id="build-and-socialize" data-section="3">      
-      <h2>Build &amp; Socialize with Cool People</h2>
+    <section class="objective third" id="build-and-socialize" data-section="3">    
+      <div class="bg" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>  
+      <h1>Build &amp; Socialize with Cool People</h1>
       <div class="initiative">
-        <h3 class="h2">Hack Nights</h3>
+        <h2 class="h3">Hack Nights</h2>
         <p>Designers, developers, and makers of all sorts together or a few hours each week. Hang out, work on your projects and get to know each other.</p>
       </div>
 
       <div class="initiative">
-        <h3 class="h2">Designathons</h3>
+        <h2 class="h3">Designathons</h2>
         <p>Over the course of a weekend, work with a team to produce a refined, well-researched design concept for a product of your choice.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="objective fourth" id="latest-in-tech" data-section="4">
-      <h2>Follow the Latest in Tech</h2>
+    <section class="objective fourth" id="latest-in-tech" data-section="4">
+      <div class="bg" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>
+      <h1>Follow the Latest in Tech</h1>
       <div class="initiative">
-        <h3 class="h2">Startup Series</h3>
+        <h2 class="h3">Startup Series</h2>
         <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
       </div>
 
       <div class="initiative">
-        <h3 class="h2">Demo Days</h3>
+        <h2 class="h3">Demo Days</h2>
         <p>Research, Special Topics, Design Thinking, and Practice Design Hackathons</p>
       </div>  
 
       <div class="initiative">
-          <h3 class="h2">Digest</h3>
+          <h2 class="h3">Digest</h2>
           <p>Our bi-weekly email of all the best tech &amp; design events around the city.</p>
           <input type="text" placeholder="Email Address" /><input type="submit" value="Subscribe" />
       </div>
-    </div>
+    </section>
 
-    <div class="objective fifth" id="about" data-section="5">
-      <h2>About Us</h2>
+    <section class="objective fifth" id="about" data-section="5">
+      <div class="bg" data-wide="img/bg/team.jpg" data-narrow="img/bg/support2.jpg" /></div>
+      <h1>About Us</h2>
       <div class="initiative">
-        <h3 class="h2">Our Team</h3>
+        <h2 class="h3">Our Team</h2>
       </div>
       <div class="initiative">
-        <h3>What We&rsquo;ve Made</h3>
+        <h2 class="h3">What We&rsquo;ve Made</h2>
       </div>
 
       <div class="initiative">
-          <h3 class="h2">Contact</h3>
+          <h2 class="h3">Contact</h2>
       </div>
 
 
       <div class="initiative">
-        <h3 class="h2">Latest Blog Post</h3>
+        <h2 class="h3">Latest Blog Post</h2>
         <p>Blog Post</p>
         <p><a href="">Read more</a></p>
       </div>
 
 
-      <div style="clear:left;margin-top:2em;overflow:auto;">
+      <div>
         <h2>Job Board</h2>
         <div class="initiative">
           <h3>Job Title 1</h3>
@@ -183,8 +195,8 @@
             <h3>More Jobs...</h3>
         </div>
       </div>
-
-      <div class="poweredby" style="clear:left;margin-top:2em;overflow:auto;">
+      <!--
+      <div class="poweredby">
         <h2>Supported By</h2>
         <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
         <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
@@ -192,15 +204,16 @@
         <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
         <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
         <div class="initiative"><h3><img src="./Tech@NYU_files/pivotal labs.png"></h3></div>
-      </div>
-    </div>
+      </div>-->
+    </section>
 
-    <div class="objective sixth" id="event-calendar" data-section="6">
-      <h2>Event Calendar</h2>
+    <section class="objective sixth" id="event-calendar" data-section="6">
+      <div class="bg" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>
+      <h1>Event Calendar</h2>
       <p> This screen also needs to be designed. A sign up form for the digest could appear here too.</p>
-    </div>
+    </section>
   </div>
-  <div class="bg" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>
+  <div class="bg starter" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>
   <script type="text/javascript">
     /*$(function() {
 
@@ -258,8 +271,6 @@
         }
       });
 
-      var imgDiv =  $('.bg .img'), $window = $(window);
-      
       $(function(){
         $('.stroke-double, .stroke-single').attr('data-stroke', function(){
           return $(this).text();

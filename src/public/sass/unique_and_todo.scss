@@ -7,11 +7,9 @@
 #logo {
   box-sizing: content-box;
   position: fixed;
-  z-index: 1;
-  height: ems($logoStartHeight);
-  width: ems($logoStartWidth);
+  font-size: 1em;
   @include rs((
-    padding: 4px $outerPaddingPx+2px 2px,
+    padding-left: $outerPaddingPx+2px
   ));
   svg {
     width:100%;
@@ -23,28 +21,12 @@
 }
 
 #tagline {
-  line-height: 1.4em;
   @include rs((
-    padding: $logoStartHeight*1.4 $outerPaddingPx+4px 0 $outerPaddingPx+2px
+    padding: 0 $outerPaddingPx+4px 0 $outerPaddingPx+2px
   ));
   box-sizing: border-box;
   font-family: $headingStack;
   @extend %reversedType;
-}
-
-#scrollCue {
-  position: fixed;
-  bottom: 80px;
-  left: 65%;
-  height: image-height("scrollCue.png") + 35px;
-  margin-left: (floor(image-width("scrollCue.png") / 2) + 5px)*-1;
-  background-image: image-url("scrollCue.png");
-  -webkit-animation: bounce 1.5s infinite;
-  animation: bounce 1.5s infinite;
-  padding: 0 10px;
-  z-index: 4; 
-
-  @extend %ir;
 }
 
 @include keyframes(bounce) {
@@ -72,7 +54,4 @@
   @include rs((
     padding: $outerPaddingPx*1.15 $outerPaddingPx+4px $outerPaddingPx $outerPaddingPx+2px
   ));
-
-  background-color: hsl(12,1%, 86%);
-  color: hsl(17, 15%, 20%);
 }

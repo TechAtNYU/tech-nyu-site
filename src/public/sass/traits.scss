@@ -1,5 +1,5 @@
-/****** PLACEHOLDERS ******/
-%ir {
+/****** PLACEHOLDERS (WITH MIXIN FALLBACKS) ******/
+@mixin ir {
   display: block; 
   text-indent: -999em;
   overflow: hidden;
@@ -9,7 +9,7 @@
   color: transparent !important; 
 }
 
-%accessibility { 
+@mixin accessibility {
   position: absolute !important; 
   border:0 !important; 
   height: 1px !important; 
@@ -25,15 +25,30 @@
   }
 }
 
+@mixin clearfix {  
+  &:before, &:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+  &:after { clear: both; }
+  *zoom: 1;
+}
+
+%ir {
+  @include ir;
+}
+
+%accessibility { 
+  @include accessibility;
+}
+
 %reversedType {
   letter-spacing: .2px;
 }
 
+%clearfix {
+  @include clearfix;
+}
 
-%clearfix {  
-  &:before, &:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
-  &:after { clear: both; }
-  *zoom: 1;
+.clearfix {
+  @extend %clearfix;
 }
 
 /******** TYPE *********/
@@ -92,6 +107,3 @@
   left: 0;
   z-index: -2;
 }
-
-
-/// GRID RELATED TRAITS

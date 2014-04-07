@@ -8,21 +8,26 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       taglineWrapper: \#info
     )
 
-    @positionElems = ->
-      upcomingHeight = @select('upcoming').outerHeight()
-      windowHeight = $(window).outerHeight()
-      taglineHeight = @select('tagline').outerHeight()
-
-      top = (windowHeight - upcomingHeight - taglineHeight)/2;
-
-      @select('logo').css('top', top + 'px');
-      @select('tagline').css({'position':'relative', 'top':top + 'px'})
-      @select('taglineWrapper').css('bottom', upcomingHeight + \px)
-
     @setupAnimations = ->
       upcoming = @select('upcoming')
       logo     = @select('logo')
+      tagline  = @select('tagline')
       taglineWrapper = @select(\taglineWrapper)
+
+      # variables for the large design
+      upcomingHeight = @select('upcoming').outerHeight()
+      windowHeight = $(window).outerHeight()
+      taglineHeight = tagline.outerHeight()
+      bodyMaxWidth = parseInt(@sassVars.rsBodyMaxWidth)
+      logoMarginLeft = if $(window).outerWidth() > bodyMaxWidth then -1*($(window).outerWidth() - bodyMaxWidth)/2 else 0;
+      logoTop = (windowHeight - upcomingHeight - taglineHeight)/2;
+
+      @animate(\tagline, \LARGE, {
+        0: do
+          "top[sqrt]": logoTop + 'px'
+        10: do
+          dummy: true #so skrollr refreshes.
+      })
 
       @animate(\upcoming, \LARGE, {
         0: "bottom[sqrt]: 0px",
@@ -30,36 +35,38 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       })
 
       @animate(\taglineWrapper, \LARGE, {
-        0: "left[sqrt]: 0px",
+        0: do
+          "left[sqrt]": \0px
+          "bottom": upcomingHeight + \px
+
         (@sassVars.leftColOut): "left[sqrt]: " + -1*taglineWrapper.outerWidth! + 'px'
       })
       
       @animate(\logo, \LARGE, {
         0: do
-          'top[sqrt]': logo.css('top')
-          'margin-left[sqrt]': if $(window).outerWidth() > @bodyMaxWidth then -1*($(window).outerWidth() - @bodyMaxWidth)/2 + 'px' else \0px
+          'top[sqrt]': logoTop + 'px'
+          'margin-left[sqrt]': logoMarginLeft + 'px'
         (@sassVars.navCascadeEnd - 50): do
           'top[sqrt]': \0px
           'margin-left[sqrt]': \0px
       })
 
-      @trigger('animationsChange', {elements: upcoming.add(logo).add(tagline)});
+      @trigger('animationsChange', {keframesOnly: true});
 
     @animationsProxy = -> $.proxy(@setupAnimations, @)
 
     @handleDigestDetailsShown = (ev, data) ->
-      @select(\tagline).add(@select(\logo)).animate({margin-top: "-=" + data.height}, 140, @animationsProxy)
+      if @sassVars.largeDesignApplies!
+        @select(\tagline).add(@select(\logo)).animate({margin-top: "-=" + data.height}, 140, @animationsProxy)
 
     @handleDigestDetailsHidden = (ev, data) ->
-      @select(\tagline).add(@select(\logo)).animate({margin-top: "+=" + data.height}, 140, @animationsProxy)
+      if @sassVars.largeDesignApplies!
+        @select(\tagline).add(@select(\logo)).animate({margin-top: "+=" + data.height}, 140, @animationsProxy)
 
     @after('initialize', ->
-      @on(window, "resize", @positionElems);
       @on(window, "resize", @setupAnimations);
       @on(@$node, "digestDetailsShown", @handleDigestDetailsShown);
       @on(@$node, "digestDetailsHidden", @handleDigestDetailsHidden);
-      @bodyMaxWidth = parseInt(@sassVars.rsBodyMaxWidth)
-      @positionElems!
       @setupAnimations!
     )
   , mixins.managesAnimations, mixins.usesSassVars)
