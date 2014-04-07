@@ -1,12 +1,12 @@
 .promoPanel {
   font-weight: 400;
+  border-top: 3px solid hsl(17, 15%, 20%);
   @include rs((
-    padding:2px 1px 18px,
-    border-top: 3px solid hsl(17, 0%, 14%)
+    padding:2px 1px 14px
   ));
 
   .content {
-    @include rs((padding-top: 10px));
+    @include rs((padding-top: 8px));
   }
 }
 
@@ -35,7 +35,7 @@
 
   @include rs((
     margin-bottom: 4px,
-    padding: 0px 0 10px
+    padding: 10px 0
   ));
 
   .title {
@@ -90,11 +90,18 @@
   @extend %clearfix;
 }
 
+
 .bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: $homepageLeftColWidth;
+  height: 100%;
   background-size: cover;
   background-position: center center;
-}
-
-.initiative {
-  margin-bottom: 1rem;
+  z-index: 0;
+  &:not(.starter) {
+    min-width: 40%;
+  }
 }

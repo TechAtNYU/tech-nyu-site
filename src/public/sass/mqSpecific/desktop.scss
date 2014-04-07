@@ -1,135 +1,27 @@
-$navFlagWidths: ems(178px) ems(130px) ems(185px) ems(155px) ems(95px);
-$totalFlagsWidth: sum($navFlagWidths) + ems($logoEndWidth+$outerPaddingPx/2);
-$calendarFlagWidth: ems(46px) + 1.5*$outerPadding;
-$navMaxWidth: $totalFlagsWidth + $calendarFlagWidth + ems(100px);
-
-nav {
-  ol {
-    position: absolute;
-    padding-right: $calendarFlagWidth;
-  }
-
-  li {
-    margin-top:-80px;
-
-    &:first-child {
-      margin-left: (ems($logoEndWidth+$outerPaddingPx/2)/$totalFlagsWidth)*100%;
-    }
-
-    @for $i from 1 through 5 {
-      &:nth-of-type(#{$i}) {
-        width: (nth($navFlagWidths, $i)/$totalFlagsWidth)*100%;
-        background-color: nth($sectionColors, $i);
-      }
-    }
-
-    &.calendar {
-      background-color: nth($sectionColors, 6);
-      position: absolute;
-      right:0;
-      width: $calendarFlagWidth;
-      @include rs((
-        padding-left: $outerPaddingPx/2,
-        padding-right: $outerPaddingPx
-      ));
-
-      svg {
-        width: ems(46px);
-        height: ems(60px); 
-        margin-top: ems(-7px);
-        margin-left: ems(-1px);
-      }
-    }
-  }
-}
-
-.bg {
-  //for now, support animations on starter ONLY.
-  &.starter {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    z-index: 0;
-    right: 0;
-    left: $homepageLeftColWidth;
-    float: none;
-  }
-
-  float: left;
-  &:nth-of-type(2n+1) {
-    float: right;
-  }
-}
-
-#logo {
-  height: ems($logoStartHeight);
-  width: ems($logoStartWidth);
-  @include rs((
-    padding-top: 4px,
-    padding-bottom: 2px
-  ))
-}
-
-#tagline {
-    @include rs((
-        padding-top: $logoStartHeight*1.4
-    ));
-}
-
-#scrollCue {
+#info, #upcoming {
   position: fixed;
-  bottom: 80px;
-  left: 65%;
-  height: image-height("scrollCue.png") + 35px;
-  margin-left: (floor(image-width("scrollCue.png") / 2) + 5px)*-1;
-  background-image: image-url("scrollCue.png");
-  -webkit-animation: bounce 1.5s infinite;
-  animation: bounce 1.5s infinite;
-  padding: 0 10px;
-  z-index: 4; 
+}
 
-  @include ir;
+#info, #upcoming {
+  @extend %homepageLeftCol;
 }
 
 #info {
-  position: fixed;
-  @extend %homepageLeftCol;
   background-color: nth($sectionColors, 1);
   top: 0;
   z-index: 1;
-  left: 0;
 }
 
 #upcoming {
-  position: fixed;
   @extend %homepageLeftCol;
   bottom: 0em;
   left:0;
-  background-color: hsl(12,1%, 86%);
-  color: hsl(17, 15%, 20%);
-
-  .promoPanel {
-    border-color: hsl(17, 15%, 20%);
-  }
 }
 
 #tagline {
   color: $logoStartColor;
-  position: relative;
 }
 
 %homepageLeftCol {
   width: $homepageLeftColWidth;
-}
-
-//annoying that this must be duplicated here, but so be it.
-%ir2 {
-  display: block; 
-  text-indent: -999em;
-  overflow: hidden;
-  background-repeat: no-repeat; /* For image replacement */
-  text-align: left; 
-  direction: ltr; 
-  color: transparent !important; 
 }

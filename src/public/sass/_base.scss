@@ -25,7 +25,7 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
 /*************** RWD ******************/
 @include rsConfigure((
     scale:       13px 16px 19px 24px 30px 36px 44px 58px 64px,
-    lineHeights: 19px 22px 24px 29px 42px 47px 60px,
+    lineHeights: 19px 22px 24px 29px,
     baseFontSize: 19px,
     baseLineHeight: 27px,
     baseMeasureWidth: 500px, //the measure based on which the baseLineHeight was chosen.
@@ -34,11 +34,17 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
             name: mobile,
             baseWidth: 320px,
             minWidth: 0px,
-            maxWidth: 919px
+            maxWidth: 600px
+        ),
+        (
+            name: tablet,
+            baseWidth: 750px,
+            minWidth: 601px,
+            maxWidth: 920px
         ),
         (   name: desktop,
             baseWidth: 1010px,
-            minWidth: 920px,
+            minWidth: 921px,
             maxWidth: 1400px,
             shrinkTransforms: (zoom),
             growTransforms: (zoom, zoom, stretch, stretch) //actually tested. two zooms is right.

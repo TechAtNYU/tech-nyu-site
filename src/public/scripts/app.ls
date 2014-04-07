@@ -1,4 +1,3 @@
-
 requirejs.config(
     baseUrl: 'scripts/bower_components'
     enforceDefine: true
@@ -8,9 +7,8 @@ requirejs.config(
         components: '../components'
 
         flight: 'flight/lib'
-        "skrollr": 'skrollr/dist/skrollr.min'
-        "skrollr-stylehseets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
-        "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
+        "skrollr/skrollr": 'skrollr/dist/skrollr.min'
+        "skrollr/stylehseets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
         jquery:
           'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min'
           'jquery'
@@ -19,24 +17,19 @@ requirejs.config(
         'jquery.scrollTo':
           deps: ['jquery']
           exports: 'jQuery.fn.scrollTo'
-        'skrollr': 
+        'skrollr/skrollr': 
             exports: 'skrollr'
-        'skrollr-menu': 
-            exports: 'skrollr.menu'
 )
 
 define([
   "flight/component"
   "jquery"
-  "skrollr"
-  "skrollr-stylehseets"
-  "skrollr-menu"
+  "skrollr/skrollr"
+  "skrollr/stylehseets"
   "components/leftSidebar"
   "components/digestSignup"
-  "components/sectionBg"
-  "components/sections"
-  "components/nav"
-  ], (flight, $, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
+  "components/homepageBg"
+  ], (flight, $, skrollr, skrollrStylesheets, leftSidebar, digestSignup, homepageBg) -> 
   s = skrollr.init(do
     easing:
       swing2: (percentComplete) ->
@@ -56,18 +49,13 @@ define([
     smoothScrollingDuration: 200
   )
 
-  skrollrStylesheets.init(s);
-  skrollrMenu.init(s);
+  $(-> skrollrStylesheets.init(s));
 
-  $(document).on('animationsChange', (ev, data) -> if data.keframesOnly then skrollrStylesheets.registerKeyframeChange! else s.refresh(data.elements));
+  $(document).on('animationsChange', (ev, data) -> s.refresh(data.elements));
 
   # Init components
   leftSidebar.attachTo('header')
   digestSignup.attachTo('#digestForm')
-
-  sections.attachTo('#content')
-  sectionBg.attachTo('.bg.starter', {isHomeSection: true})
-  sectionBg.attachTo('.objective .bg')
-  nav.attachTo('nav')
+  homepageBg.attachTo('.bg')
   void;
 )

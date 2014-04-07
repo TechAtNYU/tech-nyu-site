@@ -1,9 +1,18 @@
 @import "../base";
 
+$headerAnimEnd: 350;
+$navCascadeStart: 150;
+$navCascadeEnd: $headerAnimEnd - 20;
+$leftColOut: $navCascadeStart;
+
+//$navCascadeStart + $navCascadeItemDelay*5 + $navCascadeDrop; must add up to $navCascadeEnd
+$navCascadeItemDelay: 32; 
+$navCascadeDrop: 20;
+
 $onPanelPause: 85;
 $interPanelDistance: 100;
 $firstPanelExtraPause: 120;
-$firstPanelUpStart: 165;
+$firstPanelUpStart: $navCascadeEnd - 165;
 $firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
 
 @mixin ease($property, $easing, $value) {
@@ -28,10 +37,154 @@ $firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
     @return unquote("rgb" + if($addAlpha, "a", "") + "("  + $r + ", " + $g + ", " + $b + if($addAlpha, ", " + $a, "") + ")");
 }
 
+@-skrollr-keyframes logoToTopLeft {
+    0 {
+        @include ease(width, cubedroot, ems($logoStartWidth));
+        @include rs((
+          padding-left: $outerPaddingPx + 2px,
+          padding-right: $outerPaddingPx + 2px
+        ));
+    }
+
+    #{$navCascadeEnd - 50} {
+      @include ease(width, cubedroot, ems($logoEndWidth));
+      @include rs((
+        padding-left: $outerPaddingPx,
+        padding-right: $outerPaddingPx
+      ));
+    }
+}
+
 $colorChangeStartDelay: 65;
 
 
+@-skrollr-keyframes calendarSetHeaderColor {
+    #{$navCascadeEnd - $navCascadeDrop} {
+        fill: toHslString($navActiveTextColor);
+    }
+
+    #{$navCascadeEnd} {
+        fill: toHslString(nth($navInactiveTextColors, 1));
+    }
+
+    @for $i from 1 through 4 {
+        @if($i==1) {
+          #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause)} {
+            fill: toHslString(nth($navInactiveTextColors, $i+1));
+          }
+        }
+          #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause) + $onPanelPause + $colorChangeStartDelay} {
+            dummy: true;
+          }
+        @if($i!=5) {
+          #{$firstPanelUpEnd + $firstPanelExtraPause + ($i+1)*($interPanelDistance + $onPanelPause)} {
+            fill: toHslString(nth($navInactiveTextColors, $i+2));
+          }
+        }
+    }
+}
+
+@-skrollr-keyframes scrollCueFadeOut {
+    #{$firstPanelUpStart} {
+        opacity: 1;
+    }
+    #{$firstPanelUpEnd} {
+        opacity: 0;
+    }
+}
+
+@-skrollr-keyframes sectionStarter {
+  #{$firstPanelUpStart} {
+    top: 100%;
+    position: fixed;
+    margin-top: 0px;
+  }
+
+  #{$firstPanelUpEnd} {
+    top: 0%;
+    position: fixed;
+    margin-top: $headerAnimEnd+"px";
+  }
+
+  #{$firstPanelUpEnd + 1} {
+    position: static;
+  }
+}
+
 @for $i from 1 through 6 {
+    @-skrollr-keyframes navCascadeDown-#{$i} {
+        #{$navCascadeStart + ($i - 1)*$navCascadeItemDelay} {
+            @include ease(margin-top, sqrt, -80px);
+
+            //calendar must invert as it's falling down, not after
+            //because there is no next element to drop
+            @if($i==6) { 
+                background-color: toRgbString(nth($sectionColors,$i), true);
+                //color: toHslString($navActiveTextColor);
+            }
+        }
+
+        #{$navCascadeStart + ($i - 1)*$navCascadeItemDelay + $navCascadeDrop} {
+            @include ease(margin-top, sqrt, 0px);
+            background-color: toRgbString(nth($sectionColors,$i), true);
+            //color: toHslString($navActiveTextColor);
+
+            @if($i==6) {
+                background-color: toRgbString(nth($sectionColors, 1), true);
+            }
+        }
+
+        #{$navCascadeStart + ($i - 1)*$navCascadeItemDelay + $navCascadeDrop + 20} {
+            dummy: true;
+        }
+
+        @if($i!=6) {
+            #{$navCascadeStart + $i*$navCascadeItemDelay + $navCascadeDrop} {
+               background-color: toRgbString(nth($sectionColors, 1), true);
+               //@if($i!=1) { color: toHslString($navInactiveTextColor); }
+            }
+        }
+
+        #{$headerAnimEnd} {
+           background-color: toRgbString(nth($sectionColors, 1), true);
+        }
+
+        #{$headerAnimEnd+1} {
+           background-color: toRgbString(transparentize(nth($sectionColors, 1), 1), true);
+        }
+    }
+
+    nav li:nth-of-type(#{$i}) {
+      -skrollr-animation-name: navCascadeDown-#{$i};
+    }
+
+    @-skrollr-keyframes panel-#{$i}-in {
+        0 {
+            top: 100%;
+            margin-top:0px;
+        }
+
+        #{$firstPanelUpStart + ($i - 1)*($interPanelDistance + $onPanelPause) + if($i!=1, $firstPanelExtraPause, 0)} {
+            blank: true;
+        }
+
+        #{$firstPanelUpStart + $interPanelDistance + ($i - 1)*($interPanelDistance + $onPanelPause) + if($i!=1, $firstPanelExtraPause, 0)} {
+            top: 0%;
+            margin-top: 120px;
+        }
+
+        #{$firstPanelUpStart + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause)} {
+            blank: true;
+        }
+    }
+
+    @-skrollr-keyframes panel-#{$i}-out {
+        #{$firstPanelUpStart + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause) + $interPanelDistance} {
+            top: -100%;
+            margin-top:0px;
+        }
+    }
+
     $animStartDelay: 20;
     @-skrollr-keyframes photo-#{$i} {
       //tell the sass compiler these vars will exist.
@@ -44,7 +197,7 @@ $colorChangeStartDelay: 65;
 
       @if($i==1) {
         $showKf: 0;
-        $hideKf: 370;
+        $hideKf: $navCascadeEnd+50;
       } 
       @else {
         $preShowStayKf: $firstPanelUpStart + ($i - 2)*($interPanelDistance + $onPanelPause) + $firstPanelExtraPause;
@@ -88,7 +241,50 @@ $colorChangeStartDelay: 65;
       }
     }
     /*
+    .objective:nth-of-type(#{$i}) {
+        z-index: $i;
+        -skrollr-animation-name: panel-#{$i}-in;
+        @if($i!=6) {
+          -skrollr-animation-name: panel-#{$i}-out;
+        }
+    }*/
+
     .bg:nth-of-type(#{$i + 1}) {
         -skrollr-animation-name: photo-#{$i};
-    }*/
+    }
+}
+
+nav > ol {
+  position: absolute;
+
+  > li {
+    margin-top:-80px;
+  }
+
+  .calendar path {
+    -skrollr-animation-name: calendarSetHeaderColor;
+  }
+  ul {
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+#content {
+  -skrollr-animation-name: sectionStarter;
+}
+
+#logo {
+  -skrollr-animation-name: logoToTopLeft;
+  svg path {
+    -skrollr-animation-name: logoRestyleToTopBar;
+  }
+}
+    
+#scrollCue {
+   -skrollr-animation-name: scrollCueFadeOut;
+}
+
+nav {
+  -skrollr-animation-name: headerAddBoxShadowAndColorChange;
 }
