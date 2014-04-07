@@ -5,17 +5,17 @@
  * Is an AMD module; returns an object that can be called with the
  * skrollr instance when the dom is loaded.
  */
-define(function() {
+define(['skrollr'], function(skrollr) {
 	'use strict';
 
 	var sheets = [];
 	var lastCall;
 	var resizeThrottle = 30;
 	var resizeDefer;
-	var skrollr;
 	var lastMatchingStylesheetsKey = '';
 	var processedMatchingStylesheetsKeys = {};
 	var ssPrefix = 'ss';
+	var skrollrInst;
 
 	//Finds the declaration of an animation block.
 	var rxAnimation = /@-skrollr-keyframes\s+([\w-]+)/g;
@@ -54,9 +54,8 @@ define(function() {
 	};
 
 	//"main"
-	var kickstart = function(sheetElms, skrollrInstance) {
-		//make the provided skrollr instance accessible to other functions
-		skrollr = skrollrInstance;
+	var kickstart = function(sheetElms, instance) {
+		skrollrInst = instance;
 
 		//Iterate over all stylesheets, embedded and remote.
 		for(var i = 0, len = sheetElms.length; i < len; i++) {
@@ -128,7 +127,10 @@ define(function() {
 
 			//Apply the keyframes to the elements.
 			applyKeyframes(matchingStylesheetsKey);
-			skrollr.refresh();
+			skrollrInst.refresh();
+
+			//update lastMatchingStylesheetsKey
+			lastMatchingStylesheetsKey = matchingStylesheetsKey;
 		}
 	};
 
@@ -188,15 +190,26 @@ define(function() {
 
 	//Applies the keyframes (as data-attributes) to the elements.
 	var applyKeyframes = function(matchingStylesheetsKey) {
-		var attrName = 'data-'+ ssPrefix + '-'+ matchingStylesheetsKey;
-		var elements = document.querySelectorAll('['+attrName+']');
-		var keyframeData;
+		var attrName   = 'data-'+ ssPrefix + '-'+ matchingStylesheetsKey;
+		var lastAttr   = 'data-' + ssPrefix + '-' + lastMatchingStylesheetsKey;
+		var elements   = document.querySelectorAll('['+attrName+'], ['+lastAttr+']');
+		var currElement;
+		var styler = function(v) { skrollr.setStyle(currElement, v, ''); }; //use skrollr's built in function to handle prefixes etc.
+		var easingStripper = function(propertyWithEasing) { return propertyWithEasing.replace(/\[.*\]/, ''); };
 
 		for(var i=0, len = elements.length; i < len; i++) {
-			keyframeData = JSON.parse(elements[i].getAttribute(attrName)) || {};
+			currElement  = elements[i];
 
+			//create the new data attrs
+			var keyframeData = JSON.parse(currElement.getAttribute(attrName)) || {};
 			for(var keyframeName in keyframeData) {
-				elements[i].setAttribute('data-' + keyframeName, keyframeData[keyframeName]);
+				currElement.setAttribute('data-' + keyframeName, keyframeData[keyframeName]);
+			}
+
+			//remove old style settings (from the lastMatchingStylesheetKey's keyframes) in the style attribute
+			var theseKeyframes = JSON.parse(currElement.getAttribute(lastAttr)) || {};
+			for(var thisKeyframe in theseKeyframes) {
+				propertiesFinder(theseKeyframes[thisKeyframe]).map(easingStripper).forEach(styler);
 			}
 		}
 	};
@@ -320,15 +333,28 @@ define(function() {
 		return result;
 	}
 
+	//returns an array of properties from a string of inline css
+	function propertiesFinder(cssString) {
+		cssString = cssString.trim();
+		var propValStrings = (cssString.charAt(cssString.length-1) == ';' ? cssString.substring(0, cssString.length - 1) : cssString).split(';');
+		var properties = [];
+
+		for(var i = 0, len = propValStrings.length; i < len; i++) {
+			properties.push(propValStrings[i].split(':')[0]);
+		}
+
+		return properties;
+	}
+
 	//adjust on resize
 	function resizeHandler() {
 		run(true);
 	}
 
 	return {
-		'init': function(skrollr) {
+		'init': function(skrollrInst) {
 			//start her up
-			kickstart(document.querySelectorAll('link, style'), skrollr);
+			kickstart(document.querySelectorAll('link, style'), skrollrInst || skrollr.get() || skrollr.init());
 
 			if(window.addEventListener) {
 				window.addEventListener('resize', resizeHandler, false);
@@ -337,7 +363,16 @@ define(function() {
 			else if(window.attachEvent) {
 				window.attachEvent('onresize', resizeHandler);
 			}
+		},
+
+		//call if you've changed the keyframes object in the dom for a given stylesheetsKey
+		'registerKeyframeChange': function() {
+			var matchingStylesheetsKey = getMatchingStylesheetsKey(sheets);
+
+			if(matchingStylesheetsKey === lastMatchingStylesheetsKey) {
+				applyKeyframes(matchingStylesheetsKey);
+				skrollrInst.refresh();
+			}
 		}
 	};
-
 });

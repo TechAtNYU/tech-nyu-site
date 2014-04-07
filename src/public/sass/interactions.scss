@@ -3,6 +3,10 @@
     padding-right: 4.05em;
   }
 
+  &:last-child {
+    padding-bottom: 0;
+  }
+
   .flatButton {
     width: ems(66px, nth($scale, 2));
     height: ems(66px, nth($scale, 2));

@@ -129,6 +129,7 @@ $colorChangeStartDelay: 65;
           #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause)} {
             background-color: toRgbString(nth($sectionColors, $i+1), true);
             color: toRgbString(nth($navInactiveTextColors, $i+1), true);
+            fill: toRgbString(nth($navInactiveTextColors, $i+1), true);
           }
         }
           #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause) + $onPanelPause + $colorChangeStartDelay} {
@@ -138,6 +139,7 @@ $colorChangeStartDelay: 65;
           #{$firstPanelUpEnd + $firstPanelExtraPause + ($i+1)*($interPanelDistance + $onPanelPause)} {
             background-color: toRgbString(nth($sectionColors, $i+2), true);
             color: toRgbString(nth($navInactiveTextColors, $i+2), true);
+            fill: toRgbString(nth($navInactiveTextColors, $i+2), true);
           }
         }
     }
@@ -170,7 +172,8 @@ $colorChangeStartDelay: 65;
   }
 }
 
-@for $i from 1 through 6 {
+@for $i from 1 through 7 {
+  @if($i != 7) {
     @-skrollr-keyframes navCascadeDown-#{$i} {
         #{$navCascadeStart + ($i - 1)*$navCascadeItemDelay} {
             @include ease(margin-top, sqrt, -80px);
@@ -185,7 +188,7 @@ $colorChangeStartDelay: 65;
 
         #{$navCascadeStart + ($i - 1)*$navCascadeItemDelay + $navCascadeDrop} {
             @include ease(margin-top, sqrt, 0px);
-            background-color: toRgbString(nth($sectionColors,$i), true);
+            background-color: toRgbString(nth($sectionColors, $i), true);
             //color: toHslString($navActiveTextColor);
 
             @if($i==6) {
@@ -216,83 +219,56 @@ $colorChangeStartDelay: 65;
     nav li:nth-of-type(#{$i}) {
       -skrollr-animation-name: navCascadeDown-#{$i};
     }
+  }
 
-    @-skrollr-keyframes panel-#{$i}-in {
-        0 {
-            top: 100%;
-            margin-top:0rem;
-        }
+  $animStartDelay: 20;
+  @-skrollr-keyframes photo-#{$i} {
+    //tell the sass compiler these vars will exist.
+    $startKf: 0;
+    $preShowStayKf: dummy;
+    $showKf: dummy;
+    $stayKf: dummy;
+    $hideKf: dummy;
+    $easing: if($i==2, swing5, linear);
 
-        #{$firstPanelUpStart + ($i - 1)*($interPanelDistance + $onPanelPause) + if($i!=1, $firstPanelExtraPause, 0)} {
-            blank: true;
-        }
-
-        #{$firstPanelUpStart + $interPanelDistance + ($i - 1)*($interPanelDistance + $onPanelPause) + if($i!=1, $firstPanelExtraPause, 0)} {
-            top: 0%;
-            @include rs((
-              margin-top: 100px
-            ), $fallback: false);
-        }
-
-        #{$firstPanelUpStart + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause)} {
-            blank: true;
-        }
+    @if($i==1) {
+      $showKf: 0;
+      $hideKf: $navCascadeEnd+50;
+    } 
+    @else {
+      $preShowStayKf: $firstPanelUpStart + ($i - 2)*($interPanelDistance + $onPanelPause) + $firstPanelExtraPause;
+      $showKf: $preShowStayKf + $interPanelDistance - if($i==2, $firstPanelExtraPause, 0);
+      $stayKf: $showKf + $onPanelPause + 10 + if($i==2, $firstPanelExtraPause, 0);
+      $hideKf: $stayKf + $interPanelDistance;
     }
 
-    @-skrollr-keyframes panel-#{$i}-out {
-        #{$firstPanelUpStart + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause) + $interPanelDistance} {
-            top: -100%;
-            margin-top:0rem;
-        }
+    $direction: if($i%2==0, left, right);
+
+    #{$startKf} {
+      @include ease($direction, $easing, -100%);
+      @include ease(top, $easing, 100%);
+      @if($direction==left) {
+        right: 60%;
+      }
     }
 
-    $animStartDelay: 20;
-    @-skrollr-keyframes photo-#{$i} {
-      //tell the sass compiler these vars will exist.
-      $startKf: 0;
-      $preShowStayKf: dummy;
-      $showKf: dummy;
-      $stayKf: dummy;
-      $hideKf: dummy;
-      $easing: if($i==2, swing5, linear);
-
-      @if($i==1) {
-        $showKf: 0;
-        $hideKf: $navCascadeEnd+50;
-      } 
-      @else {
-        $preShowStayKf: $firstPanelUpStart + ($i - 2)*($interPanelDistance + $onPanelPause) + $firstPanelExtraPause;
-        $showKf: $preShowStayKf + $interPanelDistance - if($i==2, $firstPanelExtraPause, 0);
-        $stayKf: $showKf + $onPanelPause + 10 + if($i==2, $firstPanelExtraPause, 0);
-        $hideKf: $stayKf + $interPanelDistance;
-      }
-
-      $direction: if($i%2==0, left, right);
-
-      #{$startKf} {
-        @include ease($direction, $easing, -100%);
-        @include ease(top, $easing, 100%);
-        @if($direction==left) {
-          right: 60%;
-        }
-      }
-
-      @if($i!=1) {
-        #{$preShowStayKf} {
-          dummy: true;
-        }
-      }
-
-      #{$showKf} {
-        @include ease($direction, $easing, 0%);
-        @include ease(top, $easing, 0%);
-        overflow: hidden;
-      }
-
-      #{$stayKf} {
+    @if($i!=1) {
+      #{$preShowStayKf} {
         dummy: true;
       }
+    }
 
+    #{$showKf} {
+      @include ease($direction, $easing, 0%);
+      @include ease(top, $easing, 0%);
+      overflow: hidden;
+    }
+
+    #{$stayKf} {
+      dummy: true;
+    }
+
+    @if($i!=7) {
       #{$hideKf} {
         #{$direction}:-100%;
         top:100%;
@@ -301,33 +277,24 @@ $colorChangeStartDelay: 65;
         }
       }
     }
+  }
 
-    .objective:nth-of-type(#{$i}) {
-        z-index: $i;
-        -skrollr-animation-name: panel-#{$i}-in;
-        @if($i!=6) {
-          -skrollr-animation-name: panel-#{$i}-out;
-        }
-    }
+  .bg.starter {
+      -skrollr-animation-name: photo-1;
+  }
 
-    .bg:nth-of-type(#{$i + 1}) {
-        -skrollr-animation-name: photo-#{$i};
+  @if($i!=7) {
+    .objective:nth-of-type(#{$i}) .bg {
+        //-skrollr-animation-name: photo-#{$i+1};
     }
+  }
 }
 
 nav {
   -skrollr-animation-name: headerAddBoxShadowAndColorChange;
 
-  ol {
-    position: absolute;
-  }
-
-  li {
-    margin-top:-80px;
-  }
-
   .calendar path {
-    -skrollr-animation-name: calendarSetHeaderColor;
+    fill: inherit !important;
   }
 }
 
@@ -340,9 +307,4 @@ nav {
 
 #scrollCue {
    -skrollr-animation-name: scrollCueFadeOut;
-}
-
-.objective {
-  min-height: 100%;
-  position: fixed;
 }

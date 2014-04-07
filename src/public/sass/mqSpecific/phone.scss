@@ -1,17 +1,164 @@
+//ELEMENTS
+h2, .h2 {
+    @include rs((
+        font-size: nth($scale, 4),
+        line-height: nth($lineHeights, 4)+4px
+    )); 
+}
+
+
+//PLACEHOLDERS + TRAITS
+%withDropdownAfter {
+    display: block;
+    width: 0; 
+    height: 0;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    @include rs((
+      border-left: 7px solid transparent,
+      border-right: 7px solid transparent,
+      border-top: 11px solid $navActiveTextColor,
+      margin-top: -8px
+    ));
+    content: ' ';
+}
+
+//OBJECTS
+.bg {
+    @include rs((
+        padding-top: 53%
+    ));
+}
+
+//INTERACTIONS
+.objective .bg {
+    @include rs((
+        margin-left: -1*$outerPaddingPx,
+        margin-right: -1*$outerPaddingPx,
+        padding-top: 58%
+    ));
+
+    &:not(.starter) + h1 + * {
+      @include rs((
+        padding-top: $outerPaddingPx
+      ));
+    }
+}
+
+.objective h1 {
+    display: none;
+}
+
+//UNIQUE
+#scrollCue {
+    display: none;
+}
+
 #nav {
     background-color: nth($sectionColors, 1);
+    box-shadow: hsla(0, 0%, 25%, 0.6) 0px 0px 2px 1px;
+    overflow: hidden;
     @include rs((
         height: 62px
     ));
+
     li {
+        position: relative;
+        clear: left;
+
+        br {
+            display: none;
+        }
+
         @include rs((
-            height: 62px
-        ))
+            height: 62px,
+            padding-left: 0,
+            padding-top: 15px,
+            padding-right: 24px,
+            margin-top: 62px
+        ));
+
+        &::after {
+            @extend %withDropdownAfter;
+        }
+
+        &.calendar {
+            svg {
+                width: ems(38px);
+                margin-top: ems(-5px);  
+                height: ems(50px); 
+            }       
+            position: absolute;
+            top: auto;
+            @include rs((
+                padding-top: 8px,
+                margin-top:  0px
+            ));
+            right: 0;
+
+            &::after {
+                display: none;
+            }
+        }
     }
+}
+
+#nav-dropdown {
+    position: fixed;
+    z-index: 100;
+    list-style-type: none;
+    background-color: white;
+    box-shadow: hsla(0, 0%, 25%, 0.8) 0px 0px 1px 0px;
+
+    br {
+        display: none;
+    }
+
+    li {
+        font-size: fontSize(3);
+        line-height: ems(nth($lineHeights, 3));
+        padding: .46rem .25rem .64rem;
+        border-bottom: 1px solid $textColor;
+
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom-width: 0;
+        }
+    }
+
+    @include rs((
+        top: 56px,
+        left: $outerPaddingPx - 15px,
+        padding: 1px 15px 0px,
+        border-radius: 4px
+    ));
 }
 
 #header {
     @include rs((
-        padding-top: 80px
+        padding-top: 62px
+    ));
+}
+
+#logo {
+    height: ems(40px);
+    width: ems(40px*$logoAspectRatio);
+    @include rs((
+        top: 10px,
+        padding-right: 24px
+    ));
+
+    &::after {
+        @extend %withDropdownAfter;
+        @include rs((
+            margin-top: -7px
+        ));
+    }
+}
+
+#tagline {
+    @include rs((
+        padding-top: $outerPaddingPx
     ));
 }
