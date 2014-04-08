@@ -78,5 +78,5 @@ define(
 
       rsBodyMaxWidth: \1400px
       largeDesignMinWidth: 920
-      largeDesignApplies: -> !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 2/1)").matches
+      largeDesignApplies: -> !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1500/750)").matches
 )

@@ -10,7 +10,7 @@
 @include scalers;
 
 //import the basic styles for each design
-@media (max-width: map-get(nth($rsDesigns,1), maxWidth)), (max-height:620px), (min-aspect-ratio:2/1) {
+@media (max-width: map-get(nth($rsDesigns,1), maxWidth)), (max-height:620px), (min-aspect-ratio:1501/750) {
     @import "mqSpecific/phone";
 
     body, nav ol {
@@ -21,7 +21,7 @@
     }
 }
 
-@media (min-width: map-get(nth($rsDesigns,2), minWidth)) and (min-height:620px) and (max-aspect-ratio: 2/1) {
+@media (min-width: map-get(nth($rsDesigns,2), minWidth)) and (min-height:621px) and (max-aspect-ratio: 1500/750) {
     @import "mqSpecific/desktop";
 }
 
