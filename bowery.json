@@ -1,0 +1,15 @@
+{
+  "api2": {
+    "image": "node",
+    "path": ".",
+    "ports": [
+      3000
+    ],
+    "start": "node build/app.js",
+    "build": "npm install; gulp dev --require gulp-livescript",
+    "test": "npm test"
+  },
+  "database": {
+    "image": "mongo"
+  }
+}
