@@ -1,4 +1,3 @@
-
 requirejs.config(
     baseUrl: 'scripts/bower_components'
     enforceDefine: true

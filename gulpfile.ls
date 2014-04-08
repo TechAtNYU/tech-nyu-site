@@ -1,3 +1,5 @@
+## TODO jshint + unit testing
+
 require! {
   gulp
   util: "gulp-util"

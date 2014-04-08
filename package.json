@@ -49,11 +49,6 @@
     "gulp-uglify": "0.2.x",
     "gulp-exec": "1.0.x",
     "gulp-minify-html": "0.1.x",
-
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-contrib-qunit": "~0.3.0",
-    "grunt-contrib-jshint": "~0.6.3"
   },
   "scripts": {
     "start": "npm install"
