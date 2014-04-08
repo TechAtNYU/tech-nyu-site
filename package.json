@@ -48,7 +48,7 @@
     "gulp-requirejs": "0.1.x",
     "gulp-uglify": "0.2.x",
     "gulp-exec": "1.0.x",
-    "gulp-minify-html": "0.1.x",
+    "gulp-minify-html": "0.1.x"
   },
   "scripts": {
     "start": "npm install"
