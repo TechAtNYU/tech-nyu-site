@@ -4,7 +4,7 @@ From the root directory of the repository, run `npm install`, then run `gulp --r
 
 That will download all the project’s dependencies and use gulp to compile the [Livescript](http://livescript.net/) and Sass files that make up the project. (For compiling the Sass, you'll need to have Sass 3.3, Compass, and Breakpoint installed too; you can get those with `gem install sass`, `gem intall compass --pre`, and `gem install breakpoint` respectively.).
 
-The built version of the project, with all the compiled files, will show up in the `build` directory. You can then run `node server.js` to see the site. The whole thing is an Express app.
+The built version of the project, with all the compiled files, will show up in the `build` directory. You can then run `node server.js` from the `build` directory to start the server. The whole thing is an Express app. To actually see the site, then visit `localhost:3000` in a browser.
 
 If you want to develop, you can run `gulp dev --require gulp-livescript` instead of the above version (without the `dev`), which will do less minification, so each rebuild is faster.
 
