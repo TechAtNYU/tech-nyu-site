@@ -1,11 +1,11 @@
 {
-  "api2": {
+  "api3": {
     "image": "node",
     "path": ".",
     "ports": [
       3000
     ],
-    "start": "node build/app.js",
+    "start": "node build/server.js",
     "build": "npm install; gulp dev --require gulp-livescript",
     "test": "npm test"
   },
