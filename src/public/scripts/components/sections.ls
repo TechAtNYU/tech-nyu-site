@@ -5,10 +5,19 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       sectionsSelector: '.objective'
     )
 
+    @getAnimatedOffsetTopForSection = (i, designKey) ->
+      | @animationMode == 'paginated' =>
+          if designKey == \SMALL 
+            \TODO
+          if designKey == \LARGE
+            @sassVars.firstPanelUpStart + (if i!=0 then @sassVars.firstPanelExtraPause else 0) + i*(@sassVars.interPanelDistance + @sassVars.onPanelPause)
+      | otherwise =>
+          if designKey == \SMALL
+            @$sections.eq(i).offset!.top
+
     @setSectionAnimations = ->
       self = @
       if @animationMode == "scroll"
-        alert('scrollable!')
         @$sections.each((i) !->
           $section = $(@)
           self.animate($section, \LARGE, {})
@@ -18,8 +27,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       else
         @$sections.each((i) !->
           $section = $(@)
-          startUp = (self.sassVars.firstPanelUpStart + (if i!=0 then self.sassVars.firstPanelExtraPause else 0) +
-                    i*(self.sassVars.interPanelDistance + self.sassVars.onPanelPause))
+          startUp = self.getAnimatedOffsetTopForSection(i, \LARGE)
           pauseOnScreen = (self.sassVars.firstPanelUpStart + self.sassVars.firstPanelExtraPause + (i+1)*(self.sassVars.interPanelDistance + self.sassVars.onPanelPause))
 
           largeDesignKeyframes = do
@@ -48,8 +56,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
               "margin-top": \0rem
 
           self.animate($section, \LARGE, if i == 5 then (delete largeDesignKeyframes[pauseOnScreen + self.sassVars.interPanelDistance]; largeDesignKeyframes) else largeDesignKeyframes)
-          self.animate($section, \SMALL, {
-          })
+          self.animate($section, \SMALL, {})
         )
 
       @trigger('animationsChange', {keframesOnly: true})
