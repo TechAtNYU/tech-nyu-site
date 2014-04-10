@@ -1,6 +1,6 @@
 # How to Build/Run
 
-From the root directory of the repository, run `npm install`, then run `gulp --require gulp-livescript`. 
+From the root directory of the repository, run `npm install`, then run `gulp --require gulp-livescript` (`npm install gulp -g`). 
 
 That will download all the project’s dependencies and use gulp to compile the [Livescript](http://livescript.net/) and Sass files that make up the project. (For compiling the Sass, you'll need to have Sass 3.3, Compass, and Breakpoint installed too; you can get those with `gem install sass`, `gem intall compass --pre`, and `gem install breakpoint` respectively.).
 
