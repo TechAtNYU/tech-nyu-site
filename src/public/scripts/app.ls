@@ -11,8 +11,8 @@ requirejs.config(
         "skrollr-stylehseets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
         "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
         jquery:
-          'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min'
-          'jquery'
+          'http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery'
+          'jquery/dist/jquery.min'
         
     shim:
         'jquery.scrollTo':
@@ -21,6 +21,7 @@ requirejs.config(
         'skrollr': 
             exports: 'skrollr'
         'skrollr-menu': 
+            deps: ['skrollr']
             exports: 'skrollr.menu'
 )
 
