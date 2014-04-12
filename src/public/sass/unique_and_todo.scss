@@ -13,9 +13,7 @@
   ));
   svg {
     width:100%;
-    path {
-      fill: $logoStartColor;
-    }
+    fill: $logoStartColor;
   }
   z-index: 10;
 }

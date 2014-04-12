@@ -70,7 +70,7 @@ define(
 
   usesSassVars: !->
     @sassVars = 
-      # large design variables
+      # large design animation variables
       navCascadeStart: 150
       leftColOut: 150
       headerAnimEnd: 350
@@ -79,10 +79,17 @@ define(
       interPanelDistance: 100 
       firstPanelExtraPause: 120
       onPanelPause: 85
+      colorChangeStartDelay: 55
       firstPanelUpEnd:~ -> @firstPanelUpStart + @interPanelDistance
       largeDesignSectionMarginTop: \5.1875rem
 
       rsBodyMaxWidth: \1400px
       largeDesignMinWidth: 920
       largeDesignApplies: -> !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1500/750)").matches
+
+
+
+      sectionColors: ["hsla(14, 68%, 51%, 1)" "hsla(43, 90%, 50%, 1)" "hsla(276, 48%, 35%, 1)" "hsla(140, 74%, 37%, 1)" "hsla(218, 66%, 36%, 1)" "hsla(0, 0%, 10%, 1)"]
+      sectionColorsRGB: ["rgba(215, 85, 45, 1)" "rgba(242, 177, 13, 1)" "rgba(98, 46, 132, 1)" "rgba(25, 164, 71, 1)" "rgba(31, 76, 152, 1)" "rgba(26, 26, 26, 1)"]
+      navInactiveTextColors: ["hsla(13, 2%, 16%, 1)" "hsla(42, 0%, 16%, 1)" "hsla(278, 3%, 60%, 1)" "hsla(140, 0%, 20%, 1)" "hsla(214, 4%, 65%, 1)" "hsla(0, 0%, 58%, 1)"]
 )

@@ -63,6 +63,11 @@ h2, .h2 {
         height: 62px
     ));
 
+    ol {
+        @include rs((
+            margin-top: 62px
+        ))
+    }
     li {
         position: relative;
         clear: left;
@@ -75,8 +80,7 @@ h2, .h2 {
             height: 62px,
             padding-left: 0,
             padding-top: 15px,
-            padding-right: 24px,
-            margin-top: 62px
+            padding-right: 24px
         ));
 
         &::after {
@@ -88,12 +92,13 @@ h2, .h2 {
                 width: ems(38px);
                 margin-top: ems(-5px);  
                 height: ems(50px); 
+                fill: inherit !important;
             }       
             position: absolute;
-            top: auto;
+            top: 0;
             @include rs((
                 padding-top: 8px,
-                margin-top:  0px
+                margin-top:  -62px
             ));
             right: 0;
 
