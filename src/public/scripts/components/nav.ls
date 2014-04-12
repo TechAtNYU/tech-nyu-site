@@ -119,10 +119,25 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       @animate(@$node, \SMALL, smallKeyframes, true)
       @trigger('animationsChange', {keframesOnly: true})
 
+    @setActiveItem = ->
+      colorToInherit = @select('list').css('color')
+      scrollTop = $(window).scrollTop!
+      activeIndex = 0
+
+      for section, activeIndex in @transitionPoints ++ [[Infinity, Infinity]]
+        if scrollTop < section[0]
+          activeIndex -= 1
+          if activeIndex < 0 then activeIndex = void
+          break
+
+      # assuming we're beyond the intro screen...
+      if(activeIndex != void)
+        @select('li').removeClass('active').eq(activeIndex).addClass('active')
 
     @after('initialize', ->
       @prepMobileNav!
       @on(window, 'sectionsTransitionPointsChange', @setAnimations)
+      @on(window, 'scroll', @setActiveItem)
     )
 
   , mixins.managesAnimations, mixins.usesSassVars)

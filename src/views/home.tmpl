@@ -253,24 +253,6 @@
 
       /*
 
-      //active manager
-      var calendarLastFill;
-      $window.scroll(function(e) {
-        var activeSection = $('.objective.skrollable-after + .objective').last(), 
-            sectionNumber = activeSection.attr('data-section') || 1;
-            activeLi      = topLis.filter(':nth-of-type('+sectionNumber+')');
-
-        topLis.removeClass('active');
-        activeLi.addClass('active');
-        if(sectionNumber==6) {
-          calendarLastFill = calendarLastFill || calendarSVGPaths.css('fill');
-          calendarSVGPaths.css('fill', '');
-        }
-        else {
-          calendarSVGPaths.css('fill', calendarLastFill);
-        }
-      });
-
       $(function(){
         $('.stroke-double, .stroke-single').attr('data-stroke', function(){
           return $(this).text();
