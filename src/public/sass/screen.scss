@@ -36,7 +36,7 @@
 }
 
 @media (min-width: 305px) and (max-width: 336px) {
-    @include stretcher(16px, 20px);
+    @include stretcher(15px, 20px);
 }
 
 //a minor breakpoint to give the nav a touch more room 
@@ -52,35 +52,35 @@
 }
 
 @media (min-width: 337px) and (max-width: 353px) {
-    @include stretcher(17px, 23px); 
+    @include stretcher(16px, 22px); 
 }
 
-@media (min-width: 354px) and (max-width: 371px) {
-    @include stretcher(18px, 25px);
+@media (min-width: 354px) and (max-width: 380px) {
+    @include stretcher(16px, 23px);
 }
 
-@media (min-width: 372px) and (max-width: 480px) {
-    @include stretcher(18px, 26px);
+@media (min-width: 381px) and (max-width: 450px) {
+    @include stretcher(17px, 25px);
 }
 
-@media (min-width: 481px) and (max-width: 530px) {
-    @include stretcher(19px, 27px);
+@media (min-width: 451px) and (max-width: 500px) {
+    @include stretcher(18px, 27px);
 }
 
-@media (min-width: 531px) and (max-width: 558px) {
-    @include zoomer(20px);
+@media (min-width: 501px) and (max-width: 558px) {
+     @include stretcher(19px, 28px);
 }
 
 @media (min-width: 559px) and (max-width: 586px) {
-    @include zoomer(21px);
+    @include stretcher(19px, 29px);
 }
 
-@media (min-width: 587px) and (max-width: 645px) {
-    @include stretcher(21px, 32px);
+@media (min-width: 587px) and (max-width: 919px) {
+    @include stretcher(20px, 29px);
 }
 
 @media (min-width: 920px) and (max-width: 977px) {
-    @include stretcher(17px, 25px);
+    @include stretcher(17px, 24px);
 
     #upcoming-inner, #info-inner {
         font-size: (1/.89474)*1em;
@@ -88,7 +88,7 @@
 }
 
 @media (min-width: 978px) and (max-width: 1019px) {
-    @include stretcher(18px, 27px);
+    @include stretcher(18px, 26px);
 
     #upcoming-inner, #info-inner {
         font-size: (1/.94737)*1em;
@@ -100,35 +100,17 @@
 }
 
 @media (min-width: 1200px) {
-    @include stretcher(21px, 29px);
-    nav {
-        @include rs((
-            height: 70px
-        ));
-
-        li {   
-            @include rs((
-                height: 70px,
-                padding-top: 10px
-            ));
-        }
-    }
-
-    #logo {
-        @include rs((
-            padding-top: 5px
-        ));
+    @include stretcher(21px, 30px);
+    nav li {
+        position: relative;
+        top: 1px; //an optical corrction for zooming.
     }
 }
 
 @media (min-width: 1400px) {
-    @include stretcher(21px, 30px);
-}
-
-//counteract the above two mqs for the homepageLeft col
-//if we don't have enough height
-@media (min-width: 1200px) and (max-height: 900px) {
-    #upcoming-inner, #info-inner {
-        font-size: (20/21)*1em;
-    }
+    //@todo make nav a bit bigger manually here
+    //since we can't push the design's global
+    //font size above 21px (things look ugly)
+    //but we don't want to have so much horiz
+    //space around each nav item.
 }
