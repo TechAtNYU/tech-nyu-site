@@ -37,37 +37,43 @@ define([
   "components/sections"
   "components/nav"
   ], (flight, $, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
-  s = skrollr.init(do
-    easing:
-      swing2: (percentComplete) ->
-        Math.pow(percentComplete, 7)
+  $(->
+    s = skrollr.init(do
+      easing:
+        swing2: (percentComplete) ->
+          Math.pow(percentComplete, 7)
 
-      swing3: (percentComplete) ->
-        Math.pow(percentComplete, 1.8)
+        swing3: (percentComplete) ->
+          Math.pow(percentComplete, 1.8)
 
-      cubedroot: (percentComplete) ->
-        Math.pow(percentComplete, 1/3)
+        cubedroot: (percentComplete) ->
+          Math.pow(percentComplete, 1/3)
 
-      swing4: (percentComplete) ->
-        Math.pow(percentComplete, 12);
+        swing4: (percentComplete) ->
+          Math.pow(percentComplete, 12);
 
-      swing5: (percentComplete) ->
-        Math.pow(percentComplete, 4)
-    smoothScrollingDuration: 200
-  )
+        swing5: (percentComplete) ->
+          Math.pow(percentComplete, 4)
+      smoothScrollingDuration: 200
+    )
 
-  skrollrStylesheets.init(s);
-  skrollrMenu.init(s);
+    skrollrStylesheets.init(s);
+    skrollrMenu.init(s);
 
-  $(document).on('animationsChange', (ev, data) -> if data.keframesOnly then skrollrStylesheets.registerKeyframeChange! else s.refresh(data.elements));
+    $(document).on('animationsChange', (ev, data) -> if data.keframesOnly then skrollrStylesheets.registerKeyframeChange! else s.refresh(data.elements));
 
-  # Init components
-  leftSidebar.attachTo('header')
-  digestSignup.attachTo('#digestForm')
-
-  sections.attachTo('#content')
-  sectionBg.attachTo('.bg.starter', {isHomeSection: true})
-  sectionBg.attachTo('.objective .bg')
-  nav.attachTo('nav')
-  void;
+    # Init components. The order is significant here.
+    # E.g. nav component must exist so that it's registered 
+    # its listeners before section component emits the initial
+    # transition points. Similarly, bg must be positioned before 
+    # the section container calculates the initial offset
+    # positions. Could event some of this; not worth the work now.
+    leftSidebar.attachTo('header')
+    digestSignup.attachTo('#digestForm')
+    nav.attachTo('nav')
+    sectionBg.attachTo('.bg.starter', {isHomeSection: true})
+    sections.attachTo('#content')
+    sectionBg.attachTo('.objective .bg')
+    void;
+  );
 )
