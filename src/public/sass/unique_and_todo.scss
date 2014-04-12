@@ -53,3 +53,7 @@
     padding: $outerPaddingPx*1.15 $outerPaddingPx+4px $outerPaddingPx $outerPaddingPx+2px
   ));
 }
+
+.calendar svg {
+  fill: inherit; //shouldn't be needed; a chrome bug.
+}

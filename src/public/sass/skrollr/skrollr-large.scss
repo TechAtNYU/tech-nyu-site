@@ -78,34 +78,7 @@ $colorChangeStartDelay: 55;
             fill: toHslString(nth($navInactiveTextColors, $i+2));
           }
         }
-    }    
-}
-
-
-@-skrollr-keyframes calendarSetHeaderColor {
-    #{$navCascadeEnd - $navCascadeDrop} {
-        fill: toHslString($navActiveTextColor);
-    }
-
-    #{$navCascadeEnd} {
-        fill: toHslString(nth($navInactiveTextColors, 1));
-    }
-
-    @for $i from 1 through 4 {
-        @if($i==1) {
-          #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause)} {
-            fill: toHslString(nth($navInactiveTextColors, $i+1));
-          }
-        }
-          #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause) + $onPanelPause + $colorChangeStartDelay} {
-            dummy: true;
-          }
-        @if($i!=5) {
-          #{$firstPanelUpEnd + $firstPanelExtraPause + ($i+1)*($interPanelDistance + $onPanelPause)} {
-            fill: toHslString(nth($navInactiveTextColors, $i+2));
-          }
-        }
-    }
+    } 
 }
 
 @-skrollr-keyframes scrollCueFadeOut {
@@ -253,17 +226,9 @@ $colorChangeStartDelay: 55;
   }
 }
 
-nav {
-  -skrollr-animation-name: headerAddBoxShadowAndColorChange;
-
-  .calendar path {
-    fill: inherit !important;
-  }
-}
-
 #logo {
   -skrollr-animation-name: logoToTopLeft;
-  svg path {
+  svg {
     -skrollr-animation-name: logoRestyleToTopBar;
   }
 }
