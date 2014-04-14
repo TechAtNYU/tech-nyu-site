@@ -9,7 +9,6 @@
     "commit": "5e335e5023c79997221844e51b3a540f400fa167"
   },
   "_source": "git://github.com/Prinzhorn/skrollr-menu.git",
-  "_target": "~0.1.11",
-  "_originalSource": "skrollr-menu",
-  "_direct": true
+  "_target": "0.1.x",
+  "_originalSource": "skrollr-menu"
 }

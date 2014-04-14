@@ -22,6 +22,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       swapLabels(@$dropdown, \short)
 
       @$dropdown.addClass('hidden').appendTo('body')
+      @trigger('smallNavReady')
 
     @showDropdown = ->
       @$dropdown.removeClass('hidden')
@@ -125,7 +126,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       # (i.e. let the calendar shortcut take the user
       # straight to the calendar screen).
       $targetLi = $(ev.target).parent!
-      if !@sassVars.largeDesignApplies! and (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active'))
+      if !@sassVars.largeDesignApplies! and (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active') || ev.target.attributes.id == 'logo')
         @showDropdown!
         false
 
@@ -148,7 +149,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
 
       @on(window, 'sectionsTransitionPointsChange', $.proxy(@setAnimations, @))
       @on(window, 'resize', $.proxy(@setNavText, @))
-      @on(@select('li').add('#logo').find('a'), 'click', @handleNavClick)
+      @on(@select('li').find('a').add('#logo'), 'click', @handleNavClick)
       @on(@$dropdown, 'click', @hideDropdown)
     )
 

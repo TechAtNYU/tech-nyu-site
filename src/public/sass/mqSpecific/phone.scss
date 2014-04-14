@@ -31,6 +31,13 @@ h2, .h2 {
     ));
 }
 
+.objective {
+  @include rs((
+    padding-top: 0,
+    paddinb-bottom: 2*$outerPaddingPx //shift all the padding to the bottom, so we scroll right up to photo edge
+  ));
+}
+
 //INTERACTIONS
 .objective .bg {
     @include rs((

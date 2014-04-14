@@ -44,18 +44,18 @@
         </p>
       </div>
     </div>
-    <a id="scrollCue" href="#getting-started">Skip to the Getting Started Section</a>
+    <a id="scrollCue" href="#{{ sections[0].anchor }}" data-transitionpoint="0">Skip to the Getting Started Section</a>
     <nav id="nav">
         <ol class="optionList">
           {% for section in sections %}
             {% if not section.name|contains("Calendar") %} 
                 <li class="h3" {% if section.shortName %}data-shortname="{{ section.shortName }}"{% endif %} data-origname="{{ section.name|escape|add_br|safe }}">
-                  <a href="#{{ section.anchor }}">{{ section.name|escape|add_br|safe }}</a>
+                  <a href="#{{ section.anchor }}" data-transitionpoint="{{loop.index0}}">{{ section.name|escape|add_br|safe }}</a>
                 </li>
               </a>
             {% else %}              
                 <li class="h3 calendar">
-                  <a href="#{{ section.anchor }}">{% include "partials/calendar_with_alt.tmpl" %}</a>
+                  <a href="#{{ section.anchor }}" data-transitionpoint="{{loop.index0}}">{% include "partials/calendar_with_alt.tmpl" %}</a>
                 </li>
             {% endif %}
           {% endfor %}

@@ -20,6 +20,6 @@
     "skrollr": "~0.6.21",
     "nunjucks": "~1.0.1",
     "skrollr-stylesheets-amd": "0.1.x",
-    "skrollr-menu": "0.1.x"
+    "skrollr-menu": "0.1.x",
   }
 }
