@@ -38,6 +38,15 @@ define([
   "components/nav"
   ], (flight, $, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
   $(->
+
+    # setup vars for the skrollr listener below
+    navList = $('nav ol')
+    dropdownNav = $('#nav-dropdown')
+    transitionPoints = []
+    $(document).on('sectionsTransitionPointsChange', (ev, data) -> 
+      transitionPoints := data.transitionPoints
+    );
+
     s = skrollr.init(do
       easing:
         swing2: (percentComplete) ->
@@ -54,13 +63,40 @@ define([
 
         swing5: (percentComplete) ->
           Math.pow(percentComplete, 4)
-      smoothScrollingDuration: 200
-    )
+      smoothScrollingDuration: 200,
+
+      # We need to manage the active nav section on scroll, 
+      # but no way to do that except as a skrollr listener,
+      # since real scroll events are never fired on mobile 
+      # devices (and wouldn't have the right data anyway).
+      # but this listener will depend on some globals, which
+      # we set above
+      render: (data) ->
+        colorToInherit = navList.css('color')
+        scrollTop = data.curTop
+        activeIndex = 0
+
+        for section, activeIndex in transitionPoints ++ [[Infinity, Infinity]]
+          if scrollTop < section[0]
+            activeIndex -= 1
+            if activeIndex < 0 then activeIndex = void
+            break
+
+        # assuming we're beyond the intro screen...
+        if(activeIndex != void)
+          navList.find('li').removeClass('active').eq(activeIndex).addClass('active')
+          dropdownNav.find('li').removeClass('active').eq(activeIndex).addClass('active')
+      )
 
     skrollrStylesheets.init(s);
     skrollrMenu.init(s);
 
     $(document).on('animationsChange', (ev, data) -> if data.keframesOnly then skrollrStylesheets.registerKeyframeChange! else s.refresh(data.elements));
+    $(document).on('animationsChange', (ev, data) -> 
+      if data?.keframesOnly 
+        skrollrStylesheets.registerKeyframeChange! 
+      else s.refresh(data?.elements || void)
+    );
 
     # Init components. The order is significant here.
     # E.g. nav component must exist so that it's registered 

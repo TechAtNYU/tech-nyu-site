@@ -63,11 +63,28 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       if @sassVars.largeDesignApplies!
         @select(\tagline).add(@select(\logo)).animate({margin-top: "+=" + data.height}, 140, @animationsProxy)
 
+    @currDesignKey
+    @moveElementsForMobileSkrollr = ->
+      oldMode = @currDesignKey
+      newMode = if @sassVars.largeDesignApplies! then \LARGE else \SMALL
+      @currDesignKey = newMode
+
+      if(oldMode != newMode)
+        if newMode == \LARGE
+          @select('taglineWrapper').insertBefore('nav')
+          @select('upcoming').insertAfter('nav')
+        else
+          @select('taglineWrapper').add(@select('upcoming')).prependTo('#skrollr-body')
+
+        @trigger('animationsChange')
+
     @after('initialize', ->
       @on(window, "resize", @setupAnimations);
+      @on(window, "resize", @moveElementsForMobileSkrollr);
       @on(@$node, "digestDetailsShown", @handleDigestDetailsShown);
       @on(@$node, "digestDetailsHidden", @handleDigestDetailsHidden);
       @setupAnimations!
+      @moveElementsForMobileSkrollr!
     )
   , mixins.managesAnimations, mixins.usesSassVars)
 );

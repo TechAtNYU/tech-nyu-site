@@ -74,7 +74,6 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
 
         # in the small design, I have to not only animate 
         # the color, but also the naviation text
-
         if i == 0
           @animate(@$logo, \SMALL, (do
             (start): do
@@ -119,22 +118,6 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       @animate(@$node, \SMALL, smallKeyframes, true)
       @trigger('animationsChange', {keframesOnly: true})
 
-    @setActiveItem = ->
-      colorToInherit = @select('list').css('color')
-      scrollTop = $(window).scrollTop!
-      activeIndex = 0
-
-      for section, activeIndex in @transitionPoints ++ [[Infinity, Infinity]]
-        if scrollTop < section[0]
-          activeIndex -= 1
-          if activeIndex < 0 then activeIndex = void
-          break
-
-      # assuming we're beyond the intro screen...
-      if(activeIndex != void)
-        @select('li').removeClass('active').eq(activeIndex).addClass('active')
-        @$dropdown.find('li').removeClass('active').eq(activeIndex).addClass('active')
-
     @handleNavClick = (ev, data) ->
       # only do something special for the small design
       # And, if we're dealing with the calendar, only
@@ -164,7 +147,6 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       @setNavText!
 
       @on(window, 'sectionsTransitionPointsChange', $.proxy(@setAnimations, @))
-      @on(window, 'scroll', @setActiveItem)
       @on(window, 'resize', $.proxy(@setNavText, @))
       @on(@select('li').add('#logo').find('a'), 'click', @handleNavClick)
       @on(@$dropdown, 'click', @hideDropdown)
