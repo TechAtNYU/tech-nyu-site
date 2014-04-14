@@ -14,7 +14,7 @@ h2, .h2 {
     height: 0;
     position: absolute;
     top: 50%;
-    right: 0;
+    right: ems(38px + 5px);
     @include rs((
       border-left: 7px solid transparent,
       border-right: 7px solid transparent,
@@ -80,8 +80,9 @@ h2, .h2 {
             height: 62px,
             padding-left: 0,
             padding-top: 15px,
-            padding-right: 24px
         ));
+        //to make sure we never overlap calendar + to give space for the dropdown arrow
+        padding-right: ems(24px + 38px);
 
         &::after {
             @extend %withDropdownAfter;
@@ -97,7 +98,8 @@ h2, .h2 {
             top: 0;
             @include rs((
                 padding-top: 8px,
-                margin-top:  -62px
+                margin-top:  -62px,
+                padding-right: $outerPaddingPx
             ));
             right: 0;
 
@@ -114,6 +116,19 @@ h2, .h2 {
     list-style-type: none;
     background-color: white;
     box-shadow: hsla(0, 0%, 25%, 0.8) 0px 0px 1px 0px;
+    
+    @include rs((
+        top: 56px,
+        left: $outerPaddingPx - 14px,   //left, right, and auto margins will let its left
+        right: $outerPaddingPx - 14px,  //margin adjust as needed when there's a max-width
+        margin: 0 auto,
+        padding: 0px 10px,
+        border-radius: 4px
+    ));
+
+    a {
+        text-decoration: none;
+    }
 
     br {
         display: none;
@@ -122,21 +137,20 @@ h2, .h2 {
     li {
         font-size: fontSize(3);
         line-height: ems(nth($lineHeights, 3));
-        padding: .46rem .25rem .64rem;
         border-bottom: 1px solid $textColor;
+        @include rs((
+           padding: 7px 4px 10px
+        ));
 
         &:last-child {
             margin-bottom: 0;
             border-bottom-width: 0;
         }
-    }
 
-    @include rs((
-        top: 56px,
-        left: $outerPaddingPx - 15px,
-        padding: 1px 15px 0px,
-        border-radius: 4px
-    ));
+        &.active {
+            background-color: $textColor;
+        }
+    }
 }
 
 #header {
@@ -158,6 +172,7 @@ h2, .h2 {
         @include rs((
             margin-top: -7px
         ));
+        right: 0;
     }
 }
 

@@ -16,8 +16,13 @@
     body, nav ol {
         max-width: 646px;
     }
+
     nav ol {
         position: relative;
+    }
+
+    #nav-dropdown {
+        max-width: (646px - (2*10px*(20/19))); //-2*10px for each of the extra "gutters" on the edges, scaled for the font size.
     }
 }
 

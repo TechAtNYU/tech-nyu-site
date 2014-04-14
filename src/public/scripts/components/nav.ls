@@ -12,11 +12,15 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
 
     @transitionPoints = []
 
-    @prepMobileNav = ->
+    @prepSmallNav = ->
       @$dropdown = $('nav ol').clone!.attr('id', 'nav-dropdown').removeClass('optionList')
       # Safari doesn't expose .innerHtml on svg elems, so we can't just do
       # @$dropdown.find('svg').replaceWith(-> $(@).attr('aria-label'))
-      $svg = @$dropdown.find('svg'); $svg.insertBefore($svg.attr('aria-label')).remove();
+      $svg = @$dropdown.find('svg'); $svg.before($svg.attr('aria-label')).remove();
+
+      # sub in shortNames if availabe.
+      swapLabels(@$dropdown, \short)
+
       @$dropdown.addClass('hidden').appendTo('body')
 
     @showDropdown = ->
@@ -32,6 +36,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       largeKeyframes = {}
       colorChangeStartDelay = @sassVars.colorChangeStartDelay
       navHeight = $('nav').outerHeight!
+      lastIndex = data.transitionPoints.length - 1
 
       # animations for the intro screen (large design only)
       largeKeyframes[@sassVars.navCascadeEnd] = do
@@ -50,10 +55,10 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
 
       # animations for each section
       for keyframePair, i in data.transitionPoints
-        [start, end] = keyframePair
+        [start, end] = keyframePair.map(Math.round)
 
-        smallKeyframes[Math.round(start)] = "dummy: true";
-        smallKeyframes[Math.round(end)] = do
+        smallKeyframes[start] = "dummy: true";
+        smallKeyframes[end] = do
           "background-color": @sassVars.sectionColorsRGB[i]
           "color": @sassVars.navInactiveTextColors[i]
           "fill": @sassVars.navInactiveTextColors[i]
@@ -75,7 +80,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
             (start): do
               'transform': 'translateY(0px)'
             (end): do
-              'transform': 'translateY(' + -1*navHeight + ')'
+              'transform': 'translateY(' + -1*navHeight + 'px)'
           ), true)
 
           @animate(@select('list'), \SMALL, do
@@ -89,31 +94,26 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
           @animate(@$node.find('ol'), \SMALL, do
             (start): do
               'dummy': 'true'
-              'min-width': '1em'
             (end): do
               'transform': 'translateY(' + (i+1)*-1*navHeight + 'px)'
           )
 
-        @animate(@select('calendarLi'), \SMALL, do
-          (start): do
-            'transform': 'translateY(' + (i)*navHeight + 'px)'
-          (end): do
-            'transform': 'translateY(' + (i+1)*navHeight + 'px)'
-        )
+        if i != lastIndex
+          @animate(@select('calendarLi'), \SMALL, do
+            (start): do
+              'transform': 'translate(0px,' + (i)*navHeight + 'px)'
+            (end): do
+              'transform': 'translate(0px,' + (i+1)*navHeight + 'px)'
+          )
 
       # configure the special animation for the calendar icon
-      /*
       @animate(@select('calendarLi'), \SMALL, do
-        (data.transitionPoints[*-1][0] - 1): "dummy:true;"
-        (data.transitionPoints[*-1][0]): do
-          'right': '0%'
-          'left': '40%'
-          'padding-left': '0px'
-        (data.transitionPoints[*-1][1]): do
-          'right': '40%'
-          'left': '0%'
-          'padding-left': @select('calendarLi').css('padding-right')
-      );*/
+        (data.transitionPoints[lastIndex][0] - 1): "dummy:true;"
+        (data.transitionPoints[lastIndex][0]): do
+          'transform': 'translate(0px, ' + (lastIndex*navHeight) + 'px)'
+        (data.transitionPoints[lastIndex][1]): do
+          'transform': 'translate(' + -1*(@select('list').width! - @select('calendarLi').width!) + ', ' + (lastIndex+1)*navHeight + 'px)'
+      );
 
       @animate(@$node, \LARGE, largeKeyframes, true)
       @animate(@$node, \SMALL, smallKeyframes, true)
@@ -133,11 +133,41 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       # assuming we're beyond the intro screen...
       if(activeIndex != void)
         @select('li').removeClass('active').eq(activeIndex).addClass('active')
+        @$dropdown.find('li').removeClass('active').eq(activeIndex).addClass('active')
+
+    @handleNavClick = (ev, data) ->
+      # only do something special for the small design
+      # And, if we're dealing with the calendar, only
+      # show the dropdown if we're on the calendar screen
+      # (i.e. let the calendar shortcut take the user
+      # straight to the calendar screen).
+      $targetLi = $(ev.target).parent!
+      if !@sassVars.largeDesignApplies! and (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active'))
+        @showDropdown!
+        false
+
+    @navLabelsToUse
+    @setNavText = ->
+      currLabels = @navLabelsToUse
+      @navLabelsToUse = if @sassVars.largeDesignApplies! then \orig else \short
+      if currLabels != @navLabelsToUse then swapLabels(@select('list'), @navLabelsToUse)
+
+    function swapLabels($list, newLabels)
+      attr = 'data-' + newLabels + 'name'
+      $list.find('li[' + attr + ']').each( -> 
+        $curr = $(@)
+        $curr.find('a').html($curr.attr(attr))
+      );
 
     @after('initialize', ->
-      @prepMobileNav!
-      @on(window, 'sectionsTransitionPointsChange', @setAnimations)
+      @prepSmallNav!
+      @setNavText!
+
+      @on(window, 'sectionsTransitionPointsChange', $.proxy(@setAnimations, @))
       @on(window, 'scroll', @setActiveItem)
+      @on(window, 'resize', $.proxy(@setNavText, @))
+      @on(@select('li').add('#logo').find('a'), 'click', @handleNavClick)
+      @on(@$dropdown, 'click', @hideDropdown)
     )
 
   , mixins.managesAnimations, mixins.usesSassVars)

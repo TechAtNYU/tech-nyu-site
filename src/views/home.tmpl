@@ -49,7 +49,7 @@
         <ol class="optionList">
           {% for section in sections %}
             {% if not section.name|contains("Calendar") %} 
-                <li class="h3" {% if section.shortName %}data-shortname="{{ section.shortName }}"{% endif %}>
+                <li class="h3" {% if section.shortName %}data-shortname="{{ section.shortName }}"{% endif %} data-origname="{{ section.name|escape|add_br|safe }}">
                   <a href="#{{ section.anchor }}">{{ section.name|escape|add_br|safe }}</a>
                 </li>
               </a>
