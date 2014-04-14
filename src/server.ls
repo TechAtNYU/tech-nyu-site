@@ -25,11 +25,11 @@ data =
       anchor: "about"
       shortName: "About"
     * name: "Event Calendar"
-      shortName: "event-calendar"
+      anchor: "event-calendar"
 
 app.get('/', (req, res) ->
   res.render('home.tmpl', data, (err, html) ->
-    console.log(err);
+    if err then console.log(err);
     res.send(html);
   )
   void

@@ -22,7 +22,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 h1, .h1 {
   @include rs((
     font-size: nth($scale, 7),
-    line-height: nth($lineHeights, 7)
+    line-height: nth($lineHeights, 7),
+    margin-bottom: nth($scale, 7),
   ));
 }
 
