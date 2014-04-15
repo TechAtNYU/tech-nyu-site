@@ -71,6 +71,7 @@ $imageMaxWidth: 215px;
     margin-top: $outerPaddingPx/2
   ));
   margin: 0 auto;
+  overflow: auto; //clear float. DUH.
 }
 
 .nbs-flexisel-item {
@@ -107,6 +108,8 @@ $imageMaxWidth: 215px;
 
 .nbs-flexisel-item img {
   width: $imageMaxWidth;
+  width: calc(100% - #{2*$imagePadding});
+  max-width: $imageMaxHeight + 2*$imagePadding;
   height: auto !important;
   position: absolute;
   top: 0;

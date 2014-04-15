@@ -45,12 +45,24 @@
   font-size: 1em !important; //needs to act like a container not a heading.
 }
 
-@each $index, $section in (1: first, 2: second, 3: third, 4: fourth, 5: fifth, 6:sixth) {
+@each $index, $section in (1: first, 2: second, 3: third, 4: fourth, 5: fifth) {
   #{'.' + $section} a {
     color: nth($sectionColors, $index);
     fill: nth($sectionColors, $index);
+    stroke: nth($sectionColors, $index);
+  }
+
+  #{'.' + $section} .flatButton:hover {
+    background-color: nth($sectionColors, $index);
   }
 }
+
+.sixth a { 
+  color: nth($sectionColors, 5);    
+  fill: nth($sectionColors, 5);
+  stroke: nth($sectionColors, 5);
+}
+
 
 nav {
   .optionList li:first-child {
@@ -58,12 +70,4 @@ nav {
       padding-left: $outerPaddingPx/2
     ));
   }
-}
-
-.initiative svg {
-  height: 1em;
-  width: 1em;
-  position: relative;
-  top: 2px;
-  display: inline-block;
 }

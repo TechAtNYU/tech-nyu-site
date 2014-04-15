@@ -12,9 +12,8 @@ requirejs.config(
         "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
         "jquery.flexisel": "flexisel/js/jquery.flexisel"
         jquery:
-          'http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery'
-          'jquery/dist/jquery.min'
-        
+          '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min'
+          'jquery/dist/jquery.min'        
     shim:
         'jquery.scrollTo':
           deps: ['jquery']
@@ -133,20 +132,25 @@ define([
     $('#carousel').flexisel(do
       visibleItems: 6,
       enableResponsiveBreakpoints: true,
-      responsiveBreakpoints: {
-        portrait: {
-          changePoint:480,
-          visibleItems: 1
-        }, 
-        landscape: {
-          changePoint:640,
-          visibleItems: 2
-        },
-        tablet: {
-          changePoint:768,
+      responsiveBreakpoints:
+        large:
+          changePoint: 1350
+          visibleItems: 5
+        lessLarge: 
+          changePoint: 1150
+          visibleItems: 5
+        mediumBig: 
+          changePoint: 930
+          visibleItems: 4
+        mediumSmall:
+          changePoint:700
           visibleItems: 3
-        }
-      }
+        lessSmall:
+          changePoint:450
+          visibleItems: 2
+        small:
+          changePoint:250,
+          visibleItems: 1
     );
     s.refresh!
   );

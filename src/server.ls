@@ -89,17 +89,17 @@ data =
       url: ""
 
   channels:
-    * name: "Freshman Circuit"
-      facebook: ""
+    "Freshman Circuit": 
+      facebook: "https://www.facebook.com/groups/814357601925669/"
       meetup: ""
-    * name: "Design"
-      facebook: ""
-    * name: "Programming"
-      facebook: ""
-    * name: "Business"
-      facebook: ""
-    * name: "Gaming"
-      facebook: ""
+    "Design":
+      facebook: "https://www.facebook.com/groups/767396439957423/"
+    "Programming":
+      facebook: "https://www.facebook.com/groups/1392655554348086/"
+    "Business":
+      facebook: "https://www.facebook.com/groups/574494619324143/"
+    "Gaming":
+      facebook: "https://www.facebook.com/groups/453344364799579/"
 
   sections:
     * name: "Get Started with the Tech Scene"

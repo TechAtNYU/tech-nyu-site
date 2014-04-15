@@ -13,7 +13,7 @@ p {
     max-width: 35em;
     @include rs((
       font-size: nth($scale, 3),
-      margin-bottom: nth($scale, 3)/2
+      margin-bottom: nth($scale, 3)
     ));
 }
 
@@ -26,8 +26,7 @@ h1, .h1 {
   @include rs((
     font-size: nth($scale, 7),
     line-height: nth($lineHeights, 7),
-    margin-bottom: nth($scale, 7)*.6666,
-    margin-top: nth($scale, 7)*.333333
+    margin-bottom: nth($scale, 7)*.5
   ));
 }
 
@@ -106,7 +105,8 @@ nav {
       font-size: 20px !important,
       line-height: nth($lineHeights, 3) !important,
       height: 67px,
-      padding-top: 8px
+      padding: 8px $outerPaddingPx/2 0,
+      margin-right: 0 !important
     ));
 
     &.calendar {
@@ -121,4 +121,10 @@ nav {
 
 dt {
   font-style: italic;
+}
+
+dd {
+  @include rs((
+    margin-top: nth($scale, 3)/2
+  ));
 }

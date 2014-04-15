@@ -65,9 +65,102 @@
   border-width: 1px;
   border-style: solid;
   border-radius: .6rem;
-  padding: .65rem .7rem .75rem;
+  padding: .45rem .7rem .55rem;
+
+  //svg is optional
+  svg {
+    height: 1em;
+    width: 1em;
+    position: relative;
+    top: 2px;
+    display: inline-block;
+  }
 }
 
+.circuitButton {
+  padding: .35rem .7rem .65rem;
+  svg {
+    left: -2px;
+    top: 3px;
+  }
+
+  &:hover {
+    color: $navActiveTextColor;
+    background-color: nth($sectionColors, 1);
+    path:first-child {
+      fill: $navActiveTextColor;
+    }
+    path:last-child {
+      fill: nth($sectionColors, 1);
+    }
+  }
+}
+
+.programmingButton {
+  padding: .1rem .7rem .65rem;
+  svg {
+    left: -2px;
+    margin-right:1px;
+    height: 1.2em;
+    stroke-width: .85em;
+    @include rs((top: 6px));
+  }
+
+  &:hover {
+    color: $navActiveTextColor;
+    path {
+      stroke: $navActiveTextColor;
+      fill: $navActiveTextColor;
+    }
+  }
+}
+
+.designButton {
+  padding: .5rem .7rem .65rem;
+  svg {
+    left: -2px;
+    margin-right: 3px;
+    height: .9em;
+    width: .9em;
+  }
+
+  &:hover {
+    color: $navActiveTextColor;
+    polygon {
+      fill: $navActiveTextColor;
+    }
+  }
+}
+
+.gamingButton {
+  padding: .35rem .7rem .6rem;
+  svg {
+    left: -2px;
+    margin-right: 3px;
+  }
+
+  &:hover {
+    color: $navActiveTextColor;
+    path {
+      fill: $navActiveTextColor;
+    }
+  }
+}
+
+.demoingButton {
+  padding: .35rem .7rem .55rem;  
+  svg {
+    left: -2px;
+    margin-right: 3px;
+  }
+
+  &:hover {
+    color: $navActiveTextColor;
+    path, polygon {
+      fill: $navActiveTextColor;
+    }
+  }
+}
 
 /* Notes: List of choosable options, like in a nav or toolbar. Required Markup:
    <* class="optionList"><li (or class="li")>This option</li></*>. Each "li" usually has an <a> */
@@ -77,13 +170,8 @@
     float:left;
     padding-bottom:0;
     @include rs((
-      padding-right: $outerPaddingPx*.5,
-      padding-left: $outerPaddingPx*.5
+      margin-right: $outerPaddingPx
     ));
-
-    &:first-child {
-      padding-left: 0;
-    }
 
     &:last-child {
       margin-right:0 !important;
@@ -99,5 +187,7 @@
 }
 
 .initiative {
-  margin-bottom: 2rem;
+  @include rs((
+    margin-bottom: nth($lineHeights, 5)
+  ));
 }

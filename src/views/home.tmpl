@@ -71,7 +71,7 @@
             <a class="event with-flatButton" href="">
               <strong class="title h5">What Designers Actually Do</strong>
               <span class="caption">A Workshop with Anne-Laure Fayard <span class="more">More&nbsp;info&hellip;</span></span>
-              <button class="flatButton round">More Events</button>
+              <button class="flatButton round" id="more-events">More Events</button>
             </a>
           </div>
         </div>
@@ -96,25 +96,26 @@
         <div class="initiative">
           <h2 class="h3">Freshman Circuit</h2>
           <p>Attend tech@nyu events and tour NYC startups with a small community of other freshmen. You'll get to meet startup employees to learn what they’re up to and where you might fit in. We&rsquo;ve previously toured Betaworks, eBay, The New York Times, Foursquare, Quirky, and others.</p>
-          <p><a href="http://www.freshmancircuit.com/" class="first">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="213.6 285.3 182.9 219.4" enable-background="new 213.6 285.3 182.9 219.4" xml:space="preserve"><g><path d="M308.3,504.7c0,0,83.5-46,88-128.8c3.4-62-59.1-92.2-92.8-90.6c-33.8,1.6-95.9,30.7-89.4,89C224.2,466.6,308.3,504.7,308.3,504.7z"/><path fill="#FFFFFF" d="M272.3,368.5c0-17.7,14.6-32,32.7-32c18,0,32.7,14.3,32.7,32c0,17.7-14.6,32.1-32.7,32.1C287,400.6,272.3,386.3,272.3,368.5z"/></g></svg>
+          <a href="http://www.freshmancircuit.com/" class="button flatButton circuitButton">
+            <svg version="1.1"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="213.6 285.3 182.9 219.4" enable-background="new 213.6 285.3 182.9 219.4" xml:space="preserve"><g><path d="M308.3,504.7c0,0,83.5-46,88-128.8c3.4-62-59.1-92.2-92.8-90.6c-33.8,1.6-95.9,30.7-89.4,89C224.2,466.6,308.3,504.7,308.3,504.7z"/><path fill="#FFFFFF" d="M272.3,368.5c0-17.7,14.6-32,32.7-32c18,0,32.7,14.3,32.7,32c0,17.7-14.6,32.1-32.7,32.1C287,400.6,272.3,386.3,272.3,368.5z"/></g></svg>
              Learn More and Apply!
-           </a></p>
+          </a>
         </div>
 
         <div class="initiative">
           <h2 class="h3">Programming &amp; Design Introductory Workshops</h2>
           <p>Learn the basics of programming or design.</p>
-          <dl>
-            <dt>To be notified about upcoming events, join one of our facebook groups</dt>
-            <dd><a href="">
-              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="213.6 285.3 182.9 219.4" enable-background="new 213.6 285.3 182.9 219.4" xml:space="preserve"><g><path d="M308.3,504.7c0,0,83.5-46,88-128.8c3.4-62-59.1-92.2-92.8-90.6c-33.8,1.6-95.9,30.7-89.4,89C224.2,466.6,308.3,504.7,308.3,504.7z"/><path fill="#FFFFFF" d="M272.3,368.5c0-17.7,14.6-32,32.7-32c18,0,32.7,14.3,32.7,32c0,17.7-14.6,32.1-32.7,32.1C287,400.6,272.3,386.3,272.3,368.5z"/></g></svg>
-               Programming Facebook Group
+          <dl class="optionList">
+            <dt>To be notified of upcoming workshops, join one of our facebook groups</dt>
+            <dd class="li first">
+              <a href="{{channels.Programming.facebook }}" class="flatButton programmingButton">
+                <svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 612 792" xml:space="preserve"><g><path d="M0,405.8v-27.2l174.2-94.7v45.7L53.4,391.6l120.9,63.2v45.7L0,405.8z"/><path d="M264,563.7h-41.4l120.9-335.4h41.4L264,563.7z"/><path d="M437.8,500.5v-45.7l120.9-63.2l-120.9-63.2v-44.6L612,378.6v27.2L437.8,500.5z"/></g></svg>
+                 Programming Facebook Group
               </a>
             </dd>
-            <dd>
-              <a href="">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="213.6 285.3 182.9 219.4" enable-background="new 213.6 285.3 182.9 219.4" xml:space="preserve"><g><path d="M308.3,504.7c0,0,83.5-46,88-128.8c3.4-62-59.1-92.2-92.8-90.6c-33.8,1.6-95.9,30.7-89.4,89C224.2,466.6,308.3,504.7,308.3,504.7z"/><path fill="#FFFFFF" d="M272.3,368.5c0-17.7,14.6-32,32.7-32c18,0,32.7,14.3,32.7,32c0,17.7-14.6,32.1-32.7,32.1C287,400.6,272.3,386.3,272.3,368.5z"/></g></svg>
+            <dd class="li">
+              <a href="{{channels.Design.facebook }}" class="flatButton designButton">
+                <svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 183.6 195.8" xml:space="preserve"><g><polygon points="157.1,0 137.1,23.1 162.4,49.4 183.6,28.4"/><polygon points="17.3,150.9 127.6,31 155.6,59.6 44.9,178.6" /><polygon points="9.4,159.1 0,195.8 37.3,185.3" /></g></svg>
                  Design Facebook Group
               </a>
            </dd>
@@ -128,18 +129,28 @@
         <div class="initiative"> 
           <h2 class="h3">Hack Days</h2>
           <p>Lectures on web technologies, covering everything from <a href="http://angularjs.org" class="progressively-disclose">Angular</a> to <a href="http://zeptojs.com/" class="progressively-disclose">Zepto</a>.</p>
-          <p><a href="">Join our Programming Facebook Group</a> to be notified about upcoming events.</p>
+
+          <a href="{{channels.Programming.facebook }}" class="flatButton programmingButton">
+            <svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 612 792" xml:space="preserve"><g><path d="M0,405.8v-27.2l174.2-94.7v45.7L53.4,391.6l120.9,63.2v45.7L0,405.8z"/><path d="M264,563.7h-41.4l120.9-335.4h41.4L264,563.7z"/><path d="M437.8,500.5v-45.7l120.9-63.2l-120.9-63.2v-44.6L612,378.6v27.2L437.8,500.5z"/></g></svg>
+             Programming Facebook Group
+          </a> <small class="caption">Join to be notified of upcoming events.</small>
         </div>
         <div class="initiative">
           <h2 class="h3">Design Days</h2>
           <p>Workshops on design thinking, user research, and advanced topics in digital product design (e.g. designing for mobile).</p>
-          <p><a href="">Join our Design Facebook Group</a> to be notified about upcoming events.</p>
+            <a href="{{channels.Design.facebook }}" class="flatButton designButton">
+              <svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 183.6 195.8" xml:space="preserve"><g><polygon points="157.1,0 137.1,23.1 162.4,49.4 183.6,28.4"/><polygon points="17.3,150.9 127.6,31 155.6,59.6 44.9,178.6" /><polygon points="9.4,159.1 0,195.8 37.3,185.3" /></g></svg>
+               Design Facebook Group
+            </a> <small class="caption">Join to be notified of upcoming events.</small>
           </dl>
         </div>
         <div class="initiative">
           <h2 class="h3">Game Days</h2>
           <p>Workshops on game design, prototyping, and programming. Prior speakers have come from Golden Ruby Games, Arkadium, OMGpop, and others.</p>
-          <p><a href="">Join our Gaming Facebook Group</a> to be notified about upcoming events.</p>
+          <a href="{{channels.Gaming.facebook}}" class="flatButton gamingButton">
+            <svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="44.4 222.7 533 348.2" xml:space="preserve"><g><path d="M547,326.8c-25.8-69.6-91.9-104.1-111.3-104.1c-19.4,0-38.8,0.7-96.9,39.5h-57.4c-57.8-38.8-77.2-39.5-96.2-39.5s-85.1,34.5-110.6,104.1c-21.2,57.8-34.8,122-28.7,163c7.5,51.7,37,78.6,53.8,81.1c53.1-9.7,114.1-96.9,114.1-96.9H407c0,0,61.4,87.2,114.9,96.9c17.2-2.5,46.7-29.4,54.2-81.1C581.8,448.8,568.5,384.6,547,326.8z M256.2,369.9h-39.5v39.5h-35.9v-39.5h-39.5V334h39.5v-39.5h35.9V334h39.5V369.9z M410.6,413c-14,0-25.1-11.1-25.1-25.1c0-14,11.1-25.1,25.1-25.1c14,0,25.1,11.1,25.1,25.1C435.7,401.8,424.6,413,410.6,413z M410.6,337.6c-14,0-25.1-11.1-25.1-25.1s11.1-25.1,25.1-25.1c14,0,25.1,11.1,25.1,25.1S424.6,337.6,410.6,337.6z M482.4,380.6c-14,0-25.1-11.1-25.1-25.1c0-14,11.1-25.1,25.1-25.1c14,0,25.1,11.1,25.1,25.1C507.5,369.5,496.4,380.6,482.4,380.6z"/></g></svg>
+             Gaming Facebook Group
+           </a> <small class="caption">Join to be notified of upcoming events.</small>
         </div>
       </section>
 
@@ -149,13 +160,16 @@
         <div class="initiative">
           <h2 class="h3">Hack Nights</h2>
           <p>Designers, developers, and makers of all sorts coming together to hang out, work on their projects and get to know each other. All experience levels welcome!</p>
-          <p>(You&rsquo;ll get notified about relevant Hack Nights events if you&rsquo;re a member of either our <a href="">Programming Facebook Group</a> or our <a href="">Design Facebook Group</a>.)</p>
+          <p>(You&rsquo;ll be notified of relevant Hack Nights events if you&rsquo;re a member of either our <a href="{{channels.Programming.facebook}}">Programming Facebook Group</a> or our <a href="{{ channels.Design.facebook }}">Design Facebook Group</a>.)</p>
         </div>
 
         <div class="initiative">
           <h2 class="h3">Designathons</h2>
           <p>Over the course of a weekend, work with a team to produce a refined, well-researched design concept for a product of your choice.</p>          
-          <p><a href="">Join our Design Facebook Group</a> to be notified about upcoming events.</p>
+            <a href="{{channels.Design.facebook }}" class="flatButton designButton">
+              <svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 183.6 195.8" xml:space="preserve"><g><polygon points="157.1,0 137.1,23.1 162.4,49.4 183.6,28.4"/><polygon points="17.3,150.9 127.6,31 155.6,59.6 44.9,178.6" /><polygon points="9.4,159.1 0,195.8 37.3,185.3" /></g></svg>
+               Design Facebook Group
+            </a> <small class="caption">Join to be notified of upcoming events.</small>
         </div>
       </section>
 
@@ -170,7 +184,10 @@
         <div class="initiative">
           <h2 class="h3">Demo Days</h2>
           <p>Students from all over NYC show off hacks or projects they’ve been working on. Demo your work, get inspired, or meet other students doing incredible things. We&rsquo;ve hosted events at Stack Exchange, Spotify, TechStars and more.</p>
-          <p><a href="http://ship.techatnyu.org/#demodays">Browse Prior Demos</a><p>
+          <a href="http://ship.techatnyu.org/#demodays" class="flatButton demoingButton">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="208.1 279.7 195.8 226.4" enable-background="new 208.1 279.7 195.8 226.4" xml:space="preserve"><path d="M226.6,472.8c0-18.4,36.3-33.4,81-33.4c44.7,0,81,14.9,81,33.4s-36.2,33.4-81,33.4C262.9,506.2,226.6,491.2,226.6,472.8z"/><polygon opacity="0.5" enable-background="new" points="226.6,468.7 208.1,329.7 388.5,466.6" /><polygon opacity="0.5" enable-background="new" points="388.5,468.7 403.9,279.7 226.6,466.6 "/></svg>
+             Browse Prior Demos
+          </a>
         </div>  
         <!-- ADD BACK DIGEST HERE ONCE IT'S GONE ON EVENT CALENDAR SCREEN. BUT, FOR NOW, IT DOESN"T NEED TO BE IN THREE PLACES.
         <div class="initiative">
@@ -188,9 +205,9 @@
         <h1>About Us</h2>
         <div class="initiative">
           <ul class="optionList">
-            <li><h2 class="h3">Our Team</h2></li>
+            <!-- <li><h2 class="h3">Our Team</h2></li> -->
             <li><h2 class="h3"><a href="http://ship.techatnyu.org/">What We&rsquo;ve Made</a></h2></li>
-            <li><h2 class="h3">Job Board</h2></li>
+            <!-- <li><h2 class="h3">Job Board</h2></li> -->
           </ul>
         </div>
 
@@ -230,10 +247,10 @@
         <div class="initiative">
           <h2 class="h3">Facebook Groups</h2>
           <ul style="list-style-type:none;">
-            <li>Programming</li>
-            <li>Design</li>
-            <li>Gaming</li>
-            <li>Business</li>
+            <li><a href="{{channels.Programming.facebook }}">Programming</a></li>
+            <li><a href="{{channels.Design.facebook }}">Design</a></li>
+            <li><a href="{{channels.Gaming.facebook }}">Gaming</a></li>
+            <li><a href="{{channels.Business.facebook }}">Business</a></li>
           </ul>
         </div>
         <div class="initiative">
