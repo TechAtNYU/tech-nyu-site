@@ -6,6 +6,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       tagline: \#tagline
       logo: \#logo
       taglineWrapper: \#info
+      moreEventsButton: \#more-events
     )
 
     @setupAnimations = ->
@@ -64,6 +65,8 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
         @select(\tagline).add(@select(\logo)).animate({margin-top: "+=" + data.height}, 140, @animationsProxy)
 
     @handleMoreEventsButton = (ev, data) ->
+      ev.preventDefault!
+      $('a[href=#event-calendar]').get(0).click!
 
     @currDesignKey
     @moveElementsForMobileSkrollr = ->
@@ -85,6 +88,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       @on(window, "resize", @moveElementsForMobileSkrollr);
       @on(@$node, "digestDetailsShown", @handleDigestDetailsShown);
       @on(@$node, "digestDetailsHidden", @handleDigestDetailsHidden);
+      @on(@select('moreEventsButton'), 'click', @handleMoreEventsButton);
       @setupAnimations!
       @moveElementsForMobileSkrollr!
     )
