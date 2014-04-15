@@ -132,7 +132,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       # show the dropdown if we're on the calendar screen
       # (i.e. let the calendar shortcut take the user
       # straight to the calendar screen).
-      $targetLi = $(ev.target).parent!
+      $targetLi = $(ev.currentTarget).parent!
       if !@sassVars.largeDesignApplies! and (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active') || ev.target.attributes.id == 'logo')
         @showDropdown!
         false
