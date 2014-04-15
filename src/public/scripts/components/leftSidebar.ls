@@ -74,14 +74,12 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       newMode = if @sassVars.largeDesignApplies! then \LARGE else \SMALL
       @currDesignKey = newMode
 
-      # can't use @select because the elems may not be
-      # in header any more.
       if(oldMode != newMode)
         if newMode == \LARGE
-          $('#info').insertBefore('nav')
-          $('#upcoming').insertAfter('nav')
+          @select('taglineWrapper').insertBefore('nav')
+          @select('upcoming').insertAfter('nav')
         else
-          $('#info, #upcoming').prependTo('#skrollr-body')
+          @select('taglineWrapper').add(@select('upcoming')).prependTo('#skrollr-body')
 
         @trigger('animationsChange')
 

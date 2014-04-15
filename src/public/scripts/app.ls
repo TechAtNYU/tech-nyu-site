@@ -99,6 +99,8 @@ define([
             transitionPoints[$(linkElm).attr('data-transitionpoint')][1]
       );
 
+      console.log('Initializing skrollr with transitionPoints', transitionPoints)
+
       $(document).on('animationsChange', (ev, data) -> 
         if data?.keframesOnly 
           skrollrStylesheets.registerKeyframeChange! 
@@ -112,7 +114,7 @@ define([
     # transition points. Similarly, bg must be positioned before 
     # the section container calculates the initial offset
     # positions. Could event some of this; not worth the work now.
-    leftSidebar.attachTo('header')
+    leftSidebar.attachTo('body')
     digestSignup.attachTo('#digestForm')
     nav.attachTo('nav')
     sectionBg.attachTo('.bg.starter', {isHomeSection: true})

@@ -18,6 +18,27 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       | otherwise =>
             @$sections.eq(i).offset!.top
 
+    @determineAnimationMode = ->
+      self = @
+      if !@sassVars.largeDesignApplies!
+        "scroll" 
+      else
+        mode = "paginated"
+        @$sections.each((i) ->
+          $section = $(@)
+          if ($section.outerHeight! + self.getPaginatedMarginTop! - $('nav').height!) > $(window).outerHeight!
+            mode := "scroll"
+            false
+        )
+        mode
+
+    # The top margin that each section would have were we to 
+    # be in the paginated design. Useful for seeing whether 
+    # sections would fit on screen in that design, and simulating
+    # the position of the first screen in the scrolling esign
+    @getPaginatedMarginTop = ->
+      parseFloat(@sassVars.largeDesignSectionMarginTop)*parseFloat($('html').css('font-size'))
+
     @setSectionAnimations = ->
       # figure out whether we're dealing with
       # scrolling or paginated sections
@@ -31,7 +52,8 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         return
 
       self = @
-      sectionCount = @$sections.length
+      sectionCount = @$sections.length                
+      currDesignKey = if @sassVars.largeDesignApplies! then \LARGE else \SMALL
 
       # we'll populate this with scroll offsets defining
       # when each section is coming on screen, when it's
@@ -40,23 +62,36 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       # component, for animating colors).
       sectionTransitionPoints = []
 
+      # if we're on a large design but scrolling, we need to push the first section past
+      # the intro animation, but then we need to pull it back up if we switch back to
+      # paginated mode or to the small designs.
+      if(newMode == "scroll" and currDesignKey == \LARGE)
+          wouldBeOffsetTop = 
+            (@sassVars.firstPanelUpStart + 
+             @getPaginatedMarginTop! + 
+             @sassVars.interPanelDistance + 
+             @sassVars.firstPanelExtraPause) 
+          @$sections.eq(0).css('margin-top',  wouldBeOffsetTop + 'px')
+      else if(newMode == "paginated" || currDesignKey == \SMALL)
+          @$sections.eq(0).css('margin-top', '') # animation will handle this.
+
       # setup animations for scrolling sections
       # at the large or small designs
       if @animationMode == "scroll"
-        # scrolling doesn't (for now) actually require any special
-        # animation, but only sending out the transition points
         navHeight     = $('nav').outerHeight!
-        currDesignKey = if @sassVars.largeDesignApplies! then \LARGE else \SMALL
         scrollTop     = @$window.scrollTop!
-
-        if currDesignKey is \LARGE
-          @$sections.eq(0).css('margin-top', '+=' + (@sassVars.firstPanelUpStart + @sassVars.firstPanelExtraPause) + 'px')
 
         @$sections.each((i) !->
           sectionOffset = self.getAnimatedOffsetTopForSection(i, currDesignKey, self.animationMode)
           sectionAtTop  = (sectionOffset - navHeight)
-          sectionTransitionPoints[*] = [(sectionAtTop - 35), (sectionAtTop+1)] # + 1 covers rounding errors
+          sectionTransitionPoints[*] = [(sectionAtTop - 35), (sectionAtTop+1)]
+
+          # scrolling doesn't actually require any special animation (just sending 
+          # out the transition points), but we still need to clear old animations.
+          # (just have to specify the right properties for skrollr to clear)
+          self.animate($(@), \LARGE, {0: "position:static;"}, true)
         )
+
 
       # setup animations for paginated sections
       # for now, this can only be on large designs
@@ -100,20 +135,10 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
           self.animate($section, \LARGE, largeDesignKeyframes)
           sectionTransitionPoints[*] = [startUp, endValue]
         )
+
       @trigger('sectionsTransitionPointsChange', {transitionPoints: sectionTransitionPoints})
       @trigger('animationsChange', {keframesOnly: true})
 
-    @determineAnimationMode = ->
-      if !@sassVars.largeDesignApplies!
-        "scroll" 
-      else
-        mode = "paginated"
-        @$sections.each((i) ->
-          if $(@).outerHeight() > $(window).outerHeight!
-            mode := "scroll"
-            false
-        )
-        mode
 
     @after('initialize', ->
       @$sections = @select(\sectionsSelector)
