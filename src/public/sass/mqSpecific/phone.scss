@@ -188,3 +188,7 @@ h2, .h2 {
         padding-top: $outerPaddingPx
     ));
 }
+
+.objective.third .bg {
+    background-position: center 1%; //a hack for the current hacknights image
+}
