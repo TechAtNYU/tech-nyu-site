@@ -1,4 +1,3 @@
-
 define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
   defineComponent(->
@@ -8,8 +7,8 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
     @animationMode
 
-    @getAnimatedOffsetTopForSection = (i, designKey) ->
-      | @animationMode == 'paginated' =>
+    @getAnimatedOffsetTopForSection = (i, designKey, animationMode) ->
+      | animationMode == 'paginated' =>
           if designKey == \SMALL 
             "NOT SUPPORTED. SEE @determineAnimationMode"
           if designKey == \LARGE
@@ -54,7 +53,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
           @$sections.eq(0).css('margin-top', '+=' + (@sassVars.firstPanelUpStart + @sassVars.firstPanelExtraPause) + 'px')
 
         @$sections.each((i) !->
-          sectionOffset = self.getAnimatedOffsetTopForSection(i, currDesignKey)
+          sectionOffset = self.getAnimatedOffsetTopForSection(i, currDesignKey, self.animationMode)
           sectionAtTop  = (sectionOffset - navHeight)
           sectionTransitionPoints[*] = [(sectionAtTop - 35), (sectionAtTop+1)] # + 1 covers rounding errors
         )
@@ -65,8 +64,8 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       else if @animationMode == "paginated"
         @$sections.each((i) !->
           $section = $(@)
-          startUp = self.getAnimatedOffsetTopForSection(i, \LARGE)
-          pauseOnScreen = self.getAnimatedOffsetTopForSection(i+1, \LARGE)
+          startUp = self.getAnimatedOffsetTopForSection(i, \LARGE, self.animationMode)
+          pauseOnScreen = self.getAnimatedOffsetTopForSection(i+1, \LARGE, self.animationMode)
           endValue = startUp + self.sassVars.interPanelDistance + (if i==0 then self.sassVars.firstPanelExtraPause else 0)
 
           largeDesignKeyframes = do
