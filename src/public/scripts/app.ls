@@ -11,12 +11,8 @@ requirejs.config(
         "skrollr-stylehseets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
         "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
         "jquery.flexisel": "flexisel/js/jquery.flexisel"
-        #jquery:
-        #  '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min'
-        #  'jquery/dist/jquery.min'        
     shim:
         'jquery.flexisel':
-          #deps: ['jquery']
           exports: 'jQuery.fn.flexisel'
         'skrollr': 
             exports: 'skrollr'
@@ -54,7 +50,7 @@ define([
       if transitionPoints.length > 0 then $(document).trigger('readyForSkrollr')
     );
 
-    $(document).one('readyForSkrollr', (ev, data) ->
+    $(document).one('readyForSkrollr', ->
       s := skrollr.init(do
         easing:
           swing2: (percentComplete) ->

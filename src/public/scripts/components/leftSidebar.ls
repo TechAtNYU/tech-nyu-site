@@ -79,13 +79,15 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
           @select('taglineWrapper').insertBefore('nav')
           @select('upcoming').insertAfter('nav')
         else
-          @select('taglineWrapper').add(@select('upcoming')).prependTo('#skrollr-body')
+          # can't use @select because the elems may not be
+          # in header any more.
+          $('#info, #upcoming').prependTo('#skrollr-body')
 
         @trigger('animationsChange')
 
     @after('initialize', ->
-      @on(window, "resize", @setupAnimations);
       @on(window, "resize", @moveElementsForMobileSkrollr);
+      @on(window, "resize", @setupAnimations);
       @on(@$node, "digestDetailsShown", @handleDigestDetailsShown);
       @on(@$node, "digestDetailsHidden", @handleDigestDetailsHidden);
       @on(@select('moreEventsButton'), 'click', @handleMoreEventsButton);
