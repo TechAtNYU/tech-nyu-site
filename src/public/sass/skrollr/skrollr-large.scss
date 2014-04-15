@@ -14,7 +14,7 @@ $interPanelDistance: 100;
 $firstPanelExtraPause: 120;
 $firstPanelUpStart: $navCascadeEnd - 165;
 $firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
-$colorChangeStartDelay: 55;
+$colorChangeLength: 35;
 
 @mixin ease($property, $easing, $value) {
    #{$property + "["+ $easing + "]"}: $value;
@@ -56,31 +56,6 @@ $colorChangeStartDelay: 55;
     }
 }
 
-@-skrollr-keyframes logoRestyleToTopBar {
-    0 {
-        @include ease(fill, sqrt, toHslString($logoStartColor));
-    }
-    #{$navCascadeEnd - 50} {
-        @include ease(fill, sqrt, toHslString($logoEndColor));
-    }
-
-    @for $i from 1 through 5 {
-        @if($i==1) {
-          #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause)} {
-            fill: toHslString(nth($navInactiveTextColors, $i+1));
-          }
-        }
-          #{$firstPanelUpEnd + $firstPanelExtraPause + $i*($interPanelDistance + $onPanelPause) + $onPanelPause + $colorChangeStartDelay} {
-            dummy: true;
-          }
-        @if($i!=5) {
-          #{$firstPanelUpEnd + $firstPanelExtraPause + ($i+1)*($interPanelDistance + $onPanelPause)} {
-            fill: toHslString(nth($navInactiveTextColors, $i+2));
-          }
-        }
-    } 
-}
-
 @-skrollr-keyframes scrollCueFadeOut {
     #{$firstPanelUpStart} {
         opacity: 1;
@@ -88,24 +63,6 @@ $colorChangeStartDelay: 55;
     #{$firstPanelUpEnd} {
         opacity: 0;
     }
-}
-
-@-skrollr-keyframes sectionStarter {
-  #{$firstPanelUpStart} {
-    top: 100%;
-    position: fixed;
-    margin-top: 0px;
-  }
-
-  #{$firstPanelUpEnd} {
-    top: 0%;
-    position: fixed;
-    margin-top: $headerAnimEnd+"px";
-  }
-
-  #{$firstPanelUpEnd + 1} {
-    position: static;
-  }
 }
 
 @for $i from 1 through 7 {
@@ -228,9 +185,6 @@ $colorChangeStartDelay: 55;
 
 #logo {
   -skrollr-animation-name: logoToTopLeft;
-  svg {
-    -skrollr-animation-name: logoRestyleToTopBar;
-  }
 }
 
 #scrollCue {

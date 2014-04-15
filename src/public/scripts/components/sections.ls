@@ -48,6 +48,10 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
         navHeight     = $('nav').outerHeight!
         currDesignKey = if @sassVars.largeDesignApplies! then \LARGE else \SMALL
         scrollTop     = @$window.scrollTop!
+
+        if currDesignKey is \LARGE
+          @$sections.eq(0).css('margin-top', '+=' + (@sassVars.firstPanelUpStart + @sassVars.firstPanelExtraPause) + 'px')
+
         @$sections.each((i) !->
           sectionOffset = self.getAnimatedOffsetTopForSection(i, currDesignKey)
           sectionAtTop  = (sectionOffset - navHeight)
@@ -104,7 +108,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       else
         mode = "paginated"
         @$sections.each((i) ->
-          if $(@).outerHeight(true) > $(window).outerHeight!
+          if $(@).outerHeight() > $(window).outerHeight!
             mode := "scroll"
             false
         )

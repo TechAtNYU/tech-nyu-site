@@ -35,7 +35,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
 
       smallKeyframes = {}
       largeKeyframes = {}
-      colorChangeStartDelay = @sassVars.colorChangeStartDelay
+      largeLogoKeyframes = {}
       navHeight = $('nav').outerHeight!
       lastIndex = data.transitionPoints.length - 1
 
@@ -46,8 +46,11 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
         'box-shadow[sqrt]': "hsla(0, 0%, 25%, 0.7) 0px 0px 0px 0px"
 
       largeKeyframes[@sassVars.headerAnimEnd] = do
-        'background-color': @sassVars.sectionColorsRGB[0]
+        'background-color': @sassVars.sectionColorsRGBA[0]
         'box-shadow[sqrt]': "hsla(0, 0%, 25%, 0.6) 0px 0px 2px 1px"
+
+      largeLogoKeyframes[0] = "fill[sqrt]:" + @sassVars.logoStartColor + ';'
+      largeLogoKeyframes[@sassVars.navCascadeEnd] = "fill[sqrt]:" + @sassVars.navInactiveTextColors[0] + ';'
 
       # remove old ol animations, as the transition points
       # have changed. (Then we rebuild them below)
@@ -60,18 +63,21 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
 
         smallKeyframes[start] = "dummy: true";
         smallKeyframes[end] = do
-          "background-color": @sassVars.sectionColorsRGB[i]
+          "background-color": @sassVars.sectionColorsRGBA[i]
           "color": @sassVars.navInactiveTextColors[i]
           "fill": @sassVars.navInactiveTextColors[i]
 
         # skip changing the color of the first section on the 
         # large design (messes with some of the cascade effects).
-        if i != 0
-          largeKeyframes[start + colorChangeStartDelay] = "dummy: true";
+        if i != 0 
+          largeKeyframes[end - @sassVars.colorChangeLength] = "dummy: true";
           largeKeyframes[end] = do
-            "background-color": @sassVars.sectionColorsRGB[i]
+            "background-color": @sassVars.sectionColorsRGBA[i]
             "color": @sassVars.navInactiveTextColors[i]
             "fill": @sassVars.navInactiveTextColors[i]
+
+          largeLogoKeyframes[end - @sassVars.colorChangeLength] = "dummy:true;";
+          largeLogoKeyframes[end] = "fill:" + @sassVars.navInactiveTextColors[i] + ';';
 
         # in the small design, I have to not only animate 
         # the color, but also the naviation text
@@ -116,6 +122,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       );
 
       @animate(@$node, \LARGE, largeKeyframes, true)
+      @animate(@$logo.find('svg'), \LARGE, largeLogoKeyframes, true)
       @animate(@$node, \SMALL, smallKeyframes, true)
       @trigger('animationsChange', {keframesOnly: true})
 

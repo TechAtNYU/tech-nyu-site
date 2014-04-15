@@ -42,6 +42,7 @@ define([
   "components/sections"
   "components/nav"
   ], (flight, $, carousel, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
+  s = null;
   $(->
 
     # setup vars for the skrollr listener below
@@ -59,7 +60,7 @@ define([
     );
 
     $(document).one('readyForSkrollr', (ev, data) ->
-      s = skrollr.init(do
+      s := skrollr.init(do
         easing:
           swing2: (percentComplete) ->
             Math.pow(percentComplete, 7)
@@ -147,5 +148,6 @@ define([
         }
       }
     );
+    s.refresh!
   );
 )

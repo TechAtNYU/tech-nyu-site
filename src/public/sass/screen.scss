@@ -109,7 +109,7 @@
 
 @media (min-width: 1200px) {
     @include stretcher(21px, 30px);
-    nav li {
+    nav li a {
         position: relative;
         top: 1px; //an optical corrction for zooming.
     }
