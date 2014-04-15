@@ -85,8 +85,8 @@ data =
       img: "nyu_stacked_color.jpg"
       url: ""
     * name: "CaterCow"
-      img: "pivotal.png"
-      url: "catercow.jpg" 
+      img: "catercow.jpg" 
+      url: ""
 
   channels:
     * name: "Freshman Circuit"

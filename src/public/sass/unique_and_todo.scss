@@ -80,6 +80,7 @@ $imageMaxWidth: 215px;
 
 .nbs-flexisel-inner {
   position: relative;
+  height: $imageMaxHeight;
 }
 .nbs-flexisel-nav-left, .nbs-flexisel-nav-right {
   top: 0 !important;
