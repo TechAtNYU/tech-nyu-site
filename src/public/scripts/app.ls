@@ -12,7 +12,7 @@ requirejs.config(
         "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
         "jquery.flexisel": "flexisel/js/jquery.flexisel"
         jquery:
-          '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min'
+          'http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min'
           'jquery/dist/jquery.min'        
     shim:
         'jquery.scrollTo':
