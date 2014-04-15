@@ -38,7 +38,7 @@
     "squirejs": "~0.1.0",
     "almond": "~0.2.7",
     "event-stream": "3.1.x",
-    "gulp": "3.5.x",
+    "gulp": "3.6.x",
     "gulp-ruby-sass": "0.4.x",
     "gulp-livescript": "0.2.x",
     "gulp-util": "2.2.x",
