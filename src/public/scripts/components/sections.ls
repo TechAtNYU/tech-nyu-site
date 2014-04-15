@@ -1,3 +1,4 @@
+
 define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
 
   defineComponent(->
@@ -66,6 +67,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
           $section = $(@)
           startUp = self.getAnimatedOffsetTopForSection(i, \LARGE)
           pauseOnScreen = self.getAnimatedOffsetTopForSection(i+1, \LARGE)
+          endValue = startUp + self.sassVars.interPanelDistance + (if i==0 then self.sassVars.firstPanelExtraPause else 0)
 
           largeDesignKeyframes = do
             # move it off screen
@@ -97,7 +99,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
             delete largeDesignKeyframes[pauseOnScreen + self.sassVars.interPanelDistance]
 
           self.animate($section, \LARGE, largeDesignKeyframes)
-          sectionTransitionPoints[*] = [startUp, startUp + self.sassVars.interPanelDistance]
+          sectionTransitionPoints[*] = [startUp, endValue]
         )
       @trigger('sectionsTransitionPointsChange', {transitionPoints: sectionTransitionPoints})
       @trigger('animationsChange', {keframesOnly: true})
