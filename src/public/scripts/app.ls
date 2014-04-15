@@ -11,15 +11,12 @@ requirejs.config(
         "skrollr-stylehseets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
         "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
         "jquery.flexisel": "flexisel/js/jquery.flexisel"
-        jquery:
-          'http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min'
-          'jquery/dist/jquery.min'        
+        #jquery:
+        #  '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min'
+        #  'jquery/dist/jquery.min'        
     shim:
-        'jquery.scrollTo':
-          deps: ['jquery']
-          exports: 'jQuery.fn.scrollTo'
         'jquery.flexisel':
-          deps: ['jquery']
+          #deps: ['jquery']
           exports: 'jQuery.fn.flexisel'
         'skrollr': 
             exports: 'skrollr'
@@ -30,7 +27,6 @@ requirejs.config(
 
 define([
   "flight/component"
-  "jquery"
   "jquery.flexisel"
   "skrollr"
   "skrollr-stylehseets"
@@ -40,7 +36,7 @@ define([
   "components/sectionBg"
   "components/sections"
   "components/nav"
-  ], (flight, $, carousel, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
+  ], (flight, carousel, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
   s = null;
   $(->
 

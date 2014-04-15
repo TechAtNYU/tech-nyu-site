@@ -1,5 +1,5 @@
 
-define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
+define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
   defineComponent(->
     @defaultAttrs(do
