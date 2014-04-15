@@ -73,9 +73,9 @@
             <h2 class="h6" data-alt-title="Upcoming Events">Next Event</h2>
           </div>
           <div class="content">
-            <a class="event with-flatButton" href="">
-              <strong class="title h5">What Designers Actually Do</strong>
-              <span class="caption">A Workshop with Anne-Laure Fayard <span class="more">More&nbsp;info&hellip;</span></span>
+            <a class="event with-flatButton" href="{{ nextEvent.moreInfoUrl }}">
+              <strong class="title h5"> {{ nextEvent.shortTitle }}</strong>
+              <span class="caption">{{ nextEvent.shortDescription }} <span class="more">More&nbsp;info&hellip;</span></span>
               <button class="flatButton round" id="more-events">More Events</button>
             </a>
           </div>

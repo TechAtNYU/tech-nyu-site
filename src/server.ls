@@ -12,6 +12,11 @@ for own name, filter of nunjucks-helper.filters
 data = 
   now: new Date!
 
+  nextEvent:
+    shortTitle: "Final Hack Night at Microsoft"
+    shortDescription: "A Hack Night on Crowd Knowledge with a talk by Maria Naggaga."
+    moreInfoUrl: "http://www.meetup.com/nyhackdays/events/175763952/"
+
   sponsors:
     * name: "Meetup"
       img: "meetup.png"    
