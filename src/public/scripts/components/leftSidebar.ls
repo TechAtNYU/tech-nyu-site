@@ -63,6 +63,8 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       if @sassVars.largeDesignApplies!
         @select(\tagline).add(@select(\logo)).animate({margin-top: "+=" + data.height}, 140, @animationsProxy)
 
+    @handleMoreEventsButton = (ev, data) ->
+
     @currDesignKey
     @moveElementsForMobileSkrollr = ->
       oldMode = @currDesignKey

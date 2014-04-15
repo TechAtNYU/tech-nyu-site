@@ -108,3 +108,10 @@
   left: 0;
   z-index: -2;
 }
+
+.round {
+    border-radius: 50% !important;
+    text-align: center;
+}
+
+.progressively-disclose:not(:hover) { -webkit-transition: color 1s; transition: color 1s; color: inherit;  }

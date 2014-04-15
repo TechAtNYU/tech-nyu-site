@@ -29,7 +29,6 @@
 }
 
 .event {
-  text-decoration: none;
   display: block;
   position: relative;
 
@@ -51,22 +50,22 @@
   @include rs((
     padding: $outerPaddingPx
   ));
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .flatButton {
-  background: transparent;
-  line-height: inherit;
   font-family: inherit;
-  color: inherit;
+  font-size: 1em;
+  line-height: 1em; //padding does all the height work.
+  font-weight: 400;
+  text-decoration: none;
+
+  display: inline-block;
   border-width: 1px;
   border-style: solid;
-  border-color: inherit;
-  font-size: 1em;
-  font-weight: 400;
-
-  display: block;
-  border-radius: 50%;
-  padding: .35em .5em;
+  border-radius: .6rem;
+  padding: .65rem .7rem .75rem;
 }
 
 
@@ -82,6 +81,10 @@
       padding-left: $outerPaddingPx*.5
     ));
 
+    &:first-child {
+      padding-left: 0;
+    }
+
     &:last-child {
       margin-right:0 !important;
     }
@@ -96,5 +99,5 @@
 }
 
 .initiative {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }

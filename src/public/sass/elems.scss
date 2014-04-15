@@ -5,13 +5,16 @@ html {
 
 body {
   font-family: $bodyStack;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0 auto;
 }
 
 p {
     max-width: 35em;
-    font-size: fontSize(3);
+    @include rs((
+      font-size: nth($scale, 3),
+      margin-bottom: nth($scale, 3)/2
+    ));
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 { 
@@ -23,7 +26,8 @@ h1, .h1 {
   @include rs((
     font-size: nth($scale, 7),
     line-height: nth($lineHeights, 7),
-    margin-bottom: nth($scale, 7),
+    margin-bottom: nth($scale, 7)*.6666,
+    margin-top: nth($scale, 7)*.333333
   ));
 }
 
@@ -60,6 +64,7 @@ h6, .h6 {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 input {
@@ -112,4 +117,8 @@ nav {
       }
     }
   }
+}
+
+dt {
+  font-style: italic;
 }
