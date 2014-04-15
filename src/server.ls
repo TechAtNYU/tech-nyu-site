@@ -12,19 +12,6 @@ for own name, filter of nunjucks-helper.filters
 data = 
   now: new Date!
 
-  initiatives:
-    * name: "Freshman Circuit"
-      description: ""
-      resources: []
-    * name: "Programming & Design Introductory Workshops"
-      description: ""
-    * name: "Hack Days"
-    * name: "Design Days" 
-    * name: "Game Days"
-    * name: "Hack Nights"
-    * name: "Designathons"
-    * name: "Startup Series"
-    * name: "Demo Days"
   sponsors:
     * name: "Meetup"
       img: "meetup.png"    

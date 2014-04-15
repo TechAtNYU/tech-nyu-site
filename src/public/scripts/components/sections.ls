@@ -10,7 +10,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
     @getAnimatedOffsetTopForSection = (i, designKey) ->
       | @animationMode == 'paginated' =>
           if designKey == \SMALL 
-            "TODO. NOT YET SUPPORTED. SEE @determineAnimationMode"
+            "NOT SUPPORTED. SEE @determineAnimationMode"
           if designKey == \LARGE
             @sassVars.firstPanelUpStart + 
             (if i!=0 then @sassVars.firstPanelExtraPause else 0) + 
@@ -51,10 +51,7 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
         @$sections.each((i) !->
           sectionOffset = self.getAnimatedOffsetTopForSection(i, currDesignKey)
           sectionAtTop  = (sectionOffset - navHeight)
-          # @todo account for margin-top on each section (what the +/- is) in a
-          # less janky way, possibly using the @sassVars.largeDesignSectionMarginTop,
-          # e.g. making a dummy element that many rems & then measuring its px height
-          sectionTransitionPoints[*] = [(sectionAtTop - 30), sectionAtTop + 10]
+          sectionTransitionPoints[*] = [(sectionAtTop - 35), (sectionAtTop+1)] # + 1 covers rounding errors
         )
 
       # setup animations for paginated sections

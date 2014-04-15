@@ -36,7 +36,9 @@ gulp.task('clean', ->
 )
 
 gulp.task('copy', [\clean],  ->
-  gulp.src(globs.toCopyDirectly).pipe(gulp.dest(paths.build))
+  gulp.src(globs.toCopyDirectly)
+    .pipe(changed(paths.build))
+    .pipe(gulp.dest(paths.build))
 )
 
 gulp.task('sass', [\clean],  ->
