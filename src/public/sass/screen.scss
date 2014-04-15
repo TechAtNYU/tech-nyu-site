@@ -7,6 +7,9 @@
 @import "interactions";
 @import "unique_and_todo";
 
+//third-party components
+@import "../scripts/bower_components/flexisel/css/style.css";
+
 @include scalers;
 
 //import the basic styles for each design

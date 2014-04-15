@@ -8,6 +8,8 @@
   box-sizing: content-box;
   position: fixed;
   font-size: 1em;
+  margin-top: 0;
+  margin-bottom: 0;
   @include rs((
     padding-left: $outerPaddingPx+2px
   ));
@@ -56,4 +58,59 @@
 
 .calendar svg {
   fill: inherit; //shouldn't be needed; a chrome bug.
+}
+
+
+//carousel vars
+$imagePadding: 10px;
+$imageMaxHeight: 215px;
+$imageMaxWidth: 215px;
+
+.nbs-flexisel-container {
+  @include rs((
+    margin-top: $outerPaddingPx/2
+  ));
+  margin: 0 auto;
+}
+
+.nbs-flexisel-item {
+  padding: 0 $imagePadding !important;
+  height: $imageMaxHeight;
+}
+
+.nbs-flexisel-inner {
+  position: relative;
+}
+.nbs-flexisel-nav-left, .nbs-flexisel-nav-right {
+  top: 0 !important;
+  height: 100%;
+  background-color: white;
+  background-position: 1px center;
+  opacity: 1 !important;
+  width: 25px !important;
+  z-index: 0;
+}
+
+.nbs-flexisel-nav-left {
+  left: 0 !important;
+}
+
+.nbs-flexisel-nav-right {
+  right: 0 !important;
+  background-position: 5px center;
+  box-sizing: content-box;
+  @include rs((
+    padding-right: $outerPaddingPx
+  ));
+}
+
+.nbs-flexisel-item img {
+  width: $imageMaxWidth;
+  height: auto !important;
+  position: absolute;
+  top: 0;
+  bottom:0;
+  margin: auto 0;
+  left: $imagePadding;
+  box-sizing: content-box;
 }

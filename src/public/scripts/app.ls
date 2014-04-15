@@ -6,10 +6,11 @@ requirejs.config(
         mixins: '../mixins'
         components: '../components'
 
-        flight: 'flight/lib'
+        "flight": 'flight/lib'
         "skrollr": 'skrollr/dist/skrollr.min'
         "skrollr-stylehseets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
-        "skrollr-menu": 'skrollr-menu/src/skrollr.menu'
+        "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
+        "jquery.flexisel": "flexisel/js/jquery.flexisel"
         jquery:
           'http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery'
           'jquery/dist/jquery.min'
@@ -18,6 +19,9 @@ requirejs.config(
         'jquery.scrollTo':
           deps: ['jquery']
           exports: 'jQuery.fn.scrollTo'
+        'jquery.flexisel':
+          deps: ['jquery']
+          exports: 'jQuery.fn.flexisel'
         'skrollr': 
             exports: 'skrollr'
         'skrollr-menu': 
@@ -28,6 +32,7 @@ requirejs.config(
 define([
   "flight/component"
   "jquery"
+  "jquery.flexisel"
   "skrollr"
   "skrollr-stylehseets"
   "skrollr-menu"
@@ -36,7 +41,7 @@ define([
   "components/sectionBg"
   "components/sections"
   "components/nav"
-  ], (flight, $, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
+  ], (flight, $, carousel, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
   $(->
 
     # setup vars for the skrollr listener below
@@ -47,6 +52,7 @@ define([
       transitionPoints := data.transitionPoints
       if dropdownNav then $(document).trigger('readyForSkrollr')
     );
+
     $(document).on('smallNavReady', (ev, data) ->
       dropdownNav := $('#nav-dropdown')
       if transitionPoints.length > 0 then $(document).trigger('readyForSkrollr')
@@ -101,7 +107,6 @@ define([
             transitionPoints[$(linkElm).attr('data-transitionpoint')][1]
       );
 
-
       $(document).on('animationsChange', (ev, data) -> 
         if data?.keframesOnly 
           skrollrStylesheets.registerKeyframeChange! 
@@ -122,5 +127,25 @@ define([
     sections.attachTo('#content')
     sectionBg.attachTo('.objective .bg')
     void;
+  );
+  $(window).load(->
+    $('#carousel').flexisel(do
+      visibleItems: 6,
+      enableResponsiveBreakpoints: true,
+      responsiveBreakpoints: {
+        portrait: {
+          changePoint:480,
+          visibleItems: 1
+        }, 
+        landscape: {
+          changePoint:640,
+          visibleItems: 2
+        },
+        tablet: {
+          changePoint:768,
+          visibleItems: 3
+        }
+      }
+    );
   );
 )
