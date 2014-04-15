@@ -12,8 +12,9 @@ define(["flight/component", "mixins", "jquery"], (defineComponent, mixins, $) ->
       @trigger('digestDetailsShown', {'height': details.outerHeight!})
 
     @hideDetails = ->
-      details = @select(\details).hide!.addClass(\hidden)
+      details = @select(\details)
       height = details.outerHeight!
+      details.hide!.addClass(\hidden)
       @trigger('digestDetailsHidden', {'height': height})
 
     @after('initialize', ->
