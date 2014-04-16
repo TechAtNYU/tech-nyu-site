@@ -137,14 +137,21 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         )
 
       @trigger('sectionsTransitionPointsChange', {transitionPoints: sectionTransitionPoints})
-      @trigger('animationsChange', {keframesOnly: true})
 
+    @preSkrollr = ->
+      @$sections = @select(\sectionsSelector)
+      @$window   = $(window)
+      @setSectionAnimations!
 
     @after('initialize', ->
-      @$sections = @select(\sectionsSelector)
-      @$window   = $(window) 
-      @setSectionAnimations!
-      @on(window, "resize", @setSectionAnimations);
+      @preSkrollr!
+      @on(document, 'skrollrInitialized', ~>
+        @on(window, "resize", ~> 
+          @setSectionAnimations!
+          @trigger('animationsChange', {keframesOnly: true});
+        );
+        @trigger('animationsChange', {keframesOnly: true});
+      ); 
     )
 
   , mixins.managesAnimations, mixins.usesSassVars)
