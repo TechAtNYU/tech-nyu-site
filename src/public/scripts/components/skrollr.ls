@@ -58,6 +58,8 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
             @transitionPoints[$(linkElm).attr('data-transitionpoint')][1]
       );
 
+      # A generic listener. Any component that's explicitly
+      # changing animations (i.e. setting keyframes), can call
       $(document).on('animationsChange', (ev, data) -> 
         if data?.keframesOnly 
           skrollrStylesheets.registerKeyframeChange! 
@@ -65,6 +67,10 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
       )
 
       @trigger(document, \skrollrInitialized, {skrollrInstance: s})
+
+      # on initialize, run a refreshf for any pre-initialize skrollr updates.
+      skrollrStylesheets.registerKeyframeChange!
+      s.refresh!
 
     # This method listens for when both the dropdownNav
     # and the transitionPoints have been set, and then

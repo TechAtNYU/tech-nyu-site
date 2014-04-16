@@ -5,15 +5,6 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       sectionsSelector: '.objective'
     )
 
-
-    @getAnimatedOffsetTopForSection = (i, designKey, animationMode) ->
-      | animationMode == 'paginated' =>
-          if designKey == \SMALL 
-            "NOT SUPPORTED. SEE @determineAnimationMode"
-          if designKey == \LARGE
-            @sassVars.firstPanelUpStart + 
-            (if i!=0 then @sassVars.firstPanelExtraPause else 0) + 
-            i*(@sassVars.interPanelDistance + @sassVars.onPanelPause)
     @scrollMode
     @oldScrollMode
     @designKey
@@ -28,6 +19,12 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       if not (@oldScrollMode == @scrollMode == "paginated")
         @setSectionAnimations(@scrollMode, @designKey)
         @trigger('animationsChange', {keframesOnly: true});
+
+    @getAnimatedOffsetTopForSection = (i, scrollMode) ->
+      | scrollMode == 'paginated' =>
+          @sassVars.firstPanelUpStart + 
+          (if i!=0 then @sassVars.firstPanelExtraPause else 0) + 
+          i*(@sassVars.interPanelDistance + @sassVars.onPanelPause)
       | otherwise =>
             @$sections.eq(i).offset!.top
 
@@ -41,18 +38,19 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
     @setSectionAnimations = (scrollMode, designKey) ->
       self = @
-      sectionCount = @$sections.length                
+      sectionCount = @$sections.length
 
-      # we'll populate this with scroll offsets defining
+      # We'll populate this with scroll offsets defining
       # when each section is coming on screen, when it's
       # fully on screen, etc. Will be thrown as event data,
       # which other components can catch (e.g. the nav
       # component, for animating colors).
       sectionTransitionPoints = []
 
-      # if we're on a large design but scrolling, we need to push the first section past
-      # the intro animation, but then we need to pull it back up if we switch back to
-      # paginated mode or to the small designs.
+      # Prep the margin on the first section. If we're on a large design but scrolling,
+      # we need to give it a margin top that pushes it past the intro animation.
+      # But otherwise (i.e. or paginated mode or the small design), we need to remove any
+      # margin that may have been set (which skrollr will add back in the paginated case).
       if(scrollMode == "scroll" and designKey == \LARGE)
           wouldBeOffsetTop = 
             (@sassVars.firstPanelUpStart + 
@@ -65,15 +63,16 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       # at the large or small designs
         navHeight     = $('nav').outerHeight!
       else if(scrollMode == "paginated" || designKey == \SMALL)
+      # Setup animations for scrolling sections at the large or small designs
       if scrollMode == "scroll"
         scrollTop     = @$window.scrollTop!
 
         @$sections.each((i) !->
-          sectionOffset = self.getAnimatedOffsetTopForSection(i, currDesignKey, self.animationMode)
+          sectionOffset = self.getAnimatedOffsetTopForSection(i, scrollMode)
           sectionAtTop  = (sectionOffset - navHeight)
           sectionTransitionPoints[*] = [(sectionAtTop - 35), (sectionAtTop+1)]
 
-          # scrolling doesn't actually require any special animation (just sending 
+          # Scrolling doesn't actually require any special animation (just sending 
           # out the transition points), but we still need to clear old animations.
           # (just have to specify the right properties for skrollr to clear)
           self.animate($(@), \LARGE, {0: "position:static;"}, true)
@@ -85,8 +84,8 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       else if scrollMode == "paginated"
         @$sections.each((i) !->
           $section = $(@)
-          startUp = self.getAnimatedOffsetTopForSection(i, \LARGE, self.animationMode)
-          pauseOnScreen = self.getAnimatedOffsetTopForSection(i+1, \LARGE, self.animationMode)
+          startUp = self.getAnimatedOffsetTopForSection(i, scrollMode)
+          pauseOnScreen = self.getAnimatedOffsetTopForSection(i+1, scrollMode)
           endValue = startUp + self.sassVars.interPanelDistance + (if i==0 then self.sassVars.firstPanelExtraPause else 0)
 
           largeDesignKeyframes = do
@@ -133,7 +132,6 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @preSkrollr!
       @on(document, 'designModeChange', @~handleDesignModeChange)
       @on(document, 'skrollrInitialized', ~>
-        @trigger('animationsChange', {keframesOnly: true});
         @on(window, "resize", @handleResize);
       ); 
     )

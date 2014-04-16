@@ -30,14 +30,14 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
     @hideDropdown = ->
       @$dropdown.addClass('hidden')
 
-    @setAnimations = (ev, data) ->
-      @transitionPoints = data.transitionPoints
+    @setAnimations = (ev, {transitionPoints}) ->
+      @transitionPoints = transitionPoints
 
       smallKeyframes = {}
       largeKeyframes = {}
       largeLogoKeyframes = {}
       navHeight = $('nav').outerHeight!
-      lastIndex = data.transitionPoints.length - 1
+      lastIndex = transitionPoints.length - 1
 
       # animations for the intro screen (large design only)
       largeKeyframes[@sassVars.navCascadeEnd] = do
@@ -58,7 +58,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @animate(@select('calendarLi'), \SMALL, {}, true);
 
       # animations for each section
-      for keyframePair, i in data.transitionPoints
+      for keyframePair, i in transitionPoints
         [start, end] = keyframePair.map(Math.round)
 
         smallKeyframes[start] = "dummy: true";
@@ -114,10 +114,10 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
       # configure the special animation for the calendar icon
       @animate(@select('calendarLi'), \SMALL, do
-        (data.transitionPoints[lastIndex][0] - 1): "dummy:true;"
-        (data.transitionPoints[lastIndex][0]): do
+        (transitionPoints[lastIndex][0] - 1): "dummy:true;"
+        (transitionPoints[lastIndex][0]): do
           'transform': 'translate(0px, ' + (lastIndex*navHeight) + 'px)'
-        (data.transitionPoints[lastIndex][1]): do
+        (transitionPoints[lastIndex][1]): do
           'transform': 'translate(' + -1*(@select('list').width! - @select('calendarLi').width!) + ', ' + (lastIndex+1)*navHeight + 'px)'
       );
 
