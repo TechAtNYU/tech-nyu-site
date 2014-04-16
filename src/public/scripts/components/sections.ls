@@ -19,14 +19,6 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       | otherwise =>
             @$sections.eq(i).offset!.top
 
-
-    # The top margin that each section would have were we to 
-    # be in the paginated design. Useful for seeing whether 
-    # sections would fit on screen in that design, and simulating
-    # the position of the first screen in the scrolling esign
-    @getPaginatedMarginTop = ->
-      parseFloat(@sassVars.largeDesignSectionMarginTop)*parseFloat($('html').css('font-size'))
-
     @setSectionAnimations = (scrollMode, designKey) ->
       self = @
       sectionCount = @$sections.length
@@ -45,17 +37,17 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       if(scrollMode == "scroll" and designKey == \LARGE)
           wouldBeOffsetTop = 
             (@sassVars.firstPanelUpStart + 
-             @getPaginatedMarginTop! + 
+             @sassVars.paginatedMarginTopPx! + 
              @sassVars.interPanelDistance + 
              @sassVars.firstPanelExtraPause) 
           @$sections.eq(0).css('margin-top',  wouldBeOffsetTop + 'px')
 
-      # setup animations for scrolling sections
-      # at the large or small designs
-        navHeight     = $('nav').outerHeight!
       else if(scrollMode == "paginated" || designKey == \SMALL)
+          @$sections.eq(0).css('margin-top', '')
+
       # Setup animations for scrolling sections at the large or small designs
       if scrollMode == "scroll"
+        navHeight     = @sassVars.currentNavHeight!
         scrollTop     = @$window.scrollTop!
 
         @$sections.each((i) !->
