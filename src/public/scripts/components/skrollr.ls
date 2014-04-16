@@ -1,16 +1,32 @@
-define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (defineComponent, skrollr, skrollrStylesheets, skrollrMenu) ->
+define(require, ->
+
+  require! {
+    defineComponent: "flight/component"
+    skrollr
+    mixins
+    'skrollr-menu'
+    'skrollr-stylehseets'
+    'skrollr-menu'
+  };
 
   defineComponent(->
 
     @defaultAttrs(do
       navList: 'nav ol'
+      upcoming: '#upcoming'
+      taglineWrapper: '#info'
+      nav: 'nav'
+      skrollrBody: '#skrollr-body'
+      dropdownNav: '#nav-dropdown'
+      eventsTriggeringRefresh: ''
     )
 
     @transitionPoints = []
     @dropdownNav = null
+    @s = null
 
     @initializeSkrollr = ->
-      s = skrollr.init(do
+      @s = skrollr.init(do
         easing:
           swing2: (percentComplete) ->
             Math.pow(percentComplete, 7)
@@ -51,26 +67,37 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
             @dropdownNav.find('li').removeClass('active').eq(activeIndex).addClass('active')
         )
 
-      skrollrStylesheets.init(s);
-      skrollrMenu.init(s, do
+      skrollrStylesheets.init(@s);
+      skrollrMenu.init(@s, do
         handleLink: (linkElm) ~>
           if @transitionPoints.length > 0
             @transitionPoints[$(linkElm).attr('data-transitionpoint')][1]
       );
 
       # A generic listener. Any component that's explicitly
-      # changing animations (i.e. setting keyframes), can call
-      $(document).on('animationsChange', (ev, data) -> 
+      # changing animations (i.e. setting keyframes) can call this.
+      $(document).on('animationsChange', (ev, data) ~> 
         if data?.keframesOnly 
           skrollrStylesheets.registerKeyframeChange! 
-        else s.refresh(data?.elements || void)
+        else @s.refresh(data?.elements || void)
       )
 
-      @trigger(document, \skrollrInitialized, {skrollrInstance: s})
+      @trigger(document, \skrollrInitialized, {skrollrInstance: @s})
 
-      # on initialize, run a refreshf for any pre-initialize skrollr updates.
+      # on initialize, run a refresh for any pre-initialize skrollr updates.
       skrollrStylesheets.registerKeyframeChange!
-      s.refresh!
+      @s.refresh!
+
+    @after('handleDesignModeChange', @moveElementsForMobileSkrollr)
+    @moveElementsForMobileSkrollr = ->
+      if @oldDesignSizeKey != @newDesignSizeKey
+        if @newDesignSizeKey == \LARGE
+          @select('taglineWrapper').insertBefore(@select('nav'))
+          @select('upcoming').insertAfter(@select('nav'))
+        else
+          @select('taglineWrapper').add(@select('upcoming')).prependTo(@select('skrollrBody'))
+
+        @s.refresh!
 
     # This method listens for when both the dropdownNav
     # and the transitionPoints have been set, and then
@@ -86,14 +113,12 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
         if self.dropdownNav then $(document).trigger('readyForSkrollr')
       )
       .on('smallNavReady', (ev, data) ->
-        self.dropdownNav := $('#nav-dropdown')
+        self.dropdownNav := @select('dropdownNav')
         if self.transitionPoints.length > 0 then $(document).trigger('readyForSkrollr')
       )
       # important to use one, as sectionTransitionPointsChange is triggered a lot.
-      .one('readyForSkrollr', (ev, data) ->
-        self.initializeSkrollr!
-      );
+      .one('readyForSkrollr', @~initializeSkrollr)
     )
 
-  )
+  , mixins.tracksCurrentDesign)
 );

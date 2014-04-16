@@ -10,87 +10,74 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
     )
 
     @setupAnimations = ->
-      upcoming = @select('upcoming')
-      logo     = @select('logo')
-      tagline  = @select('tagline')
-      taglineWrapper = @select(\taglineWrapper)
+      if @designSizeKey is \LARGE
+        $window  = $(window)
+        upcoming = @select('upcoming')
+        logo     = @select('logo')
+        tagline  = @select('tagline')
+        taglineWrapper = @select(\taglineWrapper)
 
-      # variables for the large design
-      upcomingHeight = @select('upcoming').outerHeight()
-      windowHeight = $(window).outerHeight()
-      taglineHeight = tagline.outerHeight()
-      bodyMaxWidth = parseInt(@sassVars.rsBodyMaxWidth)
-      logoMarginLeft = if $(window).outerWidth() > bodyMaxWidth then -1*($(window).outerWidth() - bodyMaxWidth)/2 else 0;
-      logoTop = (windowHeight - upcomingHeight - taglineHeight)/2;
+        # variables for the large design
+        upcomingHeight = upcoming.outerHeight!
+        windowHeight = $window.outerHeight!
+        windowWidth  = $window.outerWidth!
+        taglineHeight = tagline.outerHeight!
+        bodyMaxWidth = parseInt(@sassVars.rsBodyMaxWidth)
+        logoMarginLeft = Math.min((bodyMaxWidth - windowWidth)/2, 0);
+        logoTop = (windowHeight - upcomingHeight - taglineHeight)/2;
 
-      @animate(\tagline, \LARGE, {
-        0: do
-          "top[sqrt]": logoTop + 'px'
-        10: do
-          dummy: true #so skrollr refreshes.
-      })
+        @animate(\tagline, \LARGE, {
+          0: do
+            "top[sqrt]": logoTop + 'px'
+          10: do
+            dummy: true #so skrollr refreshes.
+        })
 
-      @animate(\upcoming, \LARGE, {
-        0: "bottom[sqrt]: 0px",
-        (@sassVars.leftColOut): 'bottom[sqrt]: '+ -1*upcoming.outerHeight! + 'px'
-      })
+        @animate(\upcoming, \LARGE, {
+          0: "bottom[sqrt]: 0px",
+          (@sassVars.leftColOut): 'bottom[sqrt]: '+ -1*upcoming.outerHeight! + 'px'
+        })
 
-      @animate(\taglineWrapper, \LARGE, {
-        0: do
-          "left[sqrt]": \0px
-          "bottom": upcomingHeight + \px
+        @animate(\taglineWrapper, \LARGE, {
+          0: do
+            "left[sqrt]": \0px
+            "bottom": upcomingHeight + \px
 
-        (@sassVars.leftColOut): "left[sqrt]: " + -1*taglineWrapper.outerWidth! + 'px'
-      })
-      
-      @animate(\logo, \LARGE, {
-        0: do
-          'top[sqrt]': logoTop + 'px'
-          'margin-left[sqrt]': logoMarginLeft + 'px'
-        (@sassVars.navCascadeEnd - 50): do
-          'top[sqrt]': \0px
-          'margin-left[sqrt]': \0px
-      })
+          (@sassVars.leftColOut): "left[sqrt]: " + -1*taglineWrapper.outerWidth! + 'px'
+        })
+        
+        @animate(\logo, \LARGE, {
+          0: do
+            'top[sqrt]': logoTop + 'px'
+            'margin-left[sqrt]': logoMarginLeft + 'px'
+          (@sassVars.navCascadeEnd - 50): do
+            'top[sqrt]': \0px
+            'margin-left[sqrt]': \0px
+        })
 
-      @trigger('animationsChange', {keframesOnly: true});
+        @trigger('animationsChange', {keframesOnly: true});
 
-    @animationsProxy = -> $.proxy(@setupAnimations, @)
+    @animationsProxy = @~setupAnimations
 
     @handleDigestDetailsShown = (ev, data) ->
-      if @sassVars.largeDesignApplies!
+      if @designSizeKey is \LARGE
         @select(\tagline).add(@select(\logo)).animate({margin-top: "-=" + data.height}, 140, @animationsProxy)
 
     @handleDigestDetailsHidden = (ev, data) ->
-      if @sassVars.largeDesignApplies!
+      if @designSizeKey is \LARGE
         @select(\tagline).add(@select(\logo)).animate({margin-top: "+=" + data.height}, 140, @animationsProxy)
 
     @handleMoreEventsButton = (ev, data) ->
       ev.preventDefault!
       $('a[href=#event-calendar]').get(0).click!
 
-    @currDesignKey
-    @moveElementsForMobileSkrollr = ->
-      oldMode = @currDesignKey
-      newMode = if @sassVars.largeDesignApplies! then \LARGE else \SMALL
-      @currDesignKey = newMode
-
-      if(oldMode != newMode and !(oldMode==void && newMode==\LARGE))
-        if newMode == \LARGE
-          @select('taglineWrapper').insertBefore('nav')
-          @select('upcoming').insertAfter('nav')
-        else
-          @select('taglineWrapper').add(@select('upcoming')).prependTo('#skrollr-body')
-
-        @trigger('animationsChange')
-
-    @after('initialize', ->
+    @after('initialize', ->      
+      @setupAnimations!
       @on(window, "resize", @moveElementsForMobileSkrollr);
       @on(window, "resize", @setupAnimations);
       @on(@$node, "digestDetailsShown", @handleDigestDetailsShown);
       @on(@$node, "digestDetailsHidden", @handleDigestDetailsHidden);
       @on(@select('moreEventsButton'), 'click', @handleMoreEventsButton);
-      @setupAnimations!
-      @moveElementsForMobileSkrollr!
     )
-  , mixins.managesAnimations, mixins.usesSassVars)
+  , mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars)
 );

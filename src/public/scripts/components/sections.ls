@@ -5,20 +5,11 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       sectionsSelector: '.objective'
     )
 
-    @scrollMode
-    @oldScrollMode
-    @designKey
-
-    @handleDesignModeChange = (ev, {scrollMode, designKey}) ->
-      @oldScrollMode = @scrollMode
-      @scrollMode = scrollMode
-      @designKey = designKey
-
     @handleResize = ->
-      # if we were and still are paginated, we can leave anims as is.
+      # if we were and still are paginated, we can leave 
+      # the animations as is.
       if not (@oldScrollMode == @scrollMode == "paginated")
-        @setSectionAnimations(@scrollMode, @designKey)
-        @trigger('animationsChange', {keframesOnly: true});
+        @setSectionAnimations(@scrollMode, @designSizeKey)
 
     @getAnimatedOffsetTopForSection = (i, scrollMode) ->
       | scrollMode == 'paginated' =>
@@ -122,19 +113,19 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         )
 
       @trigger('sectionsTransitionPointsChange', {transitionPoints: sectionTransitionPoints})
+      @trigger('animationsChange', {keframesOnly: true});
 
     @preSkrollr = ->
       @$sections = @select(\sectionsSelector)
       @$window   = $(window)
-      @setSectionAnimations!
+      @setSectionAnimations(@scrollMode, @designSizeKey)
 
     @after('initialize', ->
       @preSkrollr!
-      @on(document, 'designModeChange', @~handleDesignModeChange)
       @on(document, 'skrollrInitialized', ~>
         @on(window, "resize", @handleResize);
       ); 
     )
 
-  , mixins.managesAnimations, mixins.usesSassVars)
+  , mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars)
 );

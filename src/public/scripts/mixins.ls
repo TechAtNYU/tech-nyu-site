@@ -68,6 +68,15 @@ define(
       # finally, stringify the whole finalKeyframes object and dump it in the dom.
       $elem.attr(attr, JSON.stringify(finalKeyframes));
 
+  tracksCurrentDesign: !->
+    @after('initialize', ->
+      @on(document, 'designModeChange', @~handleDesignModeChange)
+    )
+
+    @handleDesignModeChange = (ev, data) ->
+      @{oldScrollMode, scrollMode, oldDesignSizeKey, designSizeKey} = data
+
+
   usesSassVars: !->
     @sassVars = 
       # large design animation variables
@@ -81,15 +90,18 @@ define(
       onPanelPause: 85
       colorChangeLength: 35
       firstPanelUpEnd:~ -> @firstPanelUpStart + @interPanelDistance
-      largeDesignSectionMarginTop: \5.1875rem
+      #largeDesignSectionMarginTop: \5.1875rem
+      paginatedMarginTop: \5.1875rem
 
       rsBodyMaxWidth: \1400px
       largeDesignMinWidth: 920
-      largeDesignApplies: -> !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1500/750)").matches
-
+      #largeDesignApplies: -> !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1500/750)").matches
 
       logoStartColor: "hsl(0, 0%, 95%)"
       sectionColors: ["hsl(14, 68%, 51%)" "hsl(43, 90%, 50%)" "hsl(276, 48%, 35%)" "hsl(140, 74%, 37%)" "hsl(218, 66%, 36%)" "hsl(0, 0%, 10%)"]
       sectionColorsRGBA: ["rgba(215, 85, 45, 1)" "rgba(242, 177, 13, 1)" "rgba(98, 46, 132, 1)" "rgba(25, 164, 71, 1)" "rgba(31, 76, 152, 1)" "rgba(26, 26, 26, 1)"]
       navInactiveTextColors: ["hsl(13, 2%, 16%)" "hsl(42, 0%, 16%)" "hsl(278, 3%, 60%)" "hsl(140, 0%, 20%)" "hsl(214, 4%, 65%)" "hsl(0, 0%, 58%)"]
+
+    @sassVars[\paginatedMarginTopPx] = -> parseFloat(@sassVars.largeDesignSectionMarginTop)*parseFloat($('html').css('font-size'))
+    @sassVars[\currentNavHeight]     = -> $('nav').outerHeight!
 )

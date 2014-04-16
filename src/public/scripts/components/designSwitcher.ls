@@ -1,14 +1,14 @@
-define(["flight/component", "mixins"], (defineComponent, skrollr, skrollrStylesheets, skrollrMenu) ->
+define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
   defineComponent(->
 
-    @sections
-    @oldSizeKey
+    @$sections
+    @oldDesignSizeKey
     @oldScrollMode
-    @currentSizeKey     # LARGE or SMALL
-    @currentScrollMode  # paginated or scroll
+    @designSizeKey    # LARGE or SMALL
+    @scrollMode  # paginated or scroll
 
-    @getSizeKey = -> 
+    @getDesignSizeKey = -> 
       if !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1500/750)").matches
         \LARGE
       else
@@ -16,7 +16,7 @@ define(["flight/component", "mixins"], (defineComponent, skrollr, skrollrStylesh
 
     @getScrollMode = ->
       self = @
-      if @getSizeKey! != \LARGE
+      if @getDesignSizeKey! != \LARGE
         "scroll" 
       else
         mode = "paginated"
@@ -29,17 +29,18 @@ define(["flight/component", "mixins"], (defineComponent, skrollr, skrollrStylesh
         mode
 
     @getDesignMode = ->
-      @oldScrollMode     = @currentScrollMode
-      @oldSizeKey        = @currentSizeKey
-      @currentSizeKey    = @getSizeKey!
-      @currentScrollMode = @getScrollMode!
+      @oldScrollMode    = @scrollMode
+      @oldDesignSizeKey = @designSizeKey
+      @designSizeKey    = @getDesignSizeKey!
+      @scrollMode       = @getScrollMode!
 
-      if(@oldScrollMode != @currentScrollMode || @oldSizeKey != @currentSizeKey)
-        @trigger('designModeChange', {}{oldScrollMode, currentScrollMode, oldSizeKey, currentSizeKey} = @)
+      if(@oldScrollMode != @scrollMode || @oldDesignSizeKey != @designSizeKey)
+        @trigger('designModeChange', {}{oldScrollMode, scrollMode, oldDesignSizeKey, designSizeKey} = @)
 
     @after('initialize', ->
       @$sections = @select(\sectionsSelector)
-      @on(window, 'resize', @~getDesignMode)
+      @getDesignMode!
+      @on(window, 'resize', @getDesignMode)
     )
-  )
+  , mixins.usesSassVars)
 );
