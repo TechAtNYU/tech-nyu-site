@@ -74,7 +74,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       newMode = if @sassVars.largeDesignApplies! then \LARGE else \SMALL
       @currDesignKey = newMode
 
-      if(oldMode != newMode)
+      if(oldMode != newMode and !(oldMode==void && newMode==\LARGE))
         if newMode == \LARGE
           @select('taglineWrapper').insertBefore('nav')
           @select('upcoming').insertAfter('nav')
