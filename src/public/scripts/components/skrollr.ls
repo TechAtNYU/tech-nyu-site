@@ -6,7 +6,6 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
       navList: 'nav ol'
     )
 
-    @navList = @select('navList')
     @transitionPoints = []
     @dropdownNav = null
 
@@ -35,12 +34,12 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
         # devices (and wouldn't have the right data anyway).
         # but this listener will depend on some globals, which
         # we set above
-        render: (data) ->
+        render: (data) ~>
           colorToInherit = @navList.css('color')
           scrollTop = data.curTop
           activeIndex = 0
 
-          for section, activeIndex in transitionPoints ++ [[Infinity, Infinity]]
+          for section, activeIndex in @transitionPoints ++ [[Infinity, Infinity]]
             if scrollTop < section[0]
               activeIndex -= 1
               if activeIndex < 0 then activeIndex = void
@@ -54,7 +53,7 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
 
       skrollrStylesheets.init(s);
       skrollrMenu.init(s, do
-        handleLink: (linkElm) ->
+        handleLink: (linkElm) ~>
           if @transitionPoints.length > 0
             @transitionPoints[$(linkElm).attr('data-transitionpoint')][1]
       );
@@ -73,14 +72,16 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
     # This mess should pbobably be done with a Promise somehow.
     @after('initialize', ->  
       self = @
+      @navList = @select('navList')
+
       $(document)
-      .on('sectionsTransitionPointsChange', (ev, data) -> 
-        transitionPoints := data.transitionPoints
-        if dropdownNav then $(document).trigger('readyForSkrollr')
+      .on('sectionsTransitionPointsChange', (ev, {transitionPoints}) -> 
+        self.transitionPoints := transitionPoints
+        if self.dropdownNav then $(document).trigger('readyForSkrollr')
       )
       .on('smallNavReady', (ev, data) ->
-        dropdownNav := $('#nav-dropdown')
-        if transitionPoints.length > 0 then $(document).trigger('readyForSkrollr')
+        self.dropdownNav := $('#nav-dropdown')
+        if self.transitionPoints.length > 0 then $(document).trigger('readyForSkrollr')
       )
       # important to use one, as sectionTransitionPointsChange is triggered a lot.
       .one('readyForSkrollr', (ev, data) ->
@@ -88,5 +89,5 @@ define(["flight/component", "skrollr", "skrollr-stylehseets", "skrollr-menu"], (
       );
     )
 
-  , mixins.managesAnimations, mixins.usesSassVars)
+  )
 );
