@@ -1,6 +1,6 @@
 define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
-  defineComponent(->
+  defineComponent(mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars, ->
     @defaultAttrs(
       dummyMobileFirstNavLink: 'li:first-child'
       li: 'li'
@@ -13,12 +13,12 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
     @transitionPoints = []
 
     @prepSmallNav = ->
-      @$dropdown = $('nav ol').clone!.attr('id', 'nav-dropdown').removeClass('optionList')
+      @$dropdown = @select('list').clone!.attr('id', 'nav-dropdown').removeClass('optionList')
       # Safari doesn't expose .innerHtml on svg elems, so we can't just do
       # @$dropdown.find('svg').replaceWith(-> $(@).attr('aria-label'))
       $svg = @$dropdown.find('svg'); $svg.before($svg.attr('aria-label')).remove();
 
-      # sub in shortNames if availabe.
+      # sub in shortNames if available.
       swapLabels(@$dropdown, \short)
 
       @$dropdown.addClass('hidden').appendTo('body')
@@ -36,7 +36,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       smallKeyframes = {}
       largeKeyframes = {}
       largeLogoKeyframes = {}
-      navHeight = $('nav').outerHeight!
+      navHeight = @sassVars.currentNavHeight!
       lastIndex = transitionPoints.length - 1
 
       # animations for the intro screen (large design only)
@@ -133,15 +133,15 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       # (i.e. let the calendar shortcut take the user
       # straight to the calendar screen).
       $targetLi = $(ev.currentTarget).parent!
-      if !@sassVars.largeDesignApplies! and (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active') || ev.target.attributes.id == 'logo')
+      if @designKey != \LARGE and (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active') || ev.target.attributes.id == 'logo')
         @showDropdown!
         false
 
-    @navLabelsToUse
     @setNavText = ->
-      currLabels = @navLabelsToUse
-      @navLabelsToUse = if @sassVars.largeDesignApplies! then \orig else \short
-      if currLabels != @navLabelsToUse then swapLabels(@select('list'), @navLabelsToUse)
+      if @oldDesignSizeKey != @designSizeKey then swapLabels(@select('list'), if @designKey is \LARGE then \orig else \short)
+
+    # must be after setNavText is defined. Annoying.
+    @after('handleDesignModeChange', @setNavText)
 
     function swapLabels($list, newLabels)
       attr = 'data-' + newLabels + 'name'
@@ -152,13 +152,10 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
     @after('initialize', ->
       @prepSmallNav!
-      @setNavText!
 
-      @on(window, 'sectionsTransitionPointsChange', $.proxy(@setAnimations, @))
-      @on(window, 'resize', $.proxy(@setNavText, @))
+      @on(window, 'sectionsTransitionPointsChange', @setAnimations)
       @on(@select('li').find('a').add('#logo'), 'click', @handleNavClick)
       @on(@$dropdown, 'click', @hideDropdown)
     )
-
-  , mixins.managesAnimations, mixins.usesSassVars)
+  )
 );

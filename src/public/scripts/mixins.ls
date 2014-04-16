@@ -70,10 +70,12 @@ define(
 
   tracksCurrentDesign: !->
     @after('initialize', ->
-      @on(document, 'designModeChange', @~handleDesignModeChange)
+      @on(document, 'designModeChange', @handleDesignModeChange)
     )
 
-    @handleDesignModeChange = (ev, data) ->
+    @oldScrollMode; @scrollMode; @oldDesignSizeKey; @designSizeKey;
+
+    @handleDesignModeChange = (ev, data) !->
       @{oldScrollMode, scrollMode, oldDesignSizeKey, designSizeKey} = data
 
 
@@ -102,6 +104,6 @@ define(
       sectionColorsRGBA: ["rgba(215, 85, 45, 1)" "rgba(242, 177, 13, 1)" "rgba(98, 46, 132, 1)" "rgba(25, 164, 71, 1)" "rgba(31, 76, 152, 1)" "rgba(26, 26, 26, 1)"]
       navInactiveTextColors: ["hsl(13, 2%, 16%)" "hsl(42, 0%, 16%)" "hsl(278, 3%, 60%)" "hsl(140, 0%, 20%)" "hsl(214, 4%, 65%)" "hsl(0, 0%, 58%)"]
 
-    @sassVars[\paginatedMarginTopPx] = -> parseFloat(@sassVars.largeDesignSectionMarginTop)*parseFloat($('html').css('font-size'))
+    @sassVars[\paginatedMarginTopPx] = ~> parseFloat(@sassVars.paginatedMarginTop)*parseFloat($('html').css('font-size'))
     @sassVars[\currentNavHeight]     = -> $('nav').outerHeight!
 )

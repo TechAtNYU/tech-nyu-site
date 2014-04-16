@@ -1,6 +1,6 @@
 define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
-  defineComponent(->
+  defineComponent(mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars, ->
     @defaultAttrs(do
       upcoming: \#upcoming
       tagline: \#tagline
@@ -23,7 +23,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         windowWidth  = $window.outerWidth!
         taglineHeight = tagline.outerHeight!
         bodyMaxWidth = parseInt(@sassVars.rsBodyMaxWidth)
-        logoMarginLeft = Math.min((bodyMaxWidth - windowWidth)/2, 0);
+        logoMarginLeft = (bodyMaxWidth - windowWidth)/2 <? 0;
         logoTop = (windowHeight - upcomingHeight - taglineHeight)/2;
 
         @animate(\tagline, \LARGE, {
@@ -72,12 +72,11 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       $('a[href=#event-calendar]').get(0).click!
 
     @after('initialize', ->      
-      @setupAnimations!
-      @on(window, "resize", @moveElementsForMobileSkrollr);
+      $(document).one('designModeChange', @~setupAnimations) 
       @on(window, "resize", @setupAnimations);
       @on(@$node, "digestDetailsShown", @handleDigestDetailsShown);
       @on(@$node, "digestDetailsHidden", @handleDigestDetailsHidden);
       @on(@select('moreEventsButton'), 'click', @handleMoreEventsButton);
     )
-  , mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars)
+  )
 );

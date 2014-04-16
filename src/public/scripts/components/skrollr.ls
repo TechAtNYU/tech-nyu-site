@@ -1,15 +1,5 @@
-define(require, ->
-
-  require! {
-    defineComponent: "flight/component"
-    skrollr
-    mixins
-    'skrollr-menu'
-    'skrollr-stylehseets'
-    'skrollr-menu'
-  };
-
-  defineComponent(->
+define(["flight/component", "mixins", "skrollr", "skrollr-menu", "skrollr-stylehseets"], (defineComponent, mixins, skrollr, skrollrMenu, skrollrStylesheets) ->
+  defineComponent(mixins.tracksCurrentDesign, ->
 
     @defaultAttrs(do
       navList: 'nav ol'
@@ -21,9 +11,9 @@ define(require, ->
       eventsTriggeringRefresh: ''
     )
 
-    @transitionPoints = []
-    @dropdownNav = null
-    @s = null
+    @transitionPoints
+    @dropdownNav
+    @s
 
     @initializeSkrollr = ->
       @s = skrollr.init(do
@@ -70,7 +60,7 @@ define(require, ->
       skrollrStylesheets.init(@s);
       skrollrMenu.init(@s, do
         handleLink: (linkElm) ~>
-          if @transitionPoints.length > 0
+          if @transitionPoints
             @transitionPoints[$(linkElm).attr('data-transitionpoint')][1]
       );
 
@@ -88,7 +78,6 @@ define(require, ->
       skrollrStylesheets.registerKeyframeChange!
       @s.refresh!
 
-    @after('handleDesignModeChange', @moveElementsForMobileSkrollr)
     @moveElementsForMobileSkrollr = ->
       if @oldDesignSizeKey != @newDesignSizeKey
         if @newDesignSizeKey == \LARGE
@@ -99,26 +88,26 @@ define(require, ->
 
         @s.refresh!
 
+    @after('handleDesignModeChange', @moveElementsForMobileSkrollr)
+
     # This method listens for when both the dropdownNav
     # and the transitionPoints have been set, and then
     # triggers an event which initializes Skrollr. 
     # This mess should pbobably be done with a Promise somehow.
     @after('initialize', ->  
-      self = @
       @navList = @select('navList')
 
       $(document)
-      .on('sectionsTransitionPointsChange', (ev, {transitionPoints}) -> 
-        self.transitionPoints := transitionPoints
-        if self.dropdownNav then $(document).trigger('readyForSkrollr')
+      .on('sectionsTransitionPointsChange', (ev, {transitionPoints}) ~> 
+        @transitionPoints := transitionPoints
+        if @dropdownNav then $(document).trigger('readyForSkrollr')
       )
-      .on('smallNavReady', (ev, data) ->
-        self.dropdownNav := @select('dropdownNav')
-        if self.transitionPoints.length > 0 then $(document).trigger('readyForSkrollr')
+      .on('smallNavReady', (ev, data) ~>
+        @dropdownNav := @select('dropdownNav')
+        if @transitionPoints then $(document).trigger('readyForSkrollr')
       )
       # important to use one, as sectionTransitionPointsChange is triggered a lot.
       .one('readyForSkrollr', @~initializeSkrollr)
     )
-
-  , mixins.tracksCurrentDesign)
+  )
 );

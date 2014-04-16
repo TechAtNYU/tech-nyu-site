@@ -1,8 +1,15 @@
 define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
-  defineComponent(->
-
+  defineComponent(mixins.usesSassVars, ->
+    @defaultAttrs(do
+      sectionsSelector: '.objective'
+    )
+  
     @$sections
+
+    # Note: code expects that on the first calculation
+    # of the design mode, oldDesignSizeKey and oldScrollMode 
+    # key will be null. So don't fuck with these defaults.
     @oldDesignSizeKey
     @oldScrollMode
     @designSizeKey    # LARGE or SMALL
@@ -20,7 +27,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         "scroll" 
       else
         mode = "paginated"
-        @$sections.each((i) ->
+        @$sections.each( ->
           $section = $(@)
           if ($section.outerHeight! + self.sassVars.paginatedMarginTopPx! - $('nav').height!) > $(window).outerHeight!
             mode := "scroll"
@@ -34,7 +41,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @designSizeKey    = @getDesignSizeKey!
       @scrollMode       = @getScrollMode!
 
-      if(@oldScrollMode != @scrollMode || @oldDesignSizeKey != @designSizeKey)
+      if((@oldScrollMode != @scrollMode) || (@oldDesignSizeKey != @designSizeKey))
         @trigger('designModeChange', {}{oldScrollMode, scrollMode, oldDesignSizeKey, designSizeKey} = @)
 
     @after('initialize', ->
@@ -42,5 +49,5 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @getDesignMode!
       @on(window, 'resize', @getDesignMode)
     )
-  , mixins.usesSassVars)
+  )
 );

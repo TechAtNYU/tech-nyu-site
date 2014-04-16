@@ -1,6 +1,6 @@
 define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
-  defineComponent(->
+  defineComponent(mixins.managesAnimations, mixins.usesSassVars, ->
     @defaultAttrs(do
       details: \.caption
       submit: "[type=submit]"
@@ -21,5 +21,5 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @on(@select('input'), "focus", @showDetails);
       @on(@select('input'), 'blur', @hideDetails);
     )
-  , mixins.managesAnimations, mixins.usesSassVars)
+  )
 );

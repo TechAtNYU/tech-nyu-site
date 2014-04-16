@@ -1,6 +1,6 @@
 define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
-  defineComponent(->
+  defineComponent(mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars, ->
     @defaultAttrs(do
       sectionsSelector: '.objective'
     )
@@ -53,7 +53,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         @$sections.each((i) !->
           sectionOffset = self.getAnimatedOffsetTopForSection(i, scrollMode)
           sectionAtTop  = (sectionOffset - navHeight)
-          sectionTransitionPoints[*] = [(sectionAtTop - 35), (sectionAtTop+1)]
+          sectionTransitionPoints[*] = [(sectionAtTop - 40), (sectionAtTop+1)]
 
           # Scrolling doesn't actually require any special animation (just sending 
           # out the transition points), but we still need to clear old animations.
@@ -85,7 +85,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
             (startUp + self.sassVars.interPanelDistance): do
               top: \0%
-              "margin-top": self.sassVars.largeDesignSectionMarginTop
+              "margin-top": self.sassVars.paginatedMarginTop
 
             #pause it before beginning to lift it out and the next one int
             (pauseOnScreen): do
@@ -98,7 +98,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
           # last section doesn't animate out
           if i == (sectionCount - 1)
-            delete largeDesignKeyframes[pauseOnScreen + self.sassVars.interPanelDistance]
+            delete! largeDesignKeyframes[pauseOnScreen + self.sassVars.interPanelDistance]
 
           self.animate($section, \LARGE, largeDesignKeyframes)
           sectionTransitionPoints[*] = [startUp, endValue]
@@ -107,17 +107,13 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @trigger('sectionsTransitionPointsChange', {transitionPoints: sectionTransitionPoints})
       @trigger('animationsChange', {keframesOnly: true});
 
-    @preSkrollr = ->
+    @after('initialize', ->
       @$sections = @select(\sectionsSelector)
       @$window   = $(window)
-      @setSectionAnimations(@scrollMode, @designSizeKey)
-
-    @after('initialize', ->
-      @preSkrollr!
+      $(document).one('designModeChange', ~> @setSectionAnimations(@scrollMode, @designSizeKey))
       @on(document, 'skrollrInitialized', ~>
         @on(window, "resize", @handleResize);
       ); 
     )
-
-  , mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars)
+  )
 );
