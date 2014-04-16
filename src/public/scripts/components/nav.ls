@@ -138,7 +138,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         false
 
     @setNavText = ->
-      if @oldDesignSizeKey != @designSizeKey then swapLabels(@select('list'), if @designKey is \LARGE then \orig else \short)
+      if @oldDesignSizeKey != @designSizeKey then swapLabels(@select('list'), if @designSizeKey is \LARGE then \orig else \short)
 
     # must be after setNavText is defined. Annoying.
     @after('handleDesignModeChange', @setNavText)
