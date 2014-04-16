@@ -68,8 +68,9 @@ define(["flight/component", "mixins", "skrollr", "skrollr-menu", "skrollr-styleh
       # changing animations (i.e. setting keyframes) can call this.
       $(document).on('animationsChange', (ev, data) ~> 
         if data?.keframesOnly 
-          skrollrStylesheets.registerKeyframeChange! 
+          skrollrStylesheets.registerKeyframeChange!
         else @s.refresh(data?.elements || void)
+
       )
 
       # Also listen to any specific events we're told to listen to
@@ -81,15 +82,15 @@ define(["flight/component", "mixins", "skrollr", "skrollr-menu", "skrollr-styleh
       skrollrStylesheets.registerKeyframeChange!
       @s.refresh!
 
-    @moveElementsForMobileSkrollr = ->
-      if @oldDesignSizeKey != @newDesignSizeKey
-        if @newDesignSizeKey == \LARGE
+    @moveElementsForMobileSkrollr = ->  
+      if @oldDesignSizeKey != @designSizeKey
+        if @designSizeKey == \LARGE
           @select('taglineWrapper').insertBefore(@select('nav'))
           @select('upcoming').insertAfter(@select('nav'))
         else
           @select('taglineWrapper').add(@select('upcoming')).prependTo(@select('skrollrBody'))
 
-        @s.refresh!
+        @s?.refresh!
 
     @after('handleDesignModeChange', @moveElementsForMobileSkrollr)
 

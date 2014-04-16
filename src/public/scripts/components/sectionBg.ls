@@ -9,7 +9,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
     @$info    = $('#info')
 
     @pickImage = (ev, data) ->
-      if @$window.width() > 1270 || @designKey is \SMALL
+      if @designSizeKey is \SMALL || @$window.width() > 1270 
         @$node.css('background-image', 'url(' + @$node.attr('data-wide') + ')')
 
       else 
@@ -25,8 +25,8 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       if @attr.isHomeSection
         @after('handleDesignModeChange', @position)
 
-      @on(window, "resize", @pickImage);
-      @pickImage!
+      $(document).one('designModeChange', @~pickImage)
+      @on(window, "resize", @pickImage)
     )
   )
 );
