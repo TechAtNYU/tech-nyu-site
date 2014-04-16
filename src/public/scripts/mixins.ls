@@ -92,12 +92,10 @@ define(
       onPanelPause: 85
       colorChangeLength: 35
       firstPanelUpEnd:~ -> @firstPanelUpStart + @interPanelDistance
-      #largeDesignSectionMarginTop: \5.1875rem
       paginatedMarginTop: \5.1875rem
 
       rsBodyMaxWidth: \1400px
       largeDesignMinWidth: 920
-      #largeDesignApplies: -> !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1500/750)").matches
 
       logoStartColor: "hsl(0, 0%, 95%)"
       sectionColors: ["hsl(14, 68%, 51%)" "hsl(43, 90%, 50%)" "hsl(276, 48%, 35%)" "hsl(140, 74%, 37%)" "hsl(218, 66%, 36%)" "hsl(0, 0%, 10%)"]

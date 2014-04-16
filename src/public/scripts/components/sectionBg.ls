@@ -1,4 +1,3 @@
-
 define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
   defineComponent(mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars, ->
@@ -16,15 +15,15 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         @$node.css('background-image', 'url(' + @$node.attr('data-narrow') + ')')
 
     @position = (ev, data) ->
-      if @designKey == \LARGE
-        @$node.insertAfter(@$content)
-      else
-        @$node.insertBefore(@$info)
-
-    @after('initialize', ->
       if @attr.isHomeSection
-        @after('handleDesignModeChange', @position)
+        if @designSizeKey == \LARGE
+          @$node.insertAfter(@$content)
+        else
+          @$node.insertBefore(@$info)
 
+    @after('handleDesignModeChange', @position)
+    
+    @after('initialize', ->
       $(document).one('designModeChange', @~pickImage)
       @on(window, "resize", @pickImage)
     )
