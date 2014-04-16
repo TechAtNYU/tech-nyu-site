@@ -5,7 +5,6 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       sectionsSelector: '.objective'
     )
 
-    @animationMode
 
     @getAnimatedOffsetTopForSection = (i, designKey, animationMode) ->
       | animationMode == 'paginated' =>
@@ -15,22 +14,23 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
             @sassVars.firstPanelUpStart + 
             (if i!=0 then @sassVars.firstPanelExtraPause else 0) + 
             i*(@sassVars.interPanelDistance + @sassVars.onPanelPause)
+    @scrollMode
+    @oldScrollMode
+    @designKey
+
+    @handleDesignModeChange = (ev, {scrollMode, designKey}) ->
+      @oldScrollMode = @scrollMode
+      @scrollMode = scrollMode
+      @designKey = designKey
+
+    @handleResize = ->
+      # if we were and still are paginated, we can leave anims as is.
+      if not (@oldScrollMode == @scrollMode == "paginated")
+        @setSectionAnimations(@scrollMode, @designKey)
+        @trigger('animationsChange', {keframesOnly: true});
       | otherwise =>
             @$sections.eq(i).offset!.top
 
-    @determineAnimationMode = ->
-      self = @
-      if !@sassVars.largeDesignApplies!
-        "scroll" 
-      else
-        mode = "paginated"
-        @$sections.each((i) ->
-          $section = $(@)
-          if ($section.outerHeight! + self.getPaginatedMarginTop! - $('nav').height!) > $(window).outerHeight!
-            mode := "scroll"
-            false
-        )
-        mode
 
     # The top margin that each section would have were we to 
     # be in the paginated design. Useful for seeing whether 
@@ -39,21 +39,9 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
     @getPaginatedMarginTop = ->
       parseFloat(@sassVars.largeDesignSectionMarginTop)*parseFloat($('html').css('font-size'))
 
-    @setSectionAnimations = ->
-      # figure out whether we're dealing with
-      # scrolling or paginated sections
-      oldMode = @animationMode
-      newMode = @determineAnimationMode!
-      @animationMode = newMode
-
-      # if we were and still are paginated,
-      # we can leave the animations exactly as is
-      if(oldMode == newMode == "paginated")
-        return
-
+    @setSectionAnimations = (scrollMode, designKey) ->
       self = @
       sectionCount = @$sections.length                
-      currDesignKey = if @sassVars.largeDesignApplies! then \LARGE else \SMALL
 
       # we'll populate this with scroll offsets defining
       # when each section is coming on screen, when it's
@@ -65,20 +53,19 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       # if we're on a large design but scrolling, we need to push the first section past
       # the intro animation, but then we need to pull it back up if we switch back to
       # paginated mode or to the small designs.
-      if(newMode == "scroll" and currDesignKey == \LARGE)
+      if(scrollMode == "scroll" and designKey == \LARGE)
           wouldBeOffsetTop = 
             (@sassVars.firstPanelUpStart + 
              @getPaginatedMarginTop! + 
              @sassVars.interPanelDistance + 
              @sassVars.firstPanelExtraPause) 
           @$sections.eq(0).css('margin-top',  wouldBeOffsetTop + 'px')
-      else if(newMode == "paginated" || currDesignKey == \SMALL)
-          @$sections.eq(0).css('margin-top', '') # animation will handle this.
 
       # setup animations for scrolling sections
       # at the large or small designs
-      if @animationMode == "scroll"
         navHeight     = $('nav').outerHeight!
+      else if(scrollMode == "paginated" || designKey == \SMALL)
+      if scrollMode == "scroll"
         scrollTop     = @$window.scrollTop!
 
         @$sections.each((i) !->
@@ -93,10 +80,9 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
         )
 
 
-      # setup animations for paginated sections
-      # for now, this can only be on large designs
-      # (see @determineAnimationMode).
-      else if @animationMode == "paginated"
+      # Setup animations for paginated sections, which  
+      # (for now anyway) only occur on the large design
+      else if scrollMode == "paginated"
         @$sections.each((i) !->
           $section = $(@)
           startUp = self.getAnimatedOffsetTopForSection(i, \LARGE, self.animationMode)
@@ -145,12 +131,10 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
     @after('initialize', ->
       @preSkrollr!
+      @on(document, 'designModeChange', @~handleDesignModeChange)
       @on(document, 'skrollrInitialized', ~>
-        @on(window, "resize", ~> 
-          @setSectionAnimations!
-          @trigger('animationsChange', {keframesOnly: true});
-        );
         @trigger('animationsChange', {keframesOnly: true});
+        @on(window, "resize", @handleResize);
       ); 
     )
 
