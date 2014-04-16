@@ -113,6 +113,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       $(document).one('designModeChange', ~> @setSectionAnimations(@scrollMode, @designSizeKey))
       @on(document, 'skrollrInitialized', ~>
         @on(window, "resize", @handleResize);
+        @on(document, 'sectionContentModified', @handleResize)
       ); 
     )
   )

@@ -21,31 +21,32 @@ requirejs.config(
             exports: 'skrollr.menu'
 )
 
-define((require) -> 
-  require! {
-    'components/skrollr'
-    'components/leftSidebar'
-    'components/digestSignup'
-    'components/sectionBg'
-    'components/sections'
-    'components/nav'
-    flight: "flight/component"
-    carousel: "jquery.flexisel"
-  }
+define([
+  'components/designSwitcher'
+  'components/skrollr'
+  'components/leftSidebar'
+  'components/digestSignup'
+  'components/sectionBg'
+  'components/sections'
+  'components/nav'
+  'flight/component'
+  'jquery.flexisel'], (designSwitcher, skrollr, leftSidebar, digestSignup, sectionBg, sections, nav, flight, carousel) -> 
   $(->
+
     # Init components. The order is significant here.
     # E.g. nav component must exist so that it's registered 
     # its listeners before section component emits the initial
     # transition points. Similarly, bg must be positioned before 
     # the section container calculates the initial offset
     # positions. Could event some of this; not worth the work now.
-    skrollr.attachTo('body')
-    leftSidebar.attachTo('body')
+    skrollr.attachTo('body', {eventsTriggeringRefresh:'sectionContentModified'})
+    leftSidebar.attachTo('body') #only body bc of the moving moreEventsButton
     digestSignup.attachTo('#digestForm')
     nav.attachTo('nav')
     sectionBg.attachTo('.bg.starter', {isHomeSection: true})
     sections.attachTo('#content')
     sectionBg.attachTo('.objective .bg')
+    designSwitcher.attachTo('body')
     void;
   );
   $(window).load(->
@@ -71,9 +72,6 @@ define((require) ->
         small:
           changePoint:250,
           visibleItems: 1
-    );
-    $(document).on(\skrollrInitialized, (ev, {skrollrInstance}) ->
-      skrollrInstance.refresh!
-    )
+    ).trigger('sectionContentModified');
   );
 )

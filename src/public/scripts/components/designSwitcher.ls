@@ -4,7 +4,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
     @defaultAttrs(do
       sectionsSelector: '.objective'
     )
-  
+
     @$sections
 
     # Note: code expects that on the first calculation
@@ -48,6 +48,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @$sections = @select(\sectionsSelector)
       @getDesignMode!
       @on(window, 'resize', @getDesignMode)
+      @on(document, 'sectionContentModified', @getDesignMode)
     )
   )
 );

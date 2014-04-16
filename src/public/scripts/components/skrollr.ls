@@ -72,6 +72,9 @@ define(["flight/component", "mixins", "skrollr", "skrollr-menu", "skrollr-styleh
         else @s.refresh(data?.elements || void)
       )
 
+      # Also listen to any specific events we're told to listen to
+      $(document).on(@attr.eventsTriggeringRefresh, ~> @s.refresh!)
+
       @trigger(document, \skrollrInitialized, {skrollrInstance: @s})
 
       # on initialize, run a refresh for any pre-initialize skrollr updates.
