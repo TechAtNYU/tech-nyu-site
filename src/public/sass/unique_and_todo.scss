@@ -130,18 +130,20 @@ $imageMaxWidth: 215px;
     position: absolute;
     top: 0 !important;
     background-color: white;
-    background-position: 1px center;
     z-index: 0;
 }
 
 .nbs-flexisel-nav-left {
     left: 0px;
-    background: url(../scripts/bower_components/flexisel/images/button-previous.png) no-repeat;
+    background-image: url(../scripts/bower_components/flexisel/images/button-previous.png);
+    background-repeat: no-repeat;
+    background-position: 1px center;
 }
 
 .nbs-flexisel-nav-right {
     right: 0px;
-    background: url(../scripts/bower_components/flexisel/images/button-next.png) no-repeat;  
+    background-image: url(../scripts/bower_components/flexisel/images/button-next.png);
+    background-repeat: no-repeat;  
     background-position: 5px center;
     box-sizing: content-box;
     @include rs((
