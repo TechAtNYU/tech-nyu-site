@@ -21,18 +21,20 @@ requirejs.config(
             exports: 'skrollr.menu'
 )
 
-define([
-  "flight/component"
-  "jquery.flexisel"
-  "skrollr"
-  "skrollr-stylehseets"
-  "skrollr-menu"
-  "components/leftSidebar"
-  "components/digestSignup"
-  "components/sectionBg"
-  "components/sections"
-  "components/nav"
-  ], (flight, carousel, skrollr, skrollrStylesheets, skrollrMenu, leftSidebar, digestSignup, sectionBg, sections, nav) -> 
+define((require) -> 
+  require! {
+    skrollr
+    'skrollr-stylehseets'
+    'skrollr-menu'
+    'components/leftSidebar'
+    'components/digestSignup'
+    'components/sectionBg'
+    'components/sections'
+    'components/nav'
+    flight: "flight/component"
+    carousel: "jquery.flexisel"
+  }
+
   s = null;
   $(->
 
