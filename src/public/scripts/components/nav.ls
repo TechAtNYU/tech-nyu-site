@@ -133,7 +133,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       # (i.e. let the calendar shortcut take the user
       # straight to the calendar screen).
       $targetLi = $(ev.currentTarget).parent!
-      if @designKey != \LARGE and (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active') || ev.target.attributes.id == 'logo')
+      if @designSizeKey != \LARGE and (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active') || ev.target.attributes.id == 'logo')
         @showDropdown!
         false
 
