@@ -51,7 +51,7 @@ define(
 
       if removeOldKeyframes
         finalKeyframes = {[time, stringify(val)] for time, val of keyframes}
-        attrArray = [thisAttr.name for thisAttr in $elem.get(0).attributes when /data-[0-9]+/.test(thisAttr.name)]
+        attrArray = [thisAttr.name for thisAttr in $elem.get(0).attributes when /^data-\-?[0-9]+$/.test(thisAttr.name)]
         for thisAttr in attrArray
           $elem.removeAttr(thisAttr)
 
