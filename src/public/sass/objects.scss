@@ -51,7 +51,7 @@
   @include rs((
     padding: $outerPaddingPx
   ));
-  max-width: 100%;
+  width: 100%;
   box-sizing: border-box;
 }
 

@@ -46,14 +46,18 @@
 }
 
 @each $index, $section in (1: first, 2: second, 3: third, 4: fourth, 5: fifth) {
+
+  $color: if($index == 2, saturate(darken(nth($sectionColors, $index), 4%), 2%), nth($sectionColors, $index));
+  $highlightColor: nth($sectionColors, $index);
+
   #{'.' + $section} a {
-    color: nth($sectionColors, $index);
-    fill: nth($sectionColors, $index);
-    stroke: nth($sectionColors, $index);
+    color: $color;
+    fill: $color;
+    stroke: $color;
   }
 
   #{'.' + $section} .flatButton:hover {
-    background-color: nth($sectionColors, $index);
+    background-color: $highlightColor;
   }
 }
 

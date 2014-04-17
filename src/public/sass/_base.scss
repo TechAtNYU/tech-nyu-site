@@ -49,8 +49,8 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
 
 /******************* WIDTHS ********************/
 
-$outerPadding: (25/19)*1em;
-$outerPaddingPx: $outerPadding/1em * map-get($rsConfig, baseFontSize);
+$outerPaddingPx: 25px;
+$outerPadding: ($outerPaddingPx/map-get($rsConfig, baseFontSize))*1em;
 
 $homepageLeftColWidth: 20.25em;
 

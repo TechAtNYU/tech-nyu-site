@@ -52,7 +52,7 @@
 #upcoming {
   z-index: 2;
   @include rs((
-    padding: $outerPaddingPx*1.15 $outerPaddingPx+4px $outerPaddingPx $outerPaddingPx+2px
+    padding: $outerPaddingPx*1.16 $outerPaddingPx*1.16 $outerPaddingPx $outerPaddingPx*1.08
   ));
 }
 
