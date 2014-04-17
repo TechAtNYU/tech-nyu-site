@@ -135,6 +135,11 @@ h2, .h2 {
 
     a {
         text-decoration: none;
+        border-bottom: 1px solid $textColor;
+        display: block;
+        @include rs((
+           padding: 7px 4px 11px
+        ));
     }
 
     br {
@@ -144,18 +149,14 @@ h2, .h2 {
     li {
         font-size: fontSize(3);
         line-height: ems(nth($lineHeights, 3));
-        border-bottom: 1px solid $textColor;
-        @include rs((
-           padding: 7px 4px 10px
-        ));
-
-        &:last-child {
-            margin-bottom: 0;
-            border-bottom-width: 0;
-        }
 
         &.active {
             background-color: $textColor;
+        }
+
+        &:last-child a {
+            margin-bottom: 0;
+            border-bottom-width: 0;
         }
     }
 }

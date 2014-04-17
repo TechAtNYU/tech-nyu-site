@@ -155,7 +155,12 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
       @on(window, 'sectionsTransitionPointsChange', @setAnimations)
       @on(@select('li').find('a').add('#logo'), 'click', @handleNavClick)
-      @on(@$dropdown, 'click', @hideDropdown)
+
+      # if you click anywhere but on a link that will open the dropdown,
+      # which stops propogation so this never fires, hide the dropdown.
+      # Allows it to be hidden by clicking off the menu (if you decide
+      # not to pick an option).
+      @on(document, 'click', @hideDropdown)
     )
   )
 );
