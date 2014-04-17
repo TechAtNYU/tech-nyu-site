@@ -225,7 +225,7 @@ define(['skrollr'], function(skrollr) {
 			for(var k = 0; k < curElement.attributes.length; k++) {
 				var attr = curElement.attributes[k];
 
-				if(/data-[0-9]+/.test(attr.name)) {
+				if(/^data-\-?[0-9]+$/.test(attr.name)) {
 					attrArray.push(attr.name);
 				}
 			}
