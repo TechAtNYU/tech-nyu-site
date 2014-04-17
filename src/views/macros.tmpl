@@ -1,0 +1,13 @@
+{% macro mailChimpForm(extraClassesString='', id=null, includeCaption=true) %}
+  <form 
+    action="http://techatnyu.us1.list-manage.com/subscribe/post?u=260d258c262a03b1f8f599591&amp;id=00ec729acb" 
+    method="post" name="mc-embedded-subscribe-form" novalidate 
+    class="singleLineForm {{extraClassesString}}"{% if id %} id="{{id}}"{% endif %}>
+      <div style="position: absolute; left: -50000px;"><input type="text" name="b_260d258c262a03b1f8f599591_00ec729acb" value=""></div>
+      <input type="email" name="EMAIL" class="email mainField" placeholder="Enter your email address..." class="mainField" required />
+      <input type="submit" value="Sign Up" class="submitButton" name="subscribe" />
+      {%if includeCaption %}
+        <p class="caption hidden">Every other week, you&rsquo;ll get a digest of the best tech, design, and entreprenuership events in NYC.</p>
+      {% endif %}
+  </form>
+{% endmacro %}
