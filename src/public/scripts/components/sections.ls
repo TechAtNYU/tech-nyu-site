@@ -17,7 +17,14 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
           (if i!=0 then @sassVars.firstPanelExtraPause else 0) + 
           i*(@sassVars.interPanelDistance + @sassVars.onPanelPause)
       | otherwise =>
-            @$sections.eq(i).offset!.top
+          # + -2*translateY adjusts for mobile once skrollr's been
+          # initialized. In that case, rather than having a positive
+          # value for how far we've scrolled down, we have a negative
+          # translate value of the same magnitue saying how far the
+          # browser should pull the element up, and our pageYOffset
+          # (i.e. scrollTop) is zero.
+          translateY = if @s?.isMobile! then -1*@s.getScrollTop! else 0
+          @$sections.eq(i).offset!.top + -2*translateY
 
     @setSectionAnimations = (scrollMode, designKey) ->
       self = @
@@ -111,7 +118,8 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
       @$sections = @select(\sectionsSelector)
       @$window   = $(window)
       $(document).one('designModeChange', ~> @setSectionAnimations(@scrollMode, @designSizeKey))
-      @on(document, 'skrollrInitialized', ~>
+      @on(document, 'skrollrInitialized', (ev, {skrollrInstance})~>
+        @s = skrollrInstance
         @on(window, "resize", @handleResize);
         @on(document, 'sectionContentModified', @handleResize)
       ); 
