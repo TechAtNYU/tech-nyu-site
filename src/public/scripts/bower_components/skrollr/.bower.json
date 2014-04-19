@@ -1,15 +1,14 @@
 {
   "name": "skrollr",
   "homepage": "https://github.com/Prinzhorn/skrollr",
-  "version": "0.6.21",
-  "_release": "0.6.21",
+  "version": "0.6.23",
+  "_release": "0.6.23",
   "_resolution": {
     "type": "version",
-    "tag": "0.6.21",
-    "commit": "466c47559ef835aee786b764b2888b5469a7b6c4"
+    "tag": "0.6.23",
+    "commit": "36b4e642c9a4c95c6ba583107103f8a428e3e879"
   },
   "_source": "git://github.com/Prinzhorn/skrollr.git",
   "_target": "~0.6.21",
-  "_originalSource": "skrollr",
-  "_direct": true
+  "_originalSource": "skrollr"
 }

@@ -1,9 +1,9 @@
 [![Build Status](https://secure.travis-ci.org/Prinzhorn/skrollr.png)](http://travis-ci.org/Prinzhorn/skrollr)
 
-skrollr 0.6.21
+skrollr 0.6.23
 =====
 
-Stand-alone **parallax scrolling** JavaScript library for **mobile (Android, iOS, etc.) and desktop** in just over **9.6k** (minified) or **4.5k** (minified + gzipped).
+Stand-alone **parallax scrolling** JavaScript library for **mobile (Android, iOS, etc.) and desktop** in about 12k minified.
 
 Designer friendly. No JavaScript skills needed. Just plain CSS and HTML.
 
@@ -77,6 +77,14 @@ First of all you want to include the `skrollr.min.js` file at the bottom of your
 </body>
 ```
 
+If you are using require.js to structure your project, you can use skrollr as a module as well.
+
+```javascript
+require(['skrollr'], function(skrollr){
+	var s = skrollr.init();
+});
+```
+
 If you're familiar with CSS, you already know the `style` attribute. In order to create an animation you would need several, at least two, of them. That's what skrollr does. You use the HTML5 `data-` attributes to define multiple sets of styles (we call each of them **keyframe**) and skrollr interpolates between them.
 
 #### Let's change the background-color of a `div` starting at `#00f` when the scrollbar is at the top and ending with `#f00` when the user scrolled 500 pixels down
@@ -145,6 +153,19 @@ You just told me it doesn't work on mobile, but why does it? The answer is simpl
 ### What you need in order to support mobile browsers
 
 Starting with skrollr 0.6.0 there's just one thing you need to do: Include an element on your page with the id `skrollr-body`. That's the element we move in order to fake scrolling. The only case were you don't need a `#skrollr-body` is when using `position:fixed` exlusively. In fact the skrollr website doesn't include a `#skrollr-body` element. If you need both fixed and non-fixed (i.e. static) elements, put the static ones inside the `#skrollr-body` element.
+
+Or to put it differently: On mobile the `skrollr-body` element is moved using CSS transforms. You can't have `position:fixed` or `background-attachment:fixed` inside elements which use CSS transforms as per CSS spec (http://meyerweb.com/eric/thoughts/2011/09/12/un-fixing-fixed-elements-with-css-transforms/). That's why those elements need to be **outside** of the `skrollr-body` element.
+
+AMD
+---
+
+Starting with `0.6.22` there's experimental AMD support. Please note that only skrollr core has AMD support so far. We will update the plugins in the future.
+
+```js
+require(['skrollr'], function(skrollr){
+	skrollr.init();
+});
+```
 
 Absolute vs relative mode
 -----
@@ -423,6 +444,48 @@ skrollr.init({
 });
 ```
 
+### keyframe
+
+**Experimental**
+
+In order to receive `keyframe` events from an element, add the `data-emit-events` attribute to the element. The keyframe function will be called with three arguments
+
+1. The `element` that passed the keyframe.
+2. The `name` of the keyframe, camel-cased (see example).
+3. The `direction` the user is scrolling.
+
+Example:
+
+```html
+<div
+	data-500="..."
+	data-top-bottom="..."
+	data-_offset-center="..."
+	data-emit-events
+>
+	Some content
+</div>
+```
+
+```js
+skrollr.init({
+	keyframe: function(element, name, direction) {
+		//name will be one of data500, dataTopBottom, data_offsetCenter
+	}
+});
+```
+
+Note: this is experimental, expect the API to change! Originally I wanted to emit the events right on the element, so you could do this
+
+```js
+//Wouldn't this be nice?
+document.querySelector('#foo').addEventListener('skrollr.dataTopBottom.up', function() {
+	//#foo just passed the data-top-bottom keyframe while scrolling up
+}, false)
+```
+
+but IE.
+
 ### easing
 
 An object defining new easing functions or overwriting existing ones. Easing functions get just one argument, which is a value between 0 and 1 (the percentage of how much of the animation is done). The function should return a value between 0 and 1 as well, but for some easings a value less than 0 or greater than 1 is just fine.
@@ -468,7 +531,7 @@ Calling `init()` returns an instance of skrollr which exposes a public api.
 
 ### refresh([elements])
 
-Reparses all given `elements`. You can pass a single element or an array-like element (Array, NodeList, jQuery object)
+Reparses all given `elements`. You can pass a single element or an array-like element (Array, NodeList or jQuery object)
 
 Useful when
 
@@ -511,6 +574,10 @@ Sets the top offset using `window.scrollTo(0, top)` on dektop or updating the in
 
 When `force` is set to `true`, skrollr will jump to the new position without any kind of transition. By default the global `smoothScrolling` setting applies.
 
+### isMobile()
+
+Returns if skrollr runs in mobile mode (see also `mobileCheck` option).
+
 ### animateTo(top[, options])
 
 Animates the scroll position from current position to `top`. Possible `options` are
@@ -537,7 +604,7 @@ Returns if an animation caused by animateTo is running.
 
 ### on(name, fn)
 
-Set a listener function for one of the events described in the options section (beforerender, render). Only one listener can be attached at a given time. This method overwrites the current listener, if any.
+Set a listener function for one of the events described in the options section (beforerender, render, keyframe). Only one listener can be attached at a given time. This method overwrites the current listener, if any.
 
 ### off(name)
 
