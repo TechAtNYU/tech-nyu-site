@@ -1,4 +1,4 @@
-define(["flight/component", "mixins", "skrollr-menu", "skrollr-stylesheets"], (defineComponent, mixins, skrollrMenu, skrollrStylesheets) ->
+define(["flight/component", "mixins", "skrollr-menu"], (defineComponent, mixins, skrollrMenu) ->
   defineComponent(mixins.tracksCurrentDesign, ->
 
     @defaultAttrs(do
@@ -67,14 +67,6 @@ define(["flight/component", "mixins", "skrollr-menu", "skrollr-stylesheets"], (d
     @after('initialize', ->  
       @navList = @select('navList')
       @s = @attr.skrollrInstance
-
-      # A generic listener. Any component that's explicitly
-      # changing animations (i.e. setting keyframes) can call this.
-      $(document).on('animationsChange', (ev, data) ~> 
-        if data?.keframesOnly 
-          skrollrStylesheets.registerKeyframeChange!
-        else @s.refresh(data?.elements || void)
-      )
 
       # Also listen to any specific events we're told to listen to
       $(document).on(@attr.eventsTriggeringRefresh, ~> @s.refresh!)

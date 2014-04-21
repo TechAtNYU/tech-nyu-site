@@ -67,6 +67,15 @@ define([
       skrollrInstance: s
     )
 
+    # Add the generic skrollr listener. Any component that's explicitly
+    # changing animations (i.e. setting keyframes) can call this.
+    $(document).on('animationsChange', (ev, data) ~> 
+      if data?.keframesOnly 
+        skrollrStylesheets.registerKeyframeChange!
+      else s.refresh(data?.elements || void)
+    )
+
+
     # leftSidebar, sectionBg, and digestSignup don't trigger any events right
     # away exept possibly an animationsChange, so they have to go after skrollr
     # but can otherwise go anywhere. They just need to be instantiated before 
