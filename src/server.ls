@@ -12,6 +12,8 @@ for own name, filter of nunjucks-helper.filters
 data = 
   now: new Date!
 
+  gaKey: 'UA-39634458-2'
+
   nextEvent:
     shortTitle: "Final Hack Night at Microsoft"
     shortDescription: "A Hack Night on Crowd Knowledge with a talk by Maria Naggaga."
