@@ -59,7 +59,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
       # animations for each section
       for keyframePair, i in transitionPoints
-        [start, end] = keyframePair.map(Math.round)
+        [start, end] = keyframePair
 
         smallKeyframes[start] = "dummy: true";
         smallKeyframes[end] = do

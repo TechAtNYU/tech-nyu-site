@@ -39,18 +39,18 @@ define(
       else
         throw new Error('Unexpected type!')
 
-    @animate = (attributeKey, designSize, keyframes, removeOldKeyframes = false) ->
+    @animate = (selectorAttributeOr$Elem, designSize, keyframes, removeOldKeyframes = false) ->
 
       if(designSize == "ALL")
         for designKey in @activeStylesheetKeys
-          @animate(attributeKey, designKey, keyframes)
+          @animate(selectorAttributeOr$Elem, designKey, keyframes)
         return
 
-      $elem = if typeof attributeKey == "string" then @select(attributeKey) else attributeKey;
+      $elem = if typeof selectorAttributeOr$Elem == "string" then @select(selectorAttributeOr$Elem) else selectorAttributeOr$Elem;
       attr = 'data-ss-' + @activeStylesheetKeys[designSize];
 
       if removeOldKeyframes
-        finalKeyframes = {[time, stringify(val)] for time, val of keyframes}
+        finalKeyframes = {[Math.round(time), stringify(val)] for time, val of keyframes}
         attrArray = [thisAttr.name for thisAttr in $elem.get(0).attributes when /^data-\-?[0-9]+$/.test(thisAttr.name)]
         for thisAttr in attrArray
           $elem.removeAttr(thisAttr)
@@ -59,7 +59,7 @@ define(
         # convert the css strings for each keyframe into objects
         # todo: this could be more performant by not objectifying initial
         # keyframes whose values we aren't modifying with newKeyframes.
-        newKeyframes   = {[time, objectify(val)]  for time, val of keyframes}
+        newKeyframes   = {[Math.round(time), objectify(val)]  for time, val of keyframes}
         startKeyframes = {[time, objectify(val)] for time, val of JSON.parse($elem.attr(attr) || "{}")}
 
         # then merge those objects ($.extend) and stringify the merged version of each
