@@ -23,7 +23,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
           # translate value of the same magnitue saying how far the
           # browser should pull the element up, and our pageYOffset
           # (i.e. scrollTop) is zero.
-          translateY = if @s?.isMobile! then -1*@s.getScrollTop! else 0
+          translateY = if @s.isMobile! then -1*@s.getScrollTop! else 0
           @$sections.eq(i).offset!.top + -2*translateY
 
     @setSectionAnimations = (scrollMode, designKey) ->
@@ -116,13 +116,11 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
     @after('initialize', ->
       @$sections = @select(\sectionsSelector)
+      @s         = @attr.skrollrInstance
       @$window   = $(window)
       $(document).one('designModeChange', ~> @setSectionAnimations(@scrollMode, @designSizeKey))
-      @on(document, 'skrollrInitialized', (ev, {skrollrInstance})~>
-        @s = skrollrInstance
-        @on(window, "resize", @handleResize);
-        @on(document, 'sectionContentModified', @handleResize)
-      ); 
+      @on(window, "resize", @handleResize);
+      @on(document, 'sectionContentModified', @handleResize)
     )
   )
 );
