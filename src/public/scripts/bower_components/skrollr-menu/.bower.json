@@ -1,14 +1,15 @@
 {
   "name": "skrollr-menu",
-  "homepage": "https://github.com/Prinzhorn/skrollr-menu",
-  "version": "0.1.11",
-  "_release": "0.1.11",
+  "homepage": "https://github.com/ethanresnick/skrollr-menu",
+  "version": "0.1.12",
+  "_release": "0.1.12",
   "_resolution": {
     "type": "version",
-    "tag": "0.1.11",
-    "commit": "5e335e5023c79997221844e51b3a540f400fa167"
+    "tag": "0.1.12",
+    "commit": "f1c6f9b71cc1e66be6f91ae96e53d041ca522913"
   },
-  "_source": "git://github.com/Prinzhorn/skrollr-menu.git",
-  "_target": "0.1.x",
-  "_originalSource": "skrollr-menu"
+  "_source": "git://github.com/ethanresnick/skrollr-menu.git",
+  "_target": "~0.1.12",
+  "_originalSource": "git://github.com/ethanresnick/skrollr-menu.git",
+  "_direct": true
 }
