@@ -8,7 +8,7 @@ requirejs.config(
 
         "flight": 'flight/lib'
         "skrollr": 'skrollr/dist/skrollr.min'
-        "skrollr-stylehseets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
+        "skrollr-stylesheets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
         "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
         "jquery.flexisel": "flexisel/js/jquery.flexisel"
     shim:
@@ -23,7 +23,7 @@ requirejs.config(
 
 define([
   'skrollr'
-  'skrollr-stylehseets'
+  'skrollr-stylesheets'
   'components/skrollr'
   'components/designSwitcher'
   'components/leftSidebar'
