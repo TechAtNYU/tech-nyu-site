@@ -132,6 +132,14 @@ app.get('/', (req, res) ->
   void
 )
 
+app.get(/\/team\/?/, (req, res) ->
+  res.redirect('https://tech-nyu.squarespace.com/team/');
+)
+
+app.get(/\/job\-board\/?/, (req, res) ->
+  res.redirect('https://tech-nyu.squarespace.com/job-board/');
+)
+
 # to do. what should the response be (more optional fields, social media links, other?)
 app.post('/subscribe', ->
 
