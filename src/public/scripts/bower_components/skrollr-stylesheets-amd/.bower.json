@@ -1,6 +1,6 @@
 {
   "name": "skrollr-stylesheets",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/ethanresnick/skrollr-stylesheets",
   "authors": [
     "Ethan Resnick <ethan.resnick@gmail.com>"
@@ -18,11 +18,11 @@
   "dependencies": {
     "es5-shim": "2.0.0"
   },
-  "_release": "0.1.1",
+  "_release": "0.1.2",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.1",
-    "commit": "d09a90670e0a506d6c2589102e8f4a90dcf52950"
+    "tag": "0.1.2",
+    "commit": "73f478b9c6c7564ac78ebc963ee05bd239976c3c"
   },
   "_source": "git://www.github.com/ethanresnick/skrollr-stylesheets.git",
   "_target": "0.1.x",

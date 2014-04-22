@@ -365,6 +365,10 @@ define(['skrollr'], function(skrollr) {
 			}
 		},
 
+		'getParsedSheets': function() {
+			return sheets;
+		},
+
 		//call if you've changed the keyframes object in the dom for a given stylesheetsKey
 		'registerKeyframeChange': function() {
 			var matchingStylesheetsKey = getMatchingStylesheetsKey(sheets);
