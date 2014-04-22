@@ -19,9 +19,9 @@
 
   <title>tech@nyu</title> 
   <!--[if ! lte IE 8]><!-->
-    <link rel="stylesheet" href="css/screen.css" type="text/css" />
-    <link rel="stylesheet" href="css/skrollr-large.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:920px) and (min-height: 620px) and (max-aspect-ratio: 1500/750)" />
-    <style data-skrollr-stylesheet media="screen and (max-width:919px), (max-height: 620px), (min-aspect-ratio:1501/750)">test { dummy: true; }</style>
+    <link rel="stylesheet" href="css/screen.css" type="text/css" id="baseCss" />
+    <link rel="stylesheet" href="css/skrollr-large.css" type="text/css" id ="largeCss" data-skrollr-stylesheet media="only screen and (min-width:920px) and (min-height: 620px) and (max-aspect-ratio: 1500/750)" />
+    <style data-skrollr-stylesheet media="screen and (max-width:919px), (max-height: 620px), (min-aspect-ratio:1501/750)" id="smallCss">test { dummy: true; }</style>
     {% include "partials/analytics_script.tmpl" %}
   <!--<![endif]-->
   <!--[if lte IE 8]>
@@ -208,9 +208,9 @@
         <h1>About Us</h2>
         <div class="initiative">
           <ul class="optionList">
-            <!-- <li><h2 class="h3">Our Team</h2></li> -->
+            <li><h2 class="h3"><a href="https://tech-nyu.squarespace.com/team/">Our Team</a></h2></li>
             <li><h2 class="h3"><a href="http://ship.techatnyu.org/">What We&rsquo;ve Made</a></h2></li>
-            <!-- <li><h2 class="h3">Job Board</h2></li> -->
+            <li><h2 class="h3"><a href="https://tech-nyu.squarespace.com/job-board/">Job Board</a></h2></li>
           </ul>
         </div>
 
