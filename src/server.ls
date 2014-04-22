@@ -15,9 +15,9 @@ data =
   gaKey: 'UA-39634458-2'
 
   nextEvent:
-    shortTitle: "Final Hack Night at Microsoft"
-    shortDescription: "A Hack Night on Crowd Knowledge with a talk by Maria Naggaga."
-    moreInfoUrl: "http://www.meetup.com/nyhackdays/events/175763952/"
+    shortTitle: "CSS: The Core Concepts"
+    shortDescription: "For anyone who's tried to style a website and has discovered how unintuitive CSS can be."
+    moreInfoUrl: "http://www.meetup.com/nyhackdays/events/178391352/"
 
   sponsors:
     * name: "Meetup"
