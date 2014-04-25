@@ -8,7 +8,7 @@ requirejs.config(
 
         "flight": 'flight/lib'
         "skrollr": 'skrollr/dist/skrollr.min'
-        "skrollr-stylesheets": 'skrollr-stylesheets-amd/dist/skrollr.stylesheets.min'
+        "skrollr-stylesheets": 'skrollr-stylesheets-amd/src/skrollr.stylesheets'
         "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
         "jquery.flexisel": "flexisel/js/jquery.flexisel"
     shim:

@@ -62,11 +62,11 @@ define(['skrollr'], function(skrollr) {
 			var sheetElm = sheetElms[i];
 			var content;
 
-			if(sheetElm.tagName === 'LINK') {
-				if(sheetElm.getAttribute('data-skrollr-stylesheet') === null) {
-					continue;
-				}
+			if(sheetElm.getAttribute('data-skrollr-stylesheet') === null) {
+				continue;
+			}
 
+			if(sheetElm.tagName === 'LINK') {
 				//Remote stylesheet, fetch it (synchrnonous).
 				content = fetchRemote(sheetElm.href);
 			} else {
@@ -79,7 +79,8 @@ define(['skrollr'], function(skrollr) {
 					'content':content,
 					'media': sheetElm.getAttribute('media'),
 					'animations': {},
-					'selectors': []
+					'selectors': [],
+					'id': sheetElm.getAttribute('id')
 				});
 			}
 		}
@@ -299,38 +300,20 @@ define(['skrollr'], function(skrollr) {
 		}
 	}
 
-	function getMatchingStylesheetsKey(sheets) {
+	function getStylesheetsKey(sheets, testFunc) {
 		var key = '';
-		var currentSheet;
 
-		if(!matchMedia) {
-			return strRepeat('1', sheets.length);
-		}
-
-		else {
-			for(var i = 0, len = sheets.length; i < len; i++) {
-				currentSheet = sheets[i];
-				key = key.concat(!currentSheet.media || matchMedia(currentSheet.media).matches ? '1' : '0');
-			}
+		for(var i = 0, len = sheets.length; i < len; i++) {
+			key = key.concat(testFunc(sheets[i]) ? '1' : '0');
 		}
 
 		return key;
 	}
 
-	function strRepeat(pattern, count) {
-		var result = '';
-
-		if (count < 1) {
-			return result;
-		}
-
-		while (count > 0) {
-			if (count & 1) {
-				result += pattern;
-			}
-			count >>= 1, pattern += pattern;
-		}
-		return result;
+	function getMatchingStylesheetsKey(sheets) {
+		return getStylesheetsKey(sheets, function(currentSheet) {
+			return !currentSheet.media || !matchMedia || matchMedia(currentSheet.media).matches;
+		});
 	}
 
 	//returns an array of properties from a string of inline css
@@ -367,6 +350,16 @@ define(['skrollr'], function(skrollr) {
 
 		'getParsedSheets': function() {
 			return sheets;
+		},
+
+		'getStylesheetsKey': function(ids) {
+			if (ids.length === undefined) {
+				ids = [ids];
+			}
+
+			return getStylesheetsKey(sheets, function(currentSheet) {
+				return ids.indexOf(currentSheet.id) !== -1;
+			});
 		},
 
 		//call if you've changed the keyframes object in the dom for a given stylesheetsKey
