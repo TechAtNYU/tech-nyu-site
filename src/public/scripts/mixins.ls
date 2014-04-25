@@ -1,8 +1,9 @@
 define(
   managesAnimations: !->
-    @activeStylesheetKeys = 
-      LARGE: 101
-      SMALL: 110
+    @activeStylesheetKeys =
+      LARGE: '01'
+      SMALL: '10'
+    
 
     # takes an (array of) css property-value strings and turns them into an object, i.e.
     # "top:20px;bottom:200px;" => {'top': '20px', 'bottom':'200px'}. Similarly, 
