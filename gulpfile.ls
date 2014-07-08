@@ -60,11 +60,13 @@ gulp.task('ls', [\clean],  ->
 # runs all the amd modules through r.js and uglify; dump to build.
 gulp.task('optimizeJS', [\ls \copy], ->
   rjs(do
-    baseUrl: paths.buildPublic + '/scripts/bower_components',
+    baseUrl: paths.buildPublic + '/scripts/bower_components'
     paths:
       jquery: \empty:
+      requireLib: "requirejs/require"
     mainConfigFile: paths.buildPublic + '/scripts/app.js'
-    include: [\app]
+    include: [\requireLib, \app]
+    insertRequire: [\app]
     out: 'scripts/app.js'
     preserveLicenseComments: false
   ).pipe(uglify!)
