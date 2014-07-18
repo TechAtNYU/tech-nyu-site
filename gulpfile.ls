@@ -13,6 +13,7 @@ require! {
   minify: "gulp-minify-html"
   es: "event-stream"
   filter: "gulp-filter"
+  htmlReplace: "gulp-html-replace"
 }
 
 paths =
@@ -74,7 +75,14 @@ gulp.task('optimizeJS', [\ls \copy], ->
   void
 )
 
+# Update the template to link properly to the new, minified js
+gulp.task('buildHTML', [\copy], ->
+  gulp.src(paths.build + '/views/home.tmpl')
+    .pipe(htmlReplace({js:'scripts/app.js'}))
+    .pipe(gulp.dest(paths.build + '/views'))
+)
+
 gulp.watch(globs.src, [\dev])
 gulp.task(\test, [])
 gulp.task(\dev, [\clean \ls \copy \sass])
-gulp.task(\default, [\dev \optimizeJS])
+gulp.task(\default, [\dev \optimizeJS \buildHTML])

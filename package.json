@@ -27,11 +27,11 @@
   },
   "bugs": "https://github.com/ethanresnick/tech-nyu-site/issues",
   "dependencies": {
-    "express": "3.5.x",
-    "nunjucks": "1.0.x",
     "bower": "^1.3.1",
     "bower-requirejs": "^0.10.3",
-    "mongodb": "1.4.x"
+    "express": "3.5.x",
+    "mongodb": "1.4.x",
+    "nunjucks": "1.0.x"
   },
   "devDependencies": {
     "bower": "1.3.x",
@@ -50,7 +50,8 @@
     "gulp-requirejs": "0.1.x",
     "gulp-uglify": "0.2.x",
     "gulp-exec": "1.0.x",
-    "gulp-minify-html": "0.1.x"
+    "gulp-minify-html": "0.1.x",
+    "gulp-html-replace": "^1.1.0"
   },
   "scripts": {
     "start": "npm install"
