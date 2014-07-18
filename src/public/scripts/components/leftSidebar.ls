@@ -51,7 +51,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
             'top[sqrt]': logoTop + 'px'
             'margin-left[sqrt]': logoMarginLeft + 'px'
           (@sassVars.navCascadeEnd - 50): do
-            'top[sqrt]': \0px
+            'top[sqrt]': \10px
             'margin-left[sqrt]': \0px
         })
 
