@@ -8,6 +8,9 @@ module.exports =
         else
           str
 
+      toAnchor: (heading) ->
+        heading.toLowerCase().replace(/\s/g, "-")
+
       add_br: (str) -> 
         if(str.length < 10)
           str

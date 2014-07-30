@@ -1,0 +1,128 @@
+{% extends "layout.tmpl" %}
+{% block extraStylesheets %}
+    <link rel="stylesheet" href="css/apply.css" type="text/css" />
+    <style>
+      body {
+        padding: 0 .75em;
+        max-width: 53em;
+        position: relative;
+      }
+      nav {
+        position: static; 
+        color: inherit;
+        height: auto;
+      }
+      a {
+        color: hsl(218, 66%, 36%);
+        text-decoration: underline;
+      }
+      
+      section {
+        margin-top: 2em;
+        max-width: 40em;
+      }
+
+      header {
+        margin-top: 1em;
+      }
+
+      h2 {
+        margin-bottom: .333em;
+      }
+
+      article {
+        margin-bottom: 1.5em;
+      }
+
+      dl {
+        max-width: 40em;
+      }
+      dd {
+        display: inline;
+      }
+
+      dd::after {
+        content: ', ';
+      }
+
+      dd:last-child::after {
+        content: '.';
+      }
+
+      @media only screen and (min-width: 970px) and (min-height: 700px) {
+        nav {
+          position: fixed;
+          left: 50%;
+          margin-left: 13em;
+          top: 8em;
+          width: 12em;
+          height: auto;
+          border: 3px solid hsl(14, 68%, 51%);
+        }
+
+        dd {
+          line-height: 1.2em;
+          padding: .25em .5em;
+          margin: 0;
+          display: block;
+        }
+        dd::after {
+          content: none !important;
+        }
+        dd a {
+          color: hsl(19, 16%, 20%);
+        }
+
+        dt {
+          text-transform: uppercase;
+          letter-spacing: .5px;
+          font-size: .9em;
+          color: hsl(0, 0%, 95%);
+          background: hsl(14, 68%, 51%);
+          padding: .27777em .55555em;
+          font-weight: bold;
+          font-style: normal;
+        }
+
+        .extra {
+          display: none;
+        }
+      }
+    </style>
+{% endblock %}
+{% block pageTitle %} | Apply {% endblock %}
+{% block body %}
+<header>
+  <h1>Apply to Join</h1>
+</header>
+<section>
+  <h2>Why Join Tech@NYU</h1>
+    {# This needs to be way more fun, and should show don't tell that we're friendly and fun. also, could have something about "if you're the kinda person who x", then tech@nyu's perfect. Needs more gifs. #}
+  <p>Tech@NYU reaches over 5,000 students, making us the largest tech, design, and entrepreneurship club in NYC. As a Tech@NYU officer, you&rsquo;ll be part of a close group of some of the <a href="https://tech-nyu.squarespace.com/team/">smartest and friendliest students</a> at NYU. We&rsquo;re a passionate group and we don&rsquo;t just talk about tech and design; <a href="http://ship.techatnyu.org/">we also ship</a>. Constantly.</p>
+
+  <p>If you&rsquo;re a student in New York City who&rsquo;s interested in the intersection of startups, entrepreneurship, coding, art and design&hellip;we strongly encourage you to apply! Have fun and good luck!</p>
+
+  <h3>Team Leads vs Team Members</h3>
+  <p><i>Team leads</i> manage a team of officers to plan and host events throughout the semester. If you take on a lead position, you&rsquo;ll have full autonomy over your team&rsquo;s events and full responsibility for ensuring their awesomeness.</p>
+
+  <p><i>Team member</i> positions are great for getting your foot in the Tech@NYU door, getting to know how we operate, and helping to plan events that run smoothly.</p>
+  <nav style="">
+    <dl>
+      <dt>Available positions<span class="extra"> for 2014 are:</span></dt>
+      {% for position in positions %}
+        <dd><a href="#{{position.name|toAnchor}}">{{position.name}}</a></dd>
+      {% endfor %}
+    </dl>
+  </nav>
+</section>
+<section>
+  <h2>Available Positions</h2>
+  {% for position in positions %}
+  <article>
+    <h3 id="{{position.name|toAnchor}}">{{position.name}}</h3>
+    <p>{{position.desc|safe}}</p>
+    <a class="button flatButton" href="{{position.link}}">Apply Now!</a>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

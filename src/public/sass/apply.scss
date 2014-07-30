@@ -1,0 +1,67 @@
+/* This CSS informed heavily by: Nicole Sullivan, Eric Meyer, Yahoo YUI Team, Nicolas Gallagher, Paul Irish, and many others. */
+@import "base";
+@import "reset_normalize_slim";
+@import "traits";
+@import "elems";
+@import "objects";
+@import "interactions";
+@import "unique_and_todo";
+
+@include scalers;
+
+//import the basic styles for each design
+@media (max-width: map-get(nth($rsDesigns,1), maxWidth)) {
+    body {
+        max-width: 646px;
+    }
+}
+
+@media (min-width: map-get(nth($rsDesigns,2), minWidth)) {
+
+}
+
+
+//for the mobile design, set the base font-size to 16px with a scaler.
+@media (min-width: 0px) and (max-width: 286px) {
+    @include stretcher(14px, 17px);
+}
+
+@media (min-width: 287px) and (max-width: 304px) {
+    @include stretcher(15px, 19px);
+}
+
+@media (min-width: 305px) and (max-width: 336px) {
+    @include stretcher(15px, 20px);
+}
+
+@media (min-width: 337px) and (max-width: 353px) {
+    @include stretcher(16px, 22px); 
+}
+
+@media (min-width: 354px) and (max-width: 380px) {
+    @include stretcher(16px, 23px);
+}
+
+@media (min-width: 381px) and (max-width: 450px) {
+    @include stretcher(17px, 25px);
+}
+
+@media (min-width: 451px) and (max-width: 600px) {
+    @include stretcher(18px, 27px);
+}
+
+@media (min-width: 601px) and (max-width: 788px) {
+     @include stretcher(19px, 28px);
+}
+
+@media (min-width: 789px) and (max-width: 926px) {
+    @include stretcher(19px, 29px);
+}
+
+@media (min-width: 927px) and (max-width: 1119px) {
+    @include stretcher(20px, 29px);
+}
+
+@media (min-width: 1120px) {
+    @include stretcher(21px, 30px);
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6 home" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7 home" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8 home" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js {% block htmlClass %}{% endblock %}" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <!-- Force Latest IE rendering & Chrome Frame -->
+  
+  <meta name="Copyright" content="Copyright tech@nyu {{ now.getFullYear() }}." />
+  <meta name="DC.creator" content="tech@nyu" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta http-equiv="cleartype" content="on" />
+
+  <title>tech@nyu{% block pageTitle %}{% endblock %}</title> 
+  <!--[if ! lte IE 8]><!-->
+    {% block extraStylesheets %}{% endblock %}
+  <!--<![endif]-->
+  <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1b.css" media="screen, projection">
+  <![endif]-->
+  <!--[if lt IE 9]>
+    <script src="scripts/bower_components/es5-shim/es5-shim.js"></script>
+    <script src="scripts/bower_components/es5-shim/es5-sham.js"></script>
+  <![endif]-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  {% include "partials/analytics_script.tmpl" %}
+  {% block extraScripts %}{% endblock %}
+  <script type="text/javascript" src="//use.typekit.net/bpm7cfb.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body class="horiz">
+  {% block body %}{% endblock %}
+</body>
+</html>

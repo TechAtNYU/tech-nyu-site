@@ -140,6 +140,12 @@ app.get(/\/job\-board\/?/, (req, res) ->
   res.redirect('https://tech-nyu.squarespace.com/job-board/');
 )
 
+app.get(\/apply, (req, res) ->
+  localData = require('./data/applications')
+  localData[\now, \gaKey] = data[\now, \gaKey]
+  res.render("applications.tmpl", localData);
+)
+
 # to do. what should the response be (more optional fields, social media links, other?)
 app.post('/subscribe', ->
 
