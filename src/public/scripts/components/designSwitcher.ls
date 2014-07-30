@@ -16,7 +16,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
     @scrollMode  # paginated or scroll
 
     @getDesignSizeKey = -> 
-      if !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1500/750)").matches
+      if !matchMedia || window.matchMedia("(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1530/750)").matches
         \LARGE
       else
         \SMALL
