@@ -1,44 +1,20 @@
+{% extends "layout.tmpl" %}
 {% from "macros.tmpl" import mailChimpForm %}
-<!doctype html>
-<!--[if lt IE 7 ]> <html class="no-js ie6 home" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="no-js ie7 home" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="no-js ie8 home" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js home" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <!-- Force Latest IE rendering & Chrome Frame -->
-  
-  <meta name="Copyright" content="Copyright tech@nyu {{ now.getFullYear() }}." />
-  <meta name="DC.creator" content="tech@nyu" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta http-equiv="cleartype" content="on" />
+{% block htmlClass %}home{% endblock %}
 
-  <title>tech@nyu</title> 
-  <!--[if ! lte IE 8]><!-->
+{% block extraStylesheets %}
     <link rel="stylesheet" href="css/screen.css" type="text/css" />
-    <link rel="stylesheet" href="css/skrollr-large.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:920px) and (min-height: 620px) and (max-aspect-ratio: 1500/750)" />
-    <style data-skrollr-stylesheet media="screen and (max-width:919px), (max-height: 620px), (min-aspect-ratio:1501/750)">test { dummy: true; }</style>
-    {% include "partials/analytics_script.tmpl" %}
-  <!--<![endif]-->
-  <!--[if lte IE 8]>
-    <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1b.css" media="screen, projection">
-  <![endif]-->
-  <!--[if lt IE 9]>
-    <script src="scripts/bower_components/es5-shim/es5-shim.js"></script>
-    <script src="scripts/bower_components/es5-shim/es5-sham.js"></script>
-  <![endif]-->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/skrollr-large.css" type="text/css" data-skrollr-stylesheet media="only screen and (min-width:920px) and (min-height: 620px) and (max-aspect-ratio: 1530/750)" />
+    <style data-skrollr-stylesheet media="screen and (max-width:919px), (max-height: 620px), (min-aspect-ratio:1531/750)">test { dummy: true; }</style>
+{% endblock %}
+{% block extraScripts %}
   <!-- build:js -->
     <script data-main="scripts/app" src="scripts/bower_components/requirejs/require.js"></script>
   <!-- endbuild -->
-  <script type="text/javascript" src="//use.typekit.net/bpm7cfb.js"></script>
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-</head>
-<body class="horiz">
+{% endblock %}
+
+{% block body %}
   <header class="clearfix" id="header">
     <a href="">
       <h1 id="logo">
@@ -287,6 +263,5 @@
 
     });*/
   </script>
-</body>
-</html>
+{% endblock %}
   
