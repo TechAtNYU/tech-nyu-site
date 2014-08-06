@@ -31,7 +31,7 @@
       }
 
       article {
-        margin-bottom: 1.5em;
+        margin-bottom: 1.75em;
       }
 
       dl {
@@ -47,6 +47,11 @@
 
       dd:last-child::after {
         content: '.';
+      }
+
+      .flatButton, .flatButton a {
+        background-color: hsl(218, 66%, 36%);
+        color: white;
       }
 
       @media only screen and (min-width: 970px) and (min-height: 700px) {
@@ -104,19 +109,24 @@
 </section>
 <section>
   <h3>Deadlines &amp; Eligibilty</h3>
-  <p>The deadline to apply is Friday, August 22nd; you&rsquo;ll hear back from us before the school year starts.</p>
+  <p>The final deadline to apply is Friday, August 22nd. However, candidates are admitted on a rolling basis, so <em>earlier applicants have an advantage</em>. All applicants will hear back from us before the school year starts.</p>
   <p>Any student in NYC may apply, including graduate students. If you&rsquo;re studying abroad in the upcoming year, we encourage you to apply for any of the team member positions; unfortunately, only students who will be in NYC full time are eligible for the team lead positions (see below).</p>
 
-  <h3>Team Leads vs Team Members</h3>
-  <p><i>Team leads</i> manage a group of officers to plan and host events throughout the semester. If you take on a lead position, you&rsquo;ll have full autonomy over your team&rsquo;s events and full responsibility for ensuring their awesomeness.</p>
+ {# <h3>Team Leads vs Team Members</h3>
+  <p><i>Team leads</i> manage a group of officers to plan and host events throughout the semester. If you take on a lead position, </p>
 
   <p><i>Team member</i> positions are great for getting your foot in the Tech@NYU door, getting to know how we operate, and helping to plan events that run smoothly.</p>
+  #}
 </section>
   <nav style="">
     <dl>
       <dt>Available positions<span class="extra"> for 2014 are:</span></dt>
       {% for position in positions %}
-        <dd><a href="#{{position.name|toAnchor}}">{{position.name}}</a></dd>
+        <dd>
+          {% if position.priority %}<strong>{% endif %}
+            <a href="#{{position.name|toAnchor}}">{{position.name}}</a>
+          {% if position.priority %}</strong>{% endif %}
+        </dd>
       {% endfor %}
     </dl>
   </nav>
