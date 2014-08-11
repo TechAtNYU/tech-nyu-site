@@ -132,8 +132,8 @@ app.get('/', (req, res) ->
   void
 )
 
-app.get(/\/team\/?/, (req, res) ->
-  res.redirect('https://tech-nyu.squarespace.com/team/');
+app.get(/^\/team\/?$/, (req, res) ->
+  res.redirect('http://ship.techatnyu.org/#board');
 )
 
 app.get(/\/job\-board\/?/, (req, res) ->
