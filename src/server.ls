@@ -14,10 +14,11 @@ data =
 
   gaKey: 'UA-39634458-2'
 
-  nextEvent:
-    shortTitle: "CSS: The Core Concepts"
-    shortDescription: "For anyone who's tried to style a website and has discovered how unintuitive CSS can be."
-    moreInfoUrl: "http://www.meetup.com/nyhackdays/events/178391352/"
+  promo:
+    shortTitle: "Join our team!"
+    shortDescription: "We're looking for new students to join our board."
+    moreInfoUrl: "http://www.techatnyu.org/apply"
+    isEvent: false
 
   sponsors:
     * name: "Meetup"

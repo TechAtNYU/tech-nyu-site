@@ -49,13 +49,17 @@
       <div id="upcoming-inner">
         <div class="promoPanel">
           <div class="heading">
-            <h2 class="h6" data-alt-title="Upcoming Events">Next Event</h2>
+            {% if promo.isEvent %}
+              <h2 class="h6" data-alt-title="Upcoming Events">Next Event</h2>
+            {% endif %}
           </div>
           <div class="content">
-            <a class="event with-flatButton" href="{{ nextEvent.moreInfoUrl }}">
-              <strong class="title h5"> {{ nextEvent.shortTitle }}</strong>
-              <span class="caption">{{ nextEvent.shortDescription }} <span class="more">More&nbsp;info&hellip;</span></span>
-              <button class="flatButton round" id="more-events">More Events</button>
+            <a class="event with-flatButton" href="{{ promo.moreInfoUrl }}">
+              <strong class="title h5"> {{ promo.shortTitle }}</strong>
+              <span class="caption">{{ promo.shortDescription }} <span class="more">More&nbsp;info&hellip;</span></span>
+              <button class="flatButton round{% if not promo.isEvent %} without-heading{%endif%}" id="more-events">
+                 {% if promo.isEvent %}More{% else %}Future{% endif %} Events
+              </button>
             </a>
           </div>
         </div>
