@@ -54,6 +54,18 @@
         color: white;
       }
 
+      small {
+        text-transform: uppercase;
+        font-size: .75em;
+        color: #666;
+        letter-spacing: .05em;
+        margin-left: .1em;
+      }
+
+      small .number {
+        font-size: 1.2em;
+      }
+
       @media only screen and (min-width: 970px) and (min-height: 700px) {
         nav {
           position: fixed;
@@ -103,7 +115,7 @@
 <section>
   <h2>Why Join Tech@NYU</h1>
     {# This needs to be way more fun, and should show don't tell that we're friendly and fun. also, could have something about "if you're the kinda person who x", then tech@nyu's perfect. Needs more gifs. #}
-  <p>We&rsquo;re a community of over 5,000 students, making us the largest tech, design, and entrepreneurship club in NYC. As a Tech@NYU officer, you&rsquo;ll be part of a close group of some of the smartest, most driven, and friendliest students in the city. We&rsquo;re a passionate, scrappy bunch that doesn&rsquo;t just talk about tech and design;&mdash;<a href="http://ship.techatnyu.org/">we ship</a>. All The Time.</p>
+  <p>We&rsquo;re a community of over 5,000 students, making us the largest tech, design, and entrepreneurship club in NYC. As a Tech@NYU officer, you&rsquo;ll be part of a close group of some of the smartest, most driven, and friendliest students in the city. We&rsquo;re a passionate, scrappy bunch that doesn&rsquo;t just talk about tech and design&mdash;<a href="http://ship.techatnyu.org/">we ship</a>. All The Time.</p>
 
   <p>If you&rsquo;re a student in New York City who&rsquo;s interested in the intersection of entrepreneurship, coding, art and design&hellip;we strongly encourage you to apply! Good luck!</p>
 </section>
@@ -123,9 +135,15 @@
       <dt>Available positions<span class="extra"> for 2014 are:</span></dt>
       {% for position in positions %}
         <dd>
+          {% if position.filled == position.needed %}
+          <del>
+          {% endif %}
+
           {% if position.priority %}<strong>{% endif %}
             <a href="#{{position.name|toAnchor}}">{{position.name}}</a>
           {% if position.priority %}</strong>{% endif %}
+
+          {% if position.filled == position.needed %}</del><ins><small>Position filled!</small></ins>{% endif %}
         </dd>
       {% endfor %}
     </dl>
@@ -134,11 +152,13 @@
 <section>
   <h2>Available Positions</h2>
   {% for position in positions %}
-  <article>
-    <h3 id="{{position.name|toAnchor}}">{{position.name}}</h3>
-    <p>{{position.desc|safe}}</p>
-    <a class="button flatButton" href="{{position.link}}">Apply Now!</a>
-  </article>
+    {% if position.filled != position.needed %}
+      <article>
+        <h3 id="{{position.name|toAnchor}}">{{position.name}}</h3>
+        <p>{{position.desc|safe}}</p>
+        <a class="button flatButton" href="{{position.link}}">Apply Now!</a> {% if position.name|replace("Lead", "") == position.name %}<small><span class="number">{{ position.needed - position.filled }}</span> remaining</small>{% endif %}
+      </article>
+    {% endif %}
   {% endfor %}
 </section>
 {% endblock %}
