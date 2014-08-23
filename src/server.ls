@@ -159,6 +159,8 @@ app.use(express.static(__dirname + '/public'));
 
 # 404 handler
 app.use((req, res, next) ->
+  if req.url is /^\/apply/
+    data.customMessage = "Applications are closed :/"
   res.render("404.tmpl", data);
 )
 app.listen(3000)

@@ -8,16 +8,24 @@
         top: 0;
         left: 0;
       }
-      h1 {
+      .info {
         position: fixed;
         z-index: 1; 
-        top: 1em;
         left: 1em;
         color: white;
+        top: 1em;
       }
     </style>
 {% endblock %}
 {% block pageTitle %} | Page Not Found{% endblock %}
 {% block body %}
-<h1>Page not found :/</h1><h2>Sorry!</h2><img src='http://media.giphy.com/media/r80RL4B8Fys3m/giphy.gif' alt="" />
+<div class="info">
+  {% if customMessage %}
+    <h1>{{customMessage}}</h1>
+  {% else %}
+    <h1>Page not found :/</h1>
+  {% endif %}
+  <h2>Sorry!</h2>
+</div>
+<img src='http://media.giphy.com/media/r80RL4B8Fys3m/giphy.gif' alt="" />
 {% endblock %}
