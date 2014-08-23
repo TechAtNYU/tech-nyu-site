@@ -133,6 +133,9 @@ app.get('/', (req, res) ->
   void
 )
 
+app.get(/^\/anti-harassment\/?$/, (req, res) ->
+  res.render("anti-harassment.tmpl", data);
+)
 app.get(/^\/team\/?$/, (req, res) ->
   res.redirect('http://ship.techatnyu.org/#board');
 )
@@ -153,4 +156,9 @@ app.post('/subscribe', ->
 )
 
 app.use(express.static(__dirname + '/public'));
+
+# 404 handler
+app.use((req, res, next) ->
+  res.render("404.tmpl", data);
+)
 app.listen(3000)
