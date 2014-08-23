@@ -148,18 +148,10 @@
   <nav style="">
     <dl>
       <dt>Available positions<span class="extra"> for 2014 are:</span></dt>
-      {% for position in positions %}
-        <dd>
-          {% if position.filled == position.needed %}
-          <del>
-          {% endif %}
-
-          {% if position.priority %}<strong>{% endif %}
-            <a href="#{{position.name|toAnchor}}">{{position.name}}</a>
-          {% if position.priority %}</strong>{% endif %}
-
-          {% if position.filled == position.needed %}</del><ins><small>Position filled!</small></ins>{% endif %}
-        </dd>
+      {%- for position in positions %}
+        <dd>{%- if position.filled == position.needed %}<del>{% endif %}
+            {%- if position.priority %}<strong>{% endif %}
+              <a href="#{{position.name|toAnchor}}">{{position.name}}</a>{%- if position.priority %}</strong>{% endif %}{%- if position.filled == position.needed %}</del><ins> <small>Position filled!</small></ins>{% endif %}</dd>
       {% endfor %}
     </dl>
   </nav>
