@@ -15,9 +15,9 @@ data =
   gaKey: 'UA-39634458-2'
 
   promo:
-    shortTitle: "Join our team!"
-    shortDescription: "We're looking for new students to join our board."
-    moreInfoUrl: "http://www.techatnyu.org/apply"
+    shortTitle: "Back Soon"
+    shortDescription: "Tech@NYU's enjoying summer break, but we'll be back with more events in a couple weeks."
+    #moreInfoUrl: "http://www.techatnyu.org/apply"
     isEvent: false
 
   sponsors:
@@ -144,7 +144,7 @@ app.get(/\/job\-board\/?/, (req, res) ->
   res.redirect('https://tech-nyu.squarespace.com/job-board/');
 )
 
-app.get(\/apply, (req, res) ->
+app.get(/^\/apply-now\/?$/, (req, res) ->
   localData = require('./data/applications')
   localData[\now, \gaKey] = data[\now, \gaKey]
   res.render("applications.tmpl", localData);
