@@ -21,7 +21,7 @@ npm install
 The following command compiles the [LivesScript](http://livescript.net/) and
 [Sass](http://sass-lang.com/) files that make up the project:
 ```
-gulp --require gulp-livescript.
+gulp --require gulp-livescript
 ```
 
 To start the server, run `node server.js` in the `build/` directory. This
@@ -31,7 +31,7 @@ browser.
 If you want to develop so that the `gulp` does less minification (speeding up
 build time), run
 ```
-gulp dev --require-livescript
+gulp dev --require gulp-livescript
 ```
 
 
