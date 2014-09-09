@@ -19,7 +19,7 @@ define(["flight/component", "mixins"], (defineComponent, mixins) ->
 
     @after('initialize', ->
       @on(@select('input'), "focus", @showDetails);
-      @on(@select('input'), 'blur', @hideDetails);
+      @on(@select('input'), 'blur', -> setTimeout(@~hideDetails, 150));
     )
   )
 );
