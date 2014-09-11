@@ -2,6 +2,7 @@ require! {
     express
     nunjucks
     nunjucks-helper: "./helpers/nunjucks"
+    request
 }
 
 app = express!
@@ -12,13 +13,13 @@ for own name, filter of nunjucks-helper.filters
 data = 
   now: new Date!
 
-  gaKey: 'UA-39634458-2'
-
   promo:
     shortTitle: "Back Soon"
     shortDescription: "Tech@NYU's enjoying summer break, but we'll be back with more events in a couple weeks."
     #moreInfoUrl: "http://www.techatnyu.org/apply"
     isEvent: false
+
+  gaKey: 'UA-39634458-2'
 
   sponsors:
     * name: "Meetup"
@@ -126,12 +127,39 @@ data =
       anchor: "event-calendar"
 
 app.get('/', (req, res) ->
+  # set promo if it is not defined
+  if !data.promo
+    request({
+      'url': 'https://api.tnyu.org/events'
+      'rejectUnauthorized': false,
+      "method": "GET",
+    }, (error, response, body) -> 
+        if !error && response.statusCode == 200 && body
+          events = JSON.parse(body).events
+
+          if events && events[0]
+            console.log(events[0].shortTitle)
+
+            event = events[0]
+
+            data.promo = 
+              shortTitle: event.shortTitle
+              shortDescription: event.description
+              isEvent: true
+
+        renderHome(res)
+    )
+  else
+    renderHome(res)
+  
+  void
+)
+
+renderHome = (res) ->
   res.render('home.tmpl', data, (err, html) ->
     if err then console.log(err);
     res.send(html);
   )
-  void
-)
 
 app.get(/^\/anti-harassment\/?$/, (req, res) ->
   res.render("anti-harassment.tmpl", data);
