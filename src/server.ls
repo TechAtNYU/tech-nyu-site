@@ -3,6 +3,7 @@ require! {
     nunjucks
     nunjucks-helper: "./helpers/nunjucks"
     request
+    Q: "q"
 }
 
 app = express!
@@ -13,11 +14,11 @@ for own name, filter of nunjucks-helper.filters
 data = 
   now: new Date!
 
-  promo:
-    shortTitle: "Back Soon"
-    shortDescription: "Tech@NYU's enjoying summer break, but we'll be back with more events in a couple weeks."
+  #promo:
+    #shortTitle: "Back Soon"
+    #shortDescription: "Tech@NYU's enjoying summer break, but we'll be back with more events in a couple weeks."
     #moreInfoUrl: "http://www.techatnyu.org/apply"
-    isEvent: false
+    #isEvent: false
 
   gaKey: 'UA-39634458-2'
 
@@ -52,40 +53,36 @@ data =
     * name: "Event Calendar"
       anchor: "event-calendar"
 
-app.get('/', (req, res) ->
-  # set promo if it is not defined
-  if !data.promo
-    request({
-      'url': 'https://api.tnyu.org/events'
-      'rejectUnauthorized': false,
-      "method": "GET",
-    }, (error, response, body) -> 
-        if !error && response.statusCode == 200 && body
-          events = JSON.parse(body).events
+updateData = ->
+  if !data.promo?.isEvent
+    Q.nfcall(request,
+      url: 'https://api.tnyu.org/events'
+      rejectUnauthorized: false
+      method: "GET"
+    ).then(([response, body]) -> 
+      if response.statusCode == 200 && body
+        nextEvent = JSON.parse(body).events?[0]
 
-          if events && events[0]
-            console.log(events[0].shortTitle)
-
-            event = events[0]
-
-            data.promo = 
-              shortTitle: event.shortTitle
-              shortDescription: event.description
-              isEvent: true
-
-        renderHome(res)
+        if nextEvent
+          data.promo = 
+            shortTitle: nextEvent.shortTitle
+            shortDescription: nextEvent.description
+            moreInfoUrl: nextEvent.rsvpUrl
+            isEvent: true
     )
-  else
-    renderHome(res)
-  
-  void
-)
 
-renderHome = (res) ->
+  setTimeout(updateData, 3600000)
+  void
+
+# update data on start, which will then re-run itself once an hour
+updateData!
+
+app.get('/', (req, res) ->
   res.render('home.tmpl', data, (err, html) ->
     if err then console.log(err);
     res.send(html);
   )
+)
 
 app.get(/^\/anti-harassment\/?$/, (req, res) ->
   res.render("anti-harassment.tmpl", data);
