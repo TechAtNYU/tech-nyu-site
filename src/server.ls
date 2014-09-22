@@ -2,6 +2,8 @@ require! {
     express
     nunjucks
     nunjucks-helper: "./helpers/nunjucks"
+    request
+    Q: "q"
 }
 
 app = express!
@@ -12,89 +14,15 @@ for own name, filter of nunjucks-helper.filters
 data = 
   now: new Date!
 
+  #promo:
+    #shortTitle: "Back Soon"
+    #shortDescription: "Tech@NYU's enjoying summer break, but we'll be back with more events in a couple weeks."
+    #moreInfoUrl: "http://www.techatnyu.org/apply"
+    #isEvent: false
+
   gaKey: 'UA-39634458-2'
 
-  promo:
-    shortTitle: "Back Soon"
-    shortDescription: "Tech@NYU's enjoying summer break, but we'll be back with more events in a couple weeks."
-    #moreInfoUrl: "http://www.techatnyu.org/apply"
-    isEvent: false
-
-  sponsors:
-    * name: "Meetup"
-      img: "meetup.png"    
-    * name: "Rackspace"
-      img: "rackspace.jpg"
-      url: ""
-    * name: "Quirky"
-      img: "quirky.gif"
-      url: ""
-    * name: "Pearson"
-      img: "pearson.png"
-      url: ""
-    * name: "artsicle"
-      img: "artsicle.png"
-      url: ""
-    * name: "Bitly"
-      img: "bitly.png"
-      url: ""
-    * name: "Branch"
-      img: "branch.png"
-      url: ""
-    * name: "chatID"
-      img: "chatid.png"
-      url: ""
-    * name: "Codecademy"
-      img: "codecademy.png"
-      url: ""
-    * name: "Craft Coffee"
-      img: "craftcoffee.jpg"
-      url: ""
-    * name: "Github"
-      img: "github.png"
-      url: ""
-    * name: "hackNY"
-      img: "hackny.png"
-      url: ""
-    * name: "Knewton"
-      img: "knewton.jpg"
-      url: ""
-    * name: "Lean Startup Machine"
-      img: "leanstartupmachine.png"
-      url: ""
-    * name: "MailChimp"
-      img: "mailchimp.jpeg"
-      url: ""
-    * name: "Onswipe"
-      img: "onwsipe.png"
-      url: ""
-    * name: "Pivotal Labs"
-      img: "pivotal.png"
-      url: "" 
-    * name: "PopTip"
-      img: "poptip.jpg"
-      url: ""
-    * name: "RebelMouse"
-      img: "rebelmouse.png"
-      url: ""
-    * name: "SeatGeek"
-      img: "seatgeek.jpg"
-      url: ""
-    * name: "Squarespace"
-      img: "squarespace.jpg"
-      url: ""
-    * name: "Techstars"
-      img: "techstars.jpg"
-      url: ""
-    * name: "I Heart NY Tech Week 2013"
-      img: "tw_nyc.png"
-      url: ""
-    * name: "NYU"
-      img: "nyu_stacked_color.jpg"
-      url: ""
-    * name: "CaterCow"
-      img: "catercow.jpg" 
-      url: ""
+  sponsors: require('./data/sponsors')
 
   channels:
     "Freshman Circuit": 
@@ -125,12 +53,35 @@ data =
     * name: "Event Calendar"
       anchor: "event-calendar"
 
+updateData = ->
+  if !data.promo?.isEvent
+    Q.nfcall(request,
+      url: 'https://api.tnyu.org/events'
+      rejectUnauthorized: false
+      method: "GET"
+    ).then(([response, body]) -> 
+      if response.statusCode == 200 && body
+        nextEvent = JSON.parse(body).events?[0]
+
+        if nextEvent
+          data.promo = 
+            shortTitle: nextEvent.shortTitle
+            shortDescription: nextEvent.description
+            moreInfoUrl: nextEvent.rsvpUrl
+            isEvent: true
+    )
+
+  setTimeout(updateData, 3600000)
+  void
+
+# update data on start, which will then re-run itself once an hour
+updateData!
+
 app.get('/', (req, res) ->
   res.render('home.tmpl', data, (err, html) ->
     if err then console.log(err);
     res.send(html);
   )
-  void
 )
 
 app.get(/^\/anti-harassment\/?$/, (req, res) ->
