@@ -56,7 +56,7 @@
           <div class="content">
             <a class="event with-flatButton" href="{{ promo.moreInfoUrl }}">
               <strong class="title h5"> {{ promo.shortTitle }}</strong>
-              <span class="caption">{{ promo.shortDescription }} {% if promo.moreInfoUrl %}<span class="more">More&nbsp;info&hellip;</span>{% endif %}</span>
+              <span class="caption">{{ promo.shortDescription }} {% if promo.moreInfoUrl %}<span class="more">Details&hellip;</span>{% endif %}</span>
               <button class="flatButton round{% if not promo.isEvent %} without-heading{%endif%}" id="more-events">
                  {% if promo.isEvent %}More{% else %}Future{% endif %} Events
               </button>
