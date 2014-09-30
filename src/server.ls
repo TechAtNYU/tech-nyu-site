@@ -56,12 +56,15 @@ data =
 updateData = ->
   if !data.promo?.isEvent
     Q.nfcall(request,
-      url: 'https://api.tnyu.org/events'
+      url: 'https://api.tnyu.org/events?sort=startDateTime'
       rejectUnauthorized: false
       method: "GET"
     ).then(([response, body]) -> 
       if response.statusCode == 200 && body
-        nextEvent = JSON.parse(body).events?[0]
+        # next event is the first future one
+        nextEvent = JSON.parse(body).events?.filter(->
+          new Date(it.startDateTime) > Date.now()
+        )[0]
 
         if nextEvent
           data.promo = 
