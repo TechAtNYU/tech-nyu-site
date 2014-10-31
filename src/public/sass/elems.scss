@@ -127,3 +127,17 @@ dd {
     margin-top: nth($scale, 3)/2
   ));
 }
+
+.announcements {
+  background-color: white;
+  border-bottom: 3px solid rgb(98, 46, 132);
+  position: fixed;
+  font-size: 1.2em;
+  text-align: center;
+  width: 100%;
+  z-index: 100;
+
+  a {
+    color: #d7552d;
+  }
+}
