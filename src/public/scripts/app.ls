@@ -97,6 +97,20 @@ define([
 
     # And finally, the designSwitcher.
     designSwitcher.attachTo('body')
+
+    # Add some js (not a component, really) to handle announcement closing
+    $('.announcement').each((i, announcement) ->
+      $announcement = $(announcement)
+      $close = $('<button class="close ir icon-button" alt="Close" />').click(-> 
+        $container = $announcement.parent()
+        $announcement.remove()
+    
+        #we also have to remove the container when all announcements are closed.
+        if $container.find('.announcement').length == 0
+          $container.remove!
+      )
+      $announcement.prepend($close)
+    )
     void;
   );
   $(window).load(->
