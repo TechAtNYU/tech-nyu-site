@@ -15,6 +15,12 @@
 {% endblock %}
 
 {% block body %}
+  <div class="announcements">
+    <p class="announcement">
+      Startup Week has begun! Check out <a href="http://nyusw.com/">our
+      awesome Startup Week website</a> for more information.
+    </p>
+  </div>
   <header class="clearfix" id="header">
     <a href="">
       <h1 id="logo">
@@ -243,7 +249,11 @@
       </section>
     </div>
   </div>
-  <div class="bg starter" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support1.jpg" /></div>
+  <!-- TODO(rgardner): Remove the next line after startup week. -->
+  <div class="bg starter" data-wide="img/sw-poster.png" data-narrow="img/sw-poster.png" />
+    <a href="http://nyusw.com/"><span class="link-spanner"></span></a>
+  </div>
+  <!--<div class="bg starter" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>-->
   <script type="text/javascript">
     /*$(function() {
 

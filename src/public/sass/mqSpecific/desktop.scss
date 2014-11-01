@@ -62,6 +62,10 @@ nav {
   }
 }
 
+.announcements {
+  left: $homepageLeftColWidth;
+}
+
 #logo {
   height: ems($logoStartHeight);
   width: ems($logoStartWidth);
