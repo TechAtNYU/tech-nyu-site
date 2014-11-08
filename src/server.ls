@@ -56,7 +56,7 @@ data =
 updateData = ->
   if !data.promo?.isEvent
     Q.nfcall(request,
-      url: 'https://api.tnyu.org/events?sort=startDateTime'
+      url: 'https://api.tnyu.org/v1.0/events?sort=startDateTime'
       rejectUnauthorized: false
       method: "GET"
     ).then(([response, body]) -> 
