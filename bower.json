@@ -18,7 +18,7 @@
   "dependencies": {
     "flight": "~1.1.3",
     "skrollr": "~0.6.21",
-    "nunjucks": "~1.0.1",
+    "requirejs": "2.1.x",
     "skrollr-stylesheets-amd": "1.x",
     "skrollr-menu": "0.1.x",
     "flexisel": "0.1.x"
