@@ -1,7 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/Prinzhorn/skrollr.png)](http://travis-ci.org/Prinzhorn/skrollr)
 
-skrollr 0.6.23
-=====
+skrollr 0.6.27
+==============
 
 Stand-alone **parallax scrolling** JavaScript library for **mobile (Android, iOS, etc.) and desktop** in about 12k minified.
 
@@ -24,20 +24,12 @@ Plugins
 ### Third party
 
 * [skrollr-colors](https://github.com/FezVrasta/skrollr-colors) - Mix and match hex, rgb and hsl colors.
+* [skrollr-decks](https://github.com/TrySound/skrollr-decks) - Fullpage presentation decks.
 
 In the wild
 -----
 
-* http://www.fontwalk.de/
-* http://kitkat.com/
-* http://www.kia.co.uk/new-cars/range/mid-sized-cars/proceed-gt/intro.aspx
-* http://www.cabletv.com/the-walking-dead
-* http://hypervenom.nike.com/
-* http://www.guardian.co.uk/world/interactive/2012/nov/06/america-elect-graphic-novel
-* http://www.evanshalshaw.com/bondcars/
-
-This list only contains some of the latest and most notable websites that use skrollr, hand picked by [@Prinzhorn](http://twitter.com/Prinzhorn).
-For a much longer and unopinionated list, take a look at the [wiki page](https://github.com/Prinzhorn/skrollr/wiki/In-the-wild).
+Check out the [wiki page](https://github.com/Prinzhorn/skrollr/wiki/In-the-wild) for websites using skrollr and feel free to add your own website :). You can also shamelessly add yourself to the list [here](https://github.com/Prinzhorn/skrollr/wiki/Agencies-and-freelancers) if you are offering paid skrollr support.
 
 Further resources (tutorials etc.)
 -----
@@ -62,7 +54,9 @@ Other libraries require you to write JavaScript in order to define your animatio
 
 With skrollr, you put the definition of your key frames right where they belong (to the element) using a syntax you already know (plain CSS).
 
-If you rather want the keyframes inside a separate file, take a look at [skrollr-stylesheets](https://github.com/Prinzhorn/skrollr-stylesheets).
+If you would rather have the keyframes inside a separate file, take a look at [skrollr-stylesheets](https://github.com/Prinzhorn/skrollr-stylesheets).
+
+If you prefer to use JavaScript to define your animations make sure to take a look at [ScrollMagic](https://github.com/janpaepke/ScrollMagic). It depends on both jQuery and the Greensock Animation Platform (GSAP) and gives you full control over every detail of your animations.
 
 Let's get serious
 ------
@@ -96,7 +90,7 @@ If you're familiar with CSS, you already know the `style` attribute. In order to
 
 ##### Lessons learned
 
-* Skrollr ensures that you can actually scroll down 500 pixels or more, even if there's not enough content. You can suppress this using the `forceHeight` option
+* Skrollr ensures that you can actually scroll down 500 pixels or more, even if there's not enough content. You can suppress this by using the `forceHeight` option.
 * You can't use `#00f` or `#0000ff`. You need to use `rgb` or `hsl` and explicitly decide which color space you want because they result in different animations (HSL is much cooler most of the time). Don't worry, the IE plugin teaches IE < 9 to display `rgb` and `hsl` correctly.
 
 #### Now let's do a barrel roll at the same time
@@ -108,7 +102,7 @@ If you're familiar with CSS, you already know the `style` attribute. In order to
 
 ##### Lessons learned
 
-* Skrollr handles all these nasty CSS prefixes for you. Just -moz-relax and get yourself a cup of -webkit-coffee
+* Skrollr handles all these nasty CSS prefixes for you. Just -moz-relax and get yourself a cup of -webkit-coffee.
 
 #### Now let the rotation bounce like it were a hip-hop video
 
@@ -119,7 +113,7 @@ If you're familiar with CSS, you already know the `style` attribute. In order to
 
 #### Lessons learned
 
-* Skrollr allows non-linear animations. The so called *easing functions* can be used per-property by putting them in square brakets behind the property. There's a built-in list of easing functions (see below in the [JavaScript](#javascript) section) and you can use your own functions by using the `easings` options.
+* Skrollr allows non-linear animations. The so called *easing functions* can be used per-property by putting them in square brackets behind the property. There's a built-in list of easing functions (see below in the [JavaScript](#javascript) section) and you can use your own functions by using the `easings` options.
 
 Now you may have noticed that using `500` as a keyframe position is kind of random and the look depends on your browser size.
 
@@ -140,19 +134,19 @@ If you're not a fan of `data-attributes` or if you're planning a big website whe
 
 Mobile support
 -----
-Starting with version 0.5.0 skrollr officially supports mobile browsers including Android and iOS. And mobile support has been rewritten from scratch for skrollr 0.6.0.
+Starting with version 0.5.0 skrollr officially supports mobile browsers including Android and iOS. Furthermore, mobile support has been rewritten from scratch for skrollr 0.6.0.
 
 ### The Problem with mobile and the solution
 
-(If you're not interested in the details, just scroll down a bit to see what you need to do for mobile support)
+(If you're not interested in the details, just scroll down a bit to see what you need to do for mobile support.)
 
-Some words on why this is an important milestone and why others failed: Mobile browsers try to save battery wherever they can. That's why mobile browsers delay the execution of JavaScript while you are scrolling. iOS in particular does this very aggressively and completely stops JavaScript. And in short that's the reason why many scrolling libraries either don't work on mobile devices or they come with their own scrollbar which is a usability nightmare on desktop. It was an important requirement while I developed skrollr that I don't force you to scroll the way I want it. skrollr on desktop uses a native scrollbar and you can scroll the way you want to (keyboard, mouse, etc.).
+Some words on why this is an important milestone and why others failed: Mobile browsers try to save battery wherever they can. That's why mobile browsers delay the execution of JavaScript while you are scrolling. iOS in particular does this very aggressively and completely stops JavaScript. In short, that's the reason why many scrolling libraries either don't work on mobile devices or they come with their own scrollbar which is a usability nightmare on desktop. It was an important requirement while I developed skrollr that I don't force you to scroll the way I want it. skrollr on desktop uses a native scrollbar and you can scroll the way you want to (keyboard, mouse, etc.).
 
-You just told me it doesn't work on mobile, but why does it? The answer is simple. When using skrollr on mobile you don't actually scroll. When detecting a mobile browser skrollr disables native scrolling and instead listens for touch events and moves the content (more specific the `#skrollr-body` element) using CSS transforms.
+You just told me it doesn't work on mobile, but why does it? The answer is simple. When using skrollr on mobile you don't actually scroll. When detecting a mobile browser, skrollr disables native scrolling and instead listens for touch events and moves the content (more specific the `#skrollr-body` element) using CSS transforms.
 
 ### What you need in order to support mobile browsers
 
-Starting with skrollr 0.6.0 there's just one thing you need to do: Include an element on your page with the id `skrollr-body`. That's the element we move in order to fake scrolling. The only case were you don't need a `#skrollr-body` is when using `position:fixed` exlusively. In fact the skrollr website doesn't include a `#skrollr-body` element. If you need both fixed and non-fixed (i.e. static) elements, put the static ones inside the `#skrollr-body` element.
+Starting with skrollr 0.6.0 there's just one thing you need to do: Include an element on your page with the id `skrollr-body`. That's the element we move in order to fake scrolling. The only case where you don't need a `#skrollr-body` is when using `position:fixed` exclusively. In fact, the skrollr website doesn't include a `#skrollr-body` element. If you need both fixed and non-fixed (i.e. static) elements, put the static ones inside the `#skrollr-body` element.
 
 Or to put it differently: On mobile the `skrollr-body` element is moved using CSS transforms. You can't have `position:fixed` or `background-attachment:fixed` inside elements which use CSS transforms as per CSS spec (http://meyerweb.com/eric/thoughts/2011/09/12/un-fixing-fixed-elements-with-css-transforms/). That's why those elements need to be **outside** of the `skrollr-body` element.
 
@@ -170,13 +164,13 @@ require(['skrollr'], function(skrollr){
 Absolute vs relative mode
 -----
 
-Being only able to define key frames in absolute values is simply insufficient for some cases. For example if you don't know where an element will exactly be in the document. That's why there are two modes for key frames, namely `absolute` and `relative` mode.
+Being only able to define key frames in absolute values is simply insufficient for some cases. For example, if you don't know exactly where an element will be in the document. That's why there are two modes for key frames, namely `absolute` and `relative` mode.
 
 ### absolute mode (or document mode)
 
 The key frames are defined as absolute values describing how much the **document** has been scrolled down.
 
-The syntax is `data-[offset]-[anchor]`, where `offset` can be any integer (0 is default) and `anchor` can be either `start` (default) or `end`. Either `offset` or `anchor` can be ommited in some situations. Here are some examples of key frames and their meaning.
+The syntax is `data-[offset]-[anchor]`, where `offset` can be any integer (0 is default) and `anchor` can be either `start` (default) or `end`. Either `offset` or `anchor` can be omitted in some situations. Here are some examples of key frames and their meaning.
 
 * `data-0` = `data-start` = `data-0-start`: When the scroll top is 0.
 * `data-100` = `data-100-start`: When the scroll top is 100.
@@ -189,14 +183,14 @@ The syntax is `data-[offset]-[anchor]`, where `offset` can be any integer (0 is 
 
 Instead of defining key frames relative to the **document** (i.e. absolute), we are able to define them depending on the position of any element in relation to the **viewport**.
 
-The syntax is `data-[offset]-(viewport-anchor)-[element-anchor]`, where `offset` can again be any integer and defaults to 0. Both `viewport-anchor` (mandatory) and `element-anchor` (optional) can be one of `top`, `center` or `bottom`. If `element-anchor` is ommitted, the value of `viewport-anchor` will be taken (just like with background-position). Here are some examples of key frames and their meaning.
+The syntax is `data-[offset]-(viewport-anchor)-[element-anchor]`, where `offset` can again be any integer and defaults to 0. Both `viewport-anchor` (mandatory) and `element-anchor` (optional) can be one of `top`, `center` or `bottom`. If `element-anchor` is omitted, the value of `viewport-anchor` will be taken (just like with background-position). Here are some examples of key frames and their meaning.
 
 * `data-top` = `data-0-top` = `data-top-top` = `data-0-top-top`: When the element's top is aligned with the top of the viewport.
 * `data-100-top` = `data-100-top-top`: When the element's top is 100px above the top of the viewport.
 * `data--100-top` = `data--100-top-top`: When the element's top is 100px below the top of the viewport.
 * `data-top-bottom `= `data-0-top-bottom`: When the bottom of the element is at the top of the viewport (it's just not visible).
 * `data-center-center` = `data-0-center-center`: When the element is at the center of the viewport.
-* `data-bottom-center` = `data-0-bottom-center`: When the element's center is at the bottom of the viewport, thuss the upper half of the element is visible.
+* `data-bottom-center` = `data-0-bottom-center`: When the element's center is at the bottom of the viewport, thus the upper half of the element is visible.
 
 By default the element is the element where the key frames are defined on (self), but can be any element on the page. You can optionally specify which element you want by using the `data-anchor-target` and any CSS selector. The first element on the page matching the selector will be used. `data-anchor-target` requires IE 8 or greater.
 
@@ -225,7 +219,7 @@ Check out the [skrollr-menu](https://github.com/Prinzhorn/skrollr-menu) plugin.
 Working with constants
 -----
 
-I was lying to you. The syntax for absolute mode is not `data-[offset]-[anchor]` and for relative mode it's not `data-[offset]-(viewport-anchor)-[element-anchor]`. In both cases `offset` can be preceeded by a constant which can be passed to the `ìnit` method. The name of the constant needs to be preceeded with an underscore.
+I was lying to you. The syntax for absolute mode is not `data-[offset]-[anchor]` and for relative mode it's not `data-[offset]-(viewport-anchor)-[element-anchor]`. In both cases, `offset` can be preceded by a constant which can be passed to the `ìnit` method. The name of the constant needs to be preceded with an underscore.
 
 Example:
 
@@ -269,9 +263,24 @@ skrollr.init({
 CSS classes
 -----
 
-skrollr will add a `skrollr` class to the `HTML` element when calling `init` and will remove a `no-skrollr` class if present. Additionally it will add a `skrollr-desktop` or `skrollr-mobile` class depending on which it detects. This allows fallback CSS rules to create a good user experience on unsupported devices or when JavaScript or skrollr are disabled.
+skrollr will add a `skrollr` class to the `HTML` element when calling `init` and will remove a `no-skrollr` class if present. Additionally, it will add a `skrollr-desktop` or `skrollr-mobile` class depending on which it detects. This allows fallback CSS rules to create a good user experience on unsupported devices or when JavaScript or skrollr are disabled.
 
-All elements under skrollr's control (elements with appropriate data-attributes) will get the `skrollable` class. In addition we add either the `skrollable-before`, `skrollable-between` **or** `skrollable-after` class, depending on whether the current scroll position is before, between or after the first/last (smallest/largest) keyframe of an element.
+All elements under skrollr's control (elements with appropriate data-attributes) will get the `skrollable` class. In addition, we add either the `skrollable-before`, `skrollable-between` **or** `skrollable-after` class, depending on whether the current scroll position is before, between or after the first/last (smallest/largest) keyframe of an element.
+
+Animating attributes
+--------------------
+
+Starting with skrollr 0.6.24 you can also animate attribute and not just style properties. This is especially a big thing because in the SVG world many properties are implemented as attributes and not in CSS. Animating an attribute couldn't be simplier, just prefix the property with an `@` symbol!
+
+```html
+<polygon
+	points='426,720   -200,720   -200,0   955,0'
+	data-0="@points:426,720   -200,720   -200,0   955,0"
+	data-500="@points:380,720   -200,720   -200,0   1302,0">
+</polygon>
+```
+
+Note: as always, skrollr doesn't do any magic. It doesn't understand what a polygon or points are. It's only interpolating numbers, that's it. So make sure you have the same number of numbers in your keyframes (8 in this case).
 
 Filling missing values
 -----
@@ -282,7 +291,7 @@ Imagine the following animation
 <div data-100="left:0%;" data-200="top:0%;" data-300="left:50%;" data-400="top:50%;"></div>
 ```
 
-One could expect `left` to have a value of `25%` at keyframe `200`. That is **not** the case. By design skrollr only interpolates values between key frames which are direct **neighbors**. What actually happens is that skrollr internally fills out all holes once from left and then from right. So the above is equivalent to
+One could expect `left` to have a value of `25%` at keyframe `200`. That is **not** the case. By design, skrollr only interpolates values between key frames which are direct **neighbors**. What actually happens is that skrollr internally fills out all holes once from left and then from right. So the above is equivalent to
 
 ```html
 <div data-100="left:0%;top:0%;" data-200="left:0%;top:0%;" data-300="left:50%;top:0%;" data-400="left:50%;top:50%;"></div>
@@ -291,7 +300,7 @@ One could expect `left` to have a value of `25%` at keyframe `200`. That is **no
 Preventing interpolation
 -----
 
-The reason why skrollr is so lightweight and powerfull is because it literally interpolates **every** number it can find. If you want to prevent some side effect, you can suppress interpolation for a specific value by prepending an exclamation point.
+The reason why skrollr is so lightweight and powerful is because it literally interpolates **every** number it can find. If you want to prevent some side effect, you can suppress interpolation for a specific value by prepending an exclamation point.
 
 Example:
 ```html
@@ -302,7 +311,7 @@ Example:
 <div data-0="background-image:!url(kitten1.jpg);" data-100="background-image:!url(kitten2.jpg)"></div>
 ```
 
-**Note:** The values for both keyframes (at least the if they contain a number) need to be prefixed if you want to avoid skrollr throwing an exception at you!
+**Note:** The values for both keyframes (if they contain a number) need to be prefixed if you want to avoid skrollr throwing an exception at you!
 
 Limitations
 -----
@@ -331,7 +340,7 @@ Possible options for `init()` are
 
 ### smoothScrolling=true
 
-Smooth scrolling smoothens your animations. When you scroll down 50 pixel the animations will transition instead of jumping to the new position.
+Smooth scrolling smoothens your animations. When you scroll down 50 pixels, the animations will transition instead of jumping to the new position.
 
 The global setting can be overridden per element by setting `data-smooth-scrolling` to `on` or `off`.
 
@@ -347,7 +356,7 @@ Example: `data-_myconst-200` and `skrollr.init({constants: {myconst: 300}})` res
 
 ### scale=1
 
-By default skrollr uses the largest key frame and makes document height + viewport height this high, thus the max possible scroll top offset. If your animation runs too fast or too slow, just adjust the scale value.
+By default, skrollr uses the largest key frame and makes document height + viewport height this high, thus the max possible scroll top offset. If your animation runs too fast or too slow, just adjust the scale value.
 
 `scale` only affects keyframes in absolute mode.
 
@@ -416,7 +425,7 @@ and imagine the scrollbar is at `237`, which is below the first keyframe which i
 
 ### beforerender
 
-A listener function getting called each time right before we render everything. The function will be passed an object with the following properties:
+A listener function that gets called each time right before we render everything. The function will be passed an object with the following properties:
 
 ```js
 {
@@ -431,7 +440,7 @@ Returning `false` will prevent rendering.
 
 ### render
 
-A listener function getting called right after we finished rendering everything. The function will be passed the same parameters as `beforerender`.
+A listener function that gets called right after we finished rendering everything. The function will be passed with the same parameters as `beforerender`.
 
 Example
 
@@ -535,17 +544,17 @@ Reparses all given `elements`. You can pass a single element or an array-like el
 
 Useful when
 
-* elements in `relative` mode change and need to be updated
-* data-attributes are manipulated dynamically
-* new elements are added to the DOM and should be controlled by skrollr
+* Elements in `relative` mode change and need to be updated.
+* Data-attributes are manipulated dynamically.
+* New elements are added to the DOM and should be controlled by skrollr.
 
 When no `elements` are given, all elements in the document will be parsed again. In fact, when calling `skrollr.init()` skrollr uses `refresh()` without parameters internally.
 
-Time consuming operation, should not be called on every rendering.
+Time consuming operations, should not be called on every rendering.
 
 ### relativeToAbsolute(element, viewportAnchor, elementAnchor)
 
-returns an integer which represents the absolute scroll position which correlates to the relative anchor.
+Returns an integer which represents the absolute scroll position which correlates to the relative anchor.
 
 `element` must be a DOM element.
 
@@ -570,9 +579,9 @@ Returns the number of pixels that can be scrolled down in total. If `forceHeight
 
 ### setScrollTop(top[, force = false])
 
-Sets the top offset using `window.scrollTo(0, top)` on dektop or updating the internal state in case of mobile scrolling.
+Sets the top offset using `window.scrollTo(0, top)` on desktop or updating the internal state in case of mobile scrolling.
 
-When `force` is set to `true`, skrollr will jump to the new position without any kind of transition. By default the global `smoothScrolling` setting applies.
+When `force` is set to `true`, skrollr will jump to the new position without any kind of transition. By default, the global `smoothScrolling` setting applies.
 
 ### isMobile()
 
@@ -592,7 +601,7 @@ The name of an easing function. The same functions can be used as for property a
 
 #### done
 
-A function to be called after the animation finished. When you pass a `top` value, which is the same as the current, then the function will be called immediately. The function gets a boolean argument `interrupted` which indicates if the animation was iterrupted by `stopAnimateTo` or finished to the end.
+A function to be called after the animation finished. When you pass a `top` value, which is the same as the current, then the function will be called immediately. The function gets a boolean argument `interrupted` which indicates if the animation was interrupted by `stopAnimateTo` or finished to the end.
 
 ### stopAnimateTo()
 
