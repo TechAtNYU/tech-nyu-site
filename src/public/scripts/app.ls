@@ -14,8 +14,6 @@ requirejs.config(
     shim:
         'jquery.flexisel':
           exports: 'jQuery.fn.flexisel'
-        'skrollr': 
-            exports: 'skrollr'
         'skrollr-menu': 
             deps: ['skrollr']
             exports: 'skrollr.menu'
