@@ -9,7 +9,6 @@
     "commit": "f1c6f9b71cc1e66be6f91ae96e53d041ca522913"
   },
   "_source": "git://github.com/ethanresnick/skrollr-menu.git",
-  "_target": "~0.1.12",
-  "_originalSource": "git://github.com/ethanresnick/skrollr-menu.git",
-  "_direct": true
+  "_target": "0.1.x",
+  "_originalSource": "skrollr-menu-amd"
 }

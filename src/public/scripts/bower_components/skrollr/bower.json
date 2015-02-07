@@ -24,15 +24,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "version": "0.6.27",
-  "_release": "0.6.27",
-  "_resolution": {
-    "type": "version",
-    "tag": "0.6.27",
-    "commit": "b8cc5a0eacb76bc506eb7cd9ec8baecbbc01d8c2"
-  },
-  "_source": "git://github.com/Prinzhorn/skrollr.git",
-  "_target": "~0.6.27",
-  "_originalSource": "skrollr"
+  ]
 }

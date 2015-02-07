@@ -15,6 +15,10 @@
 {% endblock %}
 
 {% block body %}
+  <!--<div class="announcements">
+    <p class="announcement">
+    </p>
+  </div> -->
   <header class="clearfix" id="header">
     <a href="">
       <h1 id="logo">
@@ -56,7 +60,7 @@
           <div class="content">
             <a class="event with-flatButton" href="{{ promo.moreInfoUrl }}">
               <strong class="title h5"> {{ promo.shortTitle }}</strong>
-              <span class="caption">{{ promo.shortDescription }} {% if promo.moreInfoUrl %}<span class="more">More&nbsp;info&hellip;</span>{% endif %}</span>
+              <span class="caption">{{ promo.shortDescription }} {% if promo.moreInfoUrl %}<span class="more">Details&hellip;</span>{% endif %}</span>
               <button class="flatButton round{% if not promo.isEvent %} without-heading{%endif%}" id="more-events">
                  {% if promo.isEvent %}More{% else %}Future{% endif %} Events
               </button>
@@ -92,7 +96,7 @@
 
         <div class="initiative">
           <h2 class="h3">Cereal Code</h2>
-          <p>Introductory workshops on how to make your first website Held weekly at the eLab.</p>
+          <p>Introductory workshops on how to make your first website. Held weekly at the eLab.</p>
           <a href="http://codenyu.getforge.io/" class="flatButton programmingButton">
             {% include "partials/programming_icon.tmpl" %}
              Sign Up!
@@ -200,7 +204,7 @@
 
         <div class="initiative">
             <h2 class="h3">Contact</h2>
-            <p>For sponsorships, email <a href="mailto:emanuel.hahn@stern.nyu.edu">emanuel.hahn@stern.nyu.edu</a>. For all other inquiries, please email <a href="mailto:hello@techatnyu.org">hello@techatnyu.org</a></p>
+            <p>Email us at <a href="mailto:hello@techatnyu.org">hello@techatnyu.org</a>!</p>
         </div>
 
         <div id="poweredby">
@@ -243,7 +247,7 @@
       </section>
     </div>
   </div>
-  <div class="bg starter" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support2.jpg" /></div>
+  <div class="bg starter" data-wide="img/bg/sqsp2.jpg" data-narrow="img/bg/support1.jpg" /></div>
   <script type="text/javascript">
     /*$(function() {
 

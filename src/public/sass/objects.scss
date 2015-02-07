@@ -78,6 +78,15 @@
   }
 }
 
+.icon-button, .icon-button:active {
+  border: 0;
+  background-repeat: no-repeat;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; 
+  background-color: transparent;
+}
+
 .circuitButton {
   padding: .35rem .7rem .65rem;
   svg {
@@ -191,4 +200,31 @@
   @include rs((
     margin-bottom: nth($lineHeights, 5)
   ));
+}
+
+.announcements {
+  background-color: white;
+  border: 2px solid rgb(98, 46, 132);
+  position: fixed;
+  z-index: 100;
+  top: 4em;
+  right: 0;
+  @include rs((padding: 14px));
+
+  .announcement {
+    max-width: none;
+
+    .close {
+      background-image: url("/img/close.png");
+      width: 12px;
+      height: 15px;
+      display: inline-block;
+      @include rs((padding-right: 14px));
+      vertical-align: middle;
+    }
+  }
+
+  a {
+    color: #d7552d;
+  }
 }

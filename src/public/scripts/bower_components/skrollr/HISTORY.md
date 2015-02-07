@@ -1,5 +1,29 @@
+0.6.27 (2014-09-28)
+-------------------
+
+* Fixed AMD module definition (#609)
+
+0.6.26 (2014-06-08)
+-------------------
+
+* Fixed easing functions not working when animating attributes (#533)
+
+0.6.25 (2014-05-22)
+-------------------
+
+* CommonJS (#519).
+
+0.6.24 (2014-04-25)
+-------------------
+
+* Fixed some issue with forceHeight (#347).
+* Fixed a regression caused by #486 breaking IE 8 (#494).
+* Added support for animating attributes (#204).
+
 0.6.23 (2014-04-18)
 -------------------
+
+**note**: This particular version is broken in IE!
 
 * Experimental support for emitting events when the scrolling passes a keyframe (check out the docs for `keyframe` option/event).
 * When using `refresh`, make sure elements which do not longer have keyframes get properly cleaned up (#486).

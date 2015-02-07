@@ -27,6 +27,6 @@
     "commit": "5da831ba9026330b692ecf5668cad8832f1f19cd"
   },
   "_source": "git://github.com/flightjs/flight.git",
-  "_target": "~1.1.3",
+  "_target": "~1.1.x",
   "_originalSource": "flight"
 }

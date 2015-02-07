@@ -9,13 +9,11 @@ requirejs.config(
         "flight": 'flight/lib'
         "skrollr": 'skrollr/dist/skrollr.min'
         "skrollr-stylesheets": 'skrollr-stylesheets-amd/src/skrollr.stylesheets'
-        "skrollr-menu": 'skrollr-menu/dist/skrollr.menu.min'
+        "skrollr-menu": 'skrollr-menu-amd/dist/skrollr.menu.min'
         "jquery.flexisel": "flexisel/js/jquery.flexisel"
     shim:
         'jquery.flexisel':
           exports: 'jQuery.fn.flexisel'
-        'skrollr': 
-            exports: 'skrollr'
         'skrollr-menu': 
             deps: ['skrollr']
             exports: 'skrollr.menu'
@@ -97,6 +95,20 @@ define([
 
     # And finally, the designSwitcher.
     designSwitcher.attachTo('body')
+
+    # Add some js (not a component, really) to handle announcement closing
+    $('.announcement').each((i, announcement) ->
+      $announcement = $(announcement)
+      $close = $('<button class="close ir icon-button" alt="Close" />').click(-> 
+        $container = $announcement.parent()
+        $announcement.remove()
+    
+        #we also have to remove the container when all announcements are closed.
+        if $container.find('.announcement').length == 0
+          $container.remove!
+      )
+      $announcement.prepend($close)
+    )
     void;
   );
   $(window).load(->
