@@ -107,6 +107,7 @@ app.post('/subscribe', ->
 
 )
 
+app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
 
 # 404 handler
