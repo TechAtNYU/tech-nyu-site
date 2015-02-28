@@ -61,8 +61,7 @@ updateData = ->
       method: "GET"
     ).then(([response, body]) -> 
       if response.statusCode == 200 && body
-        # next event is the first future one
-        nextEvent = JSON.parse(body).events?[0]
+        nextEvent = JSON.parse(body).events
 
         if nextEvent
           data.promo = 
