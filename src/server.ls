@@ -54,7 +54,7 @@ data =
       anchor: "event-calendar"
 
 updateData = ->
-  if !data.promo?.isEvent
+  if data.promo?.isEvent
     Q.nfcall(request,
       url: 'https://api.tnyu.org/v1.0/events/up-next-publicly'
       rejectUnauthorized: false
