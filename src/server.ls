@@ -53,6 +53,8 @@ data =
     * name: "Event Calendar"
       anchor: "event-calendar"
 
+lastUpcomingEventId = null
+
 updateData = ->
   if data.promo?.isEvent
     Q.nfcall(request,
@@ -64,6 +66,10 @@ updateData = ->
         nextEvent = JSON.parse(body).events
 
         if nextEvent
+          if lastUpcomingEventId && nextEvent.id != lastUpcomingEventId
+            lastUpcomingEventId = nextEvent.id
+            # purge cloudflare html only
+            
           data.promo = 
             shortTitle: nextEvent.shortTitle
             shortDescription: nextEvent.description
