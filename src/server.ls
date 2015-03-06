@@ -91,6 +91,10 @@ app.get(/^\/team\/?$/, (req, res) ->
   res.redirect('http://ship.techatnyu.org/#board');
 )
 
+app.get(/^\/master-class\/?$/, (req, res) ->
+  res.redirect('https://www.eventbrite.com/e/edward-tufte-data-visualization-master-class-tickets-16049397179?discount=NYU');
+)
+
 app.get(/\/job\-board\/?/, (req, res) ->
   res.redirect('https://tech-nyu.squarespace.com/job-board/');
 )
