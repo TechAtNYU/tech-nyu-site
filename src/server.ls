@@ -96,7 +96,7 @@ app.get(/^\/master-?class\/?$/, (req, res) ->
 )
 
 app.get(/^\/tufte\/?$/, (req, res) ->
-  res.redirect('https://www.eventbrite.com/e/edward-tufte-data-visualization-master-class-tickets-16049397179?discount=NYU');
+  res.redirect('https://www.eventbrite.com/e/edward-tufte-data-visualization-master-class-tickets-16049397179');
 )
 
 app.get(/^\/body-?labs\/?$/, (req, res) ->
