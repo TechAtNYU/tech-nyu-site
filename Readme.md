@@ -1,4 +1,7 @@
 # Tech@NYU Website
+
+[![Circle CI](https://circleci.com/gh/TechAtNYU/tech-nyu-site/tree/master.svg?style=svg)](https://circleci.com/gh/TechAtNYU/tech-nyu-site/tree/master)
+
 This is the source for Tech@NYU's awesome website.
 
 ## Getting Started
