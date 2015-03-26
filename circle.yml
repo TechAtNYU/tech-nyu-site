@@ -6,27 +6,6 @@ general:
 machine:
   timezone:
     America/Los_Angeles
-  ruby:
-    version:
-      2.1.1
-  node:
-    version:
-      0.10.22
-
-dependencies:
-  post:
-    - npm install gulp -g
-    - npm install
-    - gem install sass
-    - gem install sass-globbing
-    - gem install compass --pre
-    - gem install breakpoint
-    - gulp --require gulp-livescript:
-        timeout: 120 # 2 min
-    - git config --global user.name "Abhi Agarwal"
-    - git config --global user.email "me@abhiagarwal.com"
-    - git add .
-    - git commit -am "Adding Build"
 
 test:
   override:
@@ -35,5 +14,5 @@ test:
 deployment:
   production:
     branch: master
-    heroku:
-      appname: techatnyu
+    commands:
+      - ssh root@techatnyu.org "cd $DIR && gulp --require gulp-livescript && cd build && forever restart $ForeverID"
