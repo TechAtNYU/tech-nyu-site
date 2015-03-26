@@ -55,6 +55,6 @@
     "q": "1.x.x"
   },
   "scripts": {
-    "start": "node ./build/index.js"
+    "start": "node build/index.js"
   }
 }
