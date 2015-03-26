@@ -22,7 +22,9 @@ dependencies:
     - gem install compass --pre
     - gem install breakpoint
     - gulp --require gulp-livescript:
-        timeout: 300 # 5 min
+        timeout: 120 # 2 min
+    - git add .
+    - git commit -am "Adding Build"
 
 test:
   override:
