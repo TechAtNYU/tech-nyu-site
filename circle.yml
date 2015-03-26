@@ -23,6 +23,8 @@ dependencies:
     - gem install breakpoint
     - gulp --require gulp-livescript:
         timeout: 120 # 2 min
+    - git config --global user.name "Abhi Agarwal"
+    - git config --global user.email "me@abhiagarwal.com"
     - git add .
     - git commit -am "Adding Build"
 
