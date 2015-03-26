@@ -82,7 +82,7 @@ gulp.task('buildHTML', [\copy], ->
     .pipe(gulp.dest(paths.build + '/views'))
 )
 
-gulp.watch(globs.src, [\dev])
+## gulp.watch(globs.src, [\dev])
 gulp.task(\test, [])
 gulp.task(\dev, [\clean \ls \copy \sass])
 gulp.task(\default, [\dev \optimizeJS \buildHTML])
