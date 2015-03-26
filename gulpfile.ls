@@ -85,4 +85,4 @@ gulp.task('buildHTML', [\copy], ->
 gulp.watch(globs.src, [\dev])
 gulp.task(\test, [])
 gulp.task(\dev, [\clean \ls \copy \sass])
-gulp.task(\default, [\clean \ls \copy \sass \optimizeJS \buildHTML])
+gulp.task(\default, [\dev \optimizeJS \buildHTML])
