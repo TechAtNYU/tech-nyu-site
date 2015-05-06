@@ -36,12 +36,12 @@
     <nav id="nav">
         <ol class="optionList">
           {% for section in sections %}
-            {% if not section.name|contains("Calendar") %} 
+            {% if not section.name|contains("Calendar") %}
                 <li class="h3" {% if section.shortName %}data-shortname="{{ section.shortName }}"{% endif %} data-origname="{{ section.name|escape|add_br|safe }}">
                   <a href="#{{ section.anchor }}" data-transitionpoint="{{loop.index0}}">{{ section.name|escape|add_br|safe }}</a>
                 </li>
               </a>
-            {% else %}              
+            {% else %}
                 <li class="h3 calendar">
                   <a href="#{{ section.anchor }}" data-transitionpoint="{{loop.index0}}">{% include "partials/calendar_with_alt.tmpl" %}</a>
                 </li>
@@ -51,6 +51,7 @@
     </nav>
     <div id="upcoming">
       <div id="upcoming-inner">
+        {% if promo %}
         <div class="promoPanel">
           <div class="heading">
             {% if promo.isEvent %}
@@ -67,7 +68,7 @@
             </a>
           </div>
         </div>
-
+        {% endif %}
         <div class="promoPanel">
           <div class="heading">
             <h2 class="h6" style="vertical-align:top;">Notify Me of Future Events</h2>
@@ -98,7 +99,7 @@
       <section class="objective second" id="improve-your-skills" data-section="2">
         <div class="bg" data-wide="img/bg/lecture1.jpg" data-narrow="img/bg/support2.jpg" /></div>
         <h1>Improve Your Skills</h1>
-        <div class="initiative"> 
+        <div class="initiative">
           <h2 class="h3">Hack Days</h2>
           <p>Lectures on web technologies, covering everything from <a href="http://angularjs.org" class="progressively-disclose">Angular</a> to <a href="http://zeptojs.com/" class="progressively-disclose">Zepto</a>.</p>
 
@@ -128,8 +129,8 @@
         #}
       </section>
 
-      <section class="objective third" id="build-and-socialize" data-section="3">    
-        <div class="bg" data-wide="img/bg/hacknights.jpg" data-narrow="img/bg/support2.jpg" /></div>  
+      <section class="objective third" id="build-and-socialize" data-section="3">
+        <div class="bg" data-wide="img/bg/hacknights.jpg" data-narrow="img/bg/support2.jpg" /></div>
         <h1>Build &amp; Socialize with Cool People</h1>
         <div class="initiative">
           <h2 class="h3">After Hours (formerly HackNights)</h2>
@@ -140,7 +141,7 @@
         {#
         <div class="initiative">
           <h2 class="h3">Designathons</h2>
-          <p>Over the course of a weekend, work with a team to produce a refined, well-researched design concept for a product of your choice.</p>          
+          <p>Over the course of a weekend, work with a team to produce a refined, well-researched design concept for a product of your choice.</p>
             <a href="{{channels.Design.facebook }}" class="flatButton designButton">
               {% include "partials/design_icon.tmpl" %}
                Design Facebook Group
@@ -164,7 +165,7 @@
             {% include "partials/demo_icon.tmpl" %}
              Browse Prior Demos
           </a>
-        </div>  
+        </div>
         <!-- ADD BACK DIGEST HERE ONCE IT'S GONE ON EVENT CALENDAR SCREEN. BUT, FOR NOW, IT DOESN"T NEED TO BE IN THREE PLACES.
         <div class="initiative">
             <h2 class="h3">Event Digest</h2>
@@ -260,4 +261,4 @@
     });*/
   </script>
 {% endblock %}
-  
+

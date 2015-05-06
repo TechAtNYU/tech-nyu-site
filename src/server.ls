@@ -11,10 +11,12 @@ env = nunjucks.configure(__dirname + '/views', { autoescape: true, express: app 
 for own name, filter of nunjucks-helper.filters
   env.addFilter(name, filter)
 
-data = 
+data =
   now: new Date!
 
-  #promo:
+  # Uncomment this to show a special promo on the homepage,
+  # like a summer hiatus messages or a link to eboard applications.
+  #specialPromo:
     #shortTitle: "Back Soon"
     #shortDescription: "Tech@NYU's enjoying summer break, but we'll be back with more events in a couple weeks."
     #moreInfoUrl: "http://www.techatnyu.org/apply"
@@ -25,7 +27,7 @@ data =
   sponsors: require('./data/sponsors')
 
   channels:
-    "Freshman Circuit": 
+    "Freshman Circuit":
       facebook: "https://www.facebook.com/groups/814357601925669/"
       meetup: ""
     "Design":
@@ -54,21 +56,29 @@ data =
       anchor: "event-calendar"
 
 updateData = ->
-  if data.promo?.isEvent
+  data.promo = undefined
+
+  if data.specialPromo
+    data.promo = data.specialPromo
+
+  else
     Q.nfcall(request,
-      url: 'https://api.tnyu.org/v1.0/events/up-next-publicly'
+      url: 'https://api.tnyu.org/v2/events/up-next-publicly'
       rejectUnauthorized: false
       method: "GET"
-    ).then(([response, body]) -> 
+    ).then(([response, body]) ->
       if response.statusCode == 200 && body
-        nextEvent = JSON.parse(body).events
+        nextEvent = JSON.parse(body).data
 
         if nextEvent
-          data.promo = 
+          data.promo =
             shortTitle: nextEvent.shortTitle
             shortDescription: nextEvent.description
             moreInfoUrl: nextEvent.rsvpUrl
             isEvent: true
+
+        else
+          data.promo = undefined
     )
 
   setTimeout(updateData, 3600000)
