@@ -9,12 +9,12 @@
   },
   "contributors": [
     {
-      "name": "Abhinay Ashutosh",
-      "url": "http://www.abhinayashutosh.com/"
-    },
-    {
       "name": "Cheryl Wu",
       "url": "http://www.grunegrabbit.com/"
+    },
+    {
+      "name": "Abhi Agarwal",
+      "url": "http://abhiagarwal.com/"
     },
     {
       "name": "Ben Paster",
@@ -55,6 +55,6 @@
     "q": "1.x.x"
   },
   "scripts": {
-    "start": "node build/index.js"
+    "start": "node build/server.js"
   }
 }
