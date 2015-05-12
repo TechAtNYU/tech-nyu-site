@@ -7,7 +7,7 @@
 
 $background: #FFF;
 $textColor: #333;
-/* Alt yellow, better for big areas: hsl(44, 86%, 56%) */ 
+/* Alt yellow, better for big areas: hsl(44, 86%, 56%) */
 $sectionColors: hsl(14, 68%, 51%) hsl(43, 90%, 50%) hsl(276, 48%, 35%) hsl(140, 74%, 37%) hsl(218, 66%, 36%) hsl(0, 0%, 10%);
 $navActiveTextColor: hsl(0,0%,97%);
 $navInactiveTextColors: hsl(13, 2%, 16%), hsl(42, 0%, 16%), hsl(278,3%,60%), hsl(140, 0%, 20%), hsl(214, 4%,65%), hsl(0,0%,58%);
@@ -52,7 +52,7 @@ $bodyStack: $headingStack; //"franklin-gothic-urw";
 $outerPaddingPx: 25px;
 $outerPadding: ($outerPaddingPx/map-get($rsConfig, baseFontSize))*1em;
 
-$homepageLeftColWidth: 20.25em;
+$homepageLeftColWidth: 20.666em;
 
 $logoStartColor: hsl(0,0, 95%);
 $logoEndColor: hsl(0, 0, lightness(nth($navInactiveTextColors, 1)));
@@ -86,7 +86,7 @@ $sectioning-elements: section, article, nav;
 	  display: -webkit-flex;     /* NEW - Chrome */
 	  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
   }
-  
+
   @if $wrap == true {
      flex-wrap: wrap;
   }
@@ -96,10 +96,10 @@ $sectioning-elements: section, article, nav;
 @mixin numeral-type($type: lining) {
 
 	$short: if($type=='lining', l, if($type=='tabular', t, o)); //next version: str-slice($type,0,1);
- 
-	font-variant-numeric: #{$type}-nums; 
-	-moz-font-feature-settings: "#{$short}num=1"; 
-	-ms-font-feature-settings: "#{$short}num"; 
+
+	font-variant-numeric: #{$type}-nums;
+	-moz-font-feature-settings: "#{$short}num=1";
+	-ms-font-feature-settings: "#{$short}num";
 	//-webkit-font-feature-settings: "#{$short}num";  //can't use this or chrome starts bugging out.
 	-o-font-feature-settings: "#{$short}num";
 	font-feature-settings: "#{$short}num";
