@@ -62,7 +62,10 @@ var data = {
       name: "Event Calendar",
       anchor: "event-calendar"
     }
-  ]
+  ],
+  customShortUris: {
+    'tufte': 'https://www.eventbrite.com/e/edward-tufte-data-visualization-master-class-tickets-16049397179'
+  }
 };
 
 var updateData = function() {
@@ -118,10 +121,6 @@ app.get(/^\/team\/?$/, function(req, res){
   return res.redirect('http://ship.techatnyu.org/#board');
 });
 
-app.get(/^\/tufte\/?$/, function(req, res){
-  return res.redirect('https://www.eventbrite.com/e/edward-tufte-data-visualization-master-class-tickets-16049397179');
-});
-
 app.get(/\/job\-board\/?/, function(req, res){
   return res.redirect('https://tech-nyu.squarespace.com/job-board/');
 });
@@ -134,6 +133,14 @@ app.get(/^\/apply-now\/?$/, function(req, res){
 });
 
 app.post('/subscribe', function(){});
+
+for(var path in data.customShortUris) {
+  (function(path) {
+    app.get(new RegExp("^\/" + path + "\/?$"), function(req, res) {
+      return res.redirect(data.customShortUris[path]);
+    });
+  })(path);
+}
 
 app.use(express.compress());
 app.use(express['static'](__dirname + '/public'));
