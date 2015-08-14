@@ -118,16 +118,8 @@ app.get(/^\/team\/?$/, function(req, res){
   return res.redirect('http://ship.techatnyu.org/#board');
 });
 
-app.get(/^\/master-?class\/?$/, function(req, res){
-  return res.redirect('https://www.eventbrite.com/e/edward-tufte-data-visualization-master-class-tickets-16049397179?discount=NYU');
-});
-
 app.get(/^\/tufte\/?$/, function(req, res){
   return res.redirect('https://www.eventbrite.com/e/edward-tufte-data-visualization-master-class-tickets-16049397179');
-});
-
-app.get(/^\/body-?labs\/?$/, function(req, res){
-  return res.redirect('https://docs.google.com/forms/d/1t1R-GYYTUowAl1gWcIwO3_HrQkx8Qo3bdjFSnFzXKGA/viewform?c=0&w=1');
 });
 
 app.get(/\/job\-board\/?/, function(req, res){
