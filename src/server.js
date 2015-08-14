@@ -82,7 +82,7 @@ var updateData = function() {
       var nextEvent;
 
       if (response.statusCode === 200 && body) {
-        nextEvent = JSON.parse(body).data;
+        nextEvent = JSON.parse(body).data.attributes;
         if (nextEvent) {
           return data.promo = {
             shortTitle: nextEvent.shortTitle,
