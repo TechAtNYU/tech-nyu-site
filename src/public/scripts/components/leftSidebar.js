@@ -71,13 +71,11 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       }
     };
 
-    this.setupAnimationsBound = this.setupAnimations.bind(this);
-
     this.handleDigestDetailsShown = function(ev, data) {
       if (this.designSizeKey === 'LARGE') {
         this.select('tagline').add(this.select('logo')).animate({
           marginTop: "-=" + data.height
-        }, 140, this.setupAnimationsBound);
+        }, 140);
       }
     };
 
@@ -85,7 +83,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       if (this.designSizeKey === 'LARGE') {
         this.select('tagline').add(this.select('logo')).animate({
           marginTop: "+=" + data.height
-        }, 140, this.setupAnimationsBound);
+        }, 140);
       }
     };
 
@@ -95,7 +93,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
     };
 
     return this.after('initialize', function(){
-      $(document).one('designModeChange', this.setupAnimationsBound);
+      $(document).one('designModeChange', this.setupAnimations.bind(this));
       this.on(window, "resize", this.setupAnimations);
       this.on(this.$node, "digestDetailsShown", this.handleDigestDetailsShown);
       this.on(this.$node, "digestDetailsHidden", this.handleDigestDetailsHidden);
