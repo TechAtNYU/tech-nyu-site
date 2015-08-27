@@ -23,22 +23,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
     };
 
     this.getScrollMode = function(){
-      var self, mode;
-      self = this;
-      if (this.getDesignSizeKey() !== 'LARGE') {
-        return "scroll";
-      } else {
-        mode = "paginated";
-        this.$sections.each(function(){
-          var $section;
-          $section = $(this);
-          if ($section.outerHeight() + self.sassVars.paginatedMarginTopPx() - $('nav').height() > $(window).outerHeight()) {
-            mode = "scroll";
-            return false;
-          }
-        });
-        return mode;
-      }
+      return "scroll";
     };
 
     this.getDesignMode = function(){
