@@ -1,6 +1,5 @@
 define(["flight/component", "mixins"], function(defineComponent, mixins){
-
-  defineComponent(mixins.usesSassVars, function(){
+  return defineComponent(mixins.usesSassVars, function(){
     this.defaultAttrs({
       sectionsSelector: '.objective'
     });
@@ -41,7 +40,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       }
     };
 
-    this.after('initialize', function(){
+    return this.after('initialize', function(){
       this.$sections = this.select('sectionsSelector');
       this.getDesignMode();
       this.on(window, 'resize', this.getDesignMode);
