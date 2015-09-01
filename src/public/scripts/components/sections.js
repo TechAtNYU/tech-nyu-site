@@ -40,9 +40,8 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       // acts that it does.
       if(designKey === 'LARGE') {
         wouldBeOffsetTop =
-          (this.sassVars.firstPanelUpStart +
+          (this.sassVars.firstPanelUpEnd +
           this.sassVars.paginatedMarginTopPx() +
-          this.sassVars.interPanelDistance +
           this.sassVars.firstPanelExtraPause);
 
         firstSectionMarginTop = wouldBeOffsetTop + 'px';

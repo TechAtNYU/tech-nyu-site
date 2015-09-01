@@ -162,12 +162,11 @@ define({
       get firstPanelUpStart() {
         return this.navCascadeEnd - 165;
       },
-      interPanelDistance: 100,
       firstPanelExtraPause: 120,
       onPanelPause: 85,
       colorChangeLength: 35,
-      get firstPanelUpEnd(){
-        return this.firstPanelUpStart + this.interPanelDistance;
+      get firstPanelUpEnd() {
+        return this.firstPanelUpStart + 100;
       },
 
       paginatedMarginTop: '5.1875rem',

@@ -10,10 +10,9 @@ $navCascadeItemDelay: 32;
 $navCascadeDrop: 20;
 
 $onPanelPause: 85;
-$interPanelDistance: 100;
 $firstPanelExtraPause: 120;
 $firstPanelUpStart: $navCascadeEnd - 165;
-$firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
+$firstPanelUpEnd: $firstPanelUpStart + 100;
 $colorChangeLength: 35;
 
 @mixin ease($property, $easing, $value) {
