@@ -110,74 +110,26 @@ $colorChangeLength: 35;
       -skrollr-animation-name: navCascadeDown-#{$i};
     }
   }
+}
 
-  $animStartDelay: 20;
-  @-skrollr-keyframes photo-#{$i} {
-    //tell the sass compiler these vars will exist.
-    $startKf: 0;
-    $preShowStayKf: dummy;
-    $showKf: dummy;
-    $stayKf: dummy;
-    $hideKf: dummy;
-    $easing: if($i==2, swing5, linear);
+@-skrollr-keyframes intro-photo {
+  $easing: linear;
+  $hideKf: $navCascadeEnd+50;
 
-    @if($i==1) {
-      $showKf: 0;
-      $hideKf: $navCascadeEnd+50;
-    } 
-    @else {
-      $preShowStayKf: $firstPanelUpStart + ($i - 2)*($interPanelDistance + $onPanelPause) + $firstPanelExtraPause;
-      $showKf: $preShowStayKf + $interPanelDistance - if($i==2, $firstPanelExtraPause, 0);
-      $stayKf: $showKf + $onPanelPause + 10 + if($i==2, $firstPanelExtraPause, 0);
-      $hideKf: $stayKf + $interPanelDistance;
-    }
-
-    $direction: if($i%2==0, left, right);
-
-    #{$startKf} {
-      @include ease($direction, $easing, -100%);
-      @include ease(top, $easing, 100%);
-      @if($direction==left) {
-        right: 60%;
-      }
-    }
-
-    @if($i!=1) {
-      #{$preShowStayKf} {
-        dummy: true;
-      }
-    }
-
-    #{$showKf} {
-      @include ease($direction, $easing, 0%);
-      @include ease(top, $easing, 0%);
-      overflow: hidden;
-    }
-
-    #{$stayKf} {
-      dummy: true;
-    }
-
-    @if($i!=7) {
-      #{$hideKf} {
-        #{$direction}:-100%;
-        top:100%;
-        @if($direction==left) {
-          right: 60%;
-        }
-      }
-    }
+  0 {
+    @include ease(right, $easing, 0%);
+    @include ease(top, $easing, 0%);
+    overflow: hidden;
   }
 
-  .bg.starter {
-      -skrollr-animation-name: photo-1;
+  #{$hideKf} {
+    right: -100%;
+    top:100%;
   }
+}
 
-  @if($i!=7) {
-    .objective:nth-of-type(#{$i}) .bg {
-        //-skrollr-animation-name: photo-#{$i+1};
-    }
-  }
+.bg.starter {
+  -skrollr-animation-name: intro-photo;
 }
 
 #logo {
