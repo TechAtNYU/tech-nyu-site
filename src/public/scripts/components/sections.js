@@ -42,7 +42,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
         wouldBeOffsetTop =
           (this.sassVars.firstPanelUpEnd +
           this.sassVars.paginatedMarginTopPx() +
-          this.sassVars.firstPanelExtraPause);
+          this.sassVars.postIntroPause);
 
         firstSectionMarginTop = wouldBeOffsetTop + 'px';
       }

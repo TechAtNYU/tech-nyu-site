@@ -6,11 +6,9 @@ $navCascadeEnd: $headerAnimEnd - 20;
 $leftColOut: $navCascadeStart;
 
 //$navCascadeStart + $navCascadeItemDelay*5 + $navCascadeDrop; must add up to $navCascadeEnd
-$navCascadeItemDelay: 32; 
+$navCascadeItemDelay: 32;
 $navCascadeDrop: 20;
 
-$onPanelPause: 85;
-$firstPanelExtraPause: 120;
 $firstPanelUpStart: $navCascadeEnd - 165;
 $firstPanelUpEnd: $firstPanelUpStart + 100;
 $colorChangeLength: 35;
@@ -72,7 +70,7 @@ $colorChangeLength: 35;
 
             //calendar must invert as it's falling down, not after
             //because there is no next element to drop
-            @if($i==6) { 
+            @if($i==6) {
                 background-color: toRgbString(nth($sectionColors,$i), true);
                 //color: toHslString($navActiveTextColor);
             }

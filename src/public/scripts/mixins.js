@@ -162,8 +162,7 @@ define({
       get firstPanelUpStart() {
         return this.navCascadeEnd - 165;
       },
-      firstPanelExtraPause: 120,
-      onPanelPause: 85,
+      postIntroPause: 120,
       colorChangeLength: 35,
       get firstPanelUpEnd() {
         return this.firstPanelUpStart + 100;
