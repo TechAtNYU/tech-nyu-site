@@ -66,7 +66,6 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
         };
         this.animate('logo', 'LARGE', logoAnims);
 
-
         this.trigger('animationsChange', { keframesOnly: true });
       }
     };

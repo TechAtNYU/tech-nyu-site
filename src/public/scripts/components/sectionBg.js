@@ -27,8 +27,24 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       }
     };
 
+    // We'll only run this if this component
+    // represents the intro screen's background image.
+    this.animateIntroScreenBgImage = function() {
+      var bgKeyframes = {};
+      if(this.attr.isHomeSection) {
+        bgKeyframes[0] = { "right[linear]": "0%", "top[linear]": "0%"};
+        bgKeyframes[this.sassVars.navCascadeEnd + 50] = {
+          "right[linear]": "-100%", "top[linear]": "100%"
+        };
+
+        this.animate(this.$node, 'LARGE', bgKeyframes);
+        this.trigger('animationsChange', { keframesOnly: true });
+      }
+    }
+
     this.after('handleDesignModeChange', this.position);
-    this.after('initialize', function(){
+    this.after('initialize', function() {
+      this.animateIntroScreenBgImage();
       $(document).one('designModeChange', this.setImage.bind(this));
       this.on(window, "resize", this.setImage);
     });

@@ -172,7 +172,6 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       }
     };
 
-    this.after('handleDesignModeChange', this.setNavText);
 
     function swapLabels($list, newLabels){
       var attr;
@@ -184,6 +183,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       });
     }
 
+    this.after('handleDesignModeChange', this.setNavText);
     return this.after('initialize', function(){
       this.prepSmallNav();
       this.on(window, 'sectionsTransitionPointsChange', this.setAnimations);
