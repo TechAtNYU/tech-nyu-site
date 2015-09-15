@@ -34,7 +34,7 @@ directory. This project is an Express app; to preview the site, visit
 During development, you can have `gulp` do less minification (which makes
 debugging easier and speeds up the build time), by running:
 ```
-gulp dev
+bundle exec gulp dev
 ```
 
 ### Architecture
