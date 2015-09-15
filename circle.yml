@@ -15,4 +15,4 @@ deployment:
   production:
     branch: master
     commands:
-      - ssh $SSHU "cd $DIR && git pull -u origin master && gulp --require gulp-livescript && cd build && forever restartall"
+      - ssh $SSHU "cd $DIR && git pull -u origin master && bundle exec gulp && cd build && forever restartall"
