@@ -13,7 +13,6 @@ of the directory:
 # npm install (though you need to install bundler first)
 gem install bundler
 bundle install
-```
 
 # For compiling the LiveScript and Sass files.
 npm install gulp -g
