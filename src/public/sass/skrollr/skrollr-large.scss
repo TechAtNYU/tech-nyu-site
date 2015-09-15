@@ -112,26 +112,6 @@ $colorChangeLength: 35;
   }
 }
 
-@-skrollr-keyframes intro-photo {
-  $easing: linear;
-  $hideKf: $navCascadeEnd+50;
-
-  0 {
-    @include ease(right, $easing, 0%);
-    @include ease(top, $easing, 0%);
-    overflow: hidden;
-  }
-
-  #{$hideKf} {
-    right: -100%;
-    top:100%;
-  }
-}
-
-.bg.starter {
-  -skrollr-animation-name: intro-photo;
-}
-
 #logo {
   -skrollr-animation-name: logoToTopLeft;
 }
