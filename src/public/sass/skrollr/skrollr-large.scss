@@ -6,14 +6,11 @@ $navCascadeEnd: $headerAnimEnd - 20;
 $leftColOut: $navCascadeStart;
 
 //$navCascadeStart + $navCascadeItemDelay*5 + $navCascadeDrop; must add up to $navCascadeEnd
-$navCascadeItemDelay: 32; 
+$navCascadeItemDelay: 32;
 $navCascadeDrop: 20;
 
-$onPanelPause: 85;
-$interPanelDistance: 100;
-$firstPanelExtraPause: 120;
 $firstPanelUpStart: $navCascadeEnd - 165;
-$firstPanelUpEnd: $firstPanelUpStart + $interPanelDistance;
+$firstPanelUpEnd: $firstPanelUpStart + 100;
 $colorChangeLength: 35;
 
 @mixin ease($property, $easing, $value) {
@@ -73,7 +70,7 @@ $colorChangeLength: 35;
 
             //calendar must invert as it's falling down, not after
             //because there is no next element to drop
-            @if($i==6) { 
+            @if($i==6) {
                 background-color: toRgbString(nth($sectionColors,$i), true);
                 //color: toHslString($navActiveTextColor);
             }
@@ -111,74 +108,6 @@ $colorChangeLength: 35;
 
     nav li:nth-of-type(#{$i}) {
       -skrollr-animation-name: navCascadeDown-#{$i};
-    }
-  }
-
-  $animStartDelay: 20;
-  @-skrollr-keyframes photo-#{$i} {
-    //tell the sass compiler these vars will exist.
-    $startKf: 0;
-    $preShowStayKf: dummy;
-    $showKf: dummy;
-    $stayKf: dummy;
-    $hideKf: dummy;
-    $easing: if($i==2, swing5, linear);
-
-    @if($i==1) {
-      $showKf: 0;
-      $hideKf: $navCascadeEnd+50;
-    } 
-    @else {
-      $preShowStayKf: $firstPanelUpStart + ($i - 2)*($interPanelDistance + $onPanelPause) + $firstPanelExtraPause;
-      $showKf: $preShowStayKf + $interPanelDistance - if($i==2, $firstPanelExtraPause, 0);
-      $stayKf: $showKf + $onPanelPause + 10 + if($i==2, $firstPanelExtraPause, 0);
-      $hideKf: $stayKf + $interPanelDistance;
-    }
-
-    $direction: if($i%2==0, left, right);
-
-    #{$startKf} {
-      @include ease($direction, $easing, -100%);
-      @include ease(top, $easing, 100%);
-      @if($direction==left) {
-        right: 60%;
-      }
-    }
-
-    @if($i!=1) {
-      #{$preShowStayKf} {
-        dummy: true;
-      }
-    }
-
-    #{$showKf} {
-      @include ease($direction, $easing, 0%);
-      @include ease(top, $easing, 0%);
-      overflow: hidden;
-    }
-
-    #{$stayKf} {
-      dummy: true;
-    }
-
-    @if($i!=7) {
-      #{$hideKf} {
-        #{$direction}:-100%;
-        top:100%;
-        @if($direction==left) {
-          right: 60%;
-        }
-      }
-    }
-  }
-
-  .bg.starter {
-      -skrollr-animation-name: photo-1;
-  }
-
-  @if($i!=7) {
-    .objective:nth-of-type(#{$i}) .bg {
-        //-skrollr-animation-name: photo-#{$i+1};
     }
   }
 }
