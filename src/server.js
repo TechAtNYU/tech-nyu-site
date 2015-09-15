@@ -122,7 +122,7 @@ app.get(/^\/team\/?$/, function(req, res){
 });
 
 app.get(/\/job\-board\/?/, function(req, res){
-  return res.redirect('https://tech-nyu.squarespace.com/job-board/');
+  return res.redirect('http://jobs.techatnyu.org/');
 });
 
 app.get(/^\/apply-now\/?$/, function(req, res){
