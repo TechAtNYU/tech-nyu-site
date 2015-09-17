@@ -1,5 +1,8 @@
 module.exports = [
   {
+    name: "Dev Bootcamp",
+    img: "devbootcamp.png"
+  },{
     name: "Meetup",
     img: "meetup.png"
   }, {
