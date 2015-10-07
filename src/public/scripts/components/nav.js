@@ -47,6 +47,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
           largeKeyframes = {},
           smallLogoKeyframes = {},
           largeLogoKeyframes = {},
+          largeNavLIKeyframes = {},
           smallNavListKeyframes = {},
           smallCalendarLIKeyframes = {},
           navHeight = this.sassVars.currentNavHeight(),
@@ -86,6 +87,60 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       smallNavListKeyframes[transitionPoints[0][1]] = {
         'transform': 'translateY(' + (-1 * navHeight) + 'px)'
       };
+
+      // Add the cascade effect to the nav items on the
+      // intro screen. Only applies on the large design.
+      Array.apply(null, Array(lastIndex + 1)).forEach(function(_, i) {
+        var dropStartTime = sassVars.navCascadeStart + i*sassVars.navCascadeItemDelay
+          , dropEndTime   = dropStartTime + sassVars.navCascadeDrop
+          , holdTime      = dropEndTime + 20 //time post landing before colorFlip
+          , colorFlipTime = dropEndTime + sassVars.navCascadeItemDelay;
+        
+        var preDropPosition = {
+          "margin-top[sqrt]": "-80px"
+        };
+
+        var droppedPosition = {
+          "margin-top[sqrt]": "0px",
+          "background-color": sassVars.sectionColorsRGBA[i]
+        };
+
+        var holdPosition = { 
+          dummy: true 
+        };
+
+        var colorFlip = {
+          "background-color": sassVars.sectionColorsRGBA[0]
+        };
+
+        // on most nav items, we flip their color to the starting color after
+        // they've fallen. But, for the last nav item only, we must flip its 
+        // color as it falls down, since we can't flip it as the next one falls 
+        // (there is nothing next).
+        if(i === lastIndex) {
+          preDropPosition["background-color"] = sassVars.sectionColorsRGBA[i];
+          droppedPosition["background-color"] = sassVars.sectionColorsRGBA[0];
+        }
+
+        largeNavLIKeyframes[i] = {};
+        largeNavLIKeyframes[i][dropStartTime] = preDropPosition;
+        largeNavLIKeyframes[i][dropEndTime] = droppedPosition;
+        largeNavLIKeyframes[i][holdTime] = holdPosition;
+
+        if(i !== lastIndex) {
+          largeNavLIKeyframes[i][colorFlipTime] = colorFlip;
+        }
+        
+
+        // Pause on the final color at headerAnimEnd, but then, immediately
+        // switch the li to transparent, so that we can change the whole
+        // navbar's bg color visually without having to set each li's color.
+        largeNavLIKeyframes[i][sassVars.headerAnimEnd] = colorFlip;
+        largeNavLIKeyframes[i][sassVars.headerAnimEnd+1] = {
+          "background-color": sassVars.sectionColorsRGBA[0].replace(/1\)$/, "0)") // replace alpha.
+        };
+      });
+      
 
       // add animations for each section.
       transitionPoints.forEach(function(keyframePair, i) {
@@ -142,14 +197,20 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
         }
       });
 
-      // we use true as the third arg here to replace old ones,
-      // since all of these animations depend on the section tranistion points.
+      // we use true as the fourth arg here to replace old animations,
+      // since all of these ones depend on the section tranistion points.
       this.animate(this.$node, 'LARGE', largeKeyframes, true);
       this.animate(this.$logo.find('svg'), 'LARGE', largeLogoKeyframes, true);
       this.animate(this.$node, 'SMALL', smallKeyframes, true);
       this.animate(this.$logo, 'SMALL', smallLogoKeyframes, true);
       this.animate(this.select('list'), 'SMALL', smallNavListKeyframes, true);
       this.animate(this.select('calendarLi'), 'SMALL', smallCalendarLIKeyframes, true);
+
+      var self = this;
+      this.select('li').each(function(i) {
+        self.animate($(this), 'LARGE', largeNavLIKeyframes[i], true);
+      });
+
       this.trigger('animationsChange', { keframesOnly: true });
     };
 

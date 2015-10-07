@@ -153,12 +153,18 @@ define({
 
     this.sassVars = {
       // large design animation variables
-      navCascadeStart: 150,
       leftColOut: 150,
       headerAnimEnd: 350,
+
+      // navCascadeStart + navCascadeItemDelay*5 + navCascadeDrop 
+      // must add up to navCascadeEnd
+      navCascadeStart: 150,
+      navCascadeItemDelay: 32,
+      navCascadeDrop: 20,
       get navCascadeEnd() {
         return this.headerAnimEnd - 20;
       },
+  
       get firstPanelUpStart() {
         return this.navCascadeEnd - 165;
       },
@@ -174,6 +180,8 @@ define({
       // these values just copied from the computed sass.
       // will need to be cleaned up later, but what matters 
       // for now is getting all the animations out of sass.
+      // the startPadding is the rem version of $outerPaddingPx+2px,
+      // while the endPadding is simply the rems for $outerPaddingPx.
       logoStartWidth: "10.52632em",
       logoStartPadding: "1.6875rem",
       logoEndWidth: "6.05263em",
