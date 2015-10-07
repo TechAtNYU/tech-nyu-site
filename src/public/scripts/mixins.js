@@ -168,6 +168,17 @@ define({
         return this.firstPanelUpStart + 100;
       },
 
+      outerPaddingPx: "25px",
+      outerPaddingRem: parseInt(this.outerPaddingPx, 10)/16 + "rem",
+
+      // these values just copied from the computed sass.
+      // will need to be cleaned up later, but what matters 
+      // for now is getting all the animations out of sass.
+      logoStartWidth: "10.52632em",
+      logoStartPadding: "1.6875rem",
+      logoEndWidth: "6.05263em",
+      logoEndPadding: "1.5625rem",
+
       paginatedMarginTop: '5.1875rem',
       rsBodyMaxWidth: '1400px',
 

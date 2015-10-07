@@ -55,14 +55,19 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
         }
         this.animate('taglineWrapper', 'LARGE', taglineWrapperAnims);
 
-
         logoAnims[0] = {
           "top[sqrt]": logoTop + 'px',
-          "margin-left[sqrt]": logoMarginLeft + 'px'
+          "margin-left[sqrt]": logoMarginLeft + 'px',
+          "width[cubedroot]": this.sassVars.logoStartWidth,
+          "padding-left": this.sassVars.logoStartPadding,
+          "padding-right": this.sassVars.logoStartPadding
         };
         logoAnims[this.sassVars.navCascadeEnd - 50] = {
           "top[sqrt]": '10px',
-          "margin-left[sqrt]": '0px'
+          "margin-left[sqrt]": '0px',
+          "width[cubedroot]": this.sassVars.logoEndWidth,
+          "padding-left": this.sassVars.logoEndPadding,
+          "padding-right": this.sassVars.logoEndPadding
         };
         this.animate('logo', 'LARGE', logoAnims);
 

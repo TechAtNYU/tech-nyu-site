@@ -35,24 +35,6 @@ $colorChangeLength: 35;
     @return unquote("rgb" + if($addAlpha, "a", "") + "("  + $r + ", " + $g + ", " + $b + if($addAlpha, ", " + $a, "") + ")");
 }
 
-@-skrollr-keyframes logoToTopLeft {
-    0 {
-        @include ease(width, cubedroot, ems($logoStartWidth));
-        @include rs((
-          padding-left: $outerPaddingPx + 2px,
-          padding-right: $outerPaddingPx + 2px
-        ), $fallback: false);
-    }
-
-    #{$navCascadeEnd - 50} {
-      @include ease(width, cubedroot, ems($logoEndWidth));
-      @include rs((
-        padding-left: $outerPaddingPx,
-        padding-right: $outerPaddingPx
-      ), $fallback: false);
-    }
-}
-
 @-skrollr-keyframes scrollCueFadeOut {
     #{$firstPanelUpStart} {
         opacity: 1;
@@ -110,10 +92,6 @@ $colorChangeLength: 35;
       -skrollr-animation-name: navCascadeDown-#{$i};
     }
   }
-}
-
-#logo {
-  -skrollr-animation-name: logoToTopLeft;
 }
 
 #scrollCue {
