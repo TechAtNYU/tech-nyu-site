@@ -35,15 +35,6 @@ $colorChangeLength: 35;
     @return unquote("rgb" + if($addAlpha, "a", "") + "("  + $r + ", " + $g + ", " + $b + if($addAlpha, ", " + $a, "") + ")");
 }
 
-@-skrollr-keyframes scrollCueFadeOut {
-    #{$firstPanelUpStart} {
-        opacity: 1;
-    }
-    #{$firstPanelUpEnd} {
-        opacity: 0;
-    }
-}
-
 @for $i from 1 through 7 {
   @if($i != 7) {
     @-skrollr-keyframes navCascadeDown-#{$i} {
@@ -92,8 +83,4 @@ $colorChangeLength: 35;
       -skrollr-animation-name: navCascadeDown-#{$i};
     }
   }
-}
-
-#scrollCue {
-   -skrollr-animation-name: scrollCueFadeOut;
 }

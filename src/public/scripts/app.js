@@ -26,10 +26,10 @@ define([
   'skrollr', 'skrollr-stylesheets',
   'components/skrollr', 'components/designSwitcher', 'components/leftSidebar',
   'components/digestSignup', 'components/sectionBg', 'components/sections',
-  'components/nav', 'flight/component', 'jquery.flexisel'
+  'components/nav', 'components/scrollCue', 'flight/component', 'jquery.flexisel'
   ],
 
-  function(skrollr, skrollrStylesheets, skrollrComponent, designSwitcher, leftSidebar, digestSignup, sectionBg, sections, nav, flight, carousel) {
+  function(skrollr, skrollrStylesheets, skrollrComponent, designSwitcher, leftSidebar, digestSignup, sectionBg, sections, nav, scrollCue, flight, carousel) {
     $(function(){
       var this$ = this;
       var s = skrollr.init({
@@ -78,6 +78,7 @@ define([
       sections.attachTo('#content', {
         skrollrInstance: s
       });
+      scrollCue.attachTo('#scrollCue');
       designSwitcher.attachTo('body');
 
       $('.announcement').each(function(i, announcement){
