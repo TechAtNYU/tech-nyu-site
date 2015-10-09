@@ -17,37 +17,37 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
       this.$node.css('background-image', 'url(' + imgURI + ')');
     };
 
-    this.position = function(ev, data){
-      if (this.attr.isHomeSection) {
-        if (this.currDesignMode === 'LARGE') {
-          return this.$node.insertAfter(this.$content);
-        } else {
-          return this.$node.insertBefore(this.$info);
-        }
+    this.positionIntroScreenBg = function(ev, data){
+      if (this.currDesignMode === 'LARGE') {
+        this.$node.insertAfter(this.$content);
+      } 
+      else {
+        this.$node.insertBefore(this.$info);
       }
     };
 
     // We'll only run this if this component
     // represents the intro screen's background image.
-    this.animateIntroScreenBgImage = function() {
+    this.animateIntroScreenBg = function() {
       var bgKeyframes = {};
-      if(this.attr.isHomeSection) {
-        bgKeyframes[0] = { "right[linear]": "0%", "top[linear]": "0%"};
-        bgKeyframes[this.sassVars.navCascadeEnd + 50] = {
-          "right[linear]": "-100%", "top[linear]": "100%"
-        };
+      bgKeyframes[0] = { "right[linear]": "0%", "top[linear]": "0%"};
+      bgKeyframes[this.sassVars.navCascadeEnd + 50] = {
+        "right[linear]": "-100%", "top[linear]": "100%"
+      };
 
-        this.animate(this.$node, 'LARGE', bgKeyframes);
-        this.trigger('animationsChange', { keframesOnly: true });
-      }
+      this.animate(this.$node, 'LARGE', bgKeyframes);
+      this.trigger('animationsChange', { keframesOnly: true });
     }
 
     this.after('initialize', function() {
-      this.position();
       this.setImage();
-      this.animateIntroScreenBgImage();
-      this.on(document, 'designModeChange', this.position);
       this.on(window, "resize", this.setImage);
+
+      if(this.attr.isHomeSection) {
+        this.positionIntroScreenBg();
+        this.animateIntroScreenBg();
+        this.on(document, 'designModeChange', this.positionIntroScreenBg);
+      }
     });
   });
 });
