@@ -1,3 +1,28 @@
+/**
+ * Components in Flight communicate through events, so it's important
+ * to understand what events the system defines, and to make sure each
+ * component is sending/receivng them appropriately. Currently, the 
+ * events are as follows (parentheses after the event name indicates
+ * the type of data that can be provided with the event, and the keys
+ * at which that data should live):
+ *
+ * 1. tnyu-domContentModification($elems: $elemtsChangedOrAdded)
+ *    This should be triggered whenever a component adds, removes,
+ *    moves, or otherwise modifies something in the DOM. Among other 
+ *    things, the animations manager listens for this event to 
+ *    recalculate the body height, etc.
+ *
+ * 2. tnyu-designModeChange(oldDesignMode: string, designMode: string)
+ *    This is fired every time the design mode switches from SMALL to
+ *    large, or vice-versa. Many components may want to listen to it
+ *    (e.g. to change their elements' structure for the new mode).
+ *
+ * 3. tnyu-animationsChange(forDesignMode: string)
+ *    This should be triggered every time a component registers (a batch
+ *    of) new or updated animation instructions (using the setAnimations
+ *    mixin). Among other things, the AniationsManager listens to it to
+ *    make sure the latest animations are being applied.
+ */
 requirejs.config({
   baseUrl: 'scripts/bower_components',
   enforceDefine: true,
@@ -5,9 +30,9 @@ requirejs.config({
     app: '../app',
     mixins: '../mixins',
     components: '../components',
+    "jquery": 'jquery/dist/jquery.min',
     "flight": 'flight/lib',
     "skrollr": 'skrollr/dist/skrollr.min',
-    "skrollr-stylesheets": 'skrollr-stylesheets-amd/src/skrollr.stylesheets',
     "skrollr-menu": 'skrollr-menu-amd/dist/skrollr.menu.min',
     "jquery.flexisel": "flexisel/js/jquery.flexisel"
   },
@@ -23,50 +48,25 @@ requirejs.config({
 });
 
 define([
-  'skrollr', 'skrollr-stylesheets',
-  'components/skrollr', 'components/designSwitcher', 'components/leftSidebar',
+  'jquery',  
+  'components/designModeTracker', 'components/animationsManager'
+  /*'components/skrollr',  'components/leftSidebar',
   'components/digestSignup', 'components/sectionBg', 'components/sections',
-  'components/nav', 'components/scrollCue', 'flight/component', 'jquery.flexisel'
+  'components/nav', 'components/scrollCue', 'flight/component', 'jquery.flexisel' */
   ],
 
-  function(skrollr, skrollrStylesheets, skrollrComponent, designSwitcher, leftSidebar, digestSignup, sectionBg, sections, nav, scrollCue, flight, carousel) {
-    $(function(){
+  function($, designModeTracker, animationsManager /*, skrollrComponent, leftSidebar, digestSignup, sectionBg, sections, nav, scrollCue, flight, carousel*/) {
+    $(function() {
       var this$ = this;
-      var s = skrollr.init({
-        easing: {
-          swing2: function(percentComplete){
-            return Math.pow(percentComplete, 7);
-          },
-          swing3: function(percentComplete){
-            return Math.pow(percentComplete, 1.8);
-          },
-          cubedroot: function(percentComplete){
-            return Math.pow(percentComplete, 1 / 3);
-          },
-          swing4: function(percentComplete){
-            return Math.pow(percentComplete, 12);
-          },
-          swing5: function(percentComplete){
-            return Math.pow(percentComplete, 4);
-          }
-        },
-        smoothScrollingDuration: 200
-      });
 
-      skrollrStylesheets.init(s);
+      designModeTracker.attachTo('body');
 
-      skrollrComponent.attachTo('body', {
-        eventsTriggeringRefresh: 'sectionContentModified',
-        skrollrInstance: s
-      });
-
-      $(document).on('animationsChange', function(ev, data){
-        if (data != null && data.keframesOnly) {
-          return skrollrStylesheets.registerKeyframeChange();
-        } else {
-          return s.refresh((data != null ? data.elements : void 8) || void 8);
-        }
-      });
+      // note that sectionContentModified used to trigger a
+      // skrollr refresh; now only tnyu-domContentModification does.
+      // Likewise, animationsChange became tnyu-animationsChange.
+      animationsManager.attachTo('body');
+      
+      /*
 
       leftSidebar.attachTo('body');
       digestSignup.attachTo('#digestForm');
@@ -79,7 +79,6 @@ define([
         skrollrInstance: s
       });
       scrollCue.attachTo('#scrollCue');
-      designSwitcher.attachTo('body');
 
       $('.announcement').each(function(i, announcement){
         var $announcement = $(announcement);
@@ -93,9 +92,9 @@ define([
           }
         });
         return $announcement.prepend($close);
-      });
+      });*/
     });
-
+    /*
     return $(window).load(function(){
       return $('#carousel').flexisel({
         visibleItems: 6,
@@ -127,6 +126,6 @@ define([
           }
         }
       }).trigger('sectionContentModified');
-    });
+    }); */
   }
 );

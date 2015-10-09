@@ -9,7 +9,7 @@ define(["flight/component", "mixins", "skrollr-menu"], function(defineComponent,
       dropdownNav: '#nav-dropdown',
       eventsTriggeringRefresh: ''
     });
-
+    /*
     this.transitionPoints;
     this.dropdownNav;
     this.s;
@@ -98,6 +98,6 @@ define(["flight/component", "mixins", "skrollr-menu"], function(defineComponent,
           return $(document).trigger('readyForSkrollr');
         }
       }).one('readyForSkrollr', this.configureSkrollr.bind(this));
-    });
+    });*/
   });
 });

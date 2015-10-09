@@ -15,7 +15,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
     }
 
     this.after('initialize', function() {
-      $(document).one('designModeChange', this.setupAnimations.bind(this));
+      this.setupAnimations();
     });
   });
 });

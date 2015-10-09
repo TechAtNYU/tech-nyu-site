@@ -19,7 +19,6 @@
     "flight": "~1.1.x",
     "requirejs": "2.1.x",
     "skrollr": "~0.6.27",
-    "skrollr-stylesheets-amd": "1.x",
     "skrollr-menu-amd": "0.1.x",
     "flexisel": "0.1.x"
   }
