@@ -75,5 +75,8 @@ gulp.task('buildHTML', ['copy'], function(){
 });
 
 gulp.task('test', []);
-gulp.task('dev', ['clean', 'compileJS', 'copy', 'sass']);
-gulp.task('default', ['dev', 'optimizeJS', 'buildHTML']);
+gulp.task('minimal', ['clean', 'compileJS', 'copy', 'sass']);
+gulp.task('default', ['minimal', 'optimizeJS', 'buildHTML']);
+gulp.task('dev', function() {
+  gulp.watch(globs.src, ['minimal']);
+});
