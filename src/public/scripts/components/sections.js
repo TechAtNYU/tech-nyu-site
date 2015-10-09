@@ -6,7 +6,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
     });
 
     this.handleResize = function(){
-      this.setSectionAnimations(this.designSizeKey);
+      this.setSectionAnimations(this.currDesignMode);
     };
 
     this.getAnimatedOffsetTopForSection = function(i){
@@ -20,8 +20,9 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
       return this.$sections.eq(i).offset().top + -2 * translateY;
     };
 
-    this.setSectionAnimations = function(designKey){
+    this.setSectionAnimations = function() {
       var self = this,
+          designMode = this.currDesignMode
           sectionCount = this.$sections.length,
           navHeight = this.sassVars.currentNavHeight(),
           scrollTop = this.$window.scrollTop(),
@@ -38,7 +39,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
       // pushes it past the intro animation, to the point that "would be" it's
       // offset top if the intro screen really took up the height that skrollr
       // acts that it does.
-      if(designKey === 'LARGE') {
+      if(designMode === 'LARGE') {
         wouldBeOffsetTop =
           (this.sassVars.firstPanelUpEnd +
           this.sassVars.paginatedMarginTopPx() +
@@ -73,12 +74,11 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
 
     this.after('initialize', function() {
       var this$ = this;
+      this.$window = $(window);
       this.$sections = this.select('sectionsSelector');
       this.s = this.attr.skrollrInstance;
-      this.$window = $(window);
-      $(document).one('designModeChange', function(){
-        return this$.setSectionAnimations(this$.designSizeKey);
-      });
+
+      this$.setSectionAnimations();
       this.on(window, "resize", this.handleResize);
       this.on(document, 'sectionContentModified', this.handleResize);
     });

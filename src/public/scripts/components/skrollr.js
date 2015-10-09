@@ -56,8 +56,8 @@ define(["flight/component", "mixins/tracksCurrentDesign", "skrollr-menu"], funct
     };
 
     this.moveElementsForMobileSkrollr = function() {
-      if (this.oldDesignSizeKey !== this.designSizeKey) {
-        if (this.designSizeKey === 'LARGE') {
+      if (this.oldDesignMode !== this.currDesignMode) {
+        if (this.currDesignMode === 'LARGE') {
           this.select('taglineWrapper').insertBefore(this.select('nav'));
           this.select('upcoming').insertAfter(this.select('nav'));
         }
@@ -73,13 +73,12 @@ define(["flight/component", "mixins/tracksCurrentDesign", "skrollr-menu"], funct
       }
     };
 
-    this.after('handleDesignModeChange', this.moveElementsForMobileSkrollr);
-
     this.after('initialize', function(){
       var this$ = this;
       this.navList = this.select('navList');
       this.s = this.attr.skrollrInstance;
 
+      this.on(document, 'designModeChange', this.moveElementsForMobileSkrollr);
       $(document).on(this.attr.eventsTriggeringRefresh, function(){
         return this$.s.refresh();
       });

@@ -10,7 +10,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
     this.$info = $('#info');
 
     this.setImage = function(ev, data){
-      var imgURI = (this.designSizeKey === 'SMALL' || this.$window.width() > 1270) ?
+      var imgURI = (this.currDesignMode === 'SMALL' || this.$window.width() > 1270) ?
         this.$node.attr('data-wide') :
         this.$node.attr('data-narrow');
 
@@ -19,7 +19,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
 
     this.position = function(ev, data){
       if (this.attr.isHomeSection) {
-        if (this.designSizeKey === 'LARGE') {
+        if (this.currDesignMode === 'LARGE') {
           return this.$node.insertAfter(this.$content);
         } else {
           return this.$node.insertBefore(this.$info);
@@ -42,10 +42,11 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
       }
     }
 
-    this.after('handleDesignModeChange', this.position);
     this.after('initialize', function() {
+      this.position();
+      this.setImage();
       this.animateIntroScreenBgImage();
-      $(document).one('designModeChange', this.setImage.bind(this));
+      this.on(document, 'designModeChange', this.position);
       this.on(window, "resize", this.setImage);
     });
   });

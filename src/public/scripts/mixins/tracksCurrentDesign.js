@@ -1,14 +1,24 @@
 define(function() {
+  var designMode = {"old": null, "current": null};
+
   return function() {
-    this.after('initialize', function(){
-      this.on(document, 'designModeChange', this.handleDesignModeChange);
+    // make getters to support our old components
+    Object.defineProperty(this, 'oldDesignMode', {
+      get: function() {
+        return designMode.old;
+      }, 
+      set: function(val) {
+        designMode.old = val;
+      }
     });
 
-    this.oldDesignSizeKey; this.designSizeKey;
-
-    this.handleDesignModeChange = function(ev, data) {
-      this.oldDesignSizeKey = data.oldDesignSizeKey;
-      this.designSizeKey = data.designSizeKey;
-    };
+    Object.defineProperty(this, 'currDesignMode', {
+      get: function() {
+        return designMode.current;
+      }, 
+      set: function(val) {
+        designMode.current = val;
+      }
+    });
   }
 });

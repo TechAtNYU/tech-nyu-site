@@ -32,6 +32,9 @@ define([
   function(skrollr, skrollrStylesheets, skrollrComponent, designSwitcher, leftSidebar, digestSignup, sectionBg, sections, nav, scrollCue, flight, carousel) {
     $(function(){
       var this$ = this;
+
+      designSwitcher.attachTo('body');
+
       var s = skrollr.init({
         easing: {
           swing2: function(percentComplete){
@@ -79,7 +82,6 @@ define([
         skrollrInstance: s
       });
       scrollCue.attachTo('#scrollCue');
-      designSwitcher.attachTo('body');
 
       $('.announcement').each(function(i, announcement){
         var $announcement = $(announcement);

@@ -220,7 +220,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
       // calendar screen (i.e. let the calendar shortcut take the user straight
       // to the calendar screen).
       var $targetLi = $(ev.currentTarget).parent();
-      if (this.designSizeKey !== 'LARGE' && (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active') || ev.target.attributes.id === 'logo')) {
+      if (this.currDesignMode !== 'LARGE' && (!$targetLi.hasClass('calendar') || $targetLi.hasClass('active') || ev.target.attributes.id === 'logo')) {
         this.showDropdown();
         return false;
       }
@@ -228,8 +228,8 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
     };
 
     this.setNavText = function(){
-      if (this.oldDesignSizeKey !== this.designSizeKey) {
-        return swapLabels(this.select('list'), this.designSizeKey === 'LARGE' ? 'orig' : 'short');
+      if (this.oldDesignMode !== this.currDesignMode) {
+        return swapLabels(this.select('list'), this.currDesignMode === 'LARGE' ? 'orig' : 'short');
       }
     };
 
@@ -241,9 +241,9 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
       });
     }
 
-    this.after('handleDesignModeChange', this.setNavText);
     this.after('initialize', function(){
       this.prepSmallNav();
+      this.on(document, 'designModeChange', this.setNavText);
       this.on(window, 'sectionsTransitionPointsChange', this.setAnimations);
       this.on(this.select('li').find('a').add('#logo'), 'click', this.handleNavClick);
       this.on(document, 'click', this.hideDropdown);

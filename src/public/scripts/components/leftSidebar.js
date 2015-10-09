@@ -14,7 +14,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
         windowHeight, windowWidth, taglineHeight, bodyMaxWidth, logoMarginLeft,
         ref$, logoTop, upcomingAnims = {}, taglineWrapperAnims = {}, logoAnims = {};
 
-      if (this.designSizeKey === 'LARGE' || !this.designSizeKey) {
+      if (this.currDesignMode === 'LARGE') {
         $window  = $(window);
         upcoming = this.select('upcoming');
         logo     = this.select('logo');
@@ -76,7 +76,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
     };
 
     this.handleDigestDetailsShown = function(ev, data) {
-      if (this.designSizeKey === 'LARGE') {
+      if (this.currDesignMode === 'LARGE') {
         this.select('tagline').add(this.select('logo')).animate({
           marginTop: "-=" + data.height
         }, 140);
@@ -84,7 +84,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
     };
 
     this.handleDigestDetailsHidden = function(ev, data) {
-      if (this.designSizeKey === 'LARGE') {
+      if (this.currDesignMode === 'LARGE') {
         this.select('tagline').add(this.select('logo')).animate({
           marginTop: "+=" + data.height
         }, 140);
@@ -97,7 +97,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
     };
 
     this.after('initialize', function(){
-      $(document).one('designModeChange', this.setupAnimations.bind(this));
+      this.setupAnimations();
       this.on(window, "resize", this.setupAnimations);
       this.on(this.$node, "digestDetailsShown", this.handleDigestDetailsShown);
       this.on(this.$node, "digestDetailsHidden", this.handleDigestDetailsHidden);

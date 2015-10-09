@@ -15,7 +15,7 @@ define(["flight/component", "mixins/managesAnimations", "mixins/usesSassVars"], 
     }
 
     this.after('initialize', function() {
-      $(document).one('designModeChange', this.setupAnimations.bind(this));
+      this.setupAnimations();
     });
   });
 });
