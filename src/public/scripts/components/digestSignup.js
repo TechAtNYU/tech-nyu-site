@@ -1,6 +1,6 @@
 define(["flight/component", "mixins"], function(defineComponent, mixins){
 
-  return defineComponent(mixins.managesAnimations, mixins.usesSassVars, function(){
+  return defineComponent(function() {
     this.defaultAttrs({
       details: '.caption',
       submit: "[type=submit]",
@@ -23,7 +23,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
     return this.after('initialize', function(){
       this.on(this.select('input'), "focus", this.showDetails);
       this.on(this.select('input'), 'blur', function(){
-        return setTimeout(this.hideDetails.bind(this), 150);
+        setTimeout(this.hideDetails.bind(this), 150);
       });
     });
   });
