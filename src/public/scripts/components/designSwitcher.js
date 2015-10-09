@@ -12,28 +12,19 @@ define(["flight/component", "mixins/usesSassVars"], function(defineComponent, us
     // of the design mode, oldDesignSizeKey and oldScrollMode
     // key will be == null. So don't fuck with these defaults.
     this.oldDesignSizeKey;
-    this.oldScrollMode;
     this.designSizeKey;
-    this.scrollMode;
 
     this.getDesignSizeKey = function(){
       var largeMq = "(min-width: 920px) and (min-height:620px) and (max-aspect-ratio: 1530/750)";
       return (!matchMedia || window.matchMedia(largeMq).matches) ? 'LARGE' : 'SMALL';
     };
 
-    this.getScrollMode = function(){
-      return "scroll";
-    };
-
     this.getDesignMode = function(){
       var newMode = {};
-      this.oldScrollMode = this.scrollMode;
       this.oldDesignSizeKey = this.designSizeKey;
       this.designSizeKey = this.getDesignSizeKey();
-      this.scrollMode = this.getScrollMode();
-      if (this.oldScrollMode !== this.scrollMode || this.oldDesignSizeKey !== this.designSizeKey) {
-        newMode.oldScrollMode = this.oldScrollMode;
-        newMode.scrollMode = this.scrollMode;
+
+      if (this.oldDesignSizeKey !== this.designSizeKey) {
         newMode.oldDesignSizeKey = this.oldDesignSizeKey;
         newMode.designSizeKey = this.designSizeKey;
         return this.trigger('designModeChange', newMode);
