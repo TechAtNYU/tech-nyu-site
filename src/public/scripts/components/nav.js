@@ -39,7 +39,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       this.$dropdown.addClass('hidden');
     };
 
-    this.setAnimations = function(ev, data){
+    this.setAnimations = function(ev, data) {
       var transitionPoints = data.transitionPoints;
       this.transitionPoints = transitionPoints;
 
@@ -235,12 +235,9 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
 
 
     function swapLabels($list, newLabels){
-      var attr;
-      attr = 'data-' + newLabels + 'name';
+      var attr= 'data-' + newLabels + 'name';
       return $list.find('li[' + attr + ']').each(function(){
-        var $curr;
-        $curr = $(this);
-        return $curr.find('a').html($curr.attr(attr));
+        return $(this).find('a').html(this.getAttribute(attr));
       });
     }
 
