@@ -1,4 +1,4 @@
-define(["flight/component", "mixins"], function(defineComponent, mixins){
+define(["flight/component"], function(defineComponent){
 
   return defineComponent(function() {
     this.defaultAttrs({

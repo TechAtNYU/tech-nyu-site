@@ -1,5 +1,5 @@
-define(["flight/component", "mixins", "skrollr-menu"], function(defineComponent, mixins, skrollrMenu){
-  return defineComponent(mixins.tracksCurrentDesign, function() {
+define(["flight/component", "mixins/tracksCurrentDesign", "skrollr-menu"], function(defineComponent, tracksCurrentDesign, skrollrMenu){
+  return defineComponent(tracksCurrentDesign, function() {
     this.defaultAttrs({
       navList: 'nav ol',
       upcoming: '#upcoming',

@@ -1,6 +1,6 @@
-define(["flight/component", "mixins"], function(defineComponent, mixins){
+define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimations", "mixins/usesSassVars"], function(defineComponent, tracksCurrentDesign, managesAnimations, usesSassVars) {
 
-  return defineComponent(mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars, function(){
+  return defineComponent(tracksCurrentDesign, managesAnimations, usesSassVars, function(){
     this.defaultAttrs({
       isHomeSection: false
     });

@@ -1,5 +1,5 @@
-define(["flight/component", "mixins"], function(defineComponent, mixins){
-  return defineComponent(mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars, function(){
+define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimations", "mixins/usesSassVars"], function(defineComponent, tracksCurrentDesign, managesAnimations, usesSassVars){
+  return defineComponent(tracksCurrentDesign, managesAnimations, usesSassVars, function(){
     this.defaultAttrs({
       dummyMobileFirstNavLink: 'li:first-child',
       li: 'li',

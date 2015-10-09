@@ -1,5 +1,5 @@
-define(["flight/component", "mixins"], function(defineComponent, mixins){
-  return defineComponent(mixins.usesSassVars, function(){
+define(["flight/component", "mixins/usesSassVars"], function(defineComponent, usesSassVars){
+  return defineComponent(usesSassVars, function(){
     this.defaultAttrs({
       sectionsSelector: '.objective'
     });

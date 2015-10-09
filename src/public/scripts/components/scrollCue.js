@@ -1,6 +1,6 @@
-define(["flight/component", "mixins"], function(defineComponent, mixins){
+define(["flight/component", "mixins/managesAnimations", "mixins/usesSassVars"], function(defineComponent, managesAnimations, usesSassVars) {
 
-  return defineComponent(mixins.tracksCurrentDesign, mixins.managesAnimations, mixins.usesSassVars, function(){
+  return defineComponent(managesAnimations, usesSassVars, function(){
     this.setupAnimations = function() {
       var bgKeyframes = {};
       bgKeyframes[this.sassVars.firstPanelUpStart] = {
