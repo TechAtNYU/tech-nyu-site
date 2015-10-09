@@ -68,12 +68,10 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
         transitionPoints: sectionTransitionPoints
       });
 
-      return this.trigger('animationsChange', {
-        keframesOnly: true
-      });
+      this.trigger('animationsChange', { keframesOnly: true });
     };
 
-    return this.after('initialize', function(){
+    this.after('initialize', function() {
       var this$ = this;
       this.$sections = this.select('sectionsSelector');
       this.s = this.attr.skrollrInstance;
@@ -82,7 +80,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
         return this$.setSectionAnimations(this$.designSizeKey);
       });
       this.on(window, "resize", this.handleResize);
-      return this.on(document, 'sectionContentModified', this.handleResize);
+      this.on(document, 'sectionContentModified', this.handleResize);
     });
   });
 });

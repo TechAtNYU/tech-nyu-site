@@ -242,11 +242,11 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
     }
 
     this.after('handleDesignModeChange', this.setNavText);
-    return this.after('initialize', function(){
+    this.after('initialize', function(){
       this.prepSmallNav();
       this.on(window, 'sectionsTransitionPointsChange', this.setAnimations);
       this.on(this.select('li').find('a').add('#logo'), 'click', this.handleNavClick);
-      return this.on(document, 'click', this.hideDropdown);
+      this.on(document, 'click', this.hideDropdown);
     });
   });
 });

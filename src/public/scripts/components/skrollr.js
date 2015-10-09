@@ -75,7 +75,7 @@ define(["flight/component", "mixins", "skrollr-menu"], function(defineComponent,
 
     this.after('handleDesignModeChange', this.moveElementsForMobileSkrollr);
 
-    return this.after('initialize', function(){
+    this.after('initialize', function(){
       var this$ = this;
       this.navList = this.select('navList');
       this.s = this.attr.skrollrInstance;
@@ -84,7 +84,7 @@ define(["flight/component", "mixins", "skrollr-menu"], function(defineComponent,
         return this$.s.refresh();
       });
 
-      return $(document).on('sectionsTransitionPointsChange', function(ev, data){
+      $(document).on('sectionsTransitionPointsChange', function(ev, data){
         var transitionPoints = data.transitionPoints;
         this$.transitionPoints = transitionPoints;
 

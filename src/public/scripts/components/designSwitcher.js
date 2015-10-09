@@ -40,7 +40,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       }
     };
 
-    return this.after('initialize', function(){
+    this.after('initialize', function(){
       this.$sections = this.select('sectionsSelector');
       this.getDesignMode();
       this.on(window, 'resize', this.getDesignMode);

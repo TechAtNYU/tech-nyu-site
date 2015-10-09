@@ -20,7 +20,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       this.trigger('digestDetailsHidden', { 'height': height });
     };
 
-    return this.after('initialize', function(){
+    this.after('initialize', function(){
       this.on(this.select('input'), "focus", this.showDetails);
       this.on(this.select('input'), 'blur', function(){
         setTimeout(this.hideDetails.bind(this), 150);

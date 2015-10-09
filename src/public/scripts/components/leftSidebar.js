@@ -96,7 +96,7 @@ define(["flight/component", "mixins"], function(defineComponent, mixins){
       return $('a[href=#event-calendar]').get(0).click();
     };
 
-    return this.after('initialize', function(){
+    this.after('initialize', function(){
       $(document).one('designModeChange', this.setupAnimations.bind(this));
       this.on(window, "resize", this.setupAnimations);
       this.on(this.$node, "digestDetailsShown", this.handleDigestDetailsShown);
