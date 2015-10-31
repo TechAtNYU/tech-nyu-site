@@ -22,7 +22,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
 
     this.setSectionAnimations = function() {
       var self = this,
-          designMode = this.currDesignMode
+          designMode = this.currDesignMode,
           sectionCount = this.$sections.length,
           navHeight = this.sassVars.currentNavHeight(),
           scrollTop = this.$window.scrollTop(),
