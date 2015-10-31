@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jasmine Test Runner</title>
+  <link rel="stylesheet" type="text/css" href="../app/components/jasmine/lib/jasmine-core/jasmine.css">
+  <script type="text/javascript" src="../app/components/jasmine/lib/jasmine-core/jasmine.js"></script>
+  <script type="text/javascript" src="../app/components/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+
+  <script type="text/javascript" src="../node_modules/phantom-jasmine/lib/console-runner.js"></script>
+  <script type="text/javascript" src="../app/components/es5-shim/es5-shim.js"></script>
+
+  <script type="text/javascript" src="../app/components/jquery/jquery.js"></script>
+  <script type="text/javascript" src="./lib/jasmine-jquery.js"></script>
+  <script type="text/javascript" src="../app/components/flight-jasmine/lib/flight-jasmine.js"></script>
+  <script type="text/javascript" src="../app/components/requirejs/require.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+	var console_reporter = new jasmine.ConsoleReporter()
+	var html_reporter = new jasmine.HtmlReporter();
+	jasmine.getEnv().addReporter(html_reporter);
+	jasmine.getEnv().specFilter = function(spec) {
+		return html_reporter.specFilter(spec);
+	};
+	jasmine.getEnv().addReporter(console_reporter);
+
+	require({
+		baseUrl: "../app/js",
+		paths: {
+			"text": "../components/requirejs-text/text",
+			"flight": "../components/flight",
+			"jcookie": "../components/jCookie/jcookie",
+			"jstorage": "../components/jStorage/jstorage",
+			"spec": "../../tests"
+		},
+		shim: {
+			"jstorage": ['jcookie']
+		}
+	}, [
+		'spec/feed_manager_spec',
+		'spec/feed_service_spec',
+		'spec/feed_aggregator_spec',
+		'spec/persistence_spec',
+		'spec/mixin_template_spec',
+		'spec/mixin_markup_spec'
+	], function() {
+		jasmine.getEnv().execute();
+	});
+</script>
+
+</body>
+</html>
+
