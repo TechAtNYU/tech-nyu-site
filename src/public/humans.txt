@@ -1,0 +1,18 @@
+/* TEAM */
+	Ethan Resnick 		| 	http://www.ethanresnick.com/
+	Abhi Agarwal 		| 	http://www.abhi.co/
+	Bob Gardner			| 	http://www.robert-gardner.com/
+
+/* THANKS */
+	Max Dumas
+	Steve Kaliski		|	http://stevekaliski.com/
+	Iris Yuan
+	Justin de Guzman	|	http://justindeguzman.net/
+	Cheryl Wu			|	http://grungerabbit.com/
+	Terri Burns			|	http://terri.party/
+	Dana Lee			|	http://danagilliann.me/
+	Jason Yao			|	https://jason.yao.global/
+
+/* SITE */
+	Language: English
+	Doctype: HTML5
