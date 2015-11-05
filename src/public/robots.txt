@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /*.json
+Disallow: /*.json-compact
+Disallow: /*.json-html
+Disallow: /*.xml
+Disallow: /*.rss
+Disallow: /*.i
+Disallow: /*.embed
+Allow: /
+
+User-Agent: bender
+Disallow: /my_shiny_metal_ass
