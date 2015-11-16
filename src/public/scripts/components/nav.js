@@ -242,6 +242,7 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
     }
 
     this.after('initialize', function(){
+      this.setNavText();
       this.prepSmallNav();
       this.on(document, 'designModeChange', this.setNavText);
       this.on(window, 'sectionsTransitionPointsChange', this.setAnimations);
