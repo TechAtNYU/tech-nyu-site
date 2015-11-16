@@ -77,7 +77,8 @@ define(["flight/component", "mixins/tracksCurrentDesign", "skrollr-menu"], funct
       var this$ = this;
       this.navList = this.select('navList');
       this.s = this.attr.skrollrInstance;
-
+      
+      this.moveElementsForMobileSkrollr();
       this.on(document, 'designModeChange', this.moveElementsForMobileSkrollr);
       $(document).on(this.attr.eventsTriggeringRefresh, function(){
         return this$.s.refresh();
