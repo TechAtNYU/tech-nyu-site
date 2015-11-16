@@ -73,12 +73,11 @@ define(["flight/component", "mixins/tracksCurrentDesign", "mixins/managesAnimati
     };
 
     this.after('initialize', function() {
-      var this$ = this;
       this.$window = $(window);
       this.$sections = this.select('sectionsSelector');
       this.s = this.attr.skrollrInstance;
 
-      this$.setSectionAnimations();
+      this.setSectionAnimations();
       this.on(window, "resize", this.handleResize);
       this.on(document, 'sectionContentModified', this.handleResize);
     });
