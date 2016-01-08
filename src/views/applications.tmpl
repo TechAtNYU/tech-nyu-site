@@ -138,7 +138,7 @@
 </section>
 <section>
   <h3>Deadlines &amp; Eligibilty</h3>
-  <p>The final deadline to apply is Friday, August 22nd. However, candidates are admitted on a rolling basis, so <em>earlier applicants have an advantage</em>. All applicants will hear back from us before the school year starts.</p>
+  <p>The final deadline to apply is Friday, February 5th. However, candidates are admitted on a rolling basis, so <em>earlier applicants have an advantage</em>. All applicants will hear back from us before the school year starts.</p>
   <p>Any student in NYC may apply, including graduate students. If you&rsquo;re studying abroad in the upcoming year, we encourage you to apply for any of the team member positions; unfortunately, only students who will be in NYC full time are eligible for the team lead positions (see below).</p>
 
  {# <h3>Team Leads vs Team Members</h3>
@@ -149,7 +149,7 @@
 </section>
   <nav style="">
     <dl>
-      <dt>Available positions<span class="extra"> for 2014 are:</span></dt>
+      <dt>Available positions<span class="extra"> for 2016 are:</span></dt>
       {%- for position in positions %}
         <dd>{%- if position.filled == position.needed %}<del>{% endif %}
             {%- if position.priority %}<strong>{% endif %}
@@ -164,6 +164,9 @@
       <article>
         <h3 id="{{position.name|toAnchor}}">{{position.name}}</h3>
         <p>{{position.desc|safe}}</p>
+        {% for role in position.roles %}
+          <li>{{role|safe}}</li>
+        {% endfor %}
         <a class="button flatButton" href="{{position.link}}">Apply Now!</a> {% if position.name|replace("Lead", "") == position.name %}<small><span class="number">{{ position.needed - position.filled }}</span> remaining</small>{% endif %}
       </article>
     {% endif %}
