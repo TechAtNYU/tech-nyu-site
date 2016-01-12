@@ -4,3 +4,4 @@ node_modules
 build
 .bowery
 bowery.json
+npm-debug.log
