@@ -60,7 +60,7 @@ var data = {
       shortName: "About"
     }, {
       name: "Event Calendar",
-      anchor: "event-calendar"
+      anchor: "http://cal.techatnyu.org/"
     }
   ],
   customShortUris: {

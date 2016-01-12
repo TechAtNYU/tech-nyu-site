@@ -47,7 +47,7 @@
               </a>
             {% else %}
                 <li class="h3 calendar">
-                  <a href="#{{ section.anchor }}" data-transitionpoint="{{loop.index0}}">{% include "partials/calendar_with_alt.tmpl" %}</a>
+                  <a href="{{ section.anchor }}" data-transitionpoint="{{loop.index0}}">{% include "partials/calendar_with_alt.tmpl" %}</a>
                 </li>
             {% endif %}
           {% endfor %}
@@ -224,8 +224,6 @@
 
       <section class="objective sixth" id="event-calendar" data-section="6">
         <div class="bg" data-wide="img/bg/support3.jpg" data-narrow="img/bg/support2.jpg" /></div>
-        <h1>Event Calendar</h2>
-        <p><a href="http://cal.techatnyu.org/">cal.techatnyu.org - Events Calendar</a></p>
         <br/>
         <div class="initiative">
             <h2 class="h3">Event Digest</h2>
