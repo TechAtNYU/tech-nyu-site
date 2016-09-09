@@ -5,10 +5,15 @@ module.exports = [
   },{
     name: "Meetup",
     img: "meetup.png"
-  }, {
-    name: "Rackspace",
-    img: "rackspace.jpg",
-    url: ""
+  },{
+    name: "Digital Ocean",
+    img: "digitalocean.png"
+  },{
+    name: "Microsoft Azure",
+    img: "azure.png"
+  },{
+    name: "Clarifai",
+    img: "clarifai.png"
   }, {
     name: "Quirky",
     img: "quirky.gif",
