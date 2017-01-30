@@ -125,12 +125,12 @@ app.get(/\/job\-board\/?/, function(req, res){
   return res.redirect('http://jobs.techatnyu.org/');
 });
 
-app.get(/^\/apply-now\/?$/, function(req, res){
-  var localData, ref$;
-  localData = require('./data/applications');
-  ref$ = [data['now'], data['gaKey']], localData['now'] = ref$[0], localData['gaKey'] = ref$[1];
-  return res.render("applications.tmpl", localData);
-});
+//app.get(/^\/apply-now\/?$/, function(req, res){
+//  var localData, ref$;
+//  localData = require('./data/applications');
+//  ref$ = [data['now'], data['gaKey']], localData['now'] = ref$[0], localData['gaKey'] = ref$[1];
+//  return res.render("applications.tmpl", localData);
+//});
 
 app.post('/subscribe', function(){});
 
