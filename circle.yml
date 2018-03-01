@@ -15,4 +15,4 @@ deployment:
   production:
     branch: master
     commands:
-      - ssh $SSHU "cd $DIR && git pull origin master && bundle install && npm install && bundle exec gulp && cd build && sudo pm2 restart server"
+      - ssh $SSHU "cd $DIR && git pull origin master && bundle install && npm install && bundle exec gulp && cd build && sudo pm2 start server"
